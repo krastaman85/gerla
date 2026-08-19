@@ -1,11 +1,11 @@
 {
  "versione": 3,
  "data": "2026-08-19",
- "generato": "2026-08-19T22:45:56.572Z",
+ "generato": "2026-08-19T22:54:08.220Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9402,
  "prezzi": {
-  "patate": 4.5,
+  "patate": 6.95,
   "carote": 2.6,
   "cipolle": 2.8,
   "aglio": 1.6,
@@ -23,13 +23,13 @@
   "porri": 3.8,
   "sedano": 2.5,
   "coste": 3.2,
-  "funghi": 3.95,
+  "funghi": 2.25,
   "fagiolini": 3.9,
   "piselli": 2.9,
   "minestrone": 4.5,
   "pelati": 1.2,
   "passata": 2.5,
-  "mele": 4.55,
+  "mele": 4.2,
   "banane": 3.2,
   "arance": 4.9,
   "mandarini": 3.5,
@@ -42,7 +42,7 @@
   "melone": 3.9,
   "susine": 4.2,
   "limoni": 2.6,
-  "pettopollo": 23.85,
+  "pettopollo": 21.25,
   "cosciapollo": 8.9,
   "macinato": 8.9,
   "spezzatino": 12.9,
@@ -61,26 +61,26 @@
   "ceci": 1.5,
   "fagioli": 1.4,
   "tofu": 2.95,
-  "latte": 1.95,
+  "latte": 1.85,
   "yogurtnat": 2.65,
   "yogurtfru": 2.4,
   "grattugiato": 3.9,
   "mozzarella": 0.85,
   "semiduro": 7.9,
   "ricotta": 2.9,
-  "burro": 5,
+  "burro": 4.9,
   "panna": 2.5,
   "formaggino": 2.9,
   "uova": 6.95,
-  "pasta": 1.2,
+  "pasta": 1.4,
   "riso": 3.2,
   "pane": 4.25,
   "paneint": 3.2,
-  "farina": 3.4,
+  "farina": 3.6,
   "polenta": 2.5,
   "couscous": 2.9,
   "gnocchi": 2.6,
-  "pizzasurg": 4.5,
+  "pizzasurg": 4.6,
   "gallette": 2.5,
   "latteveg": 1.1,
   "avena": 2.5,
@@ -375,7 +375,7 @@
   "biscottiint": 3.5,
   "succomela": 2.2,
   "curry": 2.2,
-  "paprika": 3.95,
+  "paprika": 2,
   "cannella": 2.2,
   "origano": 1.9,
   "ketchup": 2.5,
@@ -461,14 +461,20 @@
   "vinobianco": 8.9,
   "vinorosso": 9.9,
   "prosecco": 9.9,
-  "birra": 7.7,
+  "birra": 10.4,
   "bitter": 12.9,
   "bibite": 6.9,
   "acquagas": 3.6
  },
  "qualita": {
   "patate": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Maladière"
+   ]
   },
   "carote": {
    "q": "riferimento"
@@ -530,7 +536,14 @@
    "q": "riferimento"
   },
   "funghi": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 5,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop",
+    "La Maladière centre"
+   ]
   },
   "fagiolini": {
    "q": "riferimento"
@@ -555,7 +568,7 @@
   },
   "mele": {
    "q": "verificato",
-   "n": 9,
+   "n": 14,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -610,8 +623,8 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 4,
-   "data": "2026-07-11",
+   "n": 6,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -689,8 +702,8 @@
   },
   "latte": {
    "q": "verificato",
-   "n": 13,
-   "data": "2026-07-31",
+   "n": 18,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
@@ -750,11 +763,17 @@
    "q": "riferimento"
   },
   "uova": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 4,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "La Maladière centre"
+   ]
   },
   "pasta": {
    "q": "verificato",
-   "n": 5,
+   "n": 6,
    "data": "2026-07-25",
    "fonte": "off-prices",
    "negozi": [
@@ -767,8 +786,8 @@
   },
   "pane": {
    "q": "verificato",
-   "n": 5,
-   "data": "2026-01-09",
+   "n": 7,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -781,7 +800,7 @@
   },
   "farina": {
    "q": "verificato",
-   "n": 10,
+   "n": 6,
    "data": "2026-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -799,7 +818,14 @@
    "q": "riferimento"
   },
   "pizzasurg": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 4,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "La Maladière centre",
+    "Coop"
+   ]
   },
   "gallette": {
    "q": "riferimento"
@@ -824,7 +850,7 @@
   },
   "biscotti": {
    "q": "verificato",
-   "n": 6,
+   "n": 7,
    "data": "2026-06-03",
    "fonte": "off-prices",
    "negozi": [
@@ -872,7 +898,7 @@
   },
   "pesto": {
    "q": "verificato",
-   "n": 5,
+   "n": 3,
    "data": "2025-11-25",
    "fonte": "off-prices",
    "negozi": [
@@ -894,7 +920,7 @@
   },
   "caffe": {
    "q": "verificato",
-   "n": 7,
+   "n": 8,
    "data": "2025-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -1198,7 +1224,7 @@
   },
   "burgerveg": {
    "q": "verificato",
-   "n": 6,
+   "n": 7,
    "data": "2026-08-04",
    "fonte": "off-prices",
    "negozi": [
@@ -1771,7 +1797,7 @@
   },
   "paprika": {
    "q": "verificato",
-   "n": 4,
+   "n": 3,
    "data": "2026-08-07",
    "fonte": "off-prices",
    "negozi": [
@@ -2048,7 +2074,14 @@
    "q": "riferimento"
   },
   "birra": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 4,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Laufen Bahnhof",
+    "La Maladière centre"
+   ]
   },
   "bitter": {
    "q": "riferimento"
@@ -2215,12 +2248,12 @@
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 808
+    "osservazioni": 807
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 2186
+    "osservazioni": 2170
    }
   ],
   "cambioEUR": 0.9402
