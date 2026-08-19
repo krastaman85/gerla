@@ -1,0 +1,2204 @@
+{
+ "versione": 3,
+ "data": "2026-08-19",
+ "generato": "2026-08-19T21:47:22.330Z",
+ "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
+ "cambioEUR": 0.9402,
+ "prezzi": {
+  "patate": 4.5,
+  "carote": 2.6,
+  "cipolle": 2.8,
+  "aglio": 1.6,
+  "zucchine": 3.9,
+  "melanzane": 4.6,
+  "pomodori": 4.75,
+  "peperoni": 5.9,
+  "insalata": 2.2,
+  "spinaci": 3.5,
+  "broccoli": 3.2,
+  "cavolfiore": 3.5,
+  "verza": 2.9,
+  "zucca": 3.4,
+  "finocchi": 4.2,
+  "porri": 3.8,
+  "sedano": 2.5,
+  "coste": 3.2,
+  "funghi": 3.95,
+  "fagiolini": 3.9,
+  "piselli": 2.9,
+  "minestrone": 4.5,
+  "pelati": 1.2,
+  "passata": 2.5,
+  "mele": 4.55,
+  "banane": 3.2,
+  "arance": 4.9,
+  "mandarini": 3.5,
+  "pere": 3.9,
+  "pesche": 4.5,
+  "albicocche": 3.9,
+  "fragole": 4.5,
+  "uva": 3.5,
+  "kiwi": 3.9,
+  "melone": 3.9,
+  "susine": 4.2,
+  "limoni": 2.6,
+  "pettopollo": 21.25,
+  "cosciapollo": 8.9,
+  "macinato": 8.9,
+  "spezzatino": 12.9,
+  "fettine": 16.9,
+  "luganighetta": 6.5,
+  "wurstel": 3.5,
+  "prosccotto": 3.8,
+  "proscrudo": 4.5,
+  "salame": 4.2,
+  "tonno": 8.15,
+  "salmone": 8.9,
+  "merluzzo": 7.5,
+  "bastoncini": 5.9,
+  "platessa": 7.9,
+  "lenticchie": 2.9,
+  "ceci": 1.5,
+  "fagioli": 1.4,
+  "tofu": 2.95,
+  "latte": 1.95,
+  "yogurtnat": 2.65,
+  "yogurtfru": 2.4,
+  "grattugiato": 3.9,
+  "mozzarella": 0.85,
+  "semiduro": 7.9,
+  "ricotta": 2.9,
+  "burro": 4.9,
+  "panna": 2.5,
+  "formaggino": 2.9,
+  "uova": 6.95,
+  "pasta": 1.2,
+  "riso": 3.2,
+  "pane": 4.25,
+  "paneint": 3.2,
+  "farina": 3.4,
+  "polenta": 2.5,
+  "couscous": 2.9,
+  "gnocchi": 2.6,
+  "pizzasurg": 4.5,
+  "gallette": 2.5,
+  "latteveg": 2.2,
+  "avena": 2.5,
+  "cornflakes": 3.5,
+  "fettebis": 2.2,
+  "biscotti": 7.25,
+  "olio": 13.25,
+  "oliosem": 3.5,
+  "aceto": 2.2,
+  "sale": 0.9,
+  "zucchero": 2.5,
+  "spezie": 1.9,
+  "dado": 2.2,
+  "pesto": 4.4,
+  "marmellata": 3.5,
+  "miele": 6.9,
+  "cremacacao": 4.5,
+  "maionese": 2.9,
+  "caffe": 4.95,
+  "te": 2.5,
+  "cioccolato": 0.55,
+  "noci": 4.5,
+  "mandorle": 4.9,
+  "acqua": 3.6,
+  "succo": 2.2,
+  "sciroppo": 3.5,
+  "detbucato": 9.9,
+  "ammorbid": 4.5,
+  "detpiatti": 2.5,
+  "pastiglielav": 9.9,
+  "sgrassatore": 3.5,
+  "cartaig": 7.9,
+  "cartacucina": 4.5,
+  "sacchetti": 3.9,
+  "spugne": 2.5,
+  "alluminio": 3.5,
+  "saponemani": 2.9,
+  "shampoo": 4.5,
+  "bagnoschiuma": 4.9,
+  "dentifricio": 3.5,
+  "spazzolino": 3.5,
+  "deodorante": 4.5,
+  "rasoi": 8.9,
+  "fazzoletti": 2.5,
+  "risosushi": 5.5,
+  "nori": 4.5,
+  "salmonesashimi": 16.9,
+  "tonnosashimi": 22,
+  "wasabi": 3.9,
+  "zenzerosott": 3.5,
+  "acetoriso": 3.2,
+  "sesamo": 3.2,
+  "miso": 5.9,
+  "ramen": 3.5,
+  "gyoza": 6.9,
+  "panko": 3.5,
+  "shiitake": 5.9,
+  "pakchoi": 3.5,
+  "edamamesurg": 4.5,
+  "algheinsalata": 5.9,
+  "tacoshell": 3.9,
+  "nachos": 3.5,
+  "fagiolineri": 1.9,
+  "salsamessicana": 3.5,
+  "jalapenos": 3.2,
+  "guacamole": 4.5,
+  "lime": 4.4,
+  "coriandolo": 2.2,
+  "cheddar": 5.5,
+  "chipotle": 3.9,
+  "mais_tortillas": 3.9,
+  "cumino": 2.2,
+  "paninihamburger": 3.2,
+  "cetriolini": 3.2,
+  "salsabbq": 3.5,
+  "alettepollo": 8.9,
+  "costinebbq": 15.9,
+  "cipollefritte": 4.5,
+  "cheesecake": 7.15,
+  "lattecocco": 2.2,
+  "garammasala": 2.9,
+  "pastacurry": 4.5,
+  "naan": 3.9,
+  "paneer": 5.9,
+  "lenticchierosse": 3.2,
+  "curcuma": 2.5,
+  "hummus": 3.5,
+  "tahina": 5.5,
+  "pita": 2.9,
+  "falafel": 4.5,
+  "harissa": 3.9,
+  "tzatziki": 3.2,
+  "kebabcarne": 12.9,
+  "melassa": 5.9,
+  "salsaostriche": 3.9,
+  "hoisin": 4.2,
+  "sriracha": 3.9,
+  "cartariso": 4.5,
+  "citronella": 3.9,
+  "salsapesce": 3.5,
+  "arachidi": 3.5,
+  "germogli": 2.9,
+  "risojasmine": 4.9,
+  "anatralaccata": 16.9,
+  "tempeh": 4.9,
+  "seitan": 4.5,
+  "formaggioveg": 5.5,
+  "lattavena": 2.2,
+  "yogurtsoia": 2.9,
+  "lievitoalim": 4.9,
+  "burgerveg": 4.9,
+  "hummusrosso": 3.9,
+  "semichia": 4.5,
+  "proteinepiselli": 12.9,
+  "sciroppoagave": 4.9,
+  "cioccveg": 3.5,
+  "farina00": 2.2,
+  "lievitomadre": 4.5,
+  "fiordilatte": 4.5,
+  "nduja": 5.9,
+  "saltamburo": 4.9,
+  "pomodorosanmarzano": 2.9,
+  "origanosecco": 2.5,
+  "burroghee": 7.9,
+  "pancarre": 2.9,
+  "wurstelveg": 4.5,
+  "insalatapronta": 3.2,
+  "zuppapronta": 3.9,
+  "frittomisto": 9.9,
+  "dessertcucchiaio": 3.9,
+  "ghiaccio": 3.5,
+  "stuzzicadenti": 2.5,
+  "bicchierifesta": 8.9,
+  "cavolonero": 3.9,
+  "bietole": 3.4,
+  "puntarelle": 3.9,
+  "porcinifr": 29,
+  "finferli": 24,
+  "tartufonero": 39,
+  "barbabietola": 3.2,
+  "topinambur": 4.9,
+  "indivia": 3.5,
+  "pomodoricuore": 6.9,
+  "mirtilli": 4.9,
+  "lamponi": 4.9,
+  "nespole": 5.9,
+  "clementine": 3.9,
+  "pompelmo": 2.2,
+  "frutasecmix": 4.9,
+  "stinco": 13.9,
+  "guancia": 15.9,
+  "galletto": 11.9,
+  "tacchinofette": 16.9,
+  "bollito": 17.9,
+  "salamella": 9.9,
+  "prosciuttocrudo24": 8.9,
+  "lucioperca": 19.9,
+  "gamberoni": 19.9,
+  "salmonebio": 13.9,
+  "baccala": 14.9,
+  "caviale": 6.9,
+  "taleggio": 5.9,
+  "pecorino": 6.9,
+  "stracchino": 3.2,
+  "yogurtvegetale": 3.2,
+  "lattefieno": 2.4,
+  "gnocchetti": 2.6,
+  "paccheri": 3.2,
+  "risoveneri": 5.5,
+  "pizzabase": 3.5,
+  "panbrioche": 4.2,
+  "cracker": 3.2,
+  "confettureextra": 8.75,
+  "sciroppoacero": 8.9,
+  "senapedijon": 3.2,
+  "salsapomodoroP": 3.5,
+  "cremabalsamica": 4.9,
+  "oliolino": 7.9,
+  "fiocchipatate": 2.5,
+  "brodocarne": 3.2,
+  "vinodolce": 14.9,
+  "grappa": 24,
+  "sidro": 5.9,
+  "kombucha": 4.5,
+  "succomirtillo": 4.5,
+  "caffeorzo": 4.5,
+  "latteinpolvere": 9.9,
+  "pannolini": 14.9,
+  "salviettine": 3.5,
+  "assorbenti": 4.5,
+  "cerotti": 6.9,
+  "lampadine": 6.9,
+  "pile": 7.9,
+  "cibogatto": 9.9,
+  "cibocane": 12.9,
+  "ossobuco": 24.9,
+  "capretto": 29,
+  "capriolo": 26,
+  "trippa": 9.9,
+  "farinabona": 8.9,
+  "zincarlin": 9.9,
+  "formaggini": 4.5,
+  "cicoria": 3.2,
+  "castagne": 6.9,
+  "merlot": 12.9,
+  "gazosa": 4.5,
+  "mieleticino": 12.9,
+  "paneseg": 4.2,
+  "salvia": 2.2,
+  "cetrioli": 2.6,
+  "cavolini": 4.2,
+  "cappuccio": 2.9,
+  "ravanelli": 2.2,
+  "songino": 3.2,
+  "spinacifr": 3.5,
+  "patatedolci": 4.5,
+  "sedanorapa": 3.5,
+  "mais": 1.6,
+  "pomodorisecchi": 3.9,
+  "wok": 3.9,
+  "edamame": 3.9,
+  "zenzero": 2.5,
+  "prezzemolo": 2.2,
+  "rosmarino": 2.2,
+  "peperoncino": 1.9,
+  "scalogno": 3.2,
+  "ciliegie": 8.9,
+  "fichi": 4.9,
+  "cachi": 3.9,
+  "melagrana": 3.5,
+  "mango": 3.5,
+  "datteri": 4.5,
+  "uvetta": 2.5,
+  "prugnesecche": 3.9,
+  "albicoccheS": 4.5,
+  "fruttasecca": 5.9,
+  "tacchino": 14.9,
+  "macinatopollo": 7.9,
+  "costine": 13.9,
+  "lonza": 15.9,
+  "cotolettav": 22,
+  "hamburgerp": 7.9,
+  "cordonbleu": 7.5,
+  "polloarrosto": 13.9,
+  "pancetta": 3.2,
+  "carnesecca": 7.9,
+  "cervo": 19.9,
+  "wurstelpollo": 3.9,
+  "trota": 9.9,
+  "persico": 14.9,
+  "tonnofresco": 14.9,
+  "sgombro": 5.9,
+  "sardine": 2.5,
+  "acciughe": 3.2,
+  "surimi": 3.5,
+  "seppie": 9.9,
+  "polpo": 14.9,
+  "formaggella": 8.9,
+  "feta": 3.2,
+  "robiola": 3.5,
+  "quark": 2.2,
+  "skyr": 2.9,
+  "kefir": 2.9,
+  "lattesenzalatt": 2.1,
+  "emmental": 5.9,
+  "raclette": 9.9,
+  "fonduta": 11.9,
+  "bufala": 3.9,
+  "pannaacida": 2.2,
+  "pastaint": 3.2,
+  "pastagf": 4.9,
+  "basmati": 4.5,
+  "risointegrale": 4.2,
+  "quinoa": 5.9,
+  "bulgur": 3.2,
+  "orzo": 2.9,
+  "farro": 3.9,
+  "noodles": 2.9,
+  "tortellini": 4.5,
+  "ravioli": 4.9,
+  "panegf": 4.9,
+  "tortillas": 3.2,
+  "piadina": 2.9,
+  "pangrattato": 1.9,
+  "farinaint": 2.2,
+  "patatinesurg": 3.5,
+  "muesli": 5.5,
+  "granola": 5.5,
+  "burroarachidi": 4.9,
+  "lattemandorla": 2.9,
+  "cerealicioc": 4.2,
+  "biscottiint": 3.5,
+  "succomela": 2.2,
+  "curry": 2.2,
+  "paprika": 2,
+  "cannella": 2.2,
+  "origano": 1.9,
+  "ketchup": 2.5,
+  "salsasoia": 3.2,
+  "brodoveg": 2.9,
+  "pestorosso": 3.9,
+  "maisscatola": 1.8,
+  "carciofini": 3.9,
+  "giardiniera": 3.2,
+  "zuccherocanna": 2.5,
+  "vaniglia": 2.5,
+  "tefreddo": 6.9,
+  "rosato": 8.9,
+  "birraart": 4.5,
+  "analcolico": 7.9,
+  "tonica": 5.9,
+  "capsule": 9.9,
+  "cioccolatapolv": 4.5,
+  "candeggina": 2.5,
+  "anticalcare": 4.5,
+  "tovaglioli": 2.5,
+  "monouso": 6.9,
+  "carbonella": 7.9,
+  "accendifuoco": 3.5,
+  "candele": 4.5,
+  "sacchiumido": 3.2,
+  "filettomanzo": 59,
+  "entrecote": 45,
+  "arrostovitello": 32,
+  "coniglio": 22,
+  "anatra": 11.9,
+  "agnello": 32,
+  "bresaola": 6.9,
+  "mortadella": 3.2,
+  "speck": 4.9,
+  "salsicciagr": 7.9,
+  "salmoneaff": 7.9,
+  "gamberi": 12.9,
+  "branzino": 12.9,
+  "cozze": 6.9,
+  "vongole": 9.9,
+  "calamari": 9.9,
+  "parmigiano": 6.9,
+  "gorgonzola": 3.9,
+  "brie": 4.5,
+  "burrata": 3.9,
+  "mascarpone": 3.2,
+  "pannamontare": 2.9,
+  "yogurtgreco": 2.6,
+  "gelato": 5.95,
+  "carnaroli": 4.9,
+  "lasagne": 3.2,
+  "pastauovo": 3.5,
+  "focaccia": 3.9,
+  "grissini": 2.5,
+  "crackers": 2.2,
+  "baguette": 2.2,
+  "brioche": 3.5,
+  "savoiardi": 3.2,
+  "lievito": 1.5,
+  "pomodorini": 3.5,
+  "rucola": 2.5,
+  "basilico": 3.5,
+  "asparagi": 6.9,
+  "porcini": 6.9,
+  "radicchio": 3.2,
+  "carciofi": 4.5,
+  "avocado": 2.5,
+  "fruttibosco": 4.5,
+  "ananas": 4.5,
+  "anguria": 6.5,
+  "olive": 4.4,
+  "capperi": 2.5,
+  "senape": 1.9,
+  "patatine": 3.2,
+  "salatini": 2.9,
+  "balsamico": 4.5,
+  "pinoli": 5.9,
+  "zafferano": 2.5,
+  "cacao": 6.65,
+  "fondente": 2.5,
+  "tartufo": 8.9,
+  "vinobianco": 8.9,
+  "vinorosso": 9.9,
+  "prosecco": 9.9,
+  "birra": 7.7,
+  "bitter": 12.9,
+  "bibite": 6.9,
+  "acquagas": 3.6
+ },
+ "qualita": {
+  "patate": {
+   "q": "riferimento"
+  },
+  "carote": {
+   "q": "riferimento"
+  },
+  "cipolle": {
+   "q": "riferimento"
+  },
+  "aglio": {
+   "q": "riferimento"
+  },
+  "zucchine": {
+   "q": "riferimento"
+  },
+  "melanzane": {
+   "q": "riferimento"
+  },
+  "pomodori": {
+   "q": "verificato",
+   "n": 8,
+   "data": "2026-01-06",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros",
+    "Coop Maladière",
+    "Coop"
+   ]
+  },
+  "peperoni": {
+   "q": "riferimento"
+  },
+  "insalata": {
+   "q": "riferimento"
+  },
+  "spinaci": {
+   "q": "riferimento"
+  },
+  "broccoli": {
+   "q": "riferimento"
+  },
+  "cavolfiore": {
+   "q": "riferimento"
+  },
+  "verza": {
+   "q": "riferimento"
+  },
+  "zucca": {
+   "q": "riferimento"
+  },
+  "finocchi": {
+   "q": "riferimento"
+  },
+  "porri": {
+   "q": "riferimento"
+  },
+  "sedano": {
+   "q": "riferimento"
+  },
+  "coste": {
+   "q": "riferimento"
+  },
+  "funghi": {
+   "q": "riferimento"
+  },
+  "fagiolini": {
+   "q": "riferimento"
+  },
+  "piselli": {
+   "q": "riferimento"
+  },
+  "minestrone": {
+   "q": "riferimento"
+  },
+  "pelati": {
+   "q": "riferimento"
+  },
+  "passata": {
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-07-31",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre"
+   ]
+  },
+  "mele": {
+   "q": "verificato",
+   "n": 8,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre",
+    "Migros Serrières",
+    "La Maladière centre"
+   ]
+  },
+  "banane": {
+   "q": "verificato",
+   "n": 4,
+   "data": "2025-11-25",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Maladière",
+    "Migros Serrières",
+    "Coop"
+   ]
+  },
+  "arance": {
+   "q": "riferimento"
+  },
+  "mandarini": {
+   "q": "riferimento"
+  },
+  "pere": {
+   "q": "riferimento"
+  },
+  "pesche": {
+   "q": "riferimento"
+  },
+  "albicocche": {
+   "q": "riferimento"
+  },
+  "fragole": {
+   "q": "riferimento"
+  },
+  "uva": {
+   "q": "riferimento"
+  },
+  "kiwi": {
+   "q": "riferimento"
+  },
+  "melone": {
+   "q": "riferimento"
+  },
+  "susine": {
+   "q": "riferimento"
+  },
+  "limoni": {
+   "q": "riferimento"
+  },
+  "pettopollo": {
+   "q": "verificato",
+   "n": 5,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros",
+    "Coop"
+   ]
+  },
+  "cosciapollo": {
+   "q": "riferimento"
+  },
+  "macinato": {
+   "q": "riferimento"
+  },
+  "spezzatino": {
+   "q": "riferimento"
+  },
+  "fettine": {
+   "q": "riferimento"
+  },
+  "luganighetta": {
+   "q": "riferimento"
+  },
+  "wurstel": {
+   "q": "riferimento"
+  },
+  "prosccotto": {
+   "q": "riferimento"
+  },
+  "proscrudo": {
+   "q": "riferimento"
+  },
+  "salame": {
+   "q": "riferimento"
+  },
+  "tonno": {
+   "q": "verificato",
+   "n": 4,
+   "data": "2026-08-16",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop",
+    "Lidl"
+   ]
+  },
+  "salmone": {
+   "q": "riferimento"
+  },
+  "merluzzo": {
+   "q": "riferimento"
+  },
+  "bastoncini": {
+   "q": "riferimento"
+  },
+  "platessa": {
+   "q": "riferimento"
+  },
+  "lenticchie": {
+   "q": "riferimento"
+  },
+  "ceci": {
+   "q": "riferimento"
+  },
+  "fagioli": {
+   "q": "riferimento"
+  },
+  "tofu": {
+   "q": "verificato",
+   "n": 5,
+   "data": "2025-12-05",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop",
+    "VOI",
+    "Lidl"
+   ]
+  },
+  "latte": {
+   "q": "verificato",
+   "n": 14,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre",
+    "Migros",
+    "Migros Serrières"
+   ]
+  },
+  "yogurtnat": {
+   "q": "verificato",
+   "n": 20,
+   "data": "2026-07-21",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros",
+    "Coop",
+    "Lidl Altendorf"
+   ]
+  },
+  "yogurtfru": {
+   "q": "riferimento"
+  },
+  "grattugiato": {
+   "q": "riferimento"
+  },
+  "mozzarella": {
+   "q": "verificato",
+   "n": 8,
+   "data": "2026-07-31",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre",
+    "Migros",
+    "Coop"
+   ]
+  },
+  "semiduro": {
+   "q": "riferimento"
+  },
+  "ricotta": {
+   "q": "riferimento"
+  },
+  "burro": {
+   "q": "verificato",
+   "n": 17,
+   "data": "2026-07-31",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre",
+    "Migros",
+    "Coop"
+   ]
+  },
+  "panna": {
+   "q": "riferimento"
+  },
+  "formaggino": {
+   "q": "riferimento"
+  },
+  "uova": {
+   "q": "riferimento"
+  },
+  "pasta": {
+   "q": "verificato",
+   "n": 5,
+   "data": "2026-07-25",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre",
+    "Migros Serrières"
+   ]
+  },
+  "riso": {
+   "q": "riferimento"
+  },
+  "pane": {
+   "q": "verificato",
+   "n": 5,
+   "data": "2026-01-09",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros",
+    "Coop",
+    "La Maladière centre"
+   ]
+  },
+  "paneint": {
+   "q": "riferimento"
+  },
+  "farina": {
+   "q": "verificato",
+   "n": 7,
+   "data": "2026-08-16",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros",
+    "Coop"
+   ]
+  },
+  "polenta": {
+   "q": "riferimento"
+  },
+  "couscous": {
+   "q": "riferimento"
+  },
+  "gnocchi": {
+   "q": "riferimento"
+  },
+  "pizzasurg": {
+   "q": "riferimento"
+  },
+  "gallette": {
+   "q": "riferimento"
+  },
+  "latteveg": {
+   "q": "riferimento"
+  },
+  "avena": {
+   "q": "riferimento"
+  },
+  "cornflakes": {
+   "q": "riferimento"
+  },
+  "fettebis": {
+   "q": "riferimento"
+  },
+  "biscotti": {
+   "q": "verificato",
+   "n": 7,
+   "data": "2026-06-03",
+   "fonte": "off-prices",
+   "negozi": [
+    "Lidl",
+    "La Maladière centre",
+    "Migros"
+   ]
+  },
+  "olio": {
+   "q": "verificato",
+   "n": 11,
+   "data": "2026-04-23",
+   "fonte": "off-prices",
+   "negozi": [
+    "Lidl",
+    "Migros Serrières",
+    "La Maladière centre"
+   ]
+  },
+  "oliosem": {
+   "q": "riferimento"
+  },
+  "aceto": {
+   "q": "riferimento"
+  },
+  "sale": {
+   "q": "riferimento"
+  },
+  "zucchero": {
+   "q": "verificato",
+   "n": 4,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Métropole Centre",
+    "Agrola",
+    "Coop"
+   ]
+  },
+  "spezie": {
+   "q": "riferimento"
+  },
+  "dado": {
+   "q": "riferimento"
+  },
+  "pesto": {
+   "q": "verificato",
+   "n": 3,
+   "data": "2025-11-25",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Maladière",
+    "Migros"
+   ]
+  },
+  "marmellata": {
+   "q": "riferimento"
+  },
+  "miele": {
+   "q": "riferimento"
+  },
+  "cremacacao": {
+   "q": "riferimento"
+  },
+  "maionese": {
+   "q": "riferimento"
+  },
+  "caffe": {
+   "q": "verificato",
+   "n": 7,
+   "data": "2025-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros"
+   ]
+  },
+  "te": {
+   "q": "riferimento"
+  },
+  "cioccolato": {
+   "q": "verificato",
+   "n": 31,
+   "data": "2026-07-19",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop",
+    "Migros"
+   ]
+  },
+  "noci": {
+   "q": "riferimento"
+  },
+  "mandorle": {
+   "q": "riferimento"
+  },
+  "acqua": {
+   "q": "riferimento"
+  },
+  "succo": {
+   "q": "riferimento"
+  },
+  "sciroppo": {
+   "q": "riferimento"
+  },
+  "detbucato": {
+   "q": "riferimento"
+  },
+  "ammorbid": {
+   "q": "riferimento"
+  },
+  "detpiatti": {
+   "q": "riferimento"
+  },
+  "pastiglielav": {
+   "q": "riferimento"
+  },
+  "sgrassatore": {
+   "q": "riferimento"
+  },
+  "cartaig": {
+   "q": "riferimento"
+  },
+  "cartacucina": {
+   "q": "riferimento"
+  },
+  "sacchetti": {
+   "q": "riferimento"
+  },
+  "spugne": {
+   "q": "riferimento"
+  },
+  "alluminio": {
+   "q": "riferimento"
+  },
+  "saponemani": {
+   "q": "riferimento"
+  },
+  "shampoo": {
+   "q": "riferimento"
+  },
+  "bagnoschiuma": {
+   "q": "riferimento"
+  },
+  "dentifricio": {
+   "q": "riferimento"
+  },
+  "spazzolino": {
+   "q": "riferimento"
+  },
+  "deodorante": {
+   "q": "riferimento"
+  },
+  "rasoi": {
+   "q": "riferimento"
+  },
+  "fazzoletti": {
+   "q": "riferimento"
+  },
+  "risosushi": {
+   "q": "riferimento"
+  },
+  "nori": {
+   "q": "riferimento"
+  },
+  "salmonesashimi": {
+   "q": "riferimento"
+  },
+  "tonnosashimi": {
+   "q": "riferimento"
+  },
+  "wasabi": {
+   "q": "riferimento"
+  },
+  "zenzerosott": {
+   "q": "riferimento"
+  },
+  "acetoriso": {
+   "q": "riferimento"
+  },
+  "sesamo": {
+   "q": "riferimento"
+  },
+  "miso": {
+   "q": "riferimento"
+  },
+  "ramen": {
+   "q": "riferimento"
+  },
+  "gyoza": {
+   "q": "riferimento"
+  },
+  "panko": {
+   "q": "riferimento"
+  },
+  "shiitake": {
+   "q": "riferimento"
+  },
+  "pakchoi": {
+   "q": "riferimento"
+  },
+  "edamamesurg": {
+   "q": "riferimento"
+  },
+  "algheinsalata": {
+   "q": "riferimento"
+  },
+  "tacoshell": {
+   "q": "riferimento"
+  },
+  "nachos": {
+   "q": "riferimento"
+  },
+  "fagiolineri": {
+   "q": "riferimento"
+  },
+  "salsamessicana": {
+   "q": "riferimento"
+  },
+  "jalapenos": {
+   "q": "riferimento"
+  },
+  "guacamole": {
+   "q": "riferimento"
+  },
+  "lime": {
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-04",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Maladière",
+    "Coop"
+   ]
+  },
+  "coriandolo": {
+   "q": "riferimento"
+  },
+  "cheddar": {
+   "q": "riferimento"
+  },
+  "chipotle": {
+   "q": "riferimento"
+  },
+  "mais_tortillas": {
+   "q": "riferimento"
+  },
+  "cumino": {
+   "q": "riferimento"
+  },
+  "paninihamburger": {
+   "q": "riferimento"
+  },
+  "cetriolini": {
+   "q": "riferimento"
+  },
+  "salsabbq": {
+   "q": "riferimento"
+  },
+  "alettepollo": {
+   "q": "riferimento"
+  },
+  "costinebbq": {
+   "q": "riferimento"
+  },
+  "cipollefritte": {
+   "q": "riferimento"
+  },
+  "cheesecake": {
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-07-28",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Vitality",
+    "Coop",
+    "Migros"
+   ]
+  },
+  "lattecocco": {
+   "q": "riferimento"
+  },
+  "garammasala": {
+   "q": "riferimento"
+  },
+  "pastacurry": {
+   "q": "riferimento"
+  },
+  "naan": {
+   "q": "riferimento"
+  },
+  "paneer": {
+   "q": "riferimento"
+  },
+  "lenticchierosse": {
+   "q": "riferimento"
+  },
+  "curcuma": {
+   "q": "riferimento"
+  },
+  "hummus": {
+   "q": "riferimento"
+  },
+  "tahina": {
+   "q": "riferimento"
+  },
+  "pita": {
+   "q": "riferimento"
+  },
+  "falafel": {
+   "q": "riferimento"
+  },
+  "harissa": {
+   "q": "riferimento"
+  },
+  "tzatziki": {
+   "q": "riferimento"
+  },
+  "kebabcarne": {
+   "q": "riferimento"
+  },
+  "melassa": {
+   "q": "riferimento"
+  },
+  "salsaostriche": {
+   "q": "riferimento"
+  },
+  "hoisin": {
+   "q": "riferimento"
+  },
+  "sriracha": {
+   "q": "riferimento"
+  },
+  "cartariso": {
+   "q": "riferimento"
+  },
+  "citronella": {
+   "q": "riferimento"
+  },
+  "salsapesce": {
+   "q": "riferimento"
+  },
+  "arachidi": {
+   "q": "riferimento"
+  },
+  "germogli": {
+   "q": "riferimento"
+  },
+  "risojasmine": {
+   "q": "riferimento"
+  },
+  "anatralaccata": {
+   "q": "riferimento"
+  },
+  "tempeh": {
+   "q": "riferimento"
+  },
+  "seitan": {
+   "q": "riferimento"
+  },
+  "formaggioveg": {
+   "q": "riferimento"
+  },
+  "lattavena": {
+   "q": "riferimento"
+  },
+  "yogurtsoia": {
+   "q": "riferimento"
+  },
+  "lievitoalim": {
+   "q": "riferimento"
+  },
+  "burgerveg": {
+   "q": "verificato",
+   "n": 5,
+   "data": "2026-08-04",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Maladière",
+    "Migros"
+   ]
+  },
+  "hummusrosso": {
+   "q": "riferimento"
+  },
+  "semichia": {
+   "q": "riferimento"
+  },
+  "proteinepiselli": {
+   "q": "riferimento"
+  },
+  "sciroppoagave": {
+   "q": "riferimento"
+  },
+  "cioccveg": {
+   "q": "riferimento"
+  },
+  "farina00": {
+   "q": "riferimento"
+  },
+  "lievitomadre": {
+   "q": "riferimento"
+  },
+  "fiordilatte": {
+   "q": "riferimento"
+  },
+  "nduja": {
+   "q": "riferimento"
+  },
+  "saltamburo": {
+   "q": "riferimento"
+  },
+  "pomodorosanmarzano": {
+   "q": "riferimento"
+  },
+  "origanosecco": {
+   "q": "riferimento"
+  },
+  "burroghee": {
+   "q": "riferimento"
+  },
+  "pancarre": {
+   "q": "riferimento"
+  },
+  "wurstelveg": {
+   "q": "riferimento"
+  },
+  "insalatapronta": {
+   "q": "riferimento"
+  },
+  "zuppapronta": {
+   "q": "riferimento"
+  },
+  "frittomisto": {
+   "q": "riferimento"
+  },
+  "dessertcucchiaio": {
+   "q": "riferimento"
+  },
+  "ghiaccio": {
+   "q": "riferimento"
+  },
+  "stuzzicadenti": {
+   "q": "riferimento"
+  },
+  "bicchierifesta": {
+   "q": "riferimento"
+  },
+  "cavolonero": {
+   "q": "riferimento"
+  },
+  "bietole": {
+   "q": "riferimento"
+  },
+  "puntarelle": {
+   "q": "riferimento"
+  },
+  "porcinifr": {
+   "q": "riferimento"
+  },
+  "finferli": {
+   "q": "riferimento"
+  },
+  "tartufonero": {
+   "q": "riferimento"
+  },
+  "barbabietola": {
+   "q": "riferimento"
+  },
+  "topinambur": {
+   "q": "riferimento"
+  },
+  "indivia": {
+   "q": "riferimento"
+  },
+  "pomodoricuore": {
+   "q": "riferimento"
+  },
+  "mirtilli": {
+   "q": "riferimento"
+  },
+  "lamponi": {
+   "q": "riferimento"
+  },
+  "nespole": {
+   "q": "riferimento"
+  },
+  "clementine": {
+   "q": "riferimento"
+  },
+  "pompelmo": {
+   "q": "riferimento"
+  },
+  "frutasecmix": {
+   "q": "riferimento"
+  },
+  "stinco": {
+   "q": "riferimento"
+  },
+  "guancia": {
+   "q": "riferimento"
+  },
+  "galletto": {
+   "q": "riferimento"
+  },
+  "tacchinofette": {
+   "q": "riferimento"
+  },
+  "bollito": {
+   "q": "riferimento"
+  },
+  "salamella": {
+   "q": "riferimento"
+  },
+  "prosciuttocrudo24": {
+   "q": "riferimento"
+  },
+  "lucioperca": {
+   "q": "riferimento"
+  },
+  "gamberoni": {
+   "q": "riferimento"
+  },
+  "salmonebio": {
+   "q": "riferimento"
+  },
+  "baccala": {
+   "q": "riferimento"
+  },
+  "caviale": {
+   "q": "riferimento"
+  },
+  "taleggio": {
+   "q": "riferimento"
+  },
+  "pecorino": {
+   "q": "riferimento"
+  },
+  "stracchino": {
+   "q": "riferimento"
+  },
+  "yogurtvegetale": {
+   "q": "riferimento"
+  },
+  "lattefieno": {
+   "q": "riferimento"
+  },
+  "gnocchetti": {
+   "q": "riferimento"
+  },
+  "paccheri": {
+   "q": "riferimento"
+  },
+  "risoveneri": {
+   "q": "riferimento"
+  },
+  "pizzabase": {
+   "q": "riferimento"
+  },
+  "panbrioche": {
+   "q": "riferimento"
+  },
+  "cracker": {
+   "q": "riferimento"
+  },
+  "confettureextra": {
+   "q": "verificato",
+   "n": 6,
+   "data": "2025-10-10",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros"
+   ]
+  },
+  "sciroppoacero": {
+   "q": "riferimento"
+  },
+  "senapedijon": {
+   "q": "riferimento"
+  },
+  "salsapomodoroP": {
+   "q": "riferimento"
+  },
+  "cremabalsamica": {
+   "q": "riferimento"
+  },
+  "oliolino": {
+   "q": "riferimento"
+  },
+  "fiocchipatate": {
+   "q": "riferimento"
+  },
+  "brodocarne": {
+   "q": "riferimento"
+  },
+  "vinodolce": {
+   "q": "riferimento"
+  },
+  "grappa": {
+   "q": "riferimento"
+  },
+  "sidro": {
+   "q": "riferimento"
+  },
+  "kombucha": {
+   "q": "riferimento"
+  },
+  "succomirtillo": {
+   "q": "riferimento"
+  },
+  "caffeorzo": {
+   "q": "riferimento"
+  },
+  "latteinpolvere": {
+   "q": "riferimento"
+  },
+  "pannolini": {
+   "q": "riferimento"
+  },
+  "salviettine": {
+   "q": "riferimento"
+  },
+  "assorbenti": {
+   "q": "riferimento"
+  },
+  "cerotti": {
+   "q": "riferimento"
+  },
+  "lampadine": {
+   "q": "riferimento"
+  },
+  "pile": {
+   "q": "riferimento"
+  },
+  "cibogatto": {
+   "q": "riferimento"
+  },
+  "cibocane": {
+   "q": "riferimento"
+  },
+  "ossobuco": {
+   "q": "riferimento"
+  },
+  "capretto": {
+   "q": "riferimento"
+  },
+  "capriolo": {
+   "q": "riferimento"
+  },
+  "trippa": {
+   "q": "riferimento"
+  },
+  "farinabona": {
+   "q": "riferimento"
+  },
+  "zincarlin": {
+   "q": "riferimento"
+  },
+  "formaggini": {
+   "q": "riferimento"
+  },
+  "cicoria": {
+   "q": "riferimento"
+  },
+  "castagne": {
+   "q": "riferimento"
+  },
+  "merlot": {
+   "q": "riferimento"
+  },
+  "gazosa": {
+   "q": "riferimento"
+  },
+  "mieleticino": {
+   "q": "riferimento"
+  },
+  "paneseg": {
+   "q": "riferimento"
+  },
+  "salvia": {
+   "q": "riferimento"
+  },
+  "cetrioli": {
+   "q": "riferimento"
+  },
+  "cavolini": {
+   "q": "riferimento"
+  },
+  "cappuccio": {
+   "q": "riferimento"
+  },
+  "ravanelli": {
+   "q": "riferimento"
+  },
+  "songino": {
+   "q": "riferimento"
+  },
+  "spinacifr": {
+   "q": "riferimento"
+  },
+  "patatedolci": {
+   "q": "riferimento"
+  },
+  "sedanorapa": {
+   "q": "riferimento"
+  },
+  "mais": {
+   "q": "riferimento"
+  },
+  "pomodorisecchi": {
+   "q": "riferimento"
+  },
+  "wok": {
+   "q": "riferimento"
+  },
+  "edamame": {
+   "q": "riferimento"
+  },
+  "zenzero": {
+   "q": "riferimento"
+  },
+  "prezzemolo": {
+   "q": "riferimento"
+  },
+  "rosmarino": {
+   "q": "riferimento"
+  },
+  "peperoncino": {
+   "q": "riferimento"
+  },
+  "scalogno": {
+   "q": "riferimento"
+  },
+  "ciliegie": {
+   "q": "riferimento"
+  },
+  "fichi": {
+   "q": "riferimento"
+  },
+  "cachi": {
+   "q": "riferimento"
+  },
+  "melagrana": {
+   "q": "riferimento"
+  },
+  "mango": {
+   "q": "riferimento"
+  },
+  "datteri": {
+   "q": "riferimento"
+  },
+  "uvetta": {
+   "q": "riferimento"
+  },
+  "prugnesecche": {
+   "q": "riferimento"
+  },
+  "albicoccheS": {
+   "q": "riferimento"
+  },
+  "fruttasecca": {
+   "q": "riferimento"
+  },
+  "tacchino": {
+   "q": "riferimento"
+  },
+  "macinatopollo": {
+   "q": "riferimento"
+  },
+  "costine": {
+   "q": "riferimento"
+  },
+  "lonza": {
+   "q": "riferimento"
+  },
+  "cotolettav": {
+   "q": "riferimento"
+  },
+  "hamburgerp": {
+   "q": "riferimento"
+  },
+  "cordonbleu": {
+   "q": "riferimento"
+  },
+  "polloarrosto": {
+   "q": "riferimento"
+  },
+  "pancetta": {
+   "q": "riferimento"
+  },
+  "carnesecca": {
+   "q": "riferimento"
+  },
+  "cervo": {
+   "q": "riferimento"
+  },
+  "wurstelpollo": {
+   "q": "riferimento"
+  },
+  "trota": {
+   "q": "riferimento"
+  },
+  "persico": {
+   "q": "riferimento"
+  },
+  "tonnofresco": {
+   "q": "riferimento"
+  },
+  "sgombro": {
+   "q": "riferimento"
+  },
+  "sardine": {
+   "q": "riferimento"
+  },
+  "acciughe": {
+   "q": "riferimento"
+  },
+  "surimi": {
+   "q": "riferimento"
+  },
+  "seppie": {
+   "q": "riferimento"
+  },
+  "polpo": {
+   "q": "riferimento"
+  },
+  "formaggella": {
+   "q": "riferimento"
+  },
+  "feta": {
+   "q": "riferimento"
+  },
+  "robiola": {
+   "q": "riferimento"
+  },
+  "quark": {
+   "q": "riferimento"
+  },
+  "skyr": {
+   "q": "riferimento"
+  },
+  "kefir": {
+   "q": "riferimento"
+  },
+  "lattesenzalatt": {
+   "q": "riferimento"
+  },
+  "emmental": {
+   "q": "riferimento"
+  },
+  "raclette": {
+   "q": "riferimento"
+  },
+  "fonduta": {
+   "q": "riferimento"
+  },
+  "bufala": {
+   "q": "riferimento"
+  },
+  "pannaacida": {
+   "q": "riferimento"
+  },
+  "pastaint": {
+   "q": "riferimento"
+  },
+  "pastagf": {
+   "q": "riferimento"
+  },
+  "basmati": {
+   "q": "riferimento"
+  },
+  "risointegrale": {
+   "q": "riferimento"
+  },
+  "quinoa": {
+   "q": "riferimento"
+  },
+  "bulgur": {
+   "q": "riferimento"
+  },
+  "orzo": {
+   "q": "riferimento"
+  },
+  "farro": {
+   "q": "riferimento"
+  },
+  "noodles": {
+   "q": "riferimento"
+  },
+  "tortellini": {
+   "q": "riferimento"
+  },
+  "ravioli": {
+   "q": "riferimento"
+  },
+  "panegf": {
+   "q": "riferimento"
+  },
+  "tortillas": {
+   "q": "riferimento"
+  },
+  "piadina": {
+   "q": "riferimento"
+  },
+  "pangrattato": {
+   "q": "riferimento"
+  },
+  "farinaint": {
+   "q": "riferimento"
+  },
+  "patatinesurg": {
+   "q": "riferimento"
+  },
+  "muesli": {
+   "q": "verificato",
+   "n": 5,
+   "data": "2025-11-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros Serrières",
+    "La Maladière centre",
+    "Coop"
+   ]
+  },
+  "granola": {
+   "q": "riferimento"
+  },
+  "burroarachidi": {
+   "q": "riferimento"
+  },
+  "lattemandorla": {
+   "q": "riferimento"
+  },
+  "cerealicioc": {
+   "q": "riferimento"
+  },
+  "biscottiint": {
+   "q": "riferimento"
+  },
+  "succomela": {
+   "q": "riferimento"
+  },
+  "curry": {
+   "q": "riferimento"
+  },
+  "paprika": {
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-07",
+   "fonte": "off-prices",
+   "negozi": [
+    "Denner",
+    "Migros"
+   ]
+  },
+  "cannella": {
+   "q": "riferimento"
+  },
+  "origano": {
+   "q": "riferimento"
+  },
+  "ketchup": {
+   "q": "riferimento"
+  },
+  "salsasoia": {
+   "q": "riferimento"
+  },
+  "brodoveg": {
+   "q": "riferimento"
+  },
+  "pestorosso": {
+   "q": "riferimento"
+  },
+  "maisscatola": {
+   "q": "riferimento"
+  },
+  "carciofini": {
+   "q": "riferimento"
+  },
+  "giardiniera": {
+   "q": "riferimento"
+  },
+  "zuccherocanna": {
+   "q": "riferimento"
+  },
+  "vaniglia": {
+   "q": "riferimento"
+  },
+  "tefreddo": {
+   "q": "riferimento"
+  },
+  "rosato": {
+   "q": "riferimento"
+  },
+  "birraart": {
+   "q": "riferimento"
+  },
+  "analcolico": {
+   "q": "riferimento"
+  },
+  "tonica": {
+   "q": "riferimento"
+  },
+  "capsule": {
+   "q": "riferimento"
+  },
+  "cioccolatapolv": {
+   "q": "riferimento"
+  },
+  "candeggina": {
+   "q": "riferimento"
+  },
+  "anticalcare": {
+   "q": "riferimento"
+  },
+  "tovaglioli": {
+   "q": "riferimento"
+  },
+  "monouso": {
+   "q": "riferimento"
+  },
+  "carbonella": {
+   "q": "riferimento"
+  },
+  "accendifuoco": {
+   "q": "riferimento"
+  },
+  "candele": {
+   "q": "riferimento"
+  },
+  "sacchiumido": {
+   "q": "riferimento"
+  },
+  "filettomanzo": {
+   "q": "riferimento"
+  },
+  "entrecote": {
+   "q": "riferimento"
+  },
+  "arrostovitello": {
+   "q": "riferimento"
+  },
+  "coniglio": {
+   "q": "riferimento"
+  },
+  "anatra": {
+   "q": "riferimento"
+  },
+  "agnello": {
+   "q": "riferimento"
+  },
+  "bresaola": {
+   "q": "riferimento"
+  },
+  "mortadella": {
+   "q": "riferimento"
+  },
+  "speck": {
+   "q": "riferimento"
+  },
+  "salsicciagr": {
+   "q": "riferimento"
+  },
+  "salmoneaff": {
+   "q": "riferimento"
+  },
+  "gamberi": {
+   "q": "riferimento"
+  },
+  "branzino": {
+   "q": "riferimento"
+  },
+  "cozze": {
+   "q": "riferimento"
+  },
+  "vongole": {
+   "q": "riferimento"
+  },
+  "calamari": {
+   "q": "riferimento"
+  },
+  "parmigiano": {
+   "q": "riferimento"
+  },
+  "gorgonzola": {
+   "q": "riferimento"
+  },
+  "brie": {
+   "q": "riferimento"
+  },
+  "burrata": {
+   "q": "riferimento"
+  },
+  "mascarpone": {
+   "q": "riferimento"
+  },
+  "pannamontare": {
+   "q": "riferimento"
+  },
+  "yogurtgreco": {
+   "q": "riferimento"
+  },
+  "gelato": {
+   "q": "verificato",
+   "n": 4,
+   "data": "2025-08-16",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros"
+   ]
+  },
+  "carnaroli": {
+   "q": "riferimento"
+  },
+  "lasagne": {
+   "q": "riferimento"
+  },
+  "pastauovo": {
+   "q": "riferimento"
+  },
+  "focaccia": {
+   "q": "riferimento"
+  },
+  "grissini": {
+   "q": "riferimento"
+  },
+  "crackers": {
+   "q": "riferimento"
+  },
+  "baguette": {
+   "q": "riferimento"
+  },
+  "brioche": {
+   "q": "riferimento"
+  },
+  "savoiardi": {
+   "q": "riferimento"
+  },
+  "lievito": {
+   "q": "riferimento"
+  },
+  "pomodorini": {
+   "q": "riferimento"
+  },
+  "rucola": {
+   "q": "riferimento"
+  },
+  "basilico": {
+   "q": "riferimento"
+  },
+  "asparagi": {
+   "q": "riferimento"
+  },
+  "porcini": {
+   "q": "riferimento"
+  },
+  "radicchio": {
+   "q": "riferimento"
+  },
+  "carciofi": {
+   "q": "riferimento"
+  },
+  "avocado": {
+   "q": "riferimento"
+  },
+  "fruttibosco": {
+   "q": "riferimento"
+  },
+  "ananas": {
+   "q": "riferimento"
+  },
+  "anguria": {
+   "q": "riferimento"
+  },
+  "olive": {
+   "q": "riferimento"
+  },
+  "capperi": {
+   "q": "riferimento"
+  },
+  "senape": {
+   "q": "riferimento"
+  },
+  "patatine": {
+   "q": "riferimento"
+  },
+  "salatini": {
+   "q": "riferimento"
+  },
+  "balsamico": {
+   "q": "riferimento"
+  },
+  "pinoli": {
+   "q": "riferimento"
+  },
+  "zafferano": {
+   "q": "riferimento"
+  },
+  "cacao": {
+   "q": "riferimento"
+  },
+  "fondente": {
+   "q": "riferimento"
+  },
+  "tartufo": {
+   "q": "riferimento"
+  },
+  "vinobianco": {
+   "q": "riferimento"
+  },
+  "vinorosso": {
+   "q": "riferimento"
+  },
+  "prosecco": {
+   "q": "riferimento"
+  },
+  "birra": {
+   "q": "riferimento"
+  },
+  "bitter": {
+   "q": "riferimento"
+  },
+  "bibite": {
+   "q": "riferimento"
+  },
+  "acquagas": {
+   "q": "riferimento"
+  }
+ },
+ "indici": {},
+ "indiciOsservati": {
+  "carrefour": {
+   "k": 0.94,
+   "n": 8
+  }
+ },
+ "promo": {},
+ "carburanti": {
+  "ch": {
+   "benzina95": 1.92,
+   "diesel": 2.11,
+   "elettrico_kwh": 0.35,
+   "fonte": "TCS — rilevazione manuale",
+   "data": "2026-08-19"
+  },
+  "it": {
+   "benzina": null,
+   "diesel": null,
+   "fonte": "MIMIT",
+   "data": "2026-08-19",
+   "campione": 0
+  }
+ },
+ "fonti": [
+  {
+   "id": "off-prices-ch",
+   "nome": "Open Food Facts Prices — Svizzera",
+   "tipo": "api",
+   "zona": "CH",
+   "url": "https://prices.openfoodfacts.org/api/v1/prices?currency=CHF&order_by=-date&size=100",
+   "auto": true
+  },
+  {
+   "id": "off-prices-it",
+   "nome": "Open Food Facts Prices — Italia",
+   "tipo": "api",
+   "zona": "IT",
+   "url": "https://prices.openfoodfacts.org/api/v1/prices?currency=EUR&order_by=-date&size=100",
+   "auto": true
+  },
+  {
+   "id": "mimit-carburanti",
+   "nome": "MIMIT — prezzi carburanti Italia",
+   "tipo": "csv",
+   "zona": "IT",
+   "url": "https://www.mimit.gov.it/images/exportCSV/prezzo_alle_8.csv",
+   "auto": true
+  },
+  {
+   "id": "tcs-carburanti",
+   "nome": "TCS — prezzi medi carburante Svizzera",
+   "tipo": "manuale",
+   "zona": "CH",
+   "url": "https://www.tcs.ch/it/camping-viaggi/informazioni-turistiche/utile-da-sapere/costi-di-viaggio-e-pedaggi/prezzi-carburante.php",
+   "auto": false
+  },
+  {
+   "id": "lidl-ch",
+   "nome": "Lidl Svizzera — volantini PDF",
+   "tipo": "manuale",
+   "zona": "CH",
+   "url": "https://www.lidl.ch/c/it-CH/volantini-in-pdf/s10019683",
+   "auto": false
+  },
+  {
+   "id": "coop-promo",
+   "nome": "Coop — promozioni",
+   "tipo": "manuale",
+   "zona": "CH",
+   "url": "https://www.coop.ch/it/promozioni.html",
+   "auto": false
+  },
+  {
+   "id": "rabatt-kompass",
+   "nome": "Rabatt Kompass — volantini CH",
+   "tipo": "html",
+   "zona": "CH",
+   "url": "https://it.rabatt-kompass.ch/",
+   "auto": false
+  },
+  {
+   "id": "aktionis",
+   "nome": "Aktionis — volantini CH",
+   "tipo": "html",
+   "zona": "CH",
+   "url": "https://www.aktionis.ch/it/",
+   "auto": false
+  },
+  {
+   "id": "rappn",
+   "nome": "Rappn — confronto prezzi CH",
+   "tipo": "manuale",
+   "zona": "CH",
+   "url": "https://rappn.ch/it/",
+   "auto": false
+  },
+  {
+   "id": "esselunga",
+   "nome": "Esselunga — volantini",
+   "tipo": "manuale",
+   "zona": "IT",
+   "url": "https://www.esselunga.it/it-it/promozioni/volantini.html",
+   "auto": false
+  },
+  {
+   "id": "lidl-it",
+   "nome": "Lidl Italia — volantino",
+   "tipo": "manuale",
+   "zona": "IT",
+   "url": "https://www.lidl.it/c/it-IT/volantino/s10018048",
+   "auto": false
+  },
+  {
+   "id": "eurospin",
+   "nome": "Eurospin — volantino",
+   "tipo": "manuale",
+   "zona": "IT",
+   "url": "https://www.eurospin.it/volantino/",
+   "auto": false
+  },
+  {
+   "id": "promoqui",
+   "nome": "PromoQui — volantini IT",
+   "tipo": "html",
+   "zona": "IT",
+   "url": "https://www.promoqui.it/",
+   "auto": false
+  },
+  {
+   "id": "volantinofacile",
+   "nome": "Volantino Facile — volantini IT",
+   "tipo": "html",
+   "zona": "IT",
+   "url": "https://www.volantinofacile.it/",
+   "auto": false
+  }
+ ],
+ "rapporto": {
+  "data": "2026-08-19",
+  "fonti": [
+   {
+    "id": "off-prices-ch",
+    "stato": "ok",
+    "osservazioni": 809
+   },
+   {
+    "id": "off-prices-it",
+    "stato": "ok",
+    "osservazioni": 2131
+   }
+  ],
+  "cambioEUR": 0.9402
+ }
+}

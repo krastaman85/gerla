@@ -1,0 +1,26 @@
+# .github/workflows/gerla-aggiorna.yml
+# Aggiorna il listino ogni mattina e lo pubblica: l'app lo legge a ogni apertura.
+name: Aggiorna listino Gerla
+on:
+  schedule:
+    - cron: "15 5 * * *"      # tutti i giorni alle 05:15 UTC (07:15 in Ticino d'estate)
+  workflow_dispatch:           # e ogni volta che premi tu
+permissions:
+  contents: write
+jobs:
+  listino:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Estrai i prezzi dalle fonti aperte
+        run: node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json
+      - name: Pubblica il listino aggiornato
+        run: |
+          git config user.name "Gerla"
+          git config user.email "gerla@users.noreply.github.com"
+          git add gerla-listino.json
+          git diff --staged --quiet || git commit -m "Listino del $(date +%F)"
+          git push
