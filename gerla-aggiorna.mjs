@@ -246,29 +246,52 @@ function indiciDaiDati(catalogo, osservazioni) {
 /* =========================================================
    5. CARBURANTI
    ========================================================= */
+const PROV_LOMBARDIA = new Set(["CO","VA","LC","SO","MI","MB","LO","BG","PV","CR","BS","MN"]);
+const PROV_CONFINE = new Set(["CO","VA","LC","SO"]);   // quelle dove ha senso andare dal Ticino
+
 async function carburanti() {
   const out = {
-    ch: { benzina95: 1.92, diesel: 2.11, elettrico_kwh: 0.35, fonte: "TCS (rilevazione manuale)", data: oggi },
+    ch: { benzina95: 1.92, diesel: 2.11, elettrico_kwh: 0.35, fonte: "TCS — rilevazione manuale", data: oggi },
     it: { benzina: null, diesel: null, fonte: "MIMIT", data: null },
   };
-  out.ch.fonte = "TCS — rilevazione manuale";
   try {
-    const csv = await prendi(FONTI.find(f => f.id === "mimit-carburanti").url, { timeout: 120000 });
-    const righe = csv.split("\n").slice(2, 60000);
-    const b = [], d = [];
-    for (const r of righe) {
-      const c = r.split(";");
-      if (c.length < 4) continue;
-      const tipo = (c[1] || "").toLowerCase(), prezzo = parseFloat((c[2] || "").replace(",", "."));
-      if (!isFinite(prezzo) || prezzo < 0.8 || prezzo > 3) continue;
-      if (tipo.includes("benzina")) b.push(prezzo);
-      else if (tipo.includes("gasolio") || tipo.includes("diesel")) d.push(prezzo);
+    const base = "https://www.mimit.gov.it/images/exportCSV/";
+    const [prezzi, anagrafica] = await Promise.all([
+      prendi(base + "prezzo_alle_8.csv", { timeout: 120000 }),
+      prendi(base + "anagrafica_impianti_attivi.csv", { timeout: 120000 }),
+    ]);
+    // i file MIMIT usano la barra verticale come separatore, non il punto e virgola
+    const provincia = new Map();
+    for (const r of anagrafica.split("\n").slice(2)) {
+      const c = r.split("|");
+      if (c.length > 7) provincia.set(c[0], c[7].trim());
     }
-    const med = a => a.length ? a.sort((x, y) => x - y)[Math.floor(a.length / 2)] : null;
-    if (b.length) out.it.benzina = +(med(b)).toFixed(3);
-    if (d.length) out.it.diesel = +(med(d)).toFixed(3);
+    const raccolta = { confine: { b: [], d: [] }, lombardia: { b: [], d: [] }, italia: { b: [], d: [] } };
+    for (const r of prezzi.split("\n").slice(2)) {
+      const c = r.split("|");
+      if (c.length < 4) continue;
+      if (c[3].trim() !== "1") continue;                  // solo self service
+      const p = parseFloat(c[2]);
+      if (!isFinite(p) || p < 0.8 || p > 3.5) continue;
+      const tipo = c[1].toLowerCase();
+      const q = tipo.includes("benzina") ? "b" : (tipo.includes("gasolio") || tipo.includes("diesel")) ? "d" : null;
+      if (!q) continue;
+      const pr = provincia.get(c[0]);
+      raccolta.italia[q].push(p);
+      if (pr && PROV_LOMBARDIA.has(pr)) raccolta.lombardia[q].push(p);
+      if (pr && PROV_CONFINE.has(pr)) raccolta.confine[q].push(p);
+    }
+    const med = a => { if (!a.length) return null; a.sort((x, y) => x - y); return +a[Math.floor(a.length / 2)].toFixed(3); };
+    // uso le province di confine se il campione basta, altrimenti allargo
+    const scelta = raccolta.confine.b.length >= 40 ? "confine"
+                 : raccolta.lombardia.b.length >= 40 ? "lombardia" : "italia";
+    out.it.benzina = med(raccolta[scelta].b);
+    out.it.diesel  = med(raccolta[scelta].d);
+    out.it.zona    = scelta === "confine" ? "Como, Varese, Lecco, Sondrio" : scelta === "lombardia" ? "Lombardia" : "Italia";
+    out.it.campione = raccolta[scelta].b.length + raccolta[scelta].d.length;
     out.it.data = oggi;
-    out.it.campione = b.length + d.length;
+    out.it.confronto = { lombardia: { benzina: med(raccolta.lombardia.b), diesel: med(raccolta.lombardia.d) },
+                         italia:    { benzina: med(raccolta.italia.b),    diesel: med(raccolta.italia.d) } };
   } catch (e) { out.it.errore = e.message; }
   return out;
 }
@@ -306,7 +329,7 @@ async function main() {
   console.log(`Incrocio: ${Object.keys(trovati).length} prodotti con prezzo reale`);
 
   const carb = await carburanti();
-  console.log(`Carburanti IT: benzina ${carb.it.benzina ?? "—"} diesel ${carb.it.diesel ?? "—"} (${carb.it.campione ?? 0} distributori)`);
+  console.log(`Carburanti ${carb.it.zona ?? "IT"}: benzina €${carb.it.benzina ?? "—"} diesel €${carb.it.diesel ?? "—"} su ${carb.it.campione ?? 0} rilevazioni${carb.it.errore ? " — " + carb.it.errore : ""}`);
 
   /* listino precedente: i prezzi non confermati restano com'erano */
   let vecchio = {};
