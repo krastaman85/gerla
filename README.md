@@ -46,7 +46,7 @@ node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json
 Vedrai qualcosa così:
 
 ```
-Catalogo: 460 prodotti letti da gerla.html
+Catalogo: 510 prodotti letti da gerla.html
 Cambio EUR→CHF: 0.939 (BCE 2026-08-14)
   off-prices-ch: 807 osservazioni
   off-prices-it: 832 osservazioni
@@ -116,6 +116,9 @@ quel numero (`"0 4 * * *"` = 6:00 estive) direttamente dal file su GitHub.
 1. Nel deposito apri `gerla-listino.json` e clicca il pulsante **Raw**.
 2. Copia l'indirizzo dalla barra del browser. Ha questa forma:
    `https://raw.githubusercontent.com/TUONOME/gerla/main/gerla-listino.json`
+   Nota la differenza: l'indirizzo che vedi navigando il deposito contiene `/blob/` ed è una
+   **pagina**, non il file; il browser la rifiuta. Se lo incolli lo converto io nella forma
+   `raw`, ma è bene sapere da dove nasce l'errore "Failed to fetch".
 3. Apri l'app, scheda **Prezzi e volantini → Aggiornamento automatico**, incolla l'indirizzo nel
    campo, lascia spuntato **Aggiorna a ogni apertura**.
 4. Premi **Aggiorna adesso**. Sotto compare "Aggiornati N prezzi": è collegato.
@@ -209,7 +212,8 @@ che dicano altro.
 |---|---|---|
 | Il flusso fallisce con "permission denied" | permessi di scrittura non dati | Fase 3 |
 | Il flusso è verde ma il file non cambia | nessun prezzo nuovo trovato quel giorno | è normale, non è un errore |
-| L'app dice "non sono riuscito a leggere il listino" | indirizzo non *raw*, o deposito privato | usa il pulsante **Raw**, metti il deposito su Public |
+| L'app dice "Failed to fetch" | hai incollato l'indirizzo `/blob/` invece di quello `raw` | l'app lo corregge da sola; in alternativa usa il pulsante **Raw** |
+| Stesso errore con l'indirizzo giusto | deposito privato | mettilo su **Public** in Settings |
 | Il listino aggiornato non compare subito | GitHub tiene i file in cache qualche minuto | aspetta cinque minuti o premi **Aggiorna adesso** |
 | I flussi programmati si sono fermati | 60 giorni di inattività | un **Run workflow** a mano li riaccende |
 | "Catalogo: 0 prodotti letti" | `gerla.html` non è nella stessa cartella o è rinominato | usa `--html percorso/del/file.html` |
