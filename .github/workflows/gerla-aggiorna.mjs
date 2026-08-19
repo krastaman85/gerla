@@ -196,6 +196,44 @@ function incrocia(catalogo, osservazioni) {
   return finale;
 }
 
+/* prezzi per singola insegna: quando ho abbastanza rilevazioni in una catena,
+   quel prezzo vale più di qualsiasi indice calcolato sul riferimento */
+function prezziPerInsegna(catalogo, osservazioni) {
+  const MARCHE = {
+    "Migros":"migros","Coop":"coop","Denner":"denner","Aldi":"aldi","Aldi Suisse":"aldi","Lidl":"lidlch",
+    "Manor":"manor","Volg":"volg","Otto's":"ottos","Landi":"landi","Migrolino":"migrolino","Aligro":"aligro",
+    "Esselunga":"esselunga","Iper":"iper","Conad":"conad","Carrefour":"carrefour","Bennet":"bennet",
+    "Tigros":"tigros","Iperal":"iperal","Eurospin":"eurospin","MD":"md","Pam":"pam",
+  };
+  const indice = catalogo.map(p => ({ p, k: [...chiavi(p.nome), ...(SINONIMI[p.id] || [])] }));
+  const racc = {};
+  for (const o of osservazioni) {
+    const ins = MARCHE[o.negozio]; if (!ins) continue;
+    if (o.paese && !["CH","IT"].includes(o.paese)) continue;
+    const n = norm(o.nome + " " + o.marca);
+    for (const { p, k } of indice) {
+      if (!k.length || !k.some(w => n.includes(w))) continue;
+      let v = null;
+      if (p.um !== "pz" && o.q && ["g","ml"].includes(o.um)) v = o.prezzo / o.q * p.pu;
+      else if (o.q == null) v = o.prezzo;
+      if (v == null) break;
+      if (o.valuta === "EUR") v *= CAMBIO;
+      if (!isFinite(v) || v <= 0 || v > p.p * 2.5 || v < p.p * 0.4) break;
+      ((racc[p.id] = racc[p.id] || {})[ins] ||= []).push(v);
+      break;
+    }
+  }
+  const out = {};
+  for (const [id, perIns] of Object.entries(racc)) {
+    for (const [ins, arr] of Object.entries(perIns)) {
+      if (arr.length < 2) continue;                       // due rilevazioni almeno
+      const v = arr.sort((a, b) => a - b);
+      (out[id] = out[id] || {})[ins] = Math.round(v[Math.floor(v.length / 2)] * 20) / 20;
+    }
+  }
+  return out;
+}
+
 /* indici per insegna: confronto lo stesso prodotto tra catene diverse */
 function indiciDaiDati(catalogo, osservazioni) {
   const MARCHE = {
@@ -323,6 +361,9 @@ async function main() {
 
   const trovati = incrocia(catalogo, osservazioni);
   const indiciReali = indiciDaiDati(catalogo, osservazioni);
+  const perInsegna = prezziPerInsegna(catalogo, osservazioni);
+  const coppie = Object.values(perInsegna).reduce((a, o) => a + Object.keys(o).length, 0);
+  console.log(`Prezzi per insegna: ${coppie} coppie prodotto-negozio su ${Object.keys(perInsegna).length} prodotti`);
   if (Object.keys(indiciReali).length)
     console.log("Indici osservati (informativi):", Object.entries(indiciReali).map(([i, v]) => `${i} ${v.k} su ${v.n} confronti`).join(", "));
   else console.log("Indici osservati: dati ancora insufficienti per un confronto tra insegne");
@@ -354,9 +395,11 @@ async function main() {
     // gli indici calcolati restano informativi: con pochi confronti sono instabili
     // (la stessa catena può uscire 0.74 un giorno e 1.34 il giorno dopo) e sovrascriverli
     // peggiorerebbe una taratura fatta a mano. Li pubblico per poterli guardare crescere.
+    prezziRiv: perInsegna,
     indici: vecchio.indici || {},
     indiciOsservati: indiciReali,
-    promo: vecchio.promo || {},
+    promo: Object.fromEntries(Object.entries(vecchio.promo || {})
+             .filter(([, p]) => !p.fino || p.fino >= oggi)),
     carburanti: carb,
     fonti: FONTI.map(f => ({ id: f.id, nome: f.nome, tipo: f.tipo, zona: f.zona, url: f.url, auto: !!f.auto })),
     rapporto,
