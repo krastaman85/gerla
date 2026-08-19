@@ -1,7 +1,7 @@
 {
  "versione": 3,
  "data": "2026-08-19",
- "generato": "2026-08-19T22:54:08.220Z",
+ "generato": "2026-08-19T23:09:43.312Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9402,
  "prezzi": {
@@ -29,7 +29,7 @@
   "minestrone": 4.5,
   "pelati": 1.2,
   "passata": 2.5,
-  "mele": 4.2,
+  "mele": 4.3,
   "banane": 3.2,
   "arance": 4.9,
   "mandarini": 3.5,
@@ -42,7 +42,7 @@
   "melone": 3.9,
   "susine": 4.2,
   "limoni": 2.6,
-  "pettopollo": 21.25,
+  "pettopollo": 23.85,
   "cosciapollo": 8.9,
   "macinato": 8.9,
   "spezzatino": 12.9,
@@ -72,17 +72,17 @@
   "panna": 2.5,
   "formaggino": 2.9,
   "uova": 6.95,
-  "pasta": 1.4,
+  "pasta": 1.2,
   "riso": 3.2,
-  "pane": 4.25,
+  "pane": 4.8,
   "paneint": 3.2,
-  "farina": 3.6,
+  "farina": 3.4,
   "polenta": 2.5,
   "couscous": 2.9,
   "gnocchi": 2.6,
   "pizzasurg": 4.6,
   "gallette": 2.5,
-  "latteveg": 1.1,
+  "latteveg": 2.2,
   "avena": 2.5,
   "cornflakes": 3.5,
   "fettebis": 2.2,
@@ -91,7 +91,7 @@
   "oliosem": 3.5,
   "aceto": 2.2,
   "sale": 0.9,
-  "zucchero": 1.85,
+  "zucchero": 2.3,
   "spezie": 1.9,
   "dado": 2.2,
   "pesto": 4.4,
@@ -99,7 +99,7 @@
   "miele": 6.9,
   "cremacacao": 4.5,
   "maionese": 2.9,
-  "caffe": 4.95,
+  "caffe": 6.5,
   "te": 2.5,
   "cioccolato": 0.55,
   "noci": 4.5,
@@ -125,6 +125,56 @@
   "deodorante": 4.5,
   "rasoi": 8.9,
   "fazzoletti": 2.5,
+  "ricotta_forte": 4.9,
+  "scamorza": 4.5,
+  "yogurtcapra": 3.2,
+  "burrata_veg": 4.9,
+  "salmonaffveg": 6.9,
+  "ceci_neri": 4.2,
+  "fagiolicannellini": 1.5,
+  "pisellisecchi": 2.9,
+  "lupini": 3.9,
+  "soiagranulare": 3.9,
+  "kefirveg": 3.5,
+  "grissinigf": 4.2,
+  "farrospezzato": 3.9,
+  "cusgf": 4.5,
+  "sogliola": 13.9,
+  "salmerino": 16.9,
+  "capesante": 18.9,
+  "astice": 24,
+  "quaglie": 12.9,
+  "faraona": 17.9,
+  "tacchinoripieno": 24,
+  "carnesalada": 9.9,
+  "porchetta": 8.9,
+  "ragupronto": 4.5,
+  "sugoarrabbiata": 3.2,
+  "pestoveg": 4.5,
+  "oliotartufo": 9.9,
+  "fiorisale": 6.9,
+  "pepemacinato": 3.9,
+  "bacchevaniglia": 8.9,
+  "gelatina": 3.5,
+  "cioccbianco": 2.5,
+  "amaretti": 4.5,
+  "panettone": 9.9,
+  "torroncini": 6.9,
+  "marronsglace": 7.9,
+  "succomirtillorosso": 4.9,
+  "spumantedolce": 9.9,
+  "amaro": 19.9,
+  "vinoanalcolico": 8.9,
+  "cafféfreddo": 4.5,
+  "acquacedrata": 4.2,
+  "detbio": 11.9,
+  "spugnabio": 3.9,
+  "saccorifiuti": 4.5,
+  "filtri": 9.9,
+  "crema": 6.9,
+  "solare": 14.9,
+  "repellente": 9.9,
+  "integratori": 14.9,
   "risosushi": 5.5,
   "nori": 4.5,
   "salmonesashimi": 16.9,
@@ -425,14 +475,14 @@
   "mascarpone": 3.2,
   "pannamontare": 2.9,
   "yogurtgreco": 2.6,
-  "gelato": 5.15,
+  "gelato": 5.5,
   "carnaroli": 4.9,
   "lasagne": 3.2,
   "pastauovo": 3.5,
   "focaccia": 3.9,
   "grissini": 2.5,
   "crackers": 2.2,
-  "baguette": 1.2,
+  "baguette": 2.2,
   "brioche": 3.5,
   "savoiardi": 3.2,
   "lievito": 1.5,
@@ -469,7 +519,7 @@
  "qualita": {
   "patate": {
    "q": "verificato",
-   "n": 3,
+   "n": 4,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -568,7 +618,7 @@
   },
   "mele": {
    "q": "verificato",
-   "n": 14,
+   "n": 16,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -623,11 +673,10 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 6,
+   "n": 4,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
-    "Migros",
     "Coop"
    ]
   },
@@ -713,7 +762,7 @@
   },
   "yogurtnat": {
    "q": "verificato",
-   "n": 21,
+   "n": 20,
    "data": "2026-07-21",
    "fonte": "off-prices",
    "negozi": [
@@ -773,7 +822,7 @@
   },
   "pasta": {
    "q": "verificato",
-   "n": 6,
+   "n": 5,
    "data": "2026-07-25",
    "fonte": "off-prices",
    "negozi": [
@@ -786,7 +835,7 @@
   },
   "pane": {
    "q": "verificato",
-   "n": 7,
+   "n": 8,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -800,7 +849,7 @@
   },
   "farina": {
    "q": "verificato",
-   "n": 6,
+   "n": 9,
    "data": "2026-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -819,7 +868,7 @@
   },
   "pizzasurg": {
    "q": "verificato",
-   "n": 4,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -831,13 +880,7 @@
    "q": "riferimento"
   },
   "latteveg": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2026-08-14",
-   "fonte": "off-prices",
-   "negozi": [
-    "Lidl"
-   ]
+   "q": "riferimento"
   },
   "avena": {
    "q": "riferimento"
@@ -850,7 +893,7 @@
   },
   "biscotti": {
    "q": "verificato",
-   "n": 7,
+   "n": 6,
    "data": "2026-06-03",
    "fonte": "off-prices",
    "negozi": [
@@ -861,7 +904,7 @@
   },
   "olio": {
    "q": "verificato",
-   "n": 13,
+   "n": 12,
    "data": "2026-04-23",
    "fonte": "off-prices",
    "negozi": [
@@ -881,13 +924,13 @@
   },
   "zucchero": {
    "q": "verificato",
-   "n": 5,
+   "n": 6,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
     "Agrola",
-    "Coop"
+    "Migros"
    ]
   },
   "spezie": {
@@ -920,7 +963,7 @@
   },
   "caffe": {
    "q": "verificato",
-   "n": 8,
+   "n": 6,
    "data": "2025-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -932,7 +975,7 @@
   },
   "cioccolato": {
    "q": "verificato",
-   "n": 30,
+   "n": 31,
    "data": "2026-07-19",
    "fonte": "off-prices",
    "negozi": [
@@ -1007,6 +1050,156 @@
    "q": "riferimento"
   },
   "fazzoletti": {
+   "q": "riferimento"
+  },
+  "ricotta_forte": {
+   "q": "riferimento"
+  },
+  "scamorza": {
+   "q": "riferimento"
+  },
+  "yogurtcapra": {
+   "q": "riferimento"
+  },
+  "burrata_veg": {
+   "q": "riferimento"
+  },
+  "salmonaffveg": {
+   "q": "riferimento"
+  },
+  "ceci_neri": {
+   "q": "riferimento"
+  },
+  "fagiolicannellini": {
+   "q": "riferimento"
+  },
+  "pisellisecchi": {
+   "q": "riferimento"
+  },
+  "lupini": {
+   "q": "riferimento"
+  },
+  "soiagranulare": {
+   "q": "riferimento"
+  },
+  "kefirveg": {
+   "q": "riferimento"
+  },
+  "grissinigf": {
+   "q": "riferimento"
+  },
+  "farrospezzato": {
+   "q": "riferimento"
+  },
+  "cusgf": {
+   "q": "riferimento"
+  },
+  "sogliola": {
+   "q": "riferimento"
+  },
+  "salmerino": {
+   "q": "riferimento"
+  },
+  "capesante": {
+   "q": "riferimento"
+  },
+  "astice": {
+   "q": "riferimento"
+  },
+  "quaglie": {
+   "q": "riferimento"
+  },
+  "faraona": {
+   "q": "riferimento"
+  },
+  "tacchinoripieno": {
+   "q": "riferimento"
+  },
+  "carnesalada": {
+   "q": "riferimento"
+  },
+  "porchetta": {
+   "q": "riferimento"
+  },
+  "ragupronto": {
+   "q": "riferimento"
+  },
+  "sugoarrabbiata": {
+   "q": "riferimento"
+  },
+  "pestoveg": {
+   "q": "riferimento"
+  },
+  "oliotartufo": {
+   "q": "riferimento"
+  },
+  "fiorisale": {
+   "q": "riferimento"
+  },
+  "pepemacinato": {
+   "q": "riferimento"
+  },
+  "bacchevaniglia": {
+   "q": "riferimento"
+  },
+  "gelatina": {
+   "q": "riferimento"
+  },
+  "cioccbianco": {
+   "q": "riferimento"
+  },
+  "amaretti": {
+   "q": "riferimento"
+  },
+  "panettone": {
+   "q": "riferimento"
+  },
+  "torroncini": {
+   "q": "riferimento"
+  },
+  "marronsglace": {
+   "q": "riferimento"
+  },
+  "succomirtillorosso": {
+   "q": "riferimento"
+  },
+  "spumantedolce": {
+   "q": "riferimento"
+  },
+  "amaro": {
+   "q": "riferimento"
+  },
+  "vinoanalcolico": {
+   "q": "riferimento"
+  },
+  "cafféfreddo": {
+   "q": "riferimento"
+  },
+  "acquacedrata": {
+   "q": "riferimento"
+  },
+  "detbio": {
+   "q": "riferimento"
+  },
+  "spugnabio": {
+   "q": "riferimento"
+  },
+  "saccorifiuti": {
+   "q": "riferimento"
+  },
+  "filtri": {
+   "q": "riferimento"
+  },
+  "crema": {
+   "q": "riferimento"
+  },
+  "solare": {
+   "q": "riferimento"
+  },
+  "repellente": {
+   "q": "riferimento"
+  },
+  "integratori": {
    "q": "riferimento"
   },
   "risosushi": {
@@ -1224,7 +1417,7 @@
   },
   "burgerveg": {
    "q": "verificato",
-   "n": 7,
+   "n": 5,
    "data": "2026-08-04",
    "fonte": "off-prices",
    "negozi": [
@@ -1954,7 +2147,7 @@
   },
   "gelato": {
    "q": "verificato",
-   "n": 3,
+   "n": 4,
    "data": "2025-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -1980,14 +2173,7 @@
    "q": "riferimento"
   },
   "baguette": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2025-11-11",
-   "fonte": "off-prices",
-   "negozi": [
-    "La Maladière centre",
-    "Coop"
-   ]
+   "q": "riferimento"
   },
   "brioche": {
    "q": "riferimento"
@@ -2075,7 +2261,7 @@
   },
   "birra": {
    "q": "verificato",
-   "n": 4,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -2093,11 +2279,100 @@
    "q": "riferimento"
   }
  },
+ "prezziRiv": {
+  "paprika": {
+   "migros": 3.95
+  },
+  "latte": {
+   "migros": 1.95,
+   "coop": 2.05
+  },
+  "yogurtnat": {
+   "migros": 3.65,
+   "coop": 2.2,
+   "aldi": 1.8
+  },
+  "fiocchipatate": {
+   "migros": 4.85
+  },
+  "biscotti": {
+   "migros": 7.25
+  },
+  "pettopollo": {
+   "coop": 31.45
+  },
+  "tonno": {
+   "coop": 8.15
+  },
+  "pane": {
+   "coop": 4.25
+  },
+  "olio": {
+   "lidlch": 10,
+   "migros": 21.9
+  },
+  "pomodori": {
+   "migros": 4.5,
+   "coop": 5,
+   "aldi": 4.75
+  },
+  "tofu": {
+   "coop": 3.65
+  },
+  "baguette": {
+   "coop": 1.2
+  },
+  "burrata": {
+   "migros": 1.85
+  },
+  "mele": {
+   "coop": 4.2
+  },
+  "olive": {
+   "coop": 3.75
+  },
+  "muesli": {
+   "migros": 5.5
+  },
+  "avocado": {
+   "coop": 2.1
+  },
+  "mozzarella": {
+   "migros": 0.85,
+   "coop": 0.85,
+   "denner": 0.85
+  },
+  "caffe": {
+   "migros": 7
+  },
+  "burro": {
+   "migros": 4.9
+  },
+  "farina": {
+   "migros": 3.4,
+   "coop": 3.2
+  },
+  "pesto": {
+   "migros": 4.4
+  },
+  "burgerveg": {
+   "migros": 4.95
+  },
+  "gelato": {
+   "migros": 5.5
+  },
+  "cioccolato": {
+   "migros": 0.55
+  },
+  "farinabona": {
+   "lidlch": 3.75
+  }
+ },
  "indici": {},
  "indiciOsservati": {
   "carrefour": {
    "k": 0.74,
-   "n": 6
+   "n": 7
   }
  },
  "promo": {},
@@ -2253,7 +2528,7 @@
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 2170
+    "osservazioni": 2168
    }
   ],
   "cambioEUR": 0.9402
