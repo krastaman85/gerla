@@ -1,7 +1,7 @@
 {
  "versione": 3,
  "data": "2026-08-19",
- "generato": "2026-08-19T21:47:22.330Z",
+ "generato": "2026-08-19T22:41:45.875Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9402,
  "prezzi": {
@@ -42,7 +42,7 @@
   "melone": 3.9,
   "susine": 4.2,
   "limoni": 2.6,
-  "pettopollo": 21.25,
+  "pettopollo": 18.75,
   "cosciapollo": 8.9,
   "macinato": 8.9,
   "spezzatino": 12.9,
@@ -76,13 +76,13 @@
   "riso": 3.2,
   "pane": 4.25,
   "paneint": 3.2,
-  "farina": 3.4,
+  "farina": 3.6,
   "polenta": 2.5,
   "couscous": 2.9,
   "gnocchi": 2.6,
   "pizzasurg": 4.5,
   "gallette": 2.5,
-  "latteveg": 2.2,
+  "latteveg": 1.1,
   "avena": 2.5,
   "cornflakes": 3.5,
   "fettebis": 2.2,
@@ -91,7 +91,7 @@
   "oliosem": 3.5,
   "aceto": 2.2,
   "sale": 0.9,
-  "zucchero": 2.5,
+  "zucchero": 2.3,
   "spezie": 1.9,
   "dado": 2.2,
   "pesto": 4.4,
@@ -425,14 +425,14 @@
   "mascarpone": 3.2,
   "pannamontare": 2.9,
   "yogurtgreco": 2.6,
-  "gelato": 5.95,
+  "gelato": 5.5,
   "carnaroli": 4.9,
   "lasagne": 3.2,
   "pastauovo": 3.5,
   "focaccia": 3.9,
   "grissini": 2.5,
   "crackers": 2.2,
-  "baguette": 2.2,
+  "baguette": 1.2,
   "brioche": 3.5,
   "savoiardi": 3.2,
   "lievito": 1.5,
@@ -610,7 +610,7 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 5,
+   "n": 7,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -722,8 +722,8 @@
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
-    "Migros",
-    "Coop"
+    "Coop",
+    "Migros"
    ]
   },
   "semiduro": {
@@ -805,7 +805,13 @@
    "q": "riferimento"
   },
   "latteveg": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-14",
+   "fonte": "off-prices",
+   "negozi": [
+    "Lidl"
+   ]
   },
   "avena": {
    "q": "riferimento"
@@ -849,13 +855,13 @@
   },
   "zucchero": {
    "q": "verificato",
-   "n": 4,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
     "Agrola",
-    "Coop"
+    "Migros"
    ]
   },
   "spezie": {
@@ -1192,7 +1198,7 @@
   },
   "burgerveg": {
    "q": "verificato",
-   "n": 5,
+   "n": 4,
    "data": "2026-08-04",
    "fonte": "off-prices",
    "negozi": [
@@ -1922,7 +1928,7 @@
   },
   "gelato": {
    "q": "verificato",
-   "n": 4,
+   "n": 6,
    "data": "2025-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -1948,7 +1954,14 @@
    "q": "riferimento"
   },
   "baguette": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2025-11-11",
+   "fonte": "off-prices",
+   "negozi": [
+    "La Maladière centre",
+    "Coop"
+   ]
   },
   "brioche": {
    "q": "riferimento"
@@ -2050,8 +2063,8 @@
  "indici": {},
  "indiciOsservati": {
   "carrefour": {
-   "k": 0.94,
-   "n": 8
+   "k": 0.74,
+   "n": 7
   }
  },
  "promo": {},
@@ -2191,12 +2204,12 @@
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 809
+    "osservazioni": 808
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 2131
+    "osservazioni": 2152
    }
   ],
   "cambioEUR": 0.9402
