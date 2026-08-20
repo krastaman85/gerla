@@ -47,13 +47,13 @@ export const FONTI = [
   { id:"rabatt-kompass", nome:"Rabatt Kompass — volantini CH", tipo:"html", zona:"CH",
     url:"https://it.rabatt-kompass.ch/", auto:false },
   { id:"aktionis", nome:"Aktionis — volantini CH", tipo:"html", zona:"CH",
-    url:"https://www.aktionis.ch/it/", auto:false },
+    url:"https://www.aktionis.ch/", auto:false },
   { id:"rappn", nome:"Rappn — confronto prezzi CH", tipo:"manuale", zona:"CH",
     url:"https://rappn.ch/it/", auto:false },
   { id:"esselunga", nome:"Esselunga — volantini", tipo:"manuale", zona:"IT",
     url:"https://www.esselunga.it/it-it/promozioni/volantini.html", auto:false },
   { id:"lidl-it", nome:"Lidl Italia — volantino", tipo:"manuale", zona:"IT",
-    url:"https://www.lidl.it/c/it-IT/volantino/s10018048", auto:false },
+    url:"https://www.lidl.it/c/volantino-lidl/s10018048", auto:false },
   { id:"eurospin", nome:"Eurospin — volantino", tipo:"manuale", zona:"IT",
     url:"https://www.eurospin.it/volantino/", auto:false },
   { id:"promoqui", nome:"PromoQui — volantini IT", tipo:"html", zona:"IT",
@@ -127,6 +127,8 @@ async function cambioEuro() {
 /* =========================================================
    4. ADATTATORE OPEN FOOD FACTS PRICES
    ========================================================= */
+/* L'archivio non accetta filtri per paese: scarico tutto quello che esiste in franchi
+   (poche centinaia di rilevazioni) e un campione ampio e recente in euro, poi filtro qui. */
 async function offPrices(valuta, pagine) {
   const out = [];
   for (let p = 1; p <= pagine; p++) {
@@ -347,7 +349,7 @@ async function main() {
   console.log(`Cambio EUR→CHF: ${CAMBIO}${c.ok ? " (BCE " + c.data + ")" : " (valore prudenziale)"}`);
 
   let osservazioni = [];
-  for (const [id, valuta, pagine] of [["off-prices-ch", "CHF", 25], ["off-prices-it", "EUR", 25]]) {
+  for (const [id, valuta, pagine] of [["off-prices-ch", "CHF", 20], ["off-prices-it", "EUR", 45]]) {
     try {
       const o = await offPrices(valuta, pagine);
       osservazioni = osservazioni.concat(o);
@@ -358,6 +360,13 @@ async function main() {
       console.log(`  ${id}: ERRORE ${e.message}`);
     }
   }
+
+  // copertura per negozio: serve a capire dove il dato è solido e dove manca
+  const copertura = {};
+  osservazioni.forEach(o => { if (o.negozio && ["CH","IT"].includes(o.paese||"")) copertura[o.negozio] = (copertura[o.negozio]||0)+1; });
+  const cop = Object.entries(copertura).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  console.log("Copertura per negozio:", cop.map(([n,v])=>`${n} ${v}`).join(", ") || "nessuna");
+  rapporto.copertura = Object.fromEntries(cop);
 
   const trovati = incrocia(catalogo, osservazioni);
   const indiciReali = indiciDaiDati(catalogo, osservazioni);
