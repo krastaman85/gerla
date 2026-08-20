@@ -105,7 +105,9 @@ input[type=text],input[type=number],input[type=date],input[type=url],select,text
 input:hover,select:hover{border-color:#3d5a92}
 select{text-overflow:ellipsis;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--oro) 50%),linear-gradient(135deg,var(--oro) 50%,transparent 50%);
   background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:32px}
-input[type=range]{accent-color:var(--oro);padding:0;background:none;border:0}
+input[type=range]{accent-color:var(--oro);padding:0;background:none;border:0;height:26px;cursor:pointer;touch-action:pan-y}
+input[type=range]::-webkit-slider-thumb{cursor:grab}
+input[type=range]:active::-webkit-slider-thumb{cursor:grabbing}
 input[type=checkbox]{accent-color:var(--oro);width:auto}
 
 
@@ -290,10 +292,7 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .setup-h .st b{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);font-weight:500}
 .setup-h .st span{font-size:14px;color:var(--testo-2)}
 .setup-h .sc{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--testo-3)}
-.setup[open] .setup-h .sc::before{content:"chiudi";}
-.setup .sc{visibility:hidden;position:relative}
-.setup .sc::after{content:"apri";visibility:visible;position:absolute;right:0;top:0;white-space:nowrap}
-.setup[open] .sc::after{content:"chiudi"}
+.setup .sc{white-space:nowrap}
 .setup[open] .grid-setup{border:1px solid var(--oro-d);border-top:0;border-radius:0 0 var(--r) var(--r);padding:18px;background:rgba(6,10,19,.35)}
 .setup[open] .grid-setup .card:last-child{margin-bottom:0}
 
@@ -378,6 +377,38 @@ html[data-tema="giorno"] ::selection{background:var(--oro);color:#fff}
 .lingue{margin-top:0}
 .lng.tema{display:inline-flex;align-items:center;gap:6px;padding:5px 12px}
 .lng.tema:hover{color:var(--oro-l);border-color:var(--oro-d)}
+
+
+/* ---------- menu contestuale delle sezioni ---------- */
+.sottomenu{margin-bottom:16px}
+.sottomenu .chips{justify-content:center}
+.sottomenu .chip{padding:9px 15px}
+
+
+.avvio-h{display:flex;gap:14px;align-items:center;padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--linea)}
+.avvio-f{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:22px;padding-top:16px;border-top:1px solid var(--linea)}
+.avvio-f .hint{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--oro-l)}
+#modal .chips .chip{padding:9px 15px;font-size:13.5px}
+
+
+/* ---------- piè di pagina ---------- */
+footer{border-top:1px solid var(--linea);margin-top:34px;padding:0;position:relative}
+footer::before{content:"";position:absolute;left:50%;top:-1px;transform:translateX(-50%);
+  width:min(420px,70%);height:1px;background:linear-gradient(90deg,transparent,var(--oro),transparent);opacity:.85}
+.pie{text-align:center;padding:38px 0 44px;color:var(--testo-3)}
+.pie-marchi{display:flex;align-items:center;justify-content:center;gap:18px}
+.pie-logo svg{width:44px;height:44px;opacity:.95}
+.pie-dd svg{width:52px;height:34px;opacity:.95}
+.pie-x{font-family:var(--disp);font-size:20px;color:var(--oro-d);opacity:.7}
+.pie-frase{margin:16px auto 0;font-family:var(--disp);font-size:clamp(17px,2.3vw,22px);
+  color:var(--testo-2);letter-spacing:.01em;max-width:44ch;line-height:1.35}
+.pie-firma{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--oro-d)}
+.pie-sep{width:26px;height:1px;background:var(--oro-d);opacity:.6}
+.pie-note{margin:20px auto 0;max-width:62ch;font-size:11.5px;line-height:1.65;color:var(--testo-3);opacity:.85}
+@media(max-width:520px){ .pie{padding:30px 0 34px} .pie-frase{font-size:17px} }
+html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.6))}
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
@@ -464,8 +495,14 @@ html[data-tema="giorno"] ::selection{background:var(--oro);color:#fff}
   .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
     min-width:0;font-size:10px;letter-spacing:.01em;padding:8px 2px 7px;margin:0;
     border-bottom:0;border-radius:10px;border-top:0;white-space:normal;line-height:1.15}
-  .tab i{display:block;font-style:normal;font-size:15px;line-height:1;opacity:.7}
-  .tab[aria-selected=true]{background:rgba(216,169,74,.14);color:var(--oro-l)}
+  .tab i{display:block;font-style:normal;line-height:0;opacity:.62}
+  .tab i svg{width:21px;height:21px;color:currentColor}
+  .tab[aria-selected=true] i{opacity:1}
+  .tab{position:relative;transition:background .18s,color .18s}
+  .tab[aria-selected=true]{background:linear-gradient(180deg,rgba(224,180,90,.2),rgba(224,180,90,.07));color:var(--oro-l)}
+  .tab[aria-selected=true]::after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:3px;
+    width:22px;height:2px;border-radius:2px;background:var(--oro)}
+  .tab:active{transform:scale(.96)}
   .tab[aria-selected=true] i{opacity:1}
   .tab .lg{display:none}
   .tab .sm{display:inline}
@@ -582,6 +619,41 @@ html,body{max-width:100%;overflow-x:hidden}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="logo-gerla" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fbe9bb"/><stop offset=".45" stop-color="#e0b45a"/><stop offset="1" stop-color="#8f6d22"/>
+          </linearGradient>
+          <linearGradient id="oro2" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#8f6d22"/><stop offset="1" stop-color="#f7dda0"/>
+          </linearGradient>
+          <clipPath id="cesta"><path d="M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z"/></clipPath>
+        </defs>
+        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#oro2)" stroke-width="1" opacity=".45"/>
+        <g clip-path="url(#cesta)">
+          <rect x="14" y="24" width="36" height="30" fill="url(#oro)" opacity=".14"/>
+          <g stroke="url(#oro)" stroke-width="1.1" opacity=".85">
+            <path d="M14 30h36M14 36h36M14 42h36M14 48h36"/>
+            <path d="M21 24v30M27 24v30M32 24v30M37 24v30M43 24v30" opacity=".5"/>
+          </g>
+        </g>
+        <path d="M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z" fill="none" stroke="url(#oro)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M13.5 25h37" stroke="url(#oro)" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M23 25c0-7.4 4-11.5 9-11.5s9 4.1 9 11.5" fill="none" stroke="url(#oro)" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M32 13.5V7" stroke="url(#oro)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M32 7c-2.6-.4-4.4.8-5.2 3.2 2.6.6 4.4-.4 5.2-3.2Zm0 0c2.6-.4 4.4.8 5.2 3.2-2.6.6-4.4-.4-5.2-3.2Z" fill="url(#oro)" opacity=".9"/>
+        <path d="M24 20.5c1.6-2 4.6-3 8-3s6.4 1 8 3" fill="none" stroke="url(#oro)" stroke-width=".9" opacity=".55"/>
+      </symbol>
+<symbol id="ic-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></symbol>
+<symbol id="ic-lista" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="ic-occasioni" viewBox="0 0 24 24"><path d="M7 3.5h10l-1.4 6a4.7 4.7 0 0 1-4.6 3.6A4.7 4.7 0 0 1 8.4 9.5Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 13.2V19M8.5 20.5h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="ic-dispensa" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.4" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.4"/><path d="M9.4 7.6v1.6M14.6 7.6v1.6M9.4 14.8v1.6M14.6 14.8v1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="ic-storico" viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3 21h18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".6"/></symbol>
+<symbol id="ic-analisi" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 12V4.2A7.9 7.9 0 0 1 18.6 8Z" fill="currentColor" opacity=".55"/><path d="M12 12l4.6 4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="ic-prezzi" viewBox="0 0 24 24"><path d="M4.5 11.4V5.2a.7.7 0 0 1 .7-.7h6.2c.2 0 .4.1.5.2l7.3 7.3a1.4 1.4 0 0 1 0 2l-5.6 5.6a1.4 1.4 0 0 1-2 0L4.7 12a.7.7 0 0 1-.2-.6Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><circle cx="8.6" cy="8.6" r="1.5" fill="currentColor"/></symbol>
+<symbol id="ic-guida" viewBox="0 0 24 24"><path d="M4.5 5.2A15 15 0 0 1 12 7a15 15 0 0 1 7.5-1.8v13A15 15 0 0 0 12 20a15 15 0 0 0-7.5-1.8Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 7v13" stroke="currentColor" stroke-width="1.4"/></symbol>
+</defs></svg>
 
 <header class="top">
   <div class="wrap">
@@ -628,7 +700,7 @@ html,body{max-width:100%;overflow-x:hidden}
       <button class="lng tema" id="btnTema" title="Modalità giorno e notte"><span id="temaIc">☾</span> <span id="temaTxt">Notte</span></button>
     </div>
     <div class="statusbar">
-      <span id="memoria">memoria attiva</span>
+      <span id="memoria">salvato</span>
       <button class="linkbtn" id="riavvia">rifai l'avvio guidato</button>
       <button class="linkbtn" id="scorda">cancella i dati salvati</button>
     </div>
@@ -640,7 +712,7 @@ html,body{max-width:100%;overflow-x:hidden}
   <details class="setup" id="setup" open>
     <summary class="setup-h">
       <span class="st"><b>Impostazioni</b><span id="setupRiepilogo">&mdash;</span></span>
-      <span class="sc">apri e chiudi</span>
+      <span class="sc"><span class="nm">apri</span></span>
     </summary>
   <div class="grid-setup">
       <section class="card noprint">
@@ -656,7 +728,7 @@ html,body{max-width:100%;overflow-x:hidden}
         <div class="chips" id="pastiChips"></div>
         <div class="due" style="margin-top:16px">
           <div>
-            <label class="f" for="fuoriCasa">Pasti fuori casa a settimana</label>
+            <label class="f" for="fuoriCasa"><span class="nm">Pasti fuori casa a settimana</span> <b id="fuoriVal" style="color:var(--oro-l)">0</b></label>
             <input type="range" id="fuoriCasa" min="0" max="20" value="0" style="width:100%">
             <div class="hint" id="fuoriLab">nessuno &mdash; si mangia sempre a casa</div>
           </div>
@@ -690,7 +762,7 @@ html,body{max-width:100%;overflow-x:hidden}
         </div>
         <label class="f" style="margin-top:14px;display:flex;gap:8px;align-items:flex-start">
           <input type="checkbox" id="avanzi" style="margin-top:2px">
-          <span>Cucina una volta, mangia due: il pranzo riprende la cena della sera prima</span>
+          <span class="nm">Cucina una volta, mangia due: il pranzo riprende la cena della sera prima</span>
         </label>
       </section>
       <section class="card noprint">
@@ -758,7 +830,7 @@ html,body{max-width:100%;overflow-x:hidden}
         <div class="chips" id="prefs"></div>
         <div style="margin-top:16px" class="budget-box">
           <div>
-            <label class="f" for="veggDays">Giorni senza carne né pesce</label>
+            <label class="f" for="veggDays"><span class="nm">Giorni senza carne né pesce</span> <b id="veggVal" style="color:var(--oro-l)">2</b></label>
             <input type="range" id="veggDays" min="0" max="7" value="2">
             <div class="hint" id="veggLab">2 giorni a settimana</div>
           </div>
@@ -788,14 +860,14 @@ html,body{max-width:100%;overflow-x:hidden}
   </div>
 
   <div class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-p="menu"><i>❋</i><span class="lg">Menu</span><span class="sm">Menu</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="lista"><i>◧</i><span class="lg">Lista della spesa</span><span class="sm">Lista</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="eventi"><i>🥂</i><span class="lg">Occasioni</span><span class="sm">Occasioni</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="dispensa"><i>◫</i><span class="lg">Dispensa</span><span class="sm">Dispensa</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="storico"><i>◐</i><span class="lg">Storico</span><span class="sm">Storico</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="analisi"><i>◑</i><span class="lg">Analisi e budget</span><span class="sm">Analisi</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="catalogo" id="tabPrezzi"><i>◎</i><span class="lg">Prezzi e volantini</span><span class="sm">Prezzi</span><span class="pin"></span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="guida"><i>◇</i><span class="lg">Guida</span><span class="sm">Guida</span></button>
+    <button class="tab" role="tab" aria-selected="true" data-p="menu"><i><svg viewBox="0 0 24 24"><use href="#ic-menu"/></svg></i><span class="lg">Menu</span><span class="sm">Menu</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="lista"><i><svg viewBox="0 0 24 24"><use href="#ic-lista"/></svg></i><span class="lg">Lista della spesa</span><span class="sm">Lista</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="eventi"><i><svg viewBox="0 0 24 24"><use href="#ic-occasioni"/></svg></i><span class="lg">Occasioni</span><span class="sm">Occasioni</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="dispensa"><i><svg viewBox="0 0 24 24"><use href="#ic-dispensa"/></svg></i><span class="lg">Dispensa</span><span class="sm">Dispensa</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="storico"><i><svg viewBox="0 0 24 24"><use href="#ic-storico"/></svg></i><span class="lg">Storico</span><span class="sm">Storico</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="analisi"><i><svg viewBox="0 0 24 24"><use href="#ic-analisi"/></svg></i><span class="lg">Analisi e budget</span><span class="sm">Analisi</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="catalogo" id="tabPrezzi"><i><svg viewBox="0 0 24 24"><use href="#ic-prezzi"/></svg></i><span class="lg">Prezzi e volantini</span><span class="sm">Prezzi</span><span class="pin"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="guida"><i><svg viewBox="0 0 24 24"><use href="#ic-guida"/></svg></i><span class="lg">Guida</span><span class="sm">Guida</span></button>
   </div>
 
   <section class="panel" id="p-menu">
@@ -872,19 +944,21 @@ html,body{max-width:100%;overflow-x:hidden}
   </section>
 
   <section class="panel" id="p-catalogo">
+    <div class="sottomenu" id="sottoPrezzi"></div>
     <div id="bannerAgg"></div>
     <div class="card">
-      <h2>Volantini della settimana</h2>
+      <h2 data-sez="volantini">Volantini della settimana</h2>
       <p class="hint" style="margin-top:0">Le promozioni cambiano ogni gioved&igrave; in Svizzera e ogni luned&igrave; in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di pi&ugrave; sul totale.</p>
       <div class="flyer" id="flyerBox"></div>
     </div>
     <div class="card">
-      <h2>Da dove arrivano i prezzi</h2>
+      <h2 data-sez="fonti">Da dove arrivano i prezzi</h2>
       <p class="hint" style="margin-top:0">Le pagine dei volantini non si lasciano leggere da un programma: bloccano le richieste o disegnano i prezzi con JavaScript. Le fonti qui sotto invece sono aperte e leggibili, ed &egrave; da queste che lo script di aggiornamento pesca i prezzi veri.</p>
+      <p class="hint" id="cambioOggi" style="margin:0 0 12px"></p>
       <div class="fonti" id="fontiBox"></div>
     </div>
     <div class="card">
-      <h2>Aggiornamento automatico</h2>
+      <h2 data-sez="aggiorna">Aggiornamento automatico</h2>
       <div class="due">
         <div>
           <label class="f" for="feedUrl">Indirizzo del listino condiviso (JSON)</label>
@@ -929,7 +1003,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="card" id="cardGiorni"></div>
     <div class="card" id="cardPromo"></div>
     <div class="card">
-      <h2>Listino &mdash; prezzi e promozioni</h2>
+      <h2 data-sez="listino">Listino &mdash; prezzi e promozioni</h2>
       <p class="hint" style="margin-top:0">Il prezzo di ogni prodotto viene deciso a tre livelli, dal pi&ugrave; affidabile al pi&ugrave; generico: <b>1.</b> una promozione in corso; <b>2.</b> il prezzo davvero rilevato in quella negozio, quando esiste; <b>3.</b> il prezzo base moltiplicato per l'indice dell'negozio. Il livello usato &egrave; scritto sotto il miglior prezzo, cos&igrave; sai sempre quanto fidarti.</p>
       <div class="chips" id="gruppiListino" style="margin-bottom:12px"></div>
       <div class="row" style="margin-bottom:12px">
@@ -942,7 +1016,7 @@ html,body{max-width:100%;overflow-x:hidden}
       </tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
-      <h2>Indice prezzi per negozio</h2>
+      <h2 data-sez="indici">Indice prezzi per negozio</h2>
       <p class="hint" style="margin-top:0">Moltiplicatore sul prezzo di riferimento, con correzioni per reparto. I confronti indipendenti (K-Tipp, RTS) collocano Lidl e Aldi sui prezzi pi&ugrave; bassi per i prodotti base, mentre Denner vince sulle scorte di caff&egrave;, cioccolato e bevande: gli indici seguono questo schema. Regolali sul tuo negozio.</p>
       <div class="tblwrap"><table id="tblRiv"><thead><tr><th>Negozio</th><th>Zona</th><th class="num">Indice</th><th>Esempio: 1 kg pasta</th></tr></thead><tbody></tbody></table></div>
     </div>
@@ -959,9 +1033,30 @@ html,body{max-width:100%;overflow-x:hidden}
 
 </main>
 
-<footer class="wrap">
-  <b style="color:var(--oro-l);font-weight:500">Gerla</b> — ideata e diretta da <b style="color:var(--testo-2)">DD</b>, costruita insieme a Claude di Anthropic.<br>
-  Strumento personale di pianificazione. I prezzi sono stime indicative modificabili, non listini ufficiali: verifica sempre allo scaffale o sul sito del rivenditore. Nessun dato esce dal tuo dispositivo.
+<footer>
+  <div class="wrap">
+    <div class="pie">
+      <div class="pie-marchi">
+        <span class="pie-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#logo-gerla"/></svg></span>
+        <span class="pie-x">&times;</span>
+        <span class="pie-dd" aria-label="DD">
+          <svg viewBox="0 0 72 48" aria-hidden="true">
+            <defs><linearGradient id="ddg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f7dda0"/><stop offset="1" stop-color="#96762c"/></linearGradient></defs>
+            <path d="M8 8h13c9.4 0 16 6.5 16 16s-6.6 16-16 16H8Z" fill="none" stroke="url(#ddg)" stroke-width="3.2" stroke-linejoin="round"/>
+            <path d="M35 8h13c9.4 0 16 6.5 16 16s-6.6 16-16 16H35" fill="none" stroke="url(#ddg)" stroke-width="3.2" stroke-linejoin="round" opacity=".75"/>
+          </svg>
+        </span>
+      </div>
+      <p class="pie-frase"><span class="nm">Ideata e diretta da DD, costruita insieme a Claude di Anthropic</span></p>
+      <div class="pie-firma">
+        <span class="pie-anno">MMXXVI</span>
+        <span class="pie-sep"></span>
+        <span class="nm">Ticino</span>
+      </div>
+      <p class="pie-note"><span class="nm">Strumento personale di pianificazione. I prezzi sono stime modificabili, non listini ufficiali: verifica sempre allo scaffale. Nessun dato esce dal tuo dispositivo.</span></p>
+    </div>
+  </div>
 </footer>
 
 <div class="overlay" id="overlay" hidden>
@@ -1006,21 +1101,21 @@ const FONTI=[
   {id:"off-prices-ch",n:"Open Food Facts Prices — Svizzera",t:"api",z:"CH",u:"https://prices.openfoodfacts.org/it/prices?currency=CHF",d:"Prezzi fotografati allo scaffale dalla comunità, con negozio e data. È la fonte che alimenta l'aggiornamento automatico."},
   {id:"off-prices-it",n:"Open Food Facts Prices — Italia",t:"api",z:"IT",u:"https://prices.openfoodfacts.org/it/prices?currency=EUR",d:"Stessa banca dati, lato italiano. Convertita al cambio BCE del giorno."},
   {id:"bce",n:"BCE — cambio EUR/CHF",t:"api",z:"—",u:"https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-chf.en.html",d:"Cambio ufficiale del giorno, usato per convertire i prezzi italiani."},
-  {id:"mimit",n:"MIMIT — prezzi carburanti Italia",t:"csv",z:"IT",u:"https://www.mimit.gov.it/it/prezzo-medio-carburanti",d:"Prezzo di ogni distributore italiano, aggiornato ogni mattina. Serve al calcolo del viaggio."},
+  {id:"mimit",n:"MIMIT — carburanti Italia",t:"csv",z:"IT",u:"https://www.mimit.gov.it/it/prezzo-medio-carburanti",d:"Prezzo di ogni distributore italiano, aggiornato ogni mattina. Serve al calcolo del viaggio."},
   {id:"tcs",n:"TCS — carburanti Svizzera",t:"manuale",z:"CH",u:"https://www.tcs.ch/it/camping-viaggi/informazioni-turistiche/utile-da-sapere/costi-di-viaggio-e-pedaggi/prezzi-carburante.php",d:"Media nazionale benzina 95/98 e diesel. Mappa delle stazioni su tcs.ch/benzina."},
-  {id:"rappn",n:"Rappn — confronto prezzi CH",t:"manuale",z:"CH",u:"https://rappn.ch/it/",d:"Confronta lo stesso prodotto tra le negozi svizzere."},
+  {id:"rappn",n:"Rappn — confronto prezzi",t:"manuale",z:"CH",u:"https://rappn.ch/it/",d:"Confronta lo stesso prodotto tra le negozi svizzere."},
   {id:"rabatt",n:"Rabatt Kompass",t:"html",z:"CH",u:"https://it.rabatt-kompass.ch/",d:"Archivio volantini di tutte le negozi svizzere."},
   {id:"aktionis",n:"Aktionis",t:"html",z:"CH",u:"https://www.aktionis.ch/",d:"Volantini e azioni della settimana, ricerca per prodotto."},
   {id:"promoqui",n:"PromoQui",t:"html",z:"IT",u:"https://www.promoqui.it/",d:"Volantini italiani per catena e per città."},
   {id:"volantinofacile",n:"Volantino Facile",t:"html",z:"IT",u:"https://www.volantinofacile.it/",d:"Secondo archivio italiano, utile quando PromoQui non ha la catena."},
-  {id:"bfs",n:"UST — indice dei prezzi al consumo",t:"api",z:"CH",u:"https://www.bfs.admin.ch/bfs/it/home/statistiche/prezzi/indice-nazionale-prezzi-consumo.html",d:"Serve a controllare se il tuo paniere sale più o meno dell'inflazione ufficiale."},
+  {id:"bfs",n:"UST — indice dei prezzi",t:"api",z:"CH",u:"https://www.bfs.admin.ch/bfs/it/home/statistiche/prezzi/indice-nazionale-prezzi-consumo.html",d:"Serve a controllare se il tuo paniere sale più o meno dell'inflazione ufficiale."},
 ];
 /* giorno in cui esce il nuovo volantino: 1 = lunedì … 7 = domenica */
 const GIORNI_OFFERTE={
   migros:2, coop:2, denner:2, aldi:4, lidlch:4, manor:2, volg:2, ottos:4, landi:4, prodega:4, migrolino:2, aligro:4,
   esselunga:4, iper:4, lidlit:1, eurospin:1, conad:4, tigros:4, iperal:4, carrefour:4, bennet:4, pam:4, md:1,
 };
-const NOMI_GIORNI=["","lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"];
+const NOMI_GIORNI=new Proxy({},{get:(_,i)=>(GIORNI_SETT[(typeof S!=="undefined"&&S.lingua)||"it"]||GIORNI_SETT.it)[i]});
 const oggiISO = ()=> new Date().toISOString().slice(0,10);
 const giorniDa = d=> Math.max(0,Math.round((Date.now()-new Date(d+"T12:00:00").getTime())/86400000));
 
@@ -1923,9 +2018,9 @@ const S = {
   margine:1.08,
   cottura:"normale",
   giaInCasa:new Set(),
-  lingua:"it", tema:"notte",
+  lingua:"it", tema:"notte", cambio:0.94,
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{}, gruppo:"tutti",   // prodotto -> alternativa scelta / provenienza del prezzo
+  sost:{}, qualita:{}, prezziRiv:{}, gruppo:"tutti", sezPrezzi:"listino",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
   viaggio:{km:18,consumo:6.5,carb:"diesel",minuti:70,valoreOra:20,pedaggi:0},
@@ -1978,8 +2073,16 @@ const $$ = s=>Array.from(document.querySelectorAll(s));
 const chf = v=> (Math.round(v*20)/20).toFixed(2);
 const chfr = v=> v.toFixed(2);
 const MESE = new Date().getMonth()+1;
-const NOMIMESI=["","gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
-const GIORNISET=["Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato","Domenica"];
+const MESI={it:["","gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],
+ en:["","January","February","March","April","May","June","July","August","September","October","November","December"],
+ fr:["","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+ de:["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]};
+const NOMIMESI=new Proxy({},{get:(_,i)=>(MESI[(typeof S!=="undefined"&&S.lingua)||"it"]||MESI.it)[i]});
+const GIORNI_SETT={it:["","lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"],
+ en:["","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+ fr:["","lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"],
+ de:["","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"]};
+const GIORNISET=new Proxy({},{get:(_,i)=>{const L=(typeof S!=="undefined"&&S.lingua)||"it";const g=(GIORNI_SETT[L]||GIORNI_SETT.it)[(+i)+1]||"";return g.charAt(0).toUpperCase()+g.slice(1);}});
 
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 let rnd = mulberry(S.seed);
@@ -2356,7 +2459,7 @@ function renderPrefs(){
   PREFS.forEach(p=>{
     const b=document.createElement("button"); b.className="chip"; b.type="button";
     b.setAttribute("aria-pressed",S.prefs.has(p.id));
-    b.textContent=p.n;
+    b.innerHTML=`<span class="nm">${p.n}</span>`;
     b.onclick=()=>{
       if(S.prefs.has(p.id)) S.prefs.delete(p.id);
       else { S.prefs.add(p.id);
@@ -2371,13 +2474,13 @@ function riepilogoSetup(){
   const el=$("#setupRiepilogo"); if(!el) return;
   const n=S.persone.length, ins=[...S.riv].length;
   const diete=[...S.prefs].length;
-  el.textContent = `${n} ${n===1?"persona":"persone"} · ${S.giorni} ${S.giorni===1?"giorno":"giorni"} · CHF ${chfr(S.budget)} · ${ins} ${ins===1?"negozio":"negozi"}${diete?" · "+diete+" preferenze":""}`;
+  el.textContent = `${n} ${n===1?T("persona"):T("persone")} · ${S.giorni} ${S.giorni===1?T("giorno"):T("giorni")} · CHF ${chfr(S.budget)} · ${ins} ${ins===1?T("negozio"):T("negozi")}${diete?" · "+diete+" "+T("preferenze"):""}`;
 }
 function aggiornaBudgetLabel(){
-  riepilogoSetup();
+  riepilogoSetup(); aggiornaVegg();
   const g=S.giorni, n=S.persone.length||1;
   $("#budgetGiorno").innerHTML = `CHF ${chfr(S.budget/g)} <span>al giorno</span>`;
-  $("#budgetPersona").textContent = `CHF ${chfr(S.budget/g/n)} a persona al giorno · ${n} ${n===1?"persona":"persone"} · fabbisogno del nucleo ${Math.round(kcalNucleo())} kcal al giorno`;
+  $("#budgetPersona").textContent = `CHF ${chfr(S.budget/g/n)} ${T("a persona al giorno")} · ${n} ${n===1?T("persona"):T("persone")} · ${T("fabbisogno del nucleo")} ${Math.round(kcalNucleo())} ${T("kcal al giorno")}`;
 }
 
 /* =========================================================
@@ -2392,13 +2495,13 @@ function renderMenu(){
     for(let w=0;w<settimane;w++){
       const b=document.createElement("button");
       b.className="chip"; b.type="button"; b.setAttribute("aria-pressed",w===S.settimana);
-      b.textContent="Settimana "+(w+1);
+      b.innerHTML=`<span class="nm">Settimana</span> ${w+1}`;
       b.onclick=()=>{S.settimana=w;renderMenu();};
       wb.appendChild(b);
     }
     const b=document.createElement("button");
     b.className="chip";b.type="button";b.setAttribute("aria-pressed",S.settimana===-1);
-    b.textContent="Tutto il periodo";
+    b.innerHTML=`<span class="nm">${T("Tutto il periodo")}</span>`;
     b.onclick=()=>{S.settimana=-1;renderMenu();};
     wb.appendChild(b);
   }
@@ -2416,7 +2519,7 @@ function renderMenu(){
     el.className="giorno"+(S.lock.has(d)?" lock":"");
     el.innerHTML=`
       <div class="giorno-h">
-        <b>${GIORNISET[d%7]} <span style="font-family:var(--mono);font-size:11px;color:#7c8a80">g${d+1}</span></b>
+        <b>${GIORNISET[d%7]} <span style="font-family:var(--mono);font-size:11px;color:var(--testo-3)">${T("g")}${d+1}</span></b>
         <span style="display:flex;align-items:center;gap:8px">
           <span class="kcal">${Math.round(kcal)} kcal/pers</span>
           <button class="lockbtn" aria-pressed="${S.lock.has(d)}" title="Blocca questo giorno">${S.lock.has(d)?"🔒":"🔓"}</button>
@@ -2479,7 +2582,7 @@ function renderLista(){
     el.innerHTML=`
       <div class="sc-h">
         <span class="logo" style="background:${riv.c}">${riv.n.toUpperCase()}</span>
-        <div class="meta">${riv.z==="CH"?"SVIZZERA · CHF":"ITALIA · prezzi convertiti in CHF"} · ${rr.length} ARTICOLI</div>
+        <div class="meta">${riv.z==="CH"?T("SVIZZERA")+" · CHF":T("ITALIA")+" · CHF"} · ${rr.length} ${T("ARTICOLI")}</div>
       </div>
       <div class="sc-body">
         ${cats.map(c=>`
@@ -2496,7 +2599,7 @@ function renderLista(){
         `).join("")}
       </div>
       <div class="sc-tot"><span>TOTALE</span><span>CHF ${chfr(tot)}</span></div>
-      <div class="sc-note">Spunta gli articoli che hai gi\u00e0 in casa: escono dal totale. Prezzi indicativi, indice ${riv.k.toFixed(2)} con correzioni per reparto, listino del ${S.ultimoAgg.split("-").reverse().join(".")}. Tocca il nome per cercarlo sul sito ${riv.n}.</div>`;
+      <div class="sc-note">${TF("Spunta gli articoli che hai già in casa: escono dal totale. Prezzi indicativi, indice {0} con correzioni per reparto, listino del {1}.",[riv.k.toFixed(2), S.ultimoAgg.split("-").reverse().join(".")])} ${TF("Tocca il nome per cercarlo sul sito {0}.",[riv.n])}</div>`;
     el.querySelectorAll('.alt').forEach(b=>{ b.onclick=()=>apriAlternative(b.dataset.alt); });
     el.querySelectorAll('input[type=checkbox]').forEach(cb=>{
       cb.onchange=()=>{ cb.checked?S.giaInCasa.add(cb.dataset.id):S.giaInCasa.delete(cb.dataset.id); renderTutto(); salva(); };
@@ -2513,10 +2616,10 @@ function renderLista(){
     const ok = totIT<=franchigia && carne<=1*S.persone.length;
     box.innerHTML=`<div class="card" style="border-color:${ok?"var(--linea)":"var(--rosso)"}">
       <h2>Controllo dogana</h2>
-      <p style="margin:0;font-size:13.5px">Carrello italiano: <b>CHF ${chfr(totIT)}</b> · carne <b>${carne.toFixed(2)} kg</b>.
-      Con ${S.persone.length} ${S.persone.length===1?"persona":"persone"} la franchigia giornaliera è CHF ${franchigia} e il limite carne ${S.persone.length} kg.
-      ${ok?"Rientri nei limiti se fate la spesa insieme in un solo passaggio."
-          :"<b style='color:var(--rosso)'>Sopra i limiti in un solo passaggio:</b> dividi la spesa in due uscite, o dichiara l'IVA svizzera in dogana (app QuickZoll)."}</p>
+      <p style="margin:0;font-size:13.5px">${TF("Carrello italiano: <b>CHF {0}</b> · carne <b>{1} kg</b>. Con {2} {3} la franchigia giornaliera è CHF {4} e il limite carne {5} kg.",
+        [chfr(totIT), carne.toFixed(2), S.persone.length, S.persone.length===1?T("persona"):T("persone"), franchigia, S.persone.length])}
+      ${ok?T("Rientri nei limiti se fate la spesa insieme in un solo passaggio.")
+          :"<b style='color:var(--rosso)'>"+T("Sopra i limiti in un solo passaggio:")+"</b> "+T("dividi la spesa in due uscite, o dichiara l'IVA svizzera in dogana (app QuickZoll).")}</p>
     </div>`;
   }
 }
@@ -2553,12 +2656,12 @@ function renderAnalisi(){
 
   cont.innerHTML=`
     <div class="kpi">
-      <div><div class="lab">Totale periodo</div><div class="val">CHF ${chfr(tot)}</div><div class="sub">${g} giorni · ${righe.length} articoli</div></div>
-      <div><div class="lab">Al giorno</div><div class="val">CHF ${chfr(tot/g)}</div><div class="sub">CHF ${chfr(tot/g/n)} a persona</div></div>
-      <div><div class="lab">Energia media</div><div class="val">${Math.round(kcal)}</div><div class="sub">kcal a persona/giorno · obiettivo ${Math.round(kcalNucleo()/n)}</div></div>
-      <div><div class="lab">Proteine</div><div class="val">${Math.round(prot)} g</div><div class="sub">a persona/giorno</div></div>
-      <div><div class="lab">Frutta e verdura di stagione</div><div class="val">${pctStag}%</div><div class="sub">degli articoli freschi</div></div>
-      <div><div class="lab">Indice salute</div><div class="val">${salute.toFixed(1)}<span style="font-size:14px">/5</span></div><div class="sub">media del carrello alimentare</div></div>
+      <div><div class="lab">Totale periodo</div><div class="val">CHF ${chfr(tot)}</div><div class="sub">${g} ${T("giorni")} · ${righe.length} ${T("articoli")}</div></div>
+      <div><div class="lab">Al giorno</div><div class="val">CHF ${chfr(tot/g)}</div><div class="sub">CHF ${chfr(tot/g/n)} ${T("a persona")}</div></div>
+      <div><div class="lab">Energia media</div><div class="val">${Math.round(kcal)}</div><div class="sub">${T("kcal a persona/giorno")} · ${T("obiettivo")} ${Math.round(kcalNucleo()/n)}</div></div>
+      <div><div class="lab">Proteine</div><div class="val">${Math.round(prot)} g</div><div class="sub">${T("a persona/giorno")}</div></div>
+      <div><div class="lab">Frutta e verdura di stagione</div><div class="val">${pctStag}%</div><div class="sub">${T("degli articoli freschi")}</div></div>
+      <div><div class="lab">Indice salute</div><div class="val">${salute.toFixed(1)}<span style="font-size:14px">/5</span></div><div class="sub">${T("media del carrello alimentare")}</div></div>
     </div>
 
     <div class="card">
@@ -2568,8 +2671,8 @@ function renderAnalisi(){
         <span>CHF ${chfr(tot)} spesi</span><span>budget CHF ${chfr(S.budget)}</span>
       </div>
       <p style="margin:12px 0 0;font-size:14px">${tot<=S.budget
-        ? `Sei dentro il budget con <b>CHF ${chfr(S.budget-tot)}</b> di margine — circa CHF ${chfr((S.budget-tot)/g)} al giorno per imprevisti o extra.`
-        : `Sei sopra di <b style="color:var(--rosso)">CHF ${chfr(tot-S.budget)}</b>. Premi “Fai stare nel budget”: sposto la scelta verso piatti più economici e rivenditori più convenienti.`}</p>
+        ? TF("Sei dentro il budget con <b>CHF {0}</b> di margine — circa CHF {1} al giorno per imprevisti o extra.",[chfr(S.budget-tot),chfr((S.budget-tot)/g)])
+        : TF("Sei sopra di <b style=\"color:var(--rosso)\">CHF {0}</b>. Premi “Fai stare nel budget”: sposto la scelta verso piatti più economici e negozi più convenienti.",[chfr(tot-S.budget)])}</p>
     </div>
 
     <div class="card">
@@ -2585,11 +2688,11 @@ function renderAnalisi(){
     <div class="card">
       <h2>Quanto stai risparmiando</h2>
       <div class="barlist">
-        <div><div class="l"><span>Il tuo mix di rivenditori</span><b>CHF ${chfr(tot)}</b></div><div class="bar"><i style="width:${tot/caro*100}%"></i></div></div>
-        <div><div class="l"><span>Solo il più conveniente in Svizzera</span><b>CHF ${chfr(soloCH)}</b></div><div class="bar"><i style="width:${soloCH/caro*100}%"></i></div></div>
-        <div><div class="l"><span>Tutto al prezzo pieno di supermercato</span><b>CHF ${chfr(caro)}</b></div><div class="bar"><i style="width:100%"></i></div></div>
+        <div><div class="l"><span class="nm">Il tuo mix di negozi</span><b>CHF ${chfr(tot)}</b></div><div class="bar"><i style="width:${tot/caro*100}%"></i></div></div>
+        <div><div class="l"><span class="nm">Solo il più conveniente in Svizzera</span><b>CHF ${chfr(soloCH)}</b></div><div class="bar"><i style="width:${soloCH/caro*100}%"></i></div></div>
+        <div><div class="l"><span class="nm">Tutto al prezzo pieno di supermercato</span><b>CHF ${chfr(caro)}</b></div><div class="bar"><i style="width:100%"></i></div></div>
       </div>
-      <p style="margin:10px 0 0;font-size:13.5px">Rispetto alla spesa fatta tutta al prezzo pieno risparmi <b>CHF ${chfr(caro-tot)}</b> nel periodo, cioè circa <b>CHF ${chfr((caro-tot)*12/(g/30))}</b> all'anno.</p>
+      <p style="margin:10px 0 0;font-size:13.5px">${TF("Rispetto alla spesa fatta tutta al prezzo pieno risparmi <b>CHF {0}</b> nel periodo, cioè circa <b>CHF {1}</b> all'anno.",[chfr(caro-tot), chfr((caro-tot)*12/(g/30))])}</p>
     </div>
 
     <div class="card">
@@ -2607,10 +2710,31 @@ function renderGruppiListino(){
   box.innerHTML=[{id:"tutti",n:"Tutto il listino",ic:"◆"},...GRUPPI].map(g=>
     `<button class="chip" type="button" data-g="${g.id}" aria-pressed="${(S.gruppo||"tutti")===g.id}">
       ${g.ic} <span class="nm">${g.n}</span> <span class="zona">${g.id==="tutti"?Object.keys(PROD).length:(conta[g.id]||0)}</span></button>`).join("");
-  box.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ S.gruppo=b.dataset.g; renderCatalogo(); });
+  box.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ S.gruppo=b.dataset.g; S.listinoTutto=false; renderCatalogo(); });
+}
+const SEZ_PREZZI=[
+  {id:"listino",  n:"Listino",        ic:"◫"},
+  {id:"promo",    n:"Promozioni",     ic:"◆"},
+  {id:"giorni",   n:"Giorni migliori",ic:"◔"},
+  {id:"volantini",n:"Volantini",      ic:"◧"},
+  {id:"fonti",    n:"Fonti",          ic:"◉"},
+  {id:"aggiorna", n:"Aggiornamento",  ic:"↻"},
+  {id:"indici",   n:"Indici",         ic:"≡"},
+];
+function renderSottomenu(){
+  const box=$("#sottoPrezzi"); if(!box) return;
+  if(!S.sezPrezzi) S.sezPrezzi="listino";
+  box.innerHTML=`<div class="chips">${SEZ_PREZZI.map(x=>
+    `<button class="chip" type="button" data-s="${x.id}" aria-pressed="${S.sezPrezzi===x.id}">${x.ic} <span class="nm">${x.n}</span></button>`).join("")}</div>`;
+  box.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{ S.sezPrezzi=b.dataset.s; renderSottomenu(); salva(); });
+  document.querySelectorAll("#p-catalogo .card").forEach(c=>{
+    const h=c.querySelector("h2[data-sez]");
+    c.hidden = !!h && h.dataset.sez!==S.sezPrezzi;
+  });
+  const b=$("#bannerAgg"); if(b) b.hidden = !["listino","aggiorna","promo"].includes(S.sezPrezzi);
 }
 function renderCatalogo(){
-  renderFlyer(); renderGruppiListino();
+  renderFlyer(); renderGruppiListino(); renderSottomenu();
   const q=($("#cerca").value||"").toLowerCase();
   const gr=S.gruppo||"tutti";
   const tb=$("#tblProd tbody"); tb.innerHTML="";
@@ -2618,8 +2742,11 @@ function renderCatalogo(){
     .filter(p=> gr==="tutti" || gruppoDi(p.cat)===gr)
     .filter(p=> !q || p.n.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q))
     .sort((a,b)=> CATORD.indexOf(a.cat)-CATORD.indexOf(b.cat) || a.n.localeCompare(b.n));
+  const LIMITE=120;
+  const troppi = elenco.length>LIMITE && !S.listinoTutto;
+  const mostrati = troppi ? elenco.slice(0,LIMITE) : elenco;
   let catCorrente=null;
-  elenco.forEach(p=>{
+  mostrati.forEach(p=>{
     if(p.cat!==catCorrente){
       catCorrente=p.cat;
       const tr=document.createElement("tr"); tr.className="sep";
@@ -2650,7 +2777,7 @@ function renderCatalogo(){
           if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa negozio">◆ prezzo del negozio</span>`;
           if(f==="verificato") return `<br><span class="tagpill oro" title="${(S.qualita[p.id].negozi||[]).join(', ')} · ${S.qualita[p.id].data||""}">✓ dal web · ${S.qualita[p.id].n} rilevazioni</span>`;
           return '<br><span class="tagpill" style="opacity:.55">stimato</span>';})()}</td>
-      <td><button class="btn sm" style="padding:4px 9px;font-size:12px" data-alt="${p.id}">${S.sost[p.id]?PROD[S.sost[p.id]].ic+" "+nomeBreve(PROD[S.sost[p.id]]):"⇄ scegli"}</button></td>
+      <td><button class="btn sm" style="padding:4px 9px;font-size:12px" data-alt="${p.id}">${S.sost[p.id]?PROD[S.sost[p.id]].ic+" "+nomeBreve(PROD[S.sost[p.id]]):"⇄ "+T("scegli")}</button></td>
       <td style="font-size:12px;color:var(--testo-3)">${p.sea? (inStagione(p.sea,MESE)?"● di stagione":"○ "+NOMIMESI[p.sea[0]].slice(0,3)+"–"+NOMIMESI[p.sea[1]].slice(0,3)) : "tutto l'anno"}</td>`;
     const [ib,ip,ir,idt] = [tr.querySelector(".base"),tr.querySelector(".promo"),tr.querySelector(".rivpromo"),tr.querySelector(".fino")];
     ib.onchange=()=>{ const v=parseFloat(ib.value); if(!isNaN(v)&&v>=0){ S.prezzi[p.id]=v; dopoModificaPrezzi(); } };
@@ -2664,7 +2791,15 @@ function renderCatalogo(){
     tr.querySelector("[data-alt]").onclick=()=>apriAlternative(p.id);
     tb.appendChild(tr);
   });
-  $("#contaListino") && ($("#contaListino").textContent = elenco.length+" prodotti mostrati");
+  if(troppi){
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td colspan="8" style="text-align:center;padding:16px">
+      <button class="btn sm" id="altriProd">${T("Mostra tutti")} (${elenco.length-LIMITE} ${T("altri")})</button></td>`;
+    tb.appendChild(tr);
+    tr.querySelector("#altriProd").onclick=()=>{ S.listinoTutto=true; renderCatalogo(); };
+  }
+  $("#contaListino") && ($("#contaListino").textContent =
+    (troppi?mostrati.length+" "+T("di")+" ":"")+elenco.length+" "+T("prodotti mostrati"));
   const tr2=$("#tblRiv tbody"); tr2.innerHTML="";
   RIV.forEach(r=>{
     const t=document.createElement("tr");
@@ -2679,8 +2814,8 @@ function renderCatalogo(){
     tr2.appendChild(t);
   });
   const n=Object.keys(S.prezzi).length, np=Object.keys(S.promo).length;
-  $("#contaMod").textContent = (n||np) ? `${n} prezzi corretti a mano, ${np} promozioni attive.` : "Nessuna modifica manuale.";
-  $("#hs-agg").textContent = giorniDa(S.ultimoAgg)===0 ? "oggi" : giorniDa(S.ultimoAgg)+" gg fa";
+  $("#contaMod").textContent = (n||np) ? TF("{0} prezzi corretti a mano, {1} promozioni attive.",[n,np]) : T("Nessuna modifica manuale.");
+  $("#hs-agg").textContent = giorniDa(S.ultimoAgg)===0 ? T("oggi") : giorniDa(S.ultimoAgg)+" "+T("gg fa");
 }
 function dopoModificaPrezzi(){
   S.ultimoAgg = oggiISO();
@@ -2697,13 +2832,13 @@ function renderGiorniSpesa(){
   const classifica=Object.entries(perGiorno).map(([g,riv])=>({g:+g,riv}))
     .sort((a,b)=> b.riv.length-a.riv.length || a.g-b.g);
   const migliore=classifica[0];
-  const attesa=g=>{ const d=(g-oggiG+7)%7; return d===0?"oggi":d===1?"domani":"tra "+d+" giorni"; };
+  const attesa=g=>{ const d=(g-oggiG+7)%7; return d===0?T("oggi"):d===1?T("domani"):T("tra")+" "+d+" "+T("giorni"); };
   const promoInScadenza=Object.entries(S.promo).filter(([id,p])=>PROD[id]&&promoViva(id)&&p.fino&&giorniA(p.fino)<=3);
-  box.innerHTML=`<h2>Quando conviene fare la spesa</h2>
+  box.innerHTML=`<h2 data-sez="giorni">Quando conviene fare la spesa</h2>
     <p class="hint" style="margin-top:0">I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.</p>
     ${migliore?`<div class="kpi" style="margin:14px 0 4px">
       <div><div class="lab">Giorno migliore</div><div class="val" style="font-size:26px;text-transform:capitalize">${NOMI_GIORNI[migliore.g]}</div>
-        <div class="sub">${migliore.riv.length} dei tuoi negozi rinnovano le offerte · ${attesa(migliore.g)}</div></div>
+        <div class="sub">${migliore.riv.length} ${T("dei tuoi negozi rinnovano le offerte")} · ${attesa(migliore.g)}</div></div>
       ${classifica[1]?`<div><div class="lab">Seconda scelta</div><div class="val" style="font-size:26px;text-transform:capitalize">${NOMI_GIORNI[classifica[1].g]}</div>
         <div class="sub">${classifica[1].riv.map(r=>r.n).join(", ")}</div></div>`:""}
       ${promoInScadenza.length?`<div><div class="lab">Da prendere subito</div><div class="val" style="font-size:26px">${promoInScadenza.length}</div>
@@ -2720,7 +2855,7 @@ function renderPromo(){
   const box=$("#cardPromo"); if(!box) return;
   const vive=Object.entries(S.promo).filter(([id])=>PROD[id]&&promoViva(id));
   const scadute=Object.entries(S.promo).filter(([id])=>PROD[id]&&!promoViva(id));
-  box.innerHTML=`<h2>Promozioni attive</h2>
+  box.innerHTML=`<h2 data-sez="promo">Promozioni attive</h2>
     <p class="hint" style="margin-top:0">Quelle marcate <i>dal listino</i> arrivano dal file condiviso e si rinnovano da sole a ogni aggiornamento; le altre le hai scritte tu. Alla data di scadenza spariscono e il prezzo torna pieno, senza che tu debba ricordartene.</p>
     ${vive.length? `<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Prodotto</th><th>Negozio</th><th class="num">In azione</th><th class="num">Invece di</th><th>Fino al</th><th>Origine</th><th></th></tr></thead><tbody>
       ${vive.map(([id,p])=>{const pieno=prezzoRif(id)*(p.riv?fattoreRiv(RIV.find(r=>r.id===p.riv)||RIV[0],PROD[id].cat):1);
@@ -2738,10 +2873,12 @@ function renderPromo(){
 }
 function renderFonti(){
   const box=$("#fontiBox"); if(!box) return;
+  const c=$("#cambioOggi");
+  if(c) c.innerHTML = `1 &euro; = CHF ${(S.cambio||0.94).toFixed(4)} · <span class="q">${T("aggiornato con il listino del")} ${S.ultimoAgg.split("-").reverse().join(".")}</span>`;
   const eti={api:"lettura automatica",csv:"file aperto",html:"pagina pubblica",manuale:"da leggere a occhio"};
   box.innerHTML=FONTI.map(f=>`<a href="${f.u}" target="_blank" rel="noopener" class="fonte">
     <div class="fh"><b>${f.n}</b><span class="tagpill ${f.t==="api"||f.t==="csv"?"oro":""}">${eti[f.t]}</span></div>
-    <p>${f.d}</p><small>${f.z==="—"?"internazionale":f.z==="CH"?"Svizzera":"Italia"} · ${f.u.replace(/^https?:\/\//,"").split("/")[0]}</small></a>`).join("");
+    <p>${f.d}</p><small>${f.z==="—"?T("internazionale"):f.z==="CH"?T("Svizzera"):T("Italia")} · ${f.u.replace(/^https?:\/\//,"").split("/")[0]}</small></a>`).join("");
 }
 function renderFlyer(){
   renderFonti(); renderGiorniSpesa(); renderPromo();
@@ -2758,10 +2895,10 @@ function renderFlyer(){
   const b=$("#bannerAgg");
   const tab=$("#tabPrezzi");
   if(g>=7){
-    b.innerHTML=`<div class="banner"><span class="ic">◆</span><span><b>Il listino ha ${g} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.</span></div>`;
+    b.innerHTML=`<div class="banner"><span class="ic">◆</span><span>${TF("<b>Il listino ha {0} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.",[g])}</span></div>`;
     tab.classList.add("attenzione");
   } else {
-    b.innerHTML=`<div class="banner ok"><span class="ic">◇</span><span>Listino aggiornato ${g===0?"oggi":"da "+g+" "+(g===1?"giorno":"giorni")}. Ti riavviso dopo una settimana.</span></div>`;
+    b.innerHTML=`<div class="banner ok"><span class="ic">◇</span><span>${TF("Listino aggiornato {0}. Ti riavviso dopo una settimana.",[g===0?T("oggi"):T("da")+" "+g+" "+(g===1?T("giorno"):T("giorni"))])}</span></div>`;
     tab.classList.remove("attenzione");
   }
   $("#statoFeed").textContent = S.feedUrl ? "Collegato a "+S.feedUrl : "Nessun listino collegato.";
@@ -2773,6 +2910,7 @@ function applicaListino(o){
   let n=0;
   if(o.prezzi) Object.entries(o.prezzi).forEach(([k,v])=>{ if(PROD[k]&&+v>0){S.prezzi[k]=+v;n++;} });
   if(o.indici) Object.entries(o.indici).forEach(([k,v])=>{ const r=RIV.find(x=>x.id===k); if(r&&+v>0) r.k=+v; });
+  if(o.cambioEUR>0) S.cambio=o.cambioEUR;
   if(o.carburanti){ S.carburanti={
       ch:{benzina95:o.carburanti.ch?.benzina95??S.carburanti.ch.benzina95,
           diesel:o.carburanti.ch?.diesel??S.carburanti.ch.diesel,
@@ -2781,7 +2919,7 @@ function applicaListino(o){
           diesel:o.carburanti.it?.diesel??S.carburanti.it.diesel,
           zona:o.carburanti.it?.zona||S.carburanti.it.zona,
           campione:o.carburanti.it?.campione},
-      cambio:o.cambioEUR||S.carburanti.cambio,
+      cambio:o.cambioEUR||S.cambio||S.carburanti.cambio,
       data:o.data||S.carburanti.data, fonte:"TCS e MIMIT"}; }
   if(o.qualita) S.qualita=o.qualita;
   if(o.prezziRiv) S.prezziRiv=o.prezziRiv;
@@ -3144,7 +3282,7 @@ function renderEventi(){
           <div style="font-family:var(--disp);font-size:25px;color:var(--oro-l);line-height:1.15">${m.ic?m.ic:m.dado?"🎲":occ.ic} ${m.n}</div>
           <div style="color:var(--testo-2);font-size:13.5px;margin-top:5px;max-width:52ch">${m.d}</div>
           <div style="font-family:var(--mono);font-size:11px;color:var(--testo-3);margin-top:8px;letter-spacing:.08em">
-            ${m.portate.length} PORTATE · ${m.min} MIN IN CUCINA · ${n} PERSONE</div>
+            ${m.portate.length} ${T("PORTATE")} · ${m.min} ${T("MIN IN CUCINA")} · ${n} ${T("PERSONE")}</div>
         </div>
         <div style="text-align:right;flex:none">
           <div style="font-family:var(--disp);font-size:30px;color:var(--oro-l);font-variant-numeric:lining-nums">CHF ${chfr(c)}</div>
@@ -3166,7 +3304,7 @@ function renderEventoDettaglio(m,n){
   const kcal=Object.entries(need).reduce((a,[id,q])=>{const p=PROD[id];return a+(p.um==="pz"?q*p.kcal:q*p.kcal/100)},0)/n;
   d.innerHTML=`
     <div class="card">
-      <h2>${m.n} &mdash; il menu</h2>
+      <h2>${m.n} &mdash; ${T("il menu")}</h2>
       <div class="portate">
         ${m.portate.map((p,i)=>`
           <div class="portata">
@@ -3178,10 +3316,10 @@ function renderEventoDettaglio(m,n){
           </div>`).join("")}
       </div>
       <div class="kpi" style="margin-top:18px;margin-bottom:0">
-        <div><div class="lab">Spesa da fare</div><div class="val">CHF ${chfr(tot)}</div><div class="sub">${righe.length} articoli, confezioni intere</div></div>
-        <div><div class="lab">Valore consumato</div><div class="val">CHF ${chfr(cons)}</div><div class="sub">CHF ${chfr(cons/n)} a persona · il resto resta in dispensa</div></div>
-        <div><div class="lab">In cucina</div><div class="val">${m.min}'</div><div class="sub">tempo di preparazione</div></div>
-        <div><div class="lab">Energia</div><div class="val">${Math.round(kcal)}</div><div class="sub">kcal a persona</div></div>
+        <div><div class="lab">Spesa da fare</div><div class="val">CHF ${chfr(tot)}</div><div class="sub">${righe.length} ${T("articoli, confezioni intere")}</div></div>
+        <div><div class="lab">Valore consumato</div><div class="val">CHF ${chfr(cons)}</div><div class="sub">CHF ${chfr(cons/n)} ${T("a persona")} · ${T("il resto resta in dispensa")}</div></div>
+        <div><div class="lab">In cucina</div><div class="val">${m.min}'</div><div class="sub">${T("tempo di preparazione")}</div></div>
+        <div><div class="lab">Energia</div><div class="val">${Math.round(kcal)}</div><div class="sub">${T("kcal a persona")}</div></div>
       </div>
       <div class="card" style="margin:18px 0 0;background:rgba(216,169,74,.06);border-color:var(--oro-d)">
         <h2>Piano di lavoro</h2>
@@ -3203,7 +3341,7 @@ function renderEventoDettaglio(m,n){
         const cats=[...new Set(rr.map(r=>r.pr.cat))];
         return `<div class="scontrino">
           <div class="sc-h"><span class="logo" style="background:${riv.c}">${riv.n.toUpperCase()}</span>
-            <div class="meta">${m.n.toUpperCase()} &middot; ${n} PERSONE</div></div>
+            <div class="meta">${m.n.toUpperCase()} &middot; ${n} ${T("PERSONE")}</div></div>
           <div class="sc-body">${cats.map(c=>`<div class="sc-cat">${c}</div>`+
             rr.filter(r=>r.pr.cat===c).map(r=>`<div class="sc-r"><span></span><span>${r.pr.ic}</span>
               <span><a href="${riv.url(encodeURIComponent(r.pr.n))}" target="_blank" rel="noopener">${r.pr.n}</a>
@@ -3234,13 +3372,13 @@ function renderEventiControlli(){
   o.innerHTML=""; l.innerHTML="";
   OCCASIONI.forEach(x=>{
     const b=document.createElement("button"); b.className="chip"; b.type="button";
-    b.setAttribute("aria-pressed",S.ev.occ===x.id); b.innerHTML=`${x.ic} ${x.n}`;
+    b.setAttribute("aria-pressed",S.ev.occ===x.id); b.innerHTML=`${x.ic} <span class="nm">${x.n}</span>`;
     b.onclick=()=>{ S.ev.occ=x.id; S.ev.sel=null; renderEventiControlli(); renderEventi(); };
     o.appendChild(b);
   });
   LIVELLI.forEach(x=>{
     const b=document.createElement("button"); b.className="chip"; b.type="button";
-    b.setAttribute("aria-pressed",S.ev.liv===x.id); b.innerHTML=`${x.n} <span class="zona">${x.d}</span>`;
+    b.setAttribute("aria-pressed",S.ev.liv===x.id); b.innerHTML=`<span class="nm">${x.n}</span> <span class="zona">${x.d}</span>`;
     b.onclick=()=>{ S.ev.liv=x.id; S.ev.sel=null; renderEventiControlli(); renderEventi(); };
     l.appendChild(b);
   });
@@ -3801,7 +3939,7 @@ function carica(){
 }
 function segnaleMemoria(t){
   const el=$("#memoria"); if(!el) return;
-  el.textContent = t==="non disponibile" ? "memoria non disponibile" : (t==="ripreso"?"ripreso da dove eri":"salvato");
+  el.textContent = t==="non disponibile" ? T("memoria non disponibile") : (t==="ripreso"?T("ripreso da dove eri"):T("salvato"));
   el.style.color = t==="non disponibile" ? "var(--rosso)" : "var(--testo-3)";
 }
 function dimenticaTutto(){
@@ -3814,29 +3952,44 @@ function dimenticaTutto(){
    AVVIO GUIDATO — quattro domande
    ========================================================= */
 function avvioGuidato(){
-  apriModale(`<h3>Bentornato a tavola</h3>
-    <p class="hint" style="margin-top:2px">Quattro domande e la prima lista è pronta. Tutto il resto si regola dopo.</p>
-    <div style="margin-top:16px"><label class="f">1. Quante persone mangiano di solito</label>
+  apriModale(`<div class="avvio-h">
+      <svg class="mark" style="width:44px;height:44px" aria-hidden="true"><use href="#logo-gerla"/></svg>
+      <div><h3 style="margin:0">Bentornato a tavola</h3>
+      <p class="hint" style="margin:2px 0 0"><span class="nm">Quattro domande e la prima lista è pronta. Tutto il resto si regola dopo.</span></p></div>
+    </div>
+    <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">1.</b> <span class="nm">Quante persone mangiano di solito</span></label>
       <div class="chips" id="ag_pers">${[1,2,3,4,5,6].map(n=>`<button class="chip" type="button" data-v="${n}" ${n===3?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
-    <div style="margin-top:16px"><label class="f">2. Per quanti giorni vuoi organizzarti</label>
+    <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">2.</b> <span class="nm">Per quanti giorni vuoi organizzarti</span></label>
       <div class="chips" id="ag_gg">${[[1,"un giorno"],[3,"3 giorni"],[7,"una settimana"],[28,"un mese"]].map(([v,n])=>`<button class="chip" type="button" data-v="${v}" ${v===7?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
-    <div style="margin-top:16px"><label class="f">3. Dove fai la spesa di solito</label>
+    <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">3.</b> <span class="nm">Dove fai la spesa di solito</span></label>
       <div class="chips" id="ag_riv">${RIV.map(r=>`<button class="chip" type="button" data-v="${r.id}" ${["migros","coop","aldi","lidlch"].includes(r.id)?'aria-pressed="true"':''}><span class="dot" style="background:${r.c}"></span>${r.n}</button>`).join("")}</div></div>
-    <div style="margin-top:16px"><label class="f">4. Quanto vuoi spendere in questo periodo</label>
+    <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">4.</b> <span class="nm">Quanto vuoi spendere in questo periodo</span></label>
       <div class="row"><input type="number" id="ag_budget" value="180" style="max-width:140px"> <span style="color:var(--testo-3)">franchi in tutto</span></div></div>
-    <div class="row" style="margin-top:20px">
-      <button class="btn oro" id="ag_ok">Prepara la lista</button>
-      <button class="btn sm" id="ag_skip">Faccio da solo</button></div>`);
+    <div class="avvio-f">
+      <div class="hint" id="ag_riep" style="margin:0"></div>
+      <div class="row">
+        <button class="btn oro" id="ag_ok">Prepara la lista</button>
+        <button class="btn sm" id="ag_skip">Faccio da solo</button></div>
+    </div>`);
+  const riep=()=>{
+    const np=+$("#ag_pers").querySelector('[aria-pressed=true]').dataset.v;
+    const gg=+$("#ag_gg").querySelector('[aria-pressed=true]').dataset.v;
+    const nr=$("#ag_riv").querySelectorAll('[aria-pressed=true]').length;
+    $("#ag_riep").textContent=`${np} ${np===1?T("persona"):T("persone")} · ${gg} ${gg===1?T("giorno"):T("giorni")} · ${nr} ${nr===1?T("negozio"):T("negozi")} · CHF ${$("#ag_budget").value}`;
+  };
+  $("#ag_budget").oninput=riep;
+  window.__riepAvvio=riep;
   const seleziona=(box,multi)=>{
     $("#"+box).querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
       if(multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")!=="true");
       else $("#"+box).querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));
+      riep();
       if(box==="ag_gg"){ const g=+$("#ag_gg").querySelector('[aria-pressed=true]').dataset.v;
         const p=+$("#ag_pers").querySelector('[aria-pressed=true]').dataset.v;
         $("#ag_budget").value=Math.round(g*p*9/5)*5; }
     });
   };
-  seleziona("ag_pers"); seleziona("ag_gg"); seleziona("ag_riv",true);
+  seleziona("ag_pers"); seleziona("ag_gg"); seleziona("ag_riv",true); riep();
   $("#ag_skip").onclick=()=>{ S.avvioFatto=true; chiudiModale(); salva(); };
   $("#ag_ok").onclick=()=>{
     const np=+$("#ag_pers").querySelector('[aria-pressed=true]').dataset.v;
@@ -4071,24 +4224,31 @@ function calcolaViaggio(){
   box.innerHTML=`
     <div class="kpi" style="margin-bottom:14px">
       <div><div class="lab">Stesso carrello in Svizzera</div><div class="val">CHF ${chfr(ch)}</div></div>
-      <div><div class="lab">In Lombardia</div><div class="val">CHF ${chfr(it)}</div><div class="sub">differenza CHF ${chfr(risparmio)}</div></div>
+      <div><div class="lab">In Lombardia</div><div class="val">CHF ${chfr(it)}</div><div class="sub">${T("differenza")} CHF ${chfr(risparmio)}</div></div>
       <div><div class="lab">Costo del viaggio</div><div class="val">CHF ${chfr(carburante+tempo+v.pedaggi)}</div><div class="sub">${v.km*2} km · ${v.consumo} ${v.carb==="elettrico"?"kWh":"l"}/100 a CHF ${prezzoCarb.toFixed(2)} · ${v.minuti} min</div></div>
-      <div><div class="lab">Ci guadagni</div><div class="val" style="color:${netto>0?"var(--verde)":"var(--rosso)"}">${netto>0?"+":""}${chfr(netto)}</div><div class="sub">${netto>0?"conviene partire":"conviene restare"}</div></div>
+      <div><div class="lab">Ci guadagni</div><div class="val" style="color:${netto>0?"var(--verde)":"var(--rosso)"}">${netto>0?"+":""}${chfr(netto)}</div><div class="sub">${netto>0?T("conviene partire"):T("conviene restare")}</div></div>
     </div>
-    <p class="legenda" style="margin-top:10px">Carburante al ${S.carburanti.data.split("-").reverse().join(".")}: in Svizzera benzina CHF ${C.ch.benzina95.toFixed(2)} e diesel CHF ${C.ch.diesel.toFixed(2)} al litro (TCS); ${C.it.zona?"a "+C.it.zona:"in Italia"} benzina &euro; ${C.it.benzina.toFixed(2)} e diesel &euro; ${C.it.diesel.toFixed(2)}${C.it.campione?" su "+C.it.campione+" distributori":""} (MIMIT).
+    <p class="legenda" style="margin-top:10px">${TF("Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).",
+      [S.carburanti.data.split("-").reverse().join("."), C.ch.benzina95.toFixed(2), C.ch.diesel.toFixed(2),
+       C.it.zona?C.it.zona:T("in Italia"), C.it.benzina.toFixed(2), C.it.diesel.toFixed(2),
+       C.it.campione?" "+TF("su {0} distributori",[C.it.campione]):""])}
       ${(()=>{const camb=C.cambio||0.94;
         const chL=v.carb==="benzina"?C.ch.benzina95:C.ch.diesel;
         const itL=(v.carb==="benzina"?C.it.benzina:C.it.diesel)*camb;
         const dif=(chL-itL)*(v.km*2/100)*v.consumo;
-        if(v.carb==="elettrico") return "Con l'elettrico il pieno non c'entra: conta solo il tempo.";
+        if(v.carb==="elettrico") return T("Con l'elettrico il pieno non c'entra: conta solo il tempo.");
         return Math.abs(dif)<1
-          ? "Fare il pieno di l\u00e0 non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale."
-          : dif>0 ? `Fare il pieno di l\u00e0 aggiunge circa CHF ${chfr(dif)} di risparmio.`
-                  : `Attenzione: di l\u00e0 il carburante costa di pi\u00f9, ci rimetti circa CHF ${chfr(-dif)} se fai il pieno.`;
+          ? T("Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.")
+          : dif>0 ? TF("Fare il pieno di là aggiunge circa CHF {0} di risparmio.",[chfr(dif)])
+                  : TF("Attenzione: di là il carburante costa di più, ci rimetti circa CHF {0} se fai il pieno.",[chfr(-dif)]);
       })()}</p>
     <p class="legenda">${netto>0
-      ? `Con questo carrello il viaggio si ripaga e ti restano <b>CHF ${chfr(netto)}</b>. Il carrello italiano vale CHF ${chfr(it)}: ${it<=franchigia?`sei sotto la franchigia di CHF ${franchigia} per ${S.persone.length} ${S.persone.length===1?"persona":"persone"}`:`<b style="color:var(--rosso)">superi la franchigia di CHF ${franchigia}</b>, dichiara l'IVA con QuickZoll`}.`
-      : `Per questo carrello non vale la pena: il risparmio di CHF ${chfr(risparmio)} non copre CHF ${chfr(carburante+tempo+v.pedaggi)} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF ${chfr(ch*(carburante+tempo+v.pedaggi)/Math.max(risparmio,0.01))}</b>.`}</p>`;
+      ? TF("Con questo carrello il viaggio si ripaga e ti restano <b>CHF {0}</b>. Il carrello italiano vale CHF {1}: {2}.",
+          [chfr(netto), chfr(it), it<=franchigia
+            ? TF("sei sotto la franchigia di CHF {0} per {1} {2}",[franchigia,S.persone.length,S.persone.length===1?T("persona"):T("persone")])
+            : `<b style="color:var(--rosso)">${TF("superi la franchigia di CHF {0}",[franchigia])}</b>, ${T("dichiara l'IVA con QuickZoll")}`])
+      : TF("Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.",
+          [chfr(risparmio), chfr(carburante+tempo+v.pedaggi), chfr(ch*(carburante+tempo+v.pedaggi)/Math.max(risparmio,0.01))])}</p>`;
 }
 
 /* =========================================================
@@ -4200,11 +4360,11 @@ const GUIDA=[
  {h:"Aggiungere e togliere",p:["<b>+ Aggiungi persona</b> per gli ospiti fissi. Per una cena occasionale non toccare qui: usa la scheda <b>Occasioni</b>, che ragiona a numero di commensali senza scombinare il piano di famiglia."]}]},
 
 {ic:"◉",t:"Dove fai la spesa",s:[
- {h:"Le negozi",p:["Accendi le negozi dove vai davvero. Ognuna ha un indice di prezzo e correzioni per reparto: Aldi e Lidl costano meno sui prodotti base, Denner vince su caffè, cioccolato e bevande, Coop è più forte su carne e pesce, Manor e Migrolino sono i più cari, Prodega e Aligro sono all'ingrosso.",
+ {h:"I negozi",p:["Accendi le negozi dove vai davvero. Ognuna ha un indice di prezzo e correzioni per reparto: Aldi e Lidl costano meno sui prodotti base, Denner vince su caffè, cioccolato e bevande, Coop è più forte su carne e pesce, Manor e Migrolino sono i più cari, Prodega e Aligro sono all'ingrosso.",
  "Per ogni singolo prodotto Gerla sceglie il più conveniente tra quelli accesi. Non serve che tu lo faccia a mano."]},
  {h:"Quanti negozi vuoi girare",p:["Nella scheda Budget. È la regolazione più sottovalutata: <b>Uno solo</b> ti dà la comodità, <b>Tutti quelli selezionati</b> il prezzo minimo teorico ma con sei tappe.",
  "Con <b>Al massimo due</b> o <b>tre</b> Gerla calcola quale combinazione di negozi costa meno in assoluto: prova tutte le combinazioni possibili, non sceglie i primi due che capitano."]},
- {h:"Le negozi italiane",p:["I prezzi italiani sono convertiti in franchi. Se ne accendi almeno una, nella scheda Analisi compare il calcolo <b>Conviene andare in Italia?</b> e nella lista il controllo della franchigia doganale."]}]},
+ {h:"I negozi italiani",p:["I prezzi italiani sono convertiti in franchi. Se ne accendi almeno una, nella scheda Analisi compare il calcolo <b>Conviene andare in Italia?</b> e nella lista il controllo della franchigia doganale."]}]},
 
 {ic:"✳",t:"Come vuoi mangiare",s:[
  {h:"Le restrizioni",p:["Le pastiglie in alto tolgono di mezzo interi gruppi: niente maiale, niente pesce, senza glutine, senza lattosio, niente uova, niente frutta a guscio, niente carne rossa.",
@@ -4284,7 +4444,7 @@ const GUIDA=[
 {ic:"◎",t:"Scheda Prezzi e volantini",s:[
  {h:"L'avviso in cima",p:["Dopo sette giorni diventa dorato e la linguetta si segna con un puntino: è il promemoria che le promozioni sono cambiate."]},
  {h:"Aggiorna i 20 che contano",p:["Il modo più efficiente di tenere il conto preciso. Ti porta un prodotto alla volta, partendo da quello che pesa di più sul tuo carrello, con il campo del prezzo, quello dell'azione e il collegamento al volantino di quella catena. Puoi fermarti quando vuoi: <b>Basta così</b> salva quello che hai fatto."]},
- {h:"Volantini della settimana",p:["Collegamenti diretti al volantino di ogni negozio, più gli archivi e il confronto prezzi. Le negozi spente sono in grigio."]},
+ {h:"Volantini della settimana",p:["Collegamenti diretti al volantino di ogni negozio, più gli archivi e il confronto prezzi. I negozi spente sono in grigio."]},
  {h:"Il listino",p:["Ogni riga: prezzo di riferimento modificabile, prezzo in azione con l'negozio e la data di scadenza, il miglior prezzo calcolato, l'alternativa scelta, la stagione.",
  "L'azione vale finché non scade, poi il prezzo torna da solo a quello pieno. I prezzi con il marchio dorato <b>✓ dal web</b> vengono da rilevazioni reali: passandoci sopra vedi in quali negozi e quando."]},
  {h:"Aggiungi un prodotto",p:["Nome, reparto, prezzo, formato, icona. Entra nel listino come tutti gli altri e compare nelle alternative. Resta nelle tue impostazioni."]},
@@ -4316,6 +4476,7 @@ const GUIDA=[
  {h:"Le scadenze",p:["Se hai promozioni che finiscono entro tre giorni te lo dice lì, con i nomi dei prodotti: sono quelle da prendere subito."]}]},
 
 {ic:"◈",t:"Lingua",s:[
+ {h:"Cosa è tradotto",p:["Tutta l'interfaccia: comandi, titoli, schede, etichette, opzioni, frasi calcolate come <i>Piano di 28 giorni per 3 persone</i>, mesi e giorni della settimana. Restano in italiano i nomi dei prodotti e dei piatti — <i>zincarlin</i>, <i>luganighetta</i>, <i>ossobuco</i> non si traducono — e il testo di questa guida."]},
  {h:"Giorno e notte",p:["Accanto alle lingue c'\u00e8 il pulsante <b>\u263e Notte / \u2600 Giorno</b>: il primo \u00e8 pensato per la sera e per il telefono, il secondo per la luce piena e per la stampa. La scelta resta salvata."]},
  {h:"Quattro lingue",p:["In testata, sotto le statistiche, ci sono i quattro pulsanti <b>IT · EN · FR · DE</b>. La scelta resta salvata insieme alle altre impostazioni.",
  "Sono tradotti comandi, titoli, schede, etichette, opzioni dei menu a tendina e testi dei campi. Restano in italiano i nomi dei prodotti e dei piatti, questa guida e i testi lunghi di spiegazione: <i>zincarlin</i>, <i>luganighetta</i> o <i>ossobuco</i> si chiamano così anche in tedesco."]}]},
@@ -4352,6 +4513,244 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT"},{id:"en",n:"English",b:"EN"},
               {id:"fr",n:"Français",b:"FR"},{id:"de",n:"Deutsch",b:"DE"}];
 const DIZ={
 en:{
+"g":"d",
+
+"Ideata e diretta da DD, costruita insieme a Claude di Anthropic":"Conceived and directed by DD, built together with Claude by Anthropic",
+"Strumento personale di pianificazione. I prezzi sono stime modificabili, non listini ufficiali: verifica sempre allo scaffale. Nessun dato esce dal tuo dispositivo.":"A personal planning tool. Prices are editable estimates, not official lists: always check on the shelf. No data ever leaves your device.",
+"Ticino":"Ticino",
+
+"Piano di <b>{0} {1}</b> per {2} {3} · totale <b>CHF {4}</b>":"Plan for <b>{0} {1}</b> for {2} {3} · total <b>CHF {4}</b>",
+"nel budget":"within budget",
+"sopra di CHF {0}":"over by CHF {0}",
+"Spunta gli articoli che hai già in casa: escono dal totale. Prezzi indicativi, indice {0} con correzioni per reparto, listino del {1}.":"Tick the items you already have: they leave the total. Indicative prices, index {0} with department corrections, price list of {1}.",
+"Tocca il nome per cercarlo sul sito {0}.":"Tap the name to search it on the {0} website.",
+"Carrello italiano: <b>CHF {0}</b> · carne <b>{1} kg</b>. Con {2} {3} la franchigia giornaliera è CHF {4} e il limite carne {5} kg.":"Italian basket: <b>CHF {0}</b> · meat <b>{1} kg</b>. With {2} {3} the daily allowance is CHF {4} and the meat limit {5} kg.",
+"Rientri nei limiti se fate la spesa insieme in un solo passaggio.":"You stay within the limits if you shop together in one trip.",
+"Sopra i limiti in un solo passaggio:":"Over the limits in one trip:",
+"dividi la spesa in due uscite, o dichiara l'IVA svizzera in dogana (app QuickZoll).":"split the shopping into two trips, or declare Swiss VAT at customs (QuickZoll app).",
+"Sei dentro il budget con <b>CHF {0}</b> di margine — circa CHF {1} al giorno per imprevisti o extra.":"You're within budget with <b>CHF {0}</b> to spare — about CHF {1} a day for surprises or extras.",
+"Sei sopra di <b style=\"color:var(--rosso)\">CHF {0}</b>. Premi “Fai stare nel budget”: sposto la scelta verso piatti più economici e negozi più convenienti.":"You are <b style=\"color:var(--rosso)\">CHF {0}</b> over. Press \"Fit the budget\": I shift the choice towards cheaper dishes and cheaper shops.",
+"Il tuo mix di negozi":"Your mix of shops",
+"Solo il più conveniente in Svizzera":"Only the cheapest in Switzerland",
+"Tutto al prezzo pieno di supermercato":"Everything at full supermarket price",
+"Rispetto alla spesa fatta tutta al prezzo pieno risparmi <b>CHF {0}</b> nel periodo, cioè circa <b>CHF {1}</b> all'anno.":"Compared with shopping entirely at full price you save <b>CHF {0}</b> over the period, roughly <b>CHF {1}</b> a year.",
+"<b>Il listino ha {0} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.":"<b>The price list is {0} days old.</b> This week's offers have already changed: open two or three flyers below and correct the prices of what you always buy. Five minutes and the total is accurate again.",
+"Listino aggiornato {0}. Ti riavviso dopo una settimana.":"Price list updated {0}. I'll remind you in a week.",
+"{0} prezzi corretti a mano, {1} promozioni attive.":"{0} prices corrected by hand, {1} active promotions.",
+"Con questo carrello il viaggio si ripaga e ti restano <b>CHF {0}</b>. Il carrello italiano vale CHF {1}: {2}.":"With this basket the trip pays for itself and <b>CHF {0}</b> stays in your pocket. The Italian basket is worth CHF {1}: {2}.",
+"sei sotto la franchigia di CHF {0} per {1} {2}":"you are below the CHF {0} allowance for {1} {2}",
+"superi la franchigia di CHF {0}":"you exceed the CHF {0} allowance",
+"dichiara l'IVA con QuickZoll":"declare the VAT with QuickZoll",
+"Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.":"For this basket it isn't worth it: saving CHF {0} doesn't cover CHF {1} of fuel, time and tolls. It pays off above roughly <b>CHF {2}</b> of shopping.",
+"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Fuel on {0}: in Switzerland petrol CHF {1} and diesel CHF {2} a litre (TCS); {3} petrol € {4} and diesel € {5}{6} (MIMIT).",
+"su {0} distributori":"across {0} stations",
+"in Italia":"in Italy",
+"Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.":"Filling up there changes almost nothing: at today's rate fuel costs practically the same.",
+"Fare il pieno di là aggiunge circa CHF {0} di risparmio.":"Filling up there adds about CHF {0} of savings.",
+"Attenzione: di là il carburante costa di più, ci rimetti circa CHF {0} se fai il pieno.":"Careful: fuel costs more there, you lose about CHF {0} if you fill up.",
+"Con l'elettrico il pieno non c'entra: conta solo il tempo.":"With electric the fuel doesn't matter: only time counts.",
+"oggi":"today",
+"gg fa":"days ago",
+"apri":"open",
+"chiudi":"close",
+"al giorno":"per day",
+"Seme del caso (stesso numero = stesso menu)":"Random seed (same number = same menu)",
+"Scegli il momento e il livello: ti propongo un menu completo, dall'aperitivo al dolce, con le quantità per il numero di persone che indichi e la lista della spesa già divisa per negozio.":"Choose the moment and the level: I offer a full menu, from drinks to dessert, with quantities for the number of people you set and the shopping list already split by shop.",
+"Metti gerla-listino.json e gerla-aggiorna.mjs in un deposito GitHub con il flusso incluso: ogni mattina lo script rilegge le fonti aperte e ripubblica il listino. Poi incolla qui l'indirizzo raw del file. Ogni apertura controllo se è cambiato e aggiorno prezzi, indici e promozioni. Serve un indirizzo che consenta la lettura da browser (per esempio un Gist pubblico o un file sul tuo cloud).":"Put gerla-listino.json and gerla-aggiorna.mjs in a GitHub repository with the included workflow: every morning the script rereads the open sources and republishes the price list. Then paste the raw address of the file here. At every start I check whether it changed and update prices, indexes and promotions. The address must be readable from a browser (a public Gist or a file on your cloud).",
+
+"Mostra tutti":"Show all",
+"altri":"more",
+"di":"of",
+"prodotti mostrati":"products shown",
+
+"Listino":"Price list",
+"Promozioni":"Promotions",
+"Giorni migliori":"Best days",
+"Volantini":"Flyers",
+"Fonti":"Sources",
+"Aggiornamento":"Updates",
+"Indici":"Indexes",
+"aggiornato con il listino del":"updated with the price file of",
+"Pasti fuori casa a settimana":"Meals out per week",
+
+"MIMIT — carburanti Italia":"MIMIT — fuel prices, Italy",
+"Rappn — confronto prezzi":"Rappn — price comparison",
+"UST — indice dei prezzi":"FSO — consumer price index",
+"Volantino Facile":"Volantino Facile (flyers)",
+"oggi":"today",
+"domani":"tomorrow",
+"tra":"in",
+"dei tuoi negozi rinnovano le offerte":"of your shops renew their offers",
+
+"a persona al giorno":"per person per day",
+"a persona":"per person",
+"persona":"person",
+"persone":"people",
+"giorno":"day",
+"giorni":"days",
+"negozio":"shop",
+"negozi":"shops",
+"preferenze":"preferences",
+"fabbisogno del nucleo":"household needs",
+"kcal al giorno":"kcal per day",
+"nessun giorno senza carne":"no meat-free day",
+"giorno a settimana":"day a week",
+"giorni a settimana":"days a week",
+"articoli":"items",
+"articoli per":"items for",
+"articoli, confezioni intere":"items, whole packs",
+"il resto resta in dispensa":"the rest stays in the pantry",
+"PORTATE":"COURSES",
+"MIN IN CUCINA":"MIN IN THE KITCHEN",
+"2 giorni":"2 days",
+"10 giorni":"10 days",
+"5 giorni feriali":"5 weekdays",
+"Cucina una volta, mangia due: il pranzo riprende la cena della sera prima":"Cook once, eat twice: lunch reuses last night's dinner",
+
+"Settimana":"Week",
+"scegli":"choose",
+"Negozio":"Shop",
+"Dispensa vuota":"Empty pantry",
+"Aggiungi quello che hai in casa: lo tolgo dalla lista della spesa. Si riempie da sola quando chiudi una spesa.":"Add what you already have: I take it off the shopping list. It fills itself when you close a shopping trip.",
+"Chiudi una spesa con “Ho finito la spesa” e da lì in poi vedi quanto spendi davvero, mese per mese.":"Close a trip with «I'm done shopping» and from then on you see what you really spend, month by month.",
+"Nessuna promozione in corso. Le trovi nei volantini: scrivile nel listino qui sotto, oppure lascia che arrivino dal file condiviso.":"No promotions running. You'll find them in the flyers: write them in the list below, or let them arrive from the shared file.",
+"Se incolli l'indirizzo della pagina GitHub lo converto io nella forma raw: è quella che il browser può leggere.":"If you paste the GitHub page address I convert it into the raw form: that's the one the browser can read.",
+"Tutte le funzioni, una per una. Apri il capitolo che ti serve o cerca una parola: la ricerca guarda dentro il testo di ogni voce.":"Every function, one by one. Open the chapter you need or search a word. The guide itself stays in Italian.",
+
+"Settimana":"Week",
+"Tutto il periodo":"Whole period",
+"SVIZZERA":"SWITZERLAND",
+"ITALIA":"ITALY",
+"ARTICOLI":"ITEMS",
+"PERSONE":"PEOPLE",
+"salvato":"saved",
+"ripreso da dove eri":"restored where you left off",
+"memoria non disponibile":"memory unavailable",
+"nessuno — si mangia sempre a casa":"none — always eating at home",
+"pasti fuori casa: riduco le porzioni del pranzo":"meals out: lunch portions reduced",
+"tempo di preparazione":"preparation time",
+"kcal a persona":"kcal per person",
+"kcal a persona/giorno":"kcal per person/day",
+"a persona/giorno":"per person/day",
+"obiettivo":"target",
+"degli articoli freschi":"of fresh items",
+"media del carrello alimentare":"average of the food basket",
+"conviene partire":"worth going",
+"conviene restare":"better to stay",
+"differenza":"difference",
+"internazionale":"international",
+"Svizzera":"Switzerland",
+"Italia":"Italy",
+"il menu":"the menu",
+"spesa contenuta, niente di superfluo":"modest spending, nothing superfluous",
+"come una domenica in famiglia":"like a family Sunday",
+"per le occasioni che contano":"for the occasions that matter",
+"quella di cui si parlerà per anni":"the one they'll talk about for years",
+"Per ogni prodotto scelgo il negozio più conveniente tra quelli accesi. I prezzi italiani sono convertiti in franchi al cambio del giorno.":"For each product I pick the cheapest shop among those switched on. Italian prices are converted into francs at today's rate.",
+
+"Adulto":"Adult",
+"Bambino 1-5 anni":"Child 1-5 years",
+"Bambino 6-11 anni":"Child 6-11 years",
+"Ragazzo 12-17 anni":"Teen 12-17 years",
+"Over 65":"Over 65",
+"Poco attivo":"Not very active",
+"Attività normale":"Normal activity",
+"Molto attivo":"Very active",
+"Azioni":"Actions",
+"Ripristino":"Reset",
+"Adegua tutto il listino":"Adjust the whole list",
+"% su tutti i prezzi":"% on all prices",
+"Indirizzo del listino condiviso (JSON)":"Shared price file address (JSON)",
+"Aggiorna a ogni apertura":"Update on every start",
+"Includi casa e igiene (detersivi, carta, cura persona)":"Include household and hygiene (detergents, paper, personal care)",
+"Includi scorte di dispensa (olio, sale, caffè…)":"Include pantry staples (oil, salt, coffee…)",
+"Cucina una volta, mangia due: il pranzo riprende la cena della sera prima":"Cook once, eat twice: lunch reuses last night's dinner",
+"Controllo dogana":"Customs check",
+"Costo del viaggio":"Cost of the trip",
+"Ci guadagni":"You gain",
+"Stesso carrello in Svizzera":"Same basket in Switzerland",
+"In Lombardia":"In Lombardy",
+"Esempio: 1 kg pasta":"Example: 1 kg pasta",
+"Indici per negozio":"Index by shop",
+"Quante persone a tavola":"How many at the table",
+"Quante persone mangiano di solito":"How many usually eat",
+"Per quanti giorni vuoi organizzarti":"How many days do you want to plan",
+"Dove fai la spesa di solito":"Where do you usually shop",
+"Quanto vuoi spendere in questo periodo":"How much do you want to spend in this period",
+"franchi in tutto":"francs in total",
+"un giorno":"one day",
+"3 giorni":"3 days",
+"una settimana":"one week",
+"un mese":"one month",
+"Dispensa vuota":"Empty pantry",
+"Nessuna spesa registrata":"No shopping recorded",
+"Nessun piano ancora":"No plan yet",
+"Lista vuota":"Empty list",
+"Ancora niente da analizzare":"Nothing to analyse yet",
+"Niente per questa combinazione":"Nothing for this combination",
+"Cerca nella guida: dispensa, budget, dado, scadenze…":"Search the guide: pantry, budget, dice, expiry…",
+"Cerca un prodotto o un reparto…":"Search a product or department…",
+"Quanti negozi vuoi girare":"How many shops to visit",
+"Seconda scelta":"Second choice",
+"Giorno":"Day",
+"Negozi che rinnovano":"Shops with new offers",
+"Origine":"Origin",
+"Invece di":"Instead of",
+"Fino al":"Until",
+"Prodotto":"Product",
+"Insegna":"Shop",
+"Confezioni":"Packs",
+"Scade il":"Expires on",
+"Data":"Date",
+"Occasione":"Occasion",
+"Negozi":"Shops",
+"Articoli":"Items",
+"Totale":"Total",
+"Prezzo base CHF":"Base price CHF",
+"Miglior prezzo":"Best price",
+"Nessuna modifica manuale.":"No manual changes.",
+"Nessun listino collegato.":"No price file linked.",
+"Prepara la lista":"Prepare the list",
+"Faccio da solo":"I'll do it myself",
+"+ una persona":"+ one person",
+"− una persona":"− one person",
+"Chiudi":"Close",
+"apri":"open",
+"chiudi":"close",
+"Salva le impostazioni":"Save settings",
+"Cancella i dati salvati":"Delete saved data",
+"Rifai l'avvio guidato":"Run the setup again",
+"Salvato":"Saved",
+"Copia":"Copy",
+"Scarica":"Download",
+"Stampa":"Print",
+"Copia il testo":"Copy the text",
+"Copia il collegamento":"Copy the link",
+"Salva e avanti":"Save and next",
+"Va bene così":"Leave as is",
+"Basta così":"That's enough",
+"Metti in dispensa":"Add to pantry",
+"Nome":"Name",
+"Prezzo di riferimento CHF":"Base price CHF",
+"Contenuto della confezione":"Pack content",
+"Unità":"Unit",
+"Icona":"Icon",
+"grammi":"grams",
+"millilitri":"millilitres",
+"pezzi":"pieces",
+"Aggiungi al listino":"Add to the list",
+"Aggiungi un prodotto":"Add a product",
+"Cosa hai in casa":"What you have at home",
+"Quante confezioni":"How many packs",
+"Scade il (facoltativo)":"Expires on (optional)",
+"Piano di lavoro":"Work plan",
+"Il giorno prima":"The day before",
+"La mattina stessa":"That morning",
+"Tre ore prima":"Three hours before",
+"Un'ora prima":"An hour before",
+"All'ultimo momento":"At the last moment",
+"Tutto il periodo":"Whole period",
+
 "Le promozioni cambiano ogni giovedì in Svizzera e ogni lunedì in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di più sul totale.":"Offers change every Thursday in Switzerland and every Monday in Italy. Open the flyer, then correct the prices you care about below: the ten items that weigh most on the total are enough.",
 "I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.":"Flyers don't all come out on the same day. Shopping as soon as the offers appear gives you the whole week of discounts instead of the leftovers.",
 "Le porzioni si adattano a età e attività.":"Portions adapt to age and activity.",
@@ -4476,6 +4875,244 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"g":"j",
+
+"Ideata e diretta da DD, costruita insieme a Claude di Anthropic":"Conçue et dirigée par DD, construite avec Claude d'Anthropic",
+"Strumento personale di pianificazione. I prezzi sono stime modificabili, non listini ufficiali: verifica sempre allo scaffale. Nessun dato esce dal tuo dispositivo.":"Outil personnel de planification. Les prix sont des estimations modifiables, pas des listes officielles : vérifiez toujours en rayon. Aucune donnée ne quitte votre appareil.",
+"Ticino":"Tessin",
+
+"Piano di <b>{0} {1}</b> per {2} {3} · totale <b>CHF {4}</b>":"Plan de <b>{0} {1}</b> pour {2} {3} · total <b>CHF {4}</b>",
+"nel budget":"dans le budget",
+"sopra di CHF {0}":"dépassement de CHF {0}",
+"Spunta gli articoli che hai già in casa: escono dal totale. Prezzi indicativi, indice {0} con correzioni per reparto, listino del {1}.":"Cochez ce que vous avez déjà : cela sort du total. Prix indicatifs, indice {0} avec corrections par rayon, liste du {1}.",
+"Tocca il nome per cercarlo sul sito {0}.":"Touchez le nom pour le chercher sur le site {0}.",
+"Carrello italiano: <b>CHF {0}</b> · carne <b>{1} kg</b>. Con {2} {3} la franchigia giornaliera è CHF {4} e il limite carne {5} kg.":"Panier italien : <b>CHF {0}</b> · viande <b>{1} kg</b>. Avec {2} {3} la franchise journalière est de CHF {4} et la limite de viande {5} kg.",
+"Rientri nei limiti se fate la spesa insieme in un solo passaggio.":"Vous restez dans les limites si vous faites les courses ensemble en une fois.",
+"Sopra i limiti in un solo passaggio:":"Au-dessus des limites en un seul passage :",
+"dividi la spesa in due uscite, o dichiara l'IVA svizzera in dogana (app QuickZoll).":"divisez les courses en deux sorties, ou déclarez la TVA suisse à la douane (application QuickZoll).",
+"Sei dentro il budget con <b>CHF {0}</b> di margine — circa CHF {1} al giorno per imprevisti o extra.":"Vous êtes dans le budget avec <b>CHF {0}</b> de marge — environ CHF {1} par jour pour les imprévus.",
+"Sei sopra di <b style=\"color:var(--rosso)\">CHF {0}</b>. Premi “Fai stare nel budget”: sposto la scelta verso piatti più economici e negozi più convenienti.":"Vous dépassez de <b style=\"color:var(--rosso)\">CHF {0}</b>. Appuyez sur « Tenir le budget » : je déplace le choix vers des plats et des magasins moins chers.",
+"Il tuo mix di negozi":"Votre combinaison de magasins",
+"Solo il più conveniente in Svizzera":"Uniquement le moins cher en Suisse",
+"Tutto al prezzo pieno di supermercato":"Tout au prix plein du supermarché",
+"Rispetto alla spesa fatta tutta al prezzo pieno risparmi <b>CHF {0}</b> nel periodo, cioè circa <b>CHF {1}</b> all'anno.":"Par rapport à des courses au prix plein vous économisez <b>CHF {0}</b> sur la période, soit environ <b>CHF {1}</b> par an.",
+"<b>Il listino ha {0} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.":"<b>La liste a {0} jours.</b> Les promotions de cette semaine ont déjà changé : ouvrez deux ou trois prospectus ci-dessous et corrigez les prix de ce que vous achetez toujours. Cinq minutes suffisent.",
+"Listino aggiornato {0}. Ti riavviso dopo una settimana.":"Liste mise à jour {0}. Je vous rappelle dans une semaine.",
+"{0} prezzi corretti a mano, {1} promozioni attive.":"{0} prix corrigés à la main, {1} promotions actives.",
+"Con questo carrello il viaggio si ripaga e ti restano <b>CHF {0}</b>. Il carrello italiano vale CHF {1}: {2}.":"Avec ce panier le trajet est rentable et il vous reste <b>CHF {0}</b>. Le panier italien vaut CHF {1} : {2}.",
+"sei sotto la franchigia di CHF {0} per {1} {2}":"vous êtes sous la franchise de CHF {0} pour {1} {2}",
+"superi la franchigia di CHF {0}":"vous dépassez la franchise de CHF {0}",
+"dichiara l'IVA con QuickZoll":"déclarez la TVA avec QuickZoll",
+"Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.":"Pour ce panier cela n'en vaut pas la peine : économiser CHF {0} ne couvre pas CHF {1} de carburant, temps et péages. Rentable au-delà d'environ <b>CHF {2}</b> de courses.",
+"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Carburant au {0} : en Suisse essence CHF {1} et diesel CHF {2} le litre (TCS) ; {3} essence € {4} et diesel € {5}{6} (MIMIT).",
+"su {0} distributori":"sur {0} stations",
+"in Italia":"en Italie",
+"Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.":"Faire le plein là-bas ne change presque rien : au cours du jour le carburant coûte pratiquement pareil.",
+"Fare il pieno di là aggiunge circa CHF {0} di risparmio.":"Faire le plein là-bas ajoute environ CHF {0} d'économie.",
+"Attenzione: di là il carburante costa di più, ci rimetti circa CHF {0} se fai il pieno.":"Attention : le carburant y coûte plus cher, vous perdez environ CHF {0} en faisant le plein.",
+"Con l'elettrico il pieno non c'entra: conta solo il tempo.":"En électrique le plein ne compte pas : seul le temps compte.",
+"oggi":"aujourd'hui",
+"gg fa":"j",
+"apri":"ouvrir",
+"chiudi":"fermer",
+"al giorno":"par jour",
+"Seme del caso (stesso numero = stesso menu)":"Graine du hasard (même nombre = même menu)",
+"Scegli il momento e il livello: ti propongo un menu completo, dall'aperitivo al dolce, con le quantità per il numero di persone che indichi e la lista della spesa già divisa per negozio.":"Choisissez le moment et le niveau : je propose un menu complet, de l'apéritif au dessert, avec les quantités pour le nombre de personnes indiqué et la liste déjà répartie par magasin.",
+"Metti gerla-listino.json e gerla-aggiorna.mjs in un deposito GitHub con il flusso incluso: ogni mattina lo script rilegge le fonti aperte e ripubblica il listino. Poi incolla qui l'indirizzo raw del file. Ogni apertura controllo se è cambiato e aggiorno prezzi, indici e promozioni. Serve un indirizzo che consenta la lettura da browser (per esempio un Gist pubblico o un file sul tuo cloud).":"Placez gerla-listino.json et gerla-aggiorna.mjs dans un dépôt GitHub avec le flux inclus : chaque matin le script relit les sources ouvertes et republie la liste. Collez ensuite ici l'adresse raw du fichier. À chaque ouverture je vérifie si elle a changé et je mets à jour prix, indices et promotions. L'adresse doit être lisible depuis un navigateur (un Gist public ou un fichier sur votre cloud).",
+
+"Mostra tutti":"Tout afficher",
+"altri":"autres",
+"di":"de",
+"prodotti mostrati":"produits affichés",
+
+"Listino":"Liste des prix",
+"Promozioni":"Promotions",
+"Giorni migliori":"Meilleurs jours",
+"Volantini":"Prospectus",
+"Fonti":"Sources",
+"Aggiornamento":"Mise à jour",
+"Indici":"Indices",
+"aggiornato con il listino del":"mis à jour avec la liste du",
+"Pasti fuori casa a settimana":"Repas hors de la maison par semaine",
+
+"MIMIT — carburanti Italia":"MIMIT — carburants, Italie",
+"Rappn — confronto prezzi":"Rappn — comparateur de prix",
+"UST — indice dei prezzi":"OFS — indice des prix",
+"Volantino Facile":"Volantino Facile (prospectus)",
+"oggi":"aujourd'hui",
+"domani":"demain",
+"tra":"dans",
+"dei tuoi negozi rinnovano le offerte":"de vos magasins renouvellent leurs offres",
+
+"a persona al giorno":"par personne et par jour",
+"a persona":"par personne",
+"persona":"personne",
+"persone":"personnes",
+"giorno":"jour",
+"giorni":"jours",
+"negozio":"magasin",
+"negozi":"magasins",
+"preferenze":"préférences",
+"fabbisogno del nucleo":"besoins du foyer",
+"kcal al giorno":"kcal par jour",
+"nessun giorno senza carne":"aucun jour sans viande",
+"giorno a settimana":"jour par semaine",
+"giorni a settimana":"jours par semaine",
+"articoli":"articles",
+"articoli per":"articles pour",
+"articoli, confezioni intere":"articles, emballages entiers",
+"il resto resta in dispensa":"le reste reste au garde-manger",
+"PORTATE":"PLATS",
+"MIN IN CUCINA":"MIN EN CUISINE",
+"2 giorni":"2 jours",
+"10 giorni":"10 jours",
+"5 giorni feriali":"5 jours ouvrables",
+"Cucina una volta, mangia due: il pranzo riprende la cena della sera prima":"Cuisiner une fois, manger deux fois : le déjeuner reprend le dîner de la veille",
+
+"Settimana":"Semaine",
+"scegli":"choisir",
+"Negozio":"Magasin",
+"Dispensa vuota":"Garde-manger vide",
+"Aggiungi quello che hai in casa: lo tolgo dalla lista della spesa. Si riempie da sola quando chiudi una spesa.":"Ajoutez ce que vous avez déjà : je le retire de la liste. Il se remplit tout seul à la fin des courses.",
+"Chiudi una spesa con “Ho finito la spesa” e da lì in poi vedi quanto spendi davvero, mese per mese.":"Terminez des courses avec « J'ai fini les courses » et vous verrez ce que vous dépensez vraiment, mois après mois.",
+"Nessuna promozione in corso. Le trovi nei volantini: scrivile nel listino qui sotto, oppure lascia che arrivino dal file condiviso.":"Aucune promotion en cours. Vous les trouverez dans les prospectus : notez-les dans la liste ci-dessous, ou laissez-les venir du fichier partagé.",
+"Se incolli l'indirizzo della pagina GitHub lo converto io nella forma raw: è quella che il browser può leggere.":"Si vous collez l'adresse de la page GitHub, je la convertis en forme raw : c'est celle que le navigateur peut lire.",
+"Tutte le funzioni, una per una. Apri il capitolo che ti serve o cerca una parola: la ricerca guarda dentro il testo di ogni voce.":"Toutes les fonctions, une par une. Ouvrez le chapitre voulu ou cherchez un mot. Le guide reste en italien.",
+
+"Settimana":"Semaine",
+"Tutto il periodo":"Toute la période",
+"SVIZZERA":"SUISSE",
+"ITALIA":"ITALIE",
+"ARTICOLI":"ARTICLES",
+"PERSONE":"PERSONNES",
+"salvato":"enregistré",
+"ripreso da dove eri":"repris où vous étiez",
+"memoria non disponibile":"mémoire indisponible",
+"nessuno — si mangia sempre a casa":"aucun — on mange toujours à la maison",
+"pasti fuori casa: riduco le porzioni del pranzo":"repas à l'extérieur : portions du déjeuner réduites",
+"tempo di preparazione":"temps de préparation",
+"kcal a persona":"kcal par personne",
+"kcal a persona/giorno":"kcal par personne/jour",
+"a persona/giorno":"par personne/jour",
+"obiettivo":"objectif",
+"degli articoli freschi":"des articles frais",
+"media del carrello alimentare":"moyenne du panier alimentaire",
+"conviene partire":"cela vaut le déplacement",
+"conviene restare":"mieux vaut rester",
+"differenza":"différence",
+"internazionale":"international",
+"Svizzera":"Suisse",
+"Italia":"Italie",
+"il menu":"le menu",
+"spesa contenuta, niente di superfluo":"dépense contenue, rien de superflu",
+"come una domenica in famiglia":"comme un dimanche en famille",
+"per le occasioni che contano":"pour les occasions qui comptent",
+"quella di cui si parlerà per anni":"celle dont on parlera des années",
+"Per ogni prodotto scelgo il negozio più conveniente tra quelli accesi. I prezzi italiani sono convertiti in franchi al cambio del giorno.":"Pour chaque produit je choisis le magasin le moins cher parmi ceux activés. Les prix italiens sont convertis en francs au cours du jour.",
+
+"Adulto":"Adulte",
+"Bambino 1-5 anni":"Enfant 1-5 ans",
+"Bambino 6-11 anni":"Enfant 6-11 ans",
+"Ragazzo 12-17 anni":"Ado 12-17 ans",
+"Over 65":"Plus de 65 ans",
+"Poco attivo":"Peu actif",
+"Attività normale":"Activité normale",
+"Molto attivo":"Très actif",
+"Azioni":"Actions",
+"Ripristino":"Réinitialisation",
+"Adegua tutto il listino":"Ajuster toute la liste",
+"% su tutti i prezzi":"% sur tous les prix",
+"Indirizzo del listino condiviso (JSON)":"Adresse du fichier de prix (JSON)",
+"Aggiorna a ogni apertura":"Mettre à jour à chaque ouverture",
+"Includi casa e igiene (detersivi, carta, cura persona)":"Inclure maison et hygiène (lessives, papier, soins)",
+"Includi scorte di dispensa (olio, sale, caffè…)":"Inclure les réserves (huile, sel, café…)",
+"Cucina una volta, mangia due: il pranzo riprende la cena della sera prima":"Cuisiner une fois, manger deux fois : le déjeuner reprend le dîner de la veille",
+"Controllo dogana":"Contrôle douanier",
+"Costo del viaggio":"Coût du trajet",
+"Ci guadagni":"Vous gagnez",
+"Stesso carrello in Svizzera":"Même panier en Suisse",
+"In Lombardia":"En Lombardie",
+"Esempio: 1 kg pasta":"Exemple : 1 kg de pâtes",
+"Indici per negozio":"Indice par magasin",
+"Quante persone a tavola":"Combien de personnes à table",
+"Quante persone mangiano di solito":"Combien de personnes mangent d'habitude",
+"Per quanti giorni vuoi organizzarti":"Pour combien de jours voulez-vous vous organiser",
+"Dove fai la spesa di solito":"Où faites-vous vos courses d'habitude",
+"Quanto vuoi spendere in questo periodo":"Combien voulez-vous dépenser sur la période",
+"franchi in tutto":"francs au total",
+"un giorno":"un jour",
+"3 giorni":"3 jours",
+"una settimana":"une semaine",
+"un mese":"un mois",
+"Dispensa vuota":"Garde-manger vide",
+"Nessuna spesa registrata":"Aucune course enregistrée",
+"Nessun piano ancora":"Pas encore de plan",
+"Lista vuota":"Liste vide",
+"Ancora niente da analizzare":"Rien à analyser pour l'instant",
+"Niente per questa combinazione":"Rien pour cette combinaison",
+"Cerca nella guida: dispensa, budget, dado, scadenze…":"Chercher dans le guide : garde-manger, budget, dé, péremption…",
+"Cerca un prodotto o un reparto…":"Chercher un produit ou un rayon…",
+"Quanti negozi vuoi girare":"Combien de magasins visiter",
+"Seconda scelta":"Deuxième choix",
+"Giorno":"Jour",
+"Negozi che rinnovano":"Magasins qui renouvellent",
+"Origine":"Origine",
+"Invece di":"Au lieu de",
+"Fino al":"Jusqu'au",
+"Prodotto":"Produit",
+"Insegna":"Magasin",
+"Confezioni":"Emballages",
+"Scade il":"Périme le",
+"Data":"Date",
+"Occasione":"Occasion",
+"Negozi":"Magasins",
+"Articoli":"Articles",
+"Totale":"Total",
+"Prezzo base CHF":"Prix de base CHF",
+"Miglior prezzo":"Meilleur prix",
+"Nessuna modifica manuale.":"Aucune modification manuelle.",
+"Nessun listino collegato.":"Aucun fichier de prix lié.",
+"Prepara la lista":"Préparer la liste",
+"Faccio da solo":"Je fais moi-même",
+"+ una persona":"+ une personne",
+"− una persona":"− une personne",
+"Chiudi":"Fermer",
+"apri":"ouvrir",
+"chiudi":"fermer",
+"Salva le impostazioni":"Enregistrer les réglages",
+"Cancella i dati salvati":"Effacer les données",
+"Rifai l'avvio guidato":"Refaire la configuration",
+"Salvato":"Enregistré",
+"Copia":"Copier",
+"Scarica":"Télécharger",
+"Stampa":"Imprimer",
+"Copia il testo":"Copier le texte",
+"Copia il collegamento":"Copier le lien",
+"Salva e avanti":"Enregistrer et suivant",
+"Va bene così":"Laisser tel quel",
+"Basta così":"Ça suffit",
+"Metti in dispensa":"Mettre au garde-manger",
+"Nome":"Nom",
+"Prezzo di riferimento CHF":"Prix de base CHF",
+"Contenuto della confezione":"Contenu de l'emballage",
+"Unità":"Unité",
+"Icona":"Icône",
+"grammi":"grammes",
+"millilitri":"millilitres",
+"pezzi":"pièces",
+"Aggiungi al listino":"Ajouter à la liste",
+"Aggiungi un prodotto":"Ajouter un produit",
+"Cosa hai in casa":"Ce que vous avez à la maison",
+"Quante confezioni":"Combien d'emballages",
+"Scade il (facoltativo)":"Périme le (facultatif)",
+"Piano di lavoro":"Plan de travail",
+"Il giorno prima":"La veille",
+"La mattina stessa":"Le matin même",
+"Tre ore prima":"Trois heures avant",
+"Un'ora prima":"Une heure avant",
+"All'ultimo momento":"Au dernier moment",
+"Tutto il periodo":"Toute la période",
+
 "Le promozioni cambiano ogni giovedì in Svizzera e ogni lunedì in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di più sul totale.":"Les promotions changent chaque jeudi en Suisse et chaque lundi en Italie. Ouvrez le prospectus, puis corrigez ci-dessous les prix qui vous intéressent : les dix articles qui pèsent le plus suffisent.",
 "I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.":"Les prospectus ne sortent pas tous le même jour. Faire les courses dès la parution des offres vous donne toute la semaine de rabais au lieu des restes.",
 "Le porzioni si adattano a età e attività.":"Les portions s'adaptent à l'âge et à l'activité.",
@@ -4600,6 +5237,244 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"g":"T",
+
+"Ideata e diretta da DD, costruita insieme a Claude di Anthropic":"Erdacht und geleitet von DD, gebaut zusammen mit Claude von Anthropic",
+"Strumento personale di pianificazione. I prezzi sono stime modificabili, non listini ufficiali: verifica sempre allo scaffale. Nessun dato esce dal tuo dispositivo.":"Persönliches Planungswerkzeug. Die Preise sind änderbare Schätzungen, keine offiziellen Listen: prüfen Sie immer im Regal. Keine Daten verlassen Ihr Gerät.",
+"Ticino":"Tessin",
+
+"Piano di <b>{0} {1}</b> per {2} {3} · totale <b>CHF {4}</b>":"Plan über <b>{0} {1}</b> für {2} {3} · total <b>CHF {4}</b>",
+"nel budget":"im Budget",
+"sopra di CHF {0}":"CHF {0} darüber",
+"Spunta gli articoli che hai già in casa: escono dal totale. Prezzi indicativi, indice {0} con correzioni per reparto, listino del {1}.":"Haken Sie ab, was Sie schon haben: es fällt aus dem Total. Richtpreise, Index {0} mit Abteilungskorrekturen, Preisliste vom {1}.",
+"Tocca il nome per cercarlo sul sito {0}.":"Tippen Sie auf den Namen, um ihn auf der Website von {0} zu suchen.",
+"Carrello italiano: <b>CHF {0}</b> · carne <b>{1} kg</b>. Con {2} {3} la franchigia giornaliera è CHF {4} e il limite carne {5} kg.":"Italienischer Warenkorb: <b>CHF {0}</b> · Fleisch <b>{1} kg</b>. Bei {2} {3} beträgt die Tagesfreigrenze CHF {4} und die Fleischgrenze {5} kg.",
+"Rientri nei limiti se fate la spesa insieme in un solo passaggio.":"Sie bleiben innerhalb der Grenzen, wenn Sie gemeinsam in einem Gang einkaufen.",
+"Sopra i limiti in un solo passaggio:":"Über den Grenzen in einem Gang:",
+"dividi la spesa in due uscite, o dichiara l'IVA svizzera in dogana (app QuickZoll).":"teilen Sie den Einkauf auf zwei Fahrten auf oder melden Sie die Schweizer MWST beim Zoll an (QuickZoll-App).",
+"Sei dentro il budget con <b>CHF {0}</b> di margine — circa CHF {1} al giorno per imprevisti o extra.":"Sie sind im Budget mit <b>CHF {0}</b> Spielraum — rund CHF {1} pro Tag für Unvorhergesehenes.",
+"Sei sopra di <b style=\"color:var(--rosso)\">CHF {0}</b>. Premi “Fai stare nel budget”: sposto la scelta verso piatti più economici e negozi più convenienti.":"Sie liegen <b style=\"color:var(--rosso)\">CHF {0}</b> darüber. Drücken Sie «Ins Budget bringen»: ich verschiebe die Auswahl zu günstigeren Gerichten und Läden.",
+"Il tuo mix di negozi":"Ihre Ladenkombination",
+"Solo il più conveniente in Svizzera":"Nur der günstigste in der Schweiz",
+"Tutto al prezzo pieno di supermercato":"Alles zum vollen Supermarktpreis",
+"Rispetto alla spesa fatta tutta al prezzo pieno risparmi <b>CHF {0}</b> nel periodo, cioè circa <b>CHF {1}</b> all'anno.":"Gegenüber einem Einkauf zum vollen Preis sparen Sie <b>CHF {0}</b> im Zeitraum, also rund <b>CHF {1}</b> pro Jahr.",
+"<b>Il listino ha {0} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.":"<b>Die Preisliste ist {0} Tage alt.</b> Die Aktionen dieser Woche haben bereits gewechselt: öffnen Sie unten zwei, drei Prospekte und korrigieren Sie die Preise Ihrer üblichen Artikel. Fünf Minuten genügen.",
+"Listino aggiornato {0}. Ti riavviso dopo una settimana.":"Preisliste {0} aktualisiert. Ich melde mich in einer Woche wieder.",
+"{0} prezzi corretti a mano, {1} promozioni attive.":"{0} von Hand korrigierte Preise, {1} laufende Aktionen.",
+"Con questo carrello il viaggio si ripaga e ti restano <b>CHF {0}</b>. Il carrello italiano vale CHF {1}: {2}.":"Mit diesem Warenkorb lohnt sich die Fahrt und es bleiben Ihnen <b>CHF {0}</b>. Der italienische Warenkorb ist CHF {1} wert: {2}.",
+"sei sotto la franchigia di CHF {0} per {1} {2}":"Sie liegen unter der Freigrenze von CHF {0} für {1} {2}",
+"superi la franchigia di CHF {0}":"Sie überschreiten die Freigrenze von CHF {0}",
+"dichiara l'IVA con QuickZoll":"melden Sie die MWST mit QuickZoll an",
+"Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.":"Für diesen Warenkorb lohnt es sich nicht: CHF {0} Ersparnis decken CHF {1} für Treibstoff, Zeit und Maut nicht. Lohnend ab etwa <b>CHF {2}</b> Einkauf.",
+"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Treibstoff am {0}: in der Schweiz Benzin CHF {1} und Diesel CHF {2} pro Liter (TCS); {3} Benzin € {4} und Diesel € {5}{6} (MIMIT).",
+"su {0} distributori":"über {0} Tankstellen",
+"in Italia":"in Italien",
+"Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.":"Dort zu tanken ändert kaum etwas: zum heutigen Kurs kostet der Treibstoff praktisch gleich viel.",
+"Fare il pieno di là aggiunge circa CHF {0} di risparmio.":"Dort zu tanken bringt rund CHF {0} zusätzliche Ersparnis.",
+"Attenzione: di là il carburante costa di più, ci rimetti circa CHF {0} se fai il pieno.":"Achtung: dort ist der Treibstoff teurer, beim Tanken verlieren Sie rund CHF {0}.",
+"Con l'elettrico il pieno non c'entra: conta solo il tempo.":"Beim Elektroauto zählt der Tank nicht: nur die Zeit.",
+"oggi":"heute",
+"gg fa":"Tage her",
+"apri":"öffnen",
+"chiudi":"schliessen",
+"al giorno":"pro Tag",
+"Seme del caso (stesso numero = stesso menu)":"Zufallszahl (gleiche Zahl = gleiches Menü)",
+"Scegli il momento e il livello: ti propongo un menu completo, dall'aperitivo al dolce, con le quantità per il numero di persone che indichi e la lista della spesa già divisa per negozio.":"Wählen Sie Anlass und Niveau: Ich schlage ein ganzes Menü vor, vom Apéro bis zum Dessert, mit den Mengen für die angegebene Personenzahl und der bereits nach Laden aufgeteilten Einkaufsliste.",
+"Metti gerla-listino.json e gerla-aggiorna.mjs in un deposito GitHub con il flusso incluso: ogni mattina lo script rilegge le fonti aperte e ripubblica il listino. Poi incolla qui l'indirizzo raw del file. Ogni apertura controllo se è cambiato e aggiorno prezzi, indici e promozioni. Serve un indirizzo che consenta la lettura da browser (per esempio un Gist pubblico o un file sul tuo cloud).":"Legen Sie gerla-listino.json und gerla-aggiorna.mjs mit dem enthaltenen Workflow in ein GitHub-Repository: Jeden Morgen liest das Skript die offenen Quellen neu und veröffentlicht die Preisliste. Fügen Sie dann hier die Raw-Adresse der Datei ein. Bei jedem Start prüfe ich, ob sie sich geändert hat, und aktualisiere Preise, Indizes und Aktionen. Die Adresse muss vom Browser lesbar sein (ein öffentlicher Gist oder eine Datei in Ihrer Cloud).",
+
+"Mostra tutti":"Alle anzeigen",
+"altri":"weitere",
+"di":"von",
+"prodotti mostrati":"Produkte angezeigt",
+
+"Listino":"Preisliste",
+"Promozioni":"Aktionen",
+"Giorni migliori":"Beste Tage",
+"Volantini":"Prospekte",
+"Fonti":"Quellen",
+"Aggiornamento":"Aktualisierung",
+"Indici":"Indizes",
+"aggiornato con il listino del":"aktualisiert mit der Preisliste vom",
+"Pasti fuori casa a settimana":"Mahlzeiten auswärts pro Woche",
+
+"MIMIT — carburanti Italia":"MIMIT — Treibstoffpreise, Italien",
+"Rappn — confronto prezzi":"Rappn — Preisvergleich",
+"UST — indice dei prezzi":"BFS — Landesindex der Konsumentenpreise",
+"Volantino Facile":"Volantino Facile (Prospekte)",
+"oggi":"heute",
+"domani":"morgen",
+"tra":"in",
+"dei tuoi negozi rinnovano le offerte":"Ihrer Läden erneuern die Aktionen",
+
+"a persona al giorno":"pro Person und Tag",
+"a persona":"pro Person",
+"persona":"Person",
+"persone":"Personen",
+"giorno":"Tag",
+"giorni":"Tage",
+"negozio":"Laden",
+"negozi":"Läden",
+"preferenze":"Vorlieben",
+"fabbisogno del nucleo":"Bedarf des Haushalts",
+"kcal al giorno":"kcal pro Tag",
+"nessun giorno senza carne":"kein fleischfreier Tag",
+"giorno a settimana":"Tag pro Woche",
+"giorni a settimana":"Tage pro Woche",
+"articoli":"Artikel",
+"articoli per":"Artikel für",
+"articoli, confezioni intere":"Artikel, ganze Packungen",
+"il resto resta in dispensa":"der Rest bleibt im Vorrat",
+"PORTATE":"GÄNGE",
+"MIN IN CUCINA":"MIN IN DER KÜCHE",
+"2 giorni":"2 Tage",
+"10 giorni":"10 Tage",
+"5 giorni feriali":"5 Werktage",
+"Cucina una volta, mangia due: il pranzo riprende la cena della sera prima":"Einmal kochen, zweimal essen: das Mittagessen greift das Abendessen von gestern auf",
+
+"Settimana":"Woche",
+"scegli":"wählen",
+"Negozio":"Laden",
+"Dispensa vuota":"Leerer Vorrat",
+"Aggiungi quello che hai in casa: lo tolgo dalla lista della spesa. Si riempie da sola quando chiudi una spesa.":"Tragen Sie ein, was Sie haben: ich nehme es von der Liste. Er füllt sich beim Abschluss eines Einkaufs selbst.",
+"Chiudi una spesa con “Ho finito la spesa” e da lì in poi vedi quanto spendi davvero, mese per mese.":"Schliessen Sie einen Einkauf mit «Einkauf beendet» ab, und Sie sehen, was Sie wirklich ausgeben, Monat für Monat.",
+"Nessuna promozione in corso. Le trovi nei volantini: scrivile nel listino qui sotto, oppure lascia che arrivino dal file condiviso.":"Keine laufenden Aktionen. Sie stehen in den Prospekten: tragen Sie sie unten ein oder lassen Sie sie aus der geteilten Datei kommen.",
+"Se incolli l'indirizzo della pagina GitHub lo converto io nella forma raw: è quella che il browser può leggere.":"Wenn Sie die GitHub-Seitenadresse einfügen, wandle ich sie in die Raw-Form um: nur die kann der Browser lesen.",
+"Tutte le funzioni, una per una. Apri il capitolo che ti serve o cerca una parola: la ricerca guarda dentro il testo di ogni voce.":"Alle Funktionen, eine nach der anderen. Öffnen Sie das gewünschte Kapitel oder suchen Sie ein Wort. Die Anleitung selbst bleibt auf Italienisch.",
+
+"Settimana":"Woche",
+"Tutto il periodo":"Ganzer Zeitraum",
+"SVIZZERA":"SCHWEIZ",
+"ITALIA":"ITALIEN",
+"ARTICOLI":"ARTIKEL",
+"PERSONE":"PERSONEN",
+"salvato":"gespeichert",
+"ripreso da dove eri":"dort weiter, wo Sie waren",
+"memoria non disponibile":"Speicher nicht verfügbar",
+"nessuno — si mangia sempre a casa":"keine — es wird immer zu Hause gegessen",
+"pasti fuori casa: riduco le porzioni del pranzo":"Mahlzeiten auswärts: Mittagsportionen reduziert",
+"tempo di preparazione":"Zubereitungszeit",
+"kcal a persona":"kcal pro Person",
+"kcal a persona/giorno":"kcal pro Person/Tag",
+"a persona/giorno":"pro Person/Tag",
+"obiettivo":"Ziel",
+"degli articoli freschi":"der frischen Artikel",
+"media del carrello alimentare":"Durchschnitt des Lebensmittelkorbs",
+"conviene partire":"die Fahrt lohnt sich",
+"conviene restare":"besser hierbleiben",
+"differenza":"Differenz",
+"internazionale":"international",
+"Svizzera":"Schweiz",
+"Italia":"Italien",
+"il menu":"das Menü",
+"spesa contenuta, niente di superfluo":"bescheidene Ausgaben, nichts Überflüssiges",
+"come una domenica in famiglia":"wie ein Sonntag mit der Familie",
+"per le occasioni che contano":"für die Anlässe, die zählen",
+"quella di cui si parlerà per anni":"der, von dem man noch Jahre spricht",
+"Per ogni prodotto scelgo il negozio più conveniente tra quelli accesi. I prezzi italiani sono convertiti in franchi al cambio del giorno.":"Für jedes Produkt wähle ich den günstigsten der aktiven Läden. Italienische Preise werden zum Tageskurs in Franken umgerechnet.",
+
+"Adulto":"Erwachsener",
+"Bambino 1-5 anni":"Kind 1-5 Jahre",
+"Bambino 6-11 anni":"Kind 6-11 Jahre",
+"Ragazzo 12-17 anni":"Jugendliche 12-17 Jahre",
+"Over 65":"Über 65",
+"Poco attivo":"Wenig aktiv",
+"Attività normale":"Normale Aktivität",
+"Molto attivo":"Sehr aktiv",
+"Azioni":"Aktionen",
+"Ripristino":"Zurücksetzen",
+"Adegua tutto il listino":"Ganze Liste anpassen",
+"% su tutti i prezzi":"% auf alle Preise",
+"Indirizzo del listino condiviso (JSON)":"Adresse der geteilten Preisdatei (JSON)",
+"Aggiorna a ogni apertura":"Bei jedem Start aktualisieren",
+"Includi casa e igiene (detersivi, carta, cura persona)":"Haushalt und Hygiene einschliessen (Waschmittel, Papier, Pflege)",
+"Includi scorte di dispensa (olio, sale, caffè…)":"Vorräte einschliessen (Öl, Salz, Kaffee…)",
+"Cucina una volta, mangia due: il pranzo riprende la cena della sera prima":"Einmal kochen, zweimal essen: das Mittagessen greift das Abendessen von gestern auf",
+"Controllo dogana":"Zollkontrolle",
+"Costo del viaggio":"Kosten der Fahrt",
+"Ci guadagni":"Sie gewinnen",
+"Stesso carrello in Svizzera":"Gleicher Warenkorb in der Schweiz",
+"In Lombardia":"In der Lombardei",
+"Esempio: 1 kg pasta":"Beispiel: 1 kg Teigwaren",
+"Indici per negozio":"Index pro Laden",
+"Quante persone a tavola":"Wie viele am Tisch",
+"Quante persone mangiano di solito":"Wie viele essen normalerweise mit",
+"Per quanti giorni vuoi organizzarti":"Für wie viele Tage möchten Sie planen",
+"Dove fai la spesa di solito":"Wo kaufen Sie normalerweise ein",
+"Quanto vuoi spendere in questo periodo":"Wie viel möchten Sie in dieser Zeit ausgeben",
+"franchi in tutto":"Franken insgesamt",
+"un giorno":"ein Tag",
+"3 giorni":"3 Tage",
+"una settimana":"eine Woche",
+"un mese":"ein Monat",
+"Dispensa vuota":"Vorrat leer",
+"Nessuna spesa registrata":"Kein Einkauf erfasst",
+"Nessun piano ancora":"Noch kein Plan",
+"Lista vuota":"Leere Liste",
+"Ancora niente da analizzare":"Noch nichts auszuwerten",
+"Niente per questa combinazione":"Nichts für diese Kombination",
+"Cerca nella guida: dispensa, budget, dado, scadenze…":"In der Anleitung suchen: Vorrat, Budget, Würfel, Ablauf…",
+"Cerca un prodotto o un reparto…":"Produkt oder Abteilung suchen…",
+"Quanti negozi vuoi girare":"Wie viele Läden besuchen",
+"Seconda scelta":"Zweite Wahl",
+"Giorno":"Tag",
+"Negozi che rinnovano":"Läden mit neuen Aktionen",
+"Origine":"Herkunft",
+"Invece di":"Statt",
+"Fino al":"Bis",
+"Prodotto":"Produkt",
+"Insegna":"Laden",
+"Confezioni":"Packungen",
+"Scade il":"Läuft ab am",
+"Data":"Datum",
+"Occasione":"Anlass",
+"Negozi":"Läden",
+"Articoli":"Artikel",
+"Totale":"Total",
+"Prezzo base CHF":"Basispreis CHF",
+"Miglior prezzo":"Bester Preis",
+"Nessuna modifica manuale.":"Keine manuellen Änderungen.",
+"Nessun listino collegato.":"Keine Preisdatei verbunden.",
+"Prepara la lista":"Liste vorbereiten",
+"Faccio da solo":"Ich mache es selbst",
+"+ una persona":"+ eine Person",
+"− una persona":"− eine Person",
+"Chiudi":"Schliessen",
+"apri":"öffnen",
+"chiudi":"schliessen",
+"Salva le impostazioni":"Einstellungen speichern",
+"Cancella i dati salvati":"Gespeicherte Daten löschen",
+"Rifai l'avvio guidato":"Einrichtung neu starten",
+"Salvato":"Gespeichert",
+"Copia":"Kopieren",
+"Scarica":"Herunterladen",
+"Stampa":"Drucken",
+"Copia il testo":"Text kopieren",
+"Copia il collegamento":"Link kopieren",
+"Salva e avanti":"Speichern und weiter",
+"Va bene così":"So belassen",
+"Basta così":"Das reicht",
+"Metti in dispensa":"In den Vorrat legen",
+"Nome":"Name",
+"Prezzo di riferimento CHF":"Basispreis CHF",
+"Contenuto della confezione":"Packungsinhalt",
+"Unità":"Einheit",
+"Icona":"Symbol",
+"grammi":"Gramm",
+"millilitri":"Milliliter",
+"pezzi":"Stück",
+"Aggiungi al listino":"Zur Liste hinzufügen",
+"Aggiungi un prodotto":"Produkt hinzufügen",
+"Cosa hai in casa":"Was Sie zu Hause haben",
+"Quante confezioni":"Wie viele Packungen",
+"Scade il (facoltativo)":"Läuft ab am (optional)",
+"Piano di lavoro":"Arbeitsplan",
+"Il giorno prima":"Am Tag davor",
+"La mattina stessa":"Am selben Morgen",
+"Tre ore prima":"Drei Stunden vorher",
+"Un'ora prima":"Eine Stunde vorher",
+"All'ultimo momento":"Im letzten Moment",
+"Tutto il periodo":"Ganzer Zeitraum",
+
 "Le promozioni cambiano ogni giovedì in Svizzera e ogni lunedì in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di più sul totale.":"Die Aktionen wechseln in der Schweiz jeden Donnerstag und in Italien jeden Montag. Öffnen Sie den Prospekt und korrigieren Sie unten die Preise, die Ihnen wichtig sind: die zehn schwersten Posten genügen.",
 "I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.":"Die Prospekte erscheinen nicht alle am selben Tag. Wer gleich zu Beginn einkauft, hat die ganze Woche Rabatte statt der Reste.",
 "Le porzioni si adattano a età e attività.":"Die Portionen richten sich nach Alter und Aktivität.",
@@ -4724,11 +5599,13 @@ de:{
 "Bentornato a tavola":"Willkommen zurück am Tisch","Lingua":"Sprache",
 }};
 
-const SEL_TRAD = ".card>h2, .tab .lg, .tab .sm, .btn, .btn>span, .chip, .chip .nm, option, .hint, .legenda, "+
+function TF(it,vals){ let t=T(it); (vals||[]).forEach((v,i)=>t=t.split("{"+i+"}").join(v)); return t; }
+function T(it){ const L=S.lingua||"it"; return L==="it" ? it : ((DIZ[L]&&DIZ[L][it])||it); }
+const SEL_TRAD = ".pie-frase .nm, .pie-note .nm, .card>h2, .tab .lg, .tab .sm, .btn, .btn>span, .chip, .chip .nm, option, .hint, .legenda, "+
                  ".kpi .sub, .sc-note, .setup-h .sc, .empty b, .empty, .sm-sub, .fonte b, .fonte small, "+
-                 ".voce h4, .cap summary, .lab, .et, .meta, .zona, .q, label.f, th, .claim, .kpi .lab, "+
+                 ".lab, .et, .meta, .zona, .q, .nm, .sc-h .meta, .fonte b, label.f, th, .claim, .kpi .lab, "+
                  ".statusbar #memoria, .statusbar .linkbtn, .hero-stats span, .setup-h .st b, "+
-                 ".modal h3, .cap summary, .sc-cat, .giorno-h b, .empty b, .pasto .et, .sm-tit";
+                 ".modal h3, .sc-cat, .giorno-h b, .empty b, .pasto .et, .sm-tit";
 
 function traduci(){
   const L=S.lingua||"it";
@@ -4743,19 +5620,21 @@ function traduci(){
     const it=el.dataset.itTi; if(!it) return;
     el.setAttribute("title", L==="it" ? it : ((DIZ[L]&&DIZ[L][it])||it));
   });
+  const norm = t => t.replace(/\s+/g," ").trim();
   document.querySelectorAll(SEL_TRAD).forEach(el=>{
-    if(el.children.length && !el.classList.contains("chip") && !el.classList.contains("btn")
-       && el.tagName!=="LABEL" && el.tagName!=="SUMMARY") return;
-    if(el.dataset.it===undefined) el.dataset.it=el.textContent.trim();
+    // se l'elemento ha figli traduco solo il suo ultimo pezzo di testo,
+    // così restano intatti icone, pastiglie e valori calcolati
+    const nodi=[...el.childNodes].filter(n=>n.nodeType===3 && n.textContent.trim());
+    if(!nodi.length && el.children.length) return;
+    const nodo = nodi.length ? nodi[nodi.length-1] : null;
+    if(el.dataset.it===undefined) el.dataset.it = norm(nodo ? nodo.textContent : el.textContent);
     const it=el.dataset.it;
     if(!it) return;
     const t = L==="it" ? it : (DIZ[L] && DIZ[L][it]);
-    if(t && el.textContent.trim()!==t){
-      // sostituisco solo il testo, lasciando intatti pallini e icone interne
-      const nodi=[...el.childNodes].filter(n=>n.nodeType===3 && n.textContent.trim());
-      if(nodi.length) nodi[nodi.length-1].textContent = (nodi[nodi.length-1].textContent.startsWith(" ")?" ":"")+t;
-      else if(!el.children.length) el.textContent=t;
-    }
+    if(!t) return;
+    if(nodo){ const pre=/^\s/.test(nodo.textContent)?" ":""; const post=/\s$/.test(nodo.textContent)?" ":"";
+              if(norm(nodo.textContent)!==t) nodo.textContent=pre+t+post; }
+    else if(norm(el.textContent)!==t) el.textContent=t;
   });
   document.documentElement.lang=L;
 }
@@ -4770,7 +5649,16 @@ function renderLingue(){
   const box=$("#lingue"); if(!box) return;
   box.innerHTML=LINGUE.map(l=>`<button class="lng${(S.lingua||"it")===l.id?" on":""}" data-l="${l.id}" title="${l.n}">${l.b}</button>`).join("");
   box.querySelectorAll(".lng").forEach(b=>b.onclick=()=>{
-    S.lingua=b.dataset.l; salva(); renderLingue(); traduci();
+    S.lingua=b.dataset.l; salva(); renderLingue();
+    if(window.__riepAvvio) try{ window.__riepAvvio(); }catch(e){}
+    aggiornaApriChiudi();
+    renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo();
+    aggiornaBudgetLabel(); renderEventiControlli(); renderEventi();
+    renderDispensa(); renderStorico(); renderGuida();
+    $("#hs-mese").textContent=NOMIMESI[MESE];
+    $("#hs-agg").textContent = giorniDa(S.ultimoAgg)===0 ? T("oggi") : giorniDa(S.ultimoAgg)+" "+T("gg fa");
+    if(S.menu) renderTutto();
+    traduci();
   });
 }
 
@@ -4846,7 +5734,10 @@ function renderTutto(){
   if(righe){
     const t=totale(righe);
     salva();
-    $("#statoGen").innerHTML = `Piano di <b>${S.giorni} giorni</b> per ${S.persone.length} ${S.persone.length===1?"persona":"persone"} · totale <b>CHF ${chfr(t)}</b> ${t<=S.budget?`<span style="color:var(--verde)">nel budget</span>`:`<span style="color:var(--rosso)">sopra di CHF ${chfr(t-S.budget)}</span>`}`;
+    $("#statoGen").innerHTML = TF("Piano di <b>{0} {1}</b> per {2} {3} · totale <b>CHF {4}</b>",
+      [S.giorni, S.giorni===1?T("giorno"):T("giorni"), S.persone.length, S.persone.length===1?T("persona"):T("persone"), chfr(t)])
+      + " " + (t<=S.budget ? `<span style="color:var(--verde)">${T("nel budget")}</span>`
+                           : `<span style="color:var(--rosso)">${TF("sopra di CHF {0}",[chfr(t-S.budget)])}</span>`);
   }
 }
 function genera(mantieni){
@@ -4877,7 +5768,14 @@ function fitBudget(){
 
 /* eventi */
 $("#addPersona").onclick=()=>{ S.persone.push({nome:"Persona "+(S.persone.length+1),eta:"adulto",att:"medio"}); renderPersone(); aggiornaBudgetLabel(); };
-$("#veggDays").oninput=e=>{ S.veggDays=+e.target.value; $("#veggLab").textContent = S.veggDays===0?"nessun giorno senza carne":S.veggDays===1?"1 giorno a settimana":S.veggDays+" giorni a settimana"; };
+$("#veggDays").oninput=e=>{ S.veggDays=+e.target.value; aggiornaVegg(); };
+function aggiornaVegg(){
+  const v=$("#veggVal"); if(v) v.textContent=S.veggDays;
+  const f=$("#fuoriVal"); if(f) f.textContent=S.fuoriCasa;
+  const el=$("#veggLab"); if(!el) return;
+  el.textContent = S.veggDays===0 ? T("nessun giorno senza carne")
+    : S.veggDays+" "+(S.veggDays===1?T("giorno a settimana"):T("giorni a settimana"));
+}
 $("#prio").onchange=e=>S.prio=e.target.value;
 /* pasti da pianificare */
 const PASTI=[["colazione","Colazione"],["pranzo","Pranzo"],["merenda","Merenda"],["cena","Cena"]];
@@ -4885,7 +5783,7 @@ function renderPasti(){
   const c=$("#pastiChips"); c.innerHTML="";
   PASTI.forEach(([k,n])=>{
     const b=document.createElement("button"); b.className="chip"; b.type="button";
-    b.setAttribute("aria-pressed",S.pasti[k]); b.textContent=n;
+    b.setAttribute("aria-pressed",S.pasti[k]); b.innerHTML=`<span class="nm">${n}</span>`;
     b.onclick=()=>{
       const attivi=PASTI.filter(([x])=>S.pasti[x]).length;
       if(S.pasti[k] && attivi<=1) return;
@@ -4894,11 +5792,14 @@ function renderPasti(){
     c.appendChild(b);
   });
 }
+let fuoriTimer=null;
 $("#fuoriCasa").oninput=e=>{
   S.fuoriCasa=+e.target.value;
-  $("#fuoriLab").textContent = S.fuoriCasa===0 ? "nessuno — si mangia sempre a casa"
-    : S.fuoriCasa+(S.fuoriCasa===1?" pasto":" pasti")+" fuori casa: riduco le porzioni del pranzo";
-  if(S.menu) renderTutto();
+  $("#fuoriVal").textContent=S.fuoriCasa;
+  $("#fuoriLab").textContent = S.fuoriCasa===0 ? T("nessuno — si mangia sempre a casa")
+    : S.fuoriCasa+" "+T("pasti fuori casa: riduco le porzioni del pranzo");
+  clearTimeout(fuoriTimer);
+  fuoriTimer=setTimeout(()=>{ if(S.menu) renderTutto(); salva(); },260);
 };
 $("#linea").onchange=e=>{ S.linea=e.target.value; renderCatalogo(); if(S.menu) renderTutto(); };
 $("#margine").onchange=e=>{ S.margine=+e.target.value; if(S.menu) renderTutto(); };
@@ -4953,11 +5854,16 @@ $("#dado").onclick=()=>{ S.seed=Math.floor(Math.random()*99999); $("#seed").valu
 $("#nonfood").onchange=e=>{ S.nonfood=e.target.checked; if(S.menu)renderTutto(); };
 $("#scorte").onchange=e=>{ S.scorte=e.target.checked; if(S.menu)renderTutto(); };
 $("#genera").onclick=()=>{ genera(true); $("#setup").open=false; };
-$("#setup").addEventListener("toggle",()=>riepilogoSetup());
+$("#setup").addEventListener("toggle",()=>{ riepilogoSetup(); aggiornaApriChiudi(); });
+function aggiornaApriChiudi(){
+  const el=$("#setup") && $("#setup").querySelector(".sc .nm"); if(!el) return;
+  el.dataset.it = $("#setup").open ? "chiudi" : "apri";
+  el.textContent = T(el.dataset.it);
+}
 $("#rigenera").onclick=()=>{ S.seed=Math.floor(Math.random()*99999); $("#seed").value=S.seed; genera(true); };
 $("#fitBudget").onclick=fitBudget;
 $("#esporta").onclick=esporta;
-$("#cerca").oninput=renderCatalogo;
+$("#cerca").oninput=()=>{ S.listinoTutto=false; renderCatalogo(); };
 $("#cercaGuida").oninput=renderGuida;
 function apriScheda(id){ const t=$$(".tab").find(x=>x.dataset.p===id); if(t) t.click(); }
 $("#vaiSpesa").onclick=()=>apriSpesa(null,"Spesa di "+S.giorni+" giorni");
@@ -5047,9 +5953,10 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
       combo>=1e3  ? Math.round(combo/1e3)+" mila" : String(combo);
   $("#hs-riv").textContent=RIV.length;
   $("#hs-mese").textContent=NOMIMESI[MESE];
+  $("#hs-mese").dataset.dinamico="1";
   const ripreso = carica();
   renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo(); aggiornaBudgetLabel();
-  $("#setup").open = !S.avvioFatto;
+  $("#setup").open = !S.avvioFatto; aggiornaApriChiudi();
   if(!ripreso){ S.ev.pers = Math.max(4,S.persone.length*2); }
   $("#evPers").value = S.ev.pers;
   $("#vg_carb").value=S.viaggio.carb||"diesel";
