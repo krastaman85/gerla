@@ -47,13 +47,13 @@ export const FONTI = [
   { id:"rabatt-kompass", nome:"Rabatt Kompass — volantini CH", tipo:"html", zona:"CH",
     url:"https://it.rabatt-kompass.ch/", auto:false },
   { id:"aktionis", nome:"Aktionis — volantini CH", tipo:"html", zona:"CH",
-    url:"https://www.aktionis.ch/it/", auto:false },
+    url:"https://www.aktionis.ch/", auto:false },
   { id:"rappn", nome:"Rappn — confronto prezzi CH", tipo:"manuale", zona:"CH",
     url:"https://rappn.ch/it/", auto:false },
   { id:"esselunga", nome:"Esselunga — volantini", tipo:"manuale", zona:"IT",
     url:"https://www.esselunga.it/it-it/promozioni/volantini.html", auto:false },
   { id:"lidl-it", nome:"Lidl Italia — volantino", tipo:"manuale", zona:"IT",
-    url:"https://www.lidl.it/c/it-IT/volantino/s10018048", auto:false },
+    url:"https://www.lidl.it/c/volantino-lidl/s10018048", auto:false },
   { id:"eurospin", nome:"Eurospin — volantino", tipo:"manuale", zona:"IT",
     url:"https://www.eurospin.it/volantino/", auto:false },
   { id:"promoqui", nome:"PromoQui — volantini IT", tipo:"html", zona:"IT",
@@ -127,6 +127,8 @@ async function cambioEuro() {
 /* =========================================================
    4. ADATTATORE OPEN FOOD FACTS PRICES
    ========================================================= */
+/* L'archivio non accetta filtri per paese: scarico tutto quello che esiste in franchi
+   (poche centinaia di rilevazioni) e un campione ampio e recente in euro, poi filtro qui. */
 async function offPrices(valuta, pagine) {
   const out = [];
   for (let p = 1; p <= pagine; p++) {
@@ -194,6 +196,44 @@ function incrocia(catalogo, osservazioni) {
     };
   }
   return finale;
+}
+
+/* prezzi per singola insegna: quando ho abbastanza rilevazioni in una catena,
+   quel prezzo vale più di qualsiasi indice calcolato sul riferimento */
+function prezziPerInsegna(catalogo, osservazioni) {
+  const MARCHE = {
+    "Migros":"migros","Coop":"coop","Denner":"denner","Aldi":"aldi","Aldi Suisse":"aldi","Lidl":"lidlch",
+    "Manor":"manor","Volg":"volg","Otto's":"ottos","Landi":"landi","Migrolino":"migrolino","Aligro":"aligro",
+    "Esselunga":"esselunga","Iper":"iper","Conad":"conad","Carrefour":"carrefour","Bennet":"bennet",
+    "Tigros":"tigros","Iperal":"iperal","Eurospin":"eurospin","MD":"md","Pam":"pam",
+  };
+  const indice = catalogo.map(p => ({ p, k: [...chiavi(p.nome), ...(SINONIMI[p.id] || [])] }));
+  const racc = {};
+  for (const o of osservazioni) {
+    const ins = MARCHE[o.negozio]; if (!ins) continue;
+    if (o.paese && !["CH","IT"].includes(o.paese)) continue;
+    const n = norm(o.nome + " " + o.marca);
+    for (const { p, k } of indice) {
+      if (!k.length || !k.some(w => n.includes(w))) continue;
+      let v = null;
+      if (p.um !== "pz" && o.q && ["g","ml"].includes(o.um)) v = o.prezzo / o.q * p.pu;
+      else if (o.q == null) v = o.prezzo;
+      if (v == null) break;
+      if (o.valuta === "EUR") v *= CAMBIO;
+      if (!isFinite(v) || v <= 0 || v > p.p * 2.5 || v < p.p * 0.4) break;
+      ((racc[p.id] = racc[p.id] || {})[ins] ||= []).push(v);
+      break;
+    }
+  }
+  const out = {};
+  for (const [id, perIns] of Object.entries(racc)) {
+    for (const [ins, arr] of Object.entries(perIns)) {
+      if (arr.length < 2) continue;                       // due rilevazioni almeno
+      const v = arr.sort((a, b) => a - b);
+      (out[id] = out[id] || {})[ins] = Math.round(v[Math.floor(v.length / 2)] * 20) / 20;
+    }
+  }
+  return out;
 }
 
 /* indici per insegna: confronto lo stesso prodotto tra catene diverse */
@@ -309,7 +349,7 @@ async function main() {
   console.log(`Cambio EUR→CHF: ${CAMBIO}${c.ok ? " (BCE " + c.data + ")" : " (valore prudenziale)"}`);
 
   let osservazioni = [];
-  for (const [id, valuta, pagine] of [["off-prices-ch", "CHF", 25], ["off-prices-it", "EUR", 25]]) {
+  for (const [id, valuta, pagine] of [["off-prices-ch", "CHF", 20], ["off-prices-it", "EUR", 45]]) {
     try {
       const o = await offPrices(valuta, pagine);
       osservazioni = osservazioni.concat(o);
@@ -321,8 +361,18 @@ async function main() {
     }
   }
 
+  // copertura per negozio: serve a capire dove il dato è solido e dove manca
+  const copertura = {};
+  osservazioni.forEach(o => { if (o.negozio && ["CH","IT"].includes(o.paese||"")) copertura[o.negozio] = (copertura[o.negozio]||0)+1; });
+  const cop = Object.entries(copertura).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  console.log("Copertura per negozio:", cop.map(([n,v])=>`${n} ${v}`).join(", ") || "nessuna");
+  rapporto.copertura = Object.fromEntries(cop);
+
   const trovati = incrocia(catalogo, osservazioni);
   const indiciReali = indiciDaiDati(catalogo, osservazioni);
+  const perInsegna = prezziPerInsegna(catalogo, osservazioni);
+  const coppie = Object.values(perInsegna).reduce((a, o) => a + Object.keys(o).length, 0);
+  console.log(`Prezzi per insegna: ${coppie} coppie prodotto-negozio su ${Object.keys(perInsegna).length} prodotti`);
   if (Object.keys(indiciReali).length)
     console.log("Indici osservati (informativi):", Object.entries(indiciReali).map(([i, v]) => `${i} ${v.k} su ${v.n} confronti`).join(", "));
   else console.log("Indici osservati: dati ancora insufficienti per un confronto tra insegne");
@@ -354,9 +404,11 @@ async function main() {
     // gli indici calcolati restano informativi: con pochi confronti sono instabili
     // (la stessa catena può uscire 0.74 un giorno e 1.34 il giorno dopo) e sovrascriverli
     // peggiorerebbe una taratura fatta a mano. Li pubblico per poterli guardare crescere.
+    prezziRiv: perInsegna,
     indici: vecchio.indici || {},
     indiciOsservati: indiciReali,
-    promo: vecchio.promo || {},
+    promo: Object.fromEntries(Object.entries(vecchio.promo || {})
+             .filter(([, p]) => !p.fino || p.fino >= oggi)),
     carburanti: carb,
     fonti: FONTI.map(f => ({ id: f.id, nome: f.nome, tipo: f.tipo, zona: f.zona, url: f.url, auto: !!f.auto })),
     rapporto,

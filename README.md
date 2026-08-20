@@ -1,6 +1,8 @@
 # Gerla — Gestione Efficiente di Ricette, Liste e Acquisti
 ### Come funziona il sistema e come metterlo in piedi
 
+*Progetto di **DD**, costruito insieme a Claude (Anthropic).*
+
 Quattro file che si tengono insieme:
 
 | File | Cosa fa |
@@ -46,7 +48,7 @@ node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json
 Vedrai qualcosa così:
 
 ```
-Catalogo: 510 prodotti letti da gerla.html
+Catalogo: 560 prodotti letti da gerla.html
 Cambio EUR→CHF: 0.939 (BCE 2026-08-14)
   off-prices-ch: 807 osservazioni
   off-prices-it: 832 osservazioni
@@ -124,7 +126,7 @@ quel numero (`"0 4 * * *"` = 6:00 estive) direttamente dal file su GitHub.
 4. Premi **Aggiorna adesso**. Sotto compare "Aggiornati N prezzi": è collegato.
 
 L'indirizzo resta salvato con le tue impostazioni: da adesso a ogni apertura l'app controlla il
-file e si allinea da sola. Prezzi, indici per insegna, promozioni con scadenza e carburanti.
+file e si allinea da sola. Prezzi, indici per negozio, promozioni con scadenza e carburanti.
 
 ---
 
@@ -174,7 +176,7 @@ crescerà di conseguenza, senza toccare nient'altro.
               "fonte":"off-prices", "negozi":["Migros","Coop"] },
    "sedano": { "q":"riferimento" }
  },
- "indici":   { "aldi": 0.80, … },   // moltiplicatore per insegna
+ "indici":   { "aldi": 0.80, … },   // moltiplicatore per negozio
  "promo":    { "caffe": {"p":5.95,"riv":"denner","fino":"2026-08-21"} },
  "carburanti": {
    "ch": { "benzina95":1.92, "diesel":2.11, "elettrico_kwh":0.35, "fonte":"TCS" },

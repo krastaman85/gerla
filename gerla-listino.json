@@ -1,11 +1,11 @@
 {
  "versione": 3,
  "data": "2026-08-20",
- "generato": "2026-08-20T06:04:26.448Z",
+ "generato": "2026-08-20T14:41:30.115Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
- "cambioEUR": 0.9402,
+ "cambioEUR": 0.9333,
  "prezzi": {
-  "patate": 6.95,
+  "patate": 4.5,
   "carote": 2.6,
   "cipolle": 2.8,
   "aglio": 1.6,
@@ -76,18 +76,18 @@
   "riso": 3.2,
   "pane": 4.25,
   "paneint": 3.2,
-  "farina": 3.4,
+  "farina": 3.6,
   "polenta": 2.5,
   "couscous": 2.9,
   "gnocchi": 2.6,
-  "pizzasurg": 4.6,
+  "pizzasurg": 4.5,
   "gallette": 2.5,
   "latteveg": 2.2,
   "avena": 2.5,
   "cornflakes": 3.5,
   "fettebis": 2.2,
   "biscotti": 7.25,
-  "olio": 17.5,
+  "olio": 13.25,
   "oliosem": 3.5,
   "aceto": 2.2,
   "sale": 0.9,
@@ -125,6 +125,56 @@
   "deodorante": 4.5,
   "rasoi": 8.9,
   "fazzoletti": 2.5,
+  "seppioline": 11.9,
+  "orata": 13.9,
+  "gamberetti": 9.9,
+  "salmone_surg": 11.9,
+  "pollo_intero": 9.9,
+  "fesa_tacchino": 4.5,
+  "salsiccia_pollo": 6.9,
+  "manzo_stufato": 14.9,
+  "uova_bio": 5.9,
+  "ricotta_vacca": 4.2,
+  "yogurt_grande": 3.2,
+  "latte_intero_uht": 9.6,
+  "mozzarella_grande": 4.5,
+  "grana_grattugiato": 6.5,
+  "insalata_iceberg": 4.4,
+  "misticanza": 3.5,
+  "pomodoro_ramo": 5.5,
+  "zucchine_gialle": 4.2,
+  "broccolo_romanesco": 4.2,
+  "cime_rapa": 4.5,
+  "funghi_misti": 4.9,
+  "verdure_grigliate": 4.9,
+  "patate_novelle": 4.5,
+  "mele_bio": 4.9,
+  "arance_succo": 5.9,
+  "banane_bio": 3.6,
+  "frutta_secca_snack": 5.9,
+  "pane_integrale_grande": 4.5,
+  "pasta_lunga": 4.2,
+  "riso_parboiled": 4.5,
+  "pizza_margherita_surg": 6.9,
+  "crackers_integrali": 3.2,
+  "barrette": 4.5,
+  "marmellata_bio": 5.5,
+  "olio_extra_bio": 14.9,
+  "passata_bio": 2.9,
+  "ceci_secchi": 3.2,
+  "fagioli_secchi": 3.5,
+  "brodo_veg_bio": 4.2,
+  "tisane": 3.9,
+  "caffe_macinato": 4.9,
+  "succo_ace": 2.5,
+  "acqua_frizzante_pet": 3.2,
+  "detersivo_pavimenti": 4.5,
+  "panni_microfibra": 5.9,
+  "sapone_marsiglia": 4.2,
+  "balsamo": 5.5,
+  "cotton_fioc": 3.2,
+  "collutorio": 5.9,
+  "filo_interdentale": 4.5,
   "ricotta_forte": 4.9,
   "scamorza": 4.5,
   "yogurtcapra": 3.2,
@@ -482,7 +532,7 @@
   "focaccia": 3.9,
   "grissini": 2.5,
   "crackers": 2.2,
-  "baguette": 1.2,
+  "baguette": 2.2,
   "brioche": 3.5,
   "savoiardi": 3.2,
   "lievito": 1.5,
@@ -511,20 +561,14 @@
   "vinobianco": 8.9,
   "vinorosso": 9.9,
   "prosecco": 9.9,
-  "birra": 10.4,
+  "birra": 7.7,
   "bitter": 12.9,
   "bibite": 6.9,
   "acquagas": 3.6
  },
  "qualita": {
   "patate": {
-   "q": "verificato",
-   "n": 4,
-   "data": "2026-08-17",
-   "fonte": "off-prices",
-   "negozi": [
-    "Coop Maladière"
-   ]
+   "q": "riferimento"
   },
   "carote": {
    "q": "riferimento"
@@ -587,7 +631,7 @@
   },
   "funghi": {
    "q": "verificato",
-   "n": 4,
+   "n": 3,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -618,7 +662,7 @@
   },
   "mele": {
    "q": "verificato",
-   "n": 11,
+   "n": 9,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -629,13 +673,13 @@
   },
   "banane": {
    "q": "verificato",
-   "n": 3,
+   "n": 4,
    "data": "2025-11-25",
    "fonte": "off-prices",
    "negozi": [
     "Coop Maladière",
-    "Coop",
-    "Migros"
+    "Migros Serrières",
+    "Coop"
    ]
   },
   "arance": {
@@ -673,8 +717,8 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 6,
-   "data": "2026-08-17",
+   "n": 5,
+   "data": "2026-07-11",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -763,7 +807,7 @@
   },
   "yogurtnat": {
    "q": "verificato",
-   "n": 20,
+   "n": 19,
    "data": "2026-07-21",
    "fonte": "off-prices",
    "negozi": [
@@ -785,8 +829,8 @@
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
-    "Migros",
-    "Coop"
+    "Coop",
+    "Migros"
    ]
   },
   "semiduro": {
@@ -813,13 +857,7 @@
    "q": "riferimento"
   },
   "uova": {
-   "q": "verificato",
-   "n": 4,
-   "data": "2026-08-17",
-   "fonte": "off-prices",
-   "negozi": [
-    "La Maladière centre"
-   ]
+   "q": "riferimento"
   },
   "pasta": {
    "q": "verificato",
@@ -836,8 +874,8 @@
   },
   "pane": {
    "q": "verificato",
-   "n": 7,
-   "data": "2026-08-17",
+   "n": 5,
+   "data": "2026-01-09",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -850,7 +888,7 @@
   },
   "farina": {
    "q": "verificato",
-   "n": 8,
+   "n": 6,
    "data": "2026-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -868,14 +906,7 @@
    "q": "riferimento"
   },
   "pizzasurg": {
-   "q": "verificato",
-   "n": 5,
-   "data": "2026-08-17",
-   "fonte": "off-prices",
-   "negozi": [
-    "La Maladière centre",
-    "Coop"
-   ]
+   "q": "riferimento"
   },
   "gallette": {
    "q": "riferimento"
@@ -894,7 +925,7 @@
   },
   "biscotti": {
    "q": "verificato",
-   "n": 7,
+   "n": 6,
    "data": "2026-06-03",
    "fonte": "off-prices",
    "negozi": [
@@ -905,7 +936,7 @@
   },
   "olio": {
    "q": "verificato",
-   "n": 12,
+   "n": 10,
    "data": "2026-04-23",
    "fonte": "off-prices",
    "negozi": [
@@ -925,8 +956,8 @@
   },
   "zucchero": {
    "q": "verificato",
-   "n": 6,
-   "data": "2026-08-17",
+   "n": 5,
+   "data": "2026-07-25",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
@@ -942,7 +973,7 @@
   },
   "pesto": {
    "q": "verificato",
-   "n": 5,
+   "n": 3,
    "data": "2025-11-25",
    "fonte": "off-prices",
    "negozi": [
@@ -964,7 +995,7 @@
   },
   "caffe": {
    "q": "verificato",
-   "n": 8,
+   "n": 7,
    "data": "2025-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -976,7 +1007,7 @@
   },
   "cioccolato": {
    "q": "verificato",
-   "n": 31,
+   "n": 32,
    "data": "2026-07-19",
    "fonte": "off-prices",
    "negozi": [
@@ -1051,6 +1082,171 @@
    "q": "riferimento"
   },
   "fazzoletti": {
+   "q": "riferimento"
+  },
+  "seppioline": {
+   "q": "riferimento"
+  },
+  "orata": {
+   "q": "riferimento"
+  },
+  "gamberetti": {
+   "q": "riferimento"
+  },
+  "salmone_surg": {
+   "q": "riferimento"
+  },
+  "pollo_intero": {
+   "q": "riferimento"
+  },
+  "fesa_tacchino": {
+   "q": "riferimento"
+  },
+  "salsiccia_pollo": {
+   "q": "riferimento"
+  },
+  "manzo_stufato": {
+   "q": "riferimento"
+  },
+  "uova_bio": {
+   "q": "riferimento"
+  },
+  "ricotta_vacca": {
+   "q": "riferimento"
+  },
+  "yogurt_grande": {
+   "q": "riferimento"
+  },
+  "latte_intero_uht": {
+   "q": "riferimento"
+  },
+  "mozzarella_grande": {
+   "q": "riferimento"
+  },
+  "grana_grattugiato": {
+   "q": "riferimento"
+  },
+  "insalata_iceberg": {
+   "q": "verificato",
+   "n": 4,
+   "data": "2025-11-16",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop",
+    "Manor"
+   ]
+  },
+  "misticanza": {
+   "q": "riferimento"
+  },
+  "pomodoro_ramo": {
+   "q": "riferimento"
+  },
+  "zucchine_gialle": {
+   "q": "riferimento"
+  },
+  "broccolo_romanesco": {
+   "q": "riferimento"
+  },
+  "cime_rapa": {
+   "q": "riferimento"
+  },
+  "funghi_misti": {
+   "q": "riferimento"
+  },
+  "verdure_grigliate": {
+   "q": "riferimento"
+  },
+  "patate_novelle": {
+   "q": "riferimento"
+  },
+  "mele_bio": {
+   "q": "riferimento"
+  },
+  "arance_succo": {
+   "q": "riferimento"
+  },
+  "banane_bio": {
+   "q": "riferimento"
+  },
+  "frutta_secca_snack": {
+   "q": "verificato",
+   "n": 7,
+   "data": "2026-03-05",
+   "fonte": "off-prices",
+   "negozi": [
+    "Migros",
+    "La Maladière centre",
+    "Aldi"
+   ]
+  },
+  "pane_integrale_grande": {
+   "q": "riferimento"
+  },
+  "pasta_lunga": {
+   "q": "riferimento"
+  },
+  "riso_parboiled": {
+   "q": "riferimento"
+  },
+  "pizza_margherita_surg": {
+   "q": "riferimento"
+  },
+  "crackers_integrali": {
+   "q": "riferimento"
+  },
+  "barrette": {
+   "q": "riferimento"
+  },
+  "marmellata_bio": {
+   "q": "riferimento"
+  },
+  "olio_extra_bio": {
+   "q": "riferimento"
+  },
+  "passata_bio": {
+   "q": "riferimento"
+  },
+  "ceci_secchi": {
+   "q": "riferimento"
+  },
+  "fagioli_secchi": {
+   "q": "riferimento"
+  },
+  "brodo_veg_bio": {
+   "q": "riferimento"
+  },
+  "tisane": {
+   "q": "riferimento"
+  },
+  "caffe_macinato": {
+   "q": "riferimento"
+  },
+  "succo_ace": {
+   "q": "riferimento"
+  },
+  "acqua_frizzante_pet": {
+   "q": "riferimento"
+  },
+  "detersivo_pavimenti": {
+   "q": "riferimento"
+  },
+  "panni_microfibra": {
+   "q": "riferimento"
+  },
+  "sapone_marsiglia": {
+   "q": "riferimento"
+  },
+  "balsamo": {
+   "q": "riferimento"
+  },
+  "cotton_fioc": {
+   "q": "riferimento"
+  },
+  "collutorio": {
+   "q": "riferimento"
+  },
+  "filo_interdentale": {
    "q": "riferimento"
   },
   "ricotta_forte": {
@@ -1417,14 +1613,7 @@
    "q": "riferimento"
   },
   "burgerveg": {
-   "q": "verificato",
-   "n": 6,
-   "data": "2026-08-04",
-   "fonte": "off-prices",
-   "negozi": [
-    "Coop Maladière",
-    "Migros"
-   ]
+   "q": "riferimento"
   },
   "hummusrosso": {
    "q": "riferimento"
@@ -1990,14 +2179,7 @@
    "q": "riferimento"
   },
   "paprika": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2026-08-07",
-   "fonte": "off-prices",
-   "negozi": [
-    "Denner",
-    "Migros"
-   ]
+   "q": "riferimento"
   },
   "cannella": {
    "q": "riferimento"
@@ -2148,7 +2330,7 @@
   },
   "gelato": {
    "q": "verificato",
-   "n": 6,
+   "n": 12,
    "data": "2025-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -2174,14 +2356,7 @@
    "q": "riferimento"
   },
   "baguette": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2025-11-11",
-   "fonte": "off-prices",
-   "negozi": [
-    "La Maladière centre",
-    "Coop"
-   ]
+   "q": "riferimento"
   },
   "brioche": {
    "q": "riferimento"
@@ -2268,14 +2443,7 @@
    "q": "riferimento"
   },
   "birra": {
-   "q": "verificato",
-   "n": 5,
-   "data": "2026-08-17",
-   "fonte": "off-prices",
-   "negozi": [
-    "Laufen Bahnhof",
-    "La Maladière centre"
-   ]
+   "q": "riferimento"
   },
   "bitter": {
    "q": "riferimento"
@@ -2287,11 +2455,103 @@
    "q": "riferimento"
   }
  },
+ "prezziRiv": {
+  "latte": {
+   "migros": 1.95,
+   "coop": 2.05
+  },
+  "yogurtnat": {
+   "migros": 3.65,
+   "coop": 2.2,
+   "aldi": 1.8
+  },
+  "pettopollo": {
+   "coop": 23.85
+  },
+  "biscotti": {
+   "migros": 7.25
+  },
+  "tonno": {
+   "coop": 8.15
+  },
+  "olio": {
+   "lidlch": 10
+  },
+  "pane": {
+   "coop": 4.25
+  },
+  "frutta_secca_snack": {
+   "migros": 9.1
+  },
+  "pomodori": {
+   "migros": 4.5,
+   "coop": 5,
+   "aldi": 4.75
+  },
+  "tofu": {
+   "coop": 3.65
+  },
+  "baguette": {
+   "coop": 1.2
+  },
+  "burrata": {
+   "migros": 1.85
+  },
+  "mele": {
+   "coop": 4.2
+  },
+  "olive": {
+   "coop": 3.75
+  },
+  "muesli": {
+   "migros": 5.5
+  },
+  "avocado": {
+   "coop": 2.1
+  },
+  "mozzarella": {
+   "coop": 0.85,
+   "migros": 0.85,
+   "denner": 0.85
+  },
+  "caffe": {
+   "migros": 6.5
+  },
+  "burro": {
+   "migros": 5.15
+  },
+  "dessertcucchiaio": {
+   "migros": 3.95
+  },
+  "gelato": {
+   "migros": 5.5
+  },
+  "zucchero": {
+   "migros": 2.3
+  },
+  "farina": {
+   "migros": 7,
+   "coop": 3.2
+  },
+  "pesto": {
+   "migros": 4.4
+  },
+  "cioccolato": {
+   "migros": 0.55
+  },
+  "farinabona": {
+   "lidlch": 3.75
+  }
+ },
  "indici": {},
  "indiciOsservati": {
-  "carrefour": {
-   "k": 0.94,
+  "lidlch": {
+   "k": 0.66,
    "n": 7
+  },
+  "carrefour": {
+   "k": 1.09,
+   "n": 12
   }
  },
  "promo": {},
@@ -2305,19 +2565,19 @@
   },
   "it": {
    "benzina": 1.999,
-   "diesel": 2.099,
+   "diesel": 2.119,
    "fonte": "MIMIT",
    "data": "2026-08-20",
    "zona": "Como, Varese, Lecco, Sondrio",
-   "campione": 1116,
+   "campione": 1115,
    "confronto": {
     "lombardia": {
      "benzina": 1.999,
-     "diesel": 2.109
+     "diesel": 2.119
     },
     "italia": {
      "benzina": 1.999,
-     "diesel": 2.109
+     "diesel": 2.119
     }
    }
   }
@@ -2384,7 +2644,7 @@
    "nome": "Aktionis — volantini CH",
    "tipo": "html",
    "zona": "CH",
-   "url": "https://www.aktionis.ch/it/",
+   "url": "https://www.aktionis.ch/",
    "auto": false
   },
   {
@@ -2408,7 +2668,7 @@
    "nome": "Lidl Italia — volantino",
    "tipo": "manuale",
    "zona": "IT",
-   "url": "https://www.lidl.it/c/it-IT/volantino/s10018048",
+   "url": "https://www.lidl.it/c/volantino-lidl/s10018048",
    "auto": false
   },
   {
@@ -2442,14 +2702,28 @@
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 807
+    "osservazioni": 813
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 2185
+    "osservazioni": 3975
    }
   ],
-  "cambioEUR": 0.9402
+  "cambioEUR": 0.9333,
+  "copertura": {
+   "Migros": 358,
+   "Coop": 148,
+   "Coop Maladière": 41,
+   "Lidl": 41,
+   "La Maladière centre": 35,
+   "Métropole Centre": 33,
+   "Denner": 31,
+   "Aldi Suisse": 23,
+   "Migros Serrières": 21,
+   "Coop City": 7,
+   "Manor": 7,
+   "Aldi": 5
+  }
  }
 }

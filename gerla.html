@@ -25,6 +25,7 @@
   --rosso:#e4644a;
   --verde:#4fbf8b;
   --r:18px;
+  --ombra-c:#000;
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --disp:'Instrument Serif',Georgia,serif;
   --body:'Manrope',system-ui,-apple-system,sans-serif;
@@ -61,12 +62,14 @@ header.top::after{
   opacity:.75;
 }
 .brand{display:flex;align-items:center;gap:14px;flex-wrap:nowrap;justify-content:center}
-.mark{width:52px;height:52px;flex:none;filter:drop-shadow(0 4px 14px rgba(224,180,90,.28))}
+.mark{width:62px;height:62px;flex:none;filter:drop-shadow(0 6px 18px rgba(224,180,90,.32))}
 .brand h1{font-family:var(--disp);font-size:clamp(42px,5.4vw,66px);font-weight:400;letter-spacing:-.005em;color:var(--testo);line-height:.95}
 .brand h1 em{font-style:italic;color:var(--oro)}
 .tick{font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--testo-3);display:block;margin-top:14px}
 .tick b{color:var(--oro);font-weight:600;font-size:12px}
-.claim{max-width:62ch;color:var(--testo-2);margin:16px auto 0;font-size:16px;line-height:1.6;text-align:center;font-weight:400}
+.claim{max-width:none;color:var(--testo-2);margin:16px auto 0;font-size:clamp(15px,2.1vw,22px);
+  line-height:1.3;text-align:center;font-weight:400;font-family:var(--disp);letter-spacing:.005em;white-space:nowrap}
+@media(max-width:520px){ .claim{white-space:normal;font-size:16px;max-width:34ch} }
 .hero-stats{display:flex;gap:0;flex-wrap:wrap;margin:24px 0 0;border-top:1px solid var(--linea);padding-top:16px}
 .hero-stats div{padding-right:34px;margin-right:34px;border-right:1px solid var(--linea);font-family:var(--mono);font-size:10.5px;color:var(--testo-3);letter-spacing:.1em;text-transform:uppercase}
 .hero-stats div:last-child{border-right:0}
@@ -74,8 +77,10 @@ header.top::after{
 @media(max-width:640px){.hero-stats div{padding-right:18px;margin-right:18px;margin-bottom:10px}}
 
 main{padding:26px 0 60px}
-.grid-setup{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;align-items:start}
-@media(max-width:900px){.grid-setup{grid-template-columns:1fr}}
+.grid-setup{column-width:350px;column-gap:18px;column-fill:balance;orphans:1;widows:1}
+.grid-setup > div{display:contents}
+.grid-setup .card{break-inside:avoid;display:inline-block;width:100%;vertical-align:top}
+@media(max-width:900px){.grid-setup{column-width:auto;column-count:1}}
 
 /* ---------- schede ---------- */
 .card{
@@ -94,16 +99,23 @@ label.f{display:block;font-size:11.5px;font-weight:500;color:var(--testo-2);marg
 
 /* ---------- controlli ---------- */
 input[type=text],input[type=number],input[type=date],input[type=url],select,textarea{
-  width:100%;padding:9px 11px;border:1px solid var(--linea-2);border-radius:9px;
+  width:100%;min-width:0;max-width:100%;padding:9px 11px;border:1px solid var(--linea-2);border-radius:9px;
   background:#0a1220;color:var(--testo);
 }
 input:hover,select:hover{border-color:#3d5a92}
-select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--oro) 50%),linear-gradient(135deg,var(--oro) 50%,transparent 50%);
+select{text-overflow:ellipsis;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--oro) 50%),linear-gradient(135deg,var(--oro) 50%,transparent 50%);
   background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:32px}
 input[type=range]{accent-color:var(--oro);padding:0;background:none;border:0}
 input[type=checkbox]{accent-color:var(--oro);width:auto}
-.persona{display:grid;grid-template-columns:1fr 160px 145px 36px;gap:8px;margin-bottom:8px;align-items:center}
-@media(max-width:560px){.persona{grid-template-columns:1fr 1fr;padding-bottom:10px;margin-bottom:10px;border-bottom:1px dashed var(--linea)}.persona .del{grid-column:2;justify-self:end}}
+
+
+/* due righe per persona: nome sopra, età e attività sotto.
+   Regge da 240 px in su senza andare a capo in modo imprevisto. */
+.persona{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center;
+  padding-bottom:12px;margin-bottom:12px;border-bottom:1px dashed rgba(32,53,92,.7)}
+.persona:last-of-type{border-bottom:0;margin-bottom:10px}
+.persona > input[type=text]{grid-column:1/-1}
+.persona > .del{width:38px}
 .del{border:1px solid var(--linea-2);background:#0a1220;border-radius:9px;height:38px;cursor:pointer;color:var(--rosso);font-size:15px;line-height:1}
 .del:hover{background:#2a1410;border-color:var(--rosso)}
 .btn{
@@ -118,11 +130,14 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
   background:linear-gradient(180deg,var(--oro-l),var(--oro));border-color:var(--oro-l);color:#201806;font-weight:600;
   box-shadow:0 8px 22px -10px rgba(224,180,90,.75);
 }
+.bordo-oro{border-color:var(--oro-d);color:var(--oro-l)}
+.bordo-oro:hover{border-color:var(--oro);background:rgba(224,180,90,.12)}
 .btn.oro:hover{background:linear-gradient(180deg,#fbe0a6,#e2b658)}
 .btn.sm{padding:7px 12px;font-size:13px}
+.btn>i{font-style:normal;display:inline-block}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.due{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:420px){.due{grid-template-columns:1fr}}
+.due{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}
+
 
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{
@@ -143,7 +158,7 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
   background:linear-gradient(180deg,rgba(216,169,74,.10),rgba(10,16,25,.6));
   border:1px solid var(--oro-d);border-radius:var(--r);padding:14px 16px;margin-bottom:20px;
 }
-.action-bar .grow{flex:1;min-width:200px;font-size:13px;color:var(--testo-2)}
+.action-bar .grow{flex:1;min-width:200px;font-size:13px;color:var(--testo-2);text-align:center}
 
 /* ---------- schede a tab ---------- */
 .tabs{display:flex;gap:4px;justify-content:center;border-bottom:1px solid var(--linea);margin-bottom:22px;overflow-x:auto}
@@ -281,7 +296,88 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .setup[open] .sc::after{content:"chiudi"}
 .setup[open] .grid-setup{border:1px solid var(--oro-d);border-top:0;border-radius:0 0 var(--r) var(--r);padding:18px;background:rgba(6,10,19,.35)}
 .setup[open] .grid-setup .card:last-child{margin-bottom:0}
-@media(min-width:1320px){ .setup[open] .grid-setup{grid-template-columns:1fr 1fr 1fr} }
+
+
+
+
+/* ---------- modalità giorno ---------- */
+html[data-tema="giorno"]{
+  --nero:#f6f4ee; --nero-2:#efece3;
+  --blu-p:#e7e9ef; --blu:#dde2ec;
+  --linea:#d5d8dd; --linea-2:#b9c0cc;
+  --oro:#9a7526; --oro-l:#7c5d18; --oro-d:#c9a24a;
+  --azzurro:#1e5fbf;
+  --testo:#171c25; --testo-2:#4a5566; --testo-3:#6d7889;
+  --rosso:#b03a22; --verde:#1e7a52;
+  --ombra:0 1px 0 rgba(255,255,255,.5) inset, 0 12px 26px -20px #5a6070;
+}
+html[data-tema="giorno"] body{
+  background:
+    radial-gradient(1100px 620px at 80% -10%, #e9edf6 0%, transparent 60%),
+    radial-gradient(800px 500px at 0% 8%, #f0eee6 0%, transparent 55%),
+    var(--nero);
+}
+html[data-tema="giorno"] .card,
+html[data-tema="giorno"] .giorno,
+html[data-tema="giorno"] .kpi > div,
+html[data-tema="giorno"] .hero-stats .hs,
+html[data-tema="giorno"] .setup-h,
+html[data-tema="giorno"] .fonte,
+html[data-tema="giorno"] .cap{background:linear-gradient(180deg,#ffffff,#fbfaf7)}
+html[data-tema="giorno"] input,html[data-tema="giorno"] select,html[data-tema="giorno"] textarea,
+html[data-tema="giorno"] .chip,html[data-tema="giorno"] .lng{background:#fff}
+html[data-tema="giorno"] .btn{background:linear-gradient(180deg,#fff,#f1efe9);color:var(--testo)}
+html[data-tema="giorno"] .btn:hover{background:#fff;border-color:var(--oro-l)}
+html[data-tema="giorno"] .btn.oro{background:linear-gradient(180deg,#f0c76e,#d7a63f);color:#221805;border-color:#d7a63f}
+html[data-tema="giorno"] .scontrino{background:linear-gradient(180deg,#fffdf7,#fbf8ef)}
+html[data-tema="giorno"] .scontrino::after{background:radial-gradient(circle at 6px 9px, transparent 6px, #fbf8ef 6.5px) repeat-x;background-size:12px 9px}
+html[data-tema="giorno"] th{background:#f1efe9}
+html[data-tema="giorno"] .spesa-mode{background:var(--nero)}
+html[data-tema="giorno"] .sm-r{background:#fff}
+html[data-tema="giorno"] .bar{background:#e6e3db}
+html[data-tema="giorno"] .tabs{background:rgba(246,244,238,.97)}
+html[data-tema="giorno"] .modal,html[data-tema="giorno"] .overlay{background:#fff}
+html[data-tema="giorno"] .overlay{background:rgba(30,32,38,.4)}
+html[data-tema="giorno"] .chip[aria-pressed=true]{background:linear-gradient(180deg,#f7e6bd,#f0d99e);color:#4a3505;border-color:#c9a24a}
+html[data-tema="giorno"] .tagpill.oro{background:#f6e7c4;color:#6a4f11}
+html[data-tema="giorno"] .mark{filter:none}
+html[data-tema="giorno"] .flyer a,html[data-tema="giorno"] .fonte,html[data-tema="giorno"] .swaplist button,
+html[data-tema="giorno"] .banner,html[data-tema="giorno"] .banner.ok{background:#fff;color:var(--testo)}
+html[data-tema="giorno"] .flyer a[style*="opacity"]{opacity:.75!important}
+html[data-tema="giorno"] .banner{border-color:var(--oro-d);background:linear-gradient(180deg,#fdf3dd,#fffdf8)}
+html[data-tema="giorno"] .flyer a:hover{background:#fdf6e7}
+html[data-tema="giorno"] .del{background:#fff;color:var(--rosso)}
+html[data-tema="giorno"] .del:hover{background:#fdeae5}
+html[data-tema="giorno"] .mi,html[data-tema="giorno"] .swap,html[data-tema="giorno"] .lockbtn{background:#fff}
+html[data-tema="giorno"] .giorno-h{background:rgba(201,162,74,.09)}
+html[data-tema="giorno"] .action-bar{background:linear-gradient(180deg,#fdf6e6,#fffdf9)}
+html[data-tema="giorno"] .sm-top,html[data-tema="giorno"] .sm-foot{background:#fff}
+html[data-tema="giorno"] .sm-foot{background:linear-gradient(180deg,rgba(246,244,238,0),var(--nero) 35%)}
+html[data-tema="giorno"] .sm-r.preso{opacity:.5}
+html[data-tema="giorno"] ::selection{background:var(--oro);color:#fff}
+
+/* ---------- barre di scorrimento discrete ---------- */
+*{scrollbar-width:thin;scrollbar-color:var(--linea-2) transparent}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--linea-2);border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:var(--oro-d)}
+.swaplist,.sm-body,.modal,.tblwrap,.tabs,.chips{scrollbar-width:thin}
+.swaplist::-webkit-scrollbar,.modal::-webkit-scrollbar{width:6px}
+.tabs::-webkit-scrollbar,.chips::-webkit-scrollbar,.weekbar::-webkit-scrollbar{height:0}
+
+/* ---------- scelta della lingua ---------- */
+.lingue{display:flex;gap:4px;justify-content:center;margin-top:16px}
+.lng{border:1px solid var(--linea);background:rgba(13,24,48,.5);color:var(--testo-3);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:5px 10px;border-radius:8px;cursor:pointer}
+.lng:hover{border-color:var(--linea-2);color:var(--testo)}
+.lng.on{background:linear-gradient(180deg,rgba(224,180,90,.22),rgba(224,180,90,.08));border-color:var(--oro);color:var(--oro-l)}
+
+
+.barra-alto{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:16px;flex-wrap:wrap}
+.lingue{margin-top:0}
+.lng.tema{display:inline-flex;align-items:center;gap:6px;padding:5px 12px}
+.lng.tema:hover{color:var(--oro-l);border-color:var(--oro-d)}
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
@@ -324,26 +420,43 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .sm-foot .btn{flex:1}
 /* ---------- navigazione in basso su telefono ---------- */
 @media(max-width:760px){
+  /* lo spazio sotto è calcolato sull'altezza reale della barra, misurata a ogni ridisegno:
+     così nessuna scheda finisce mai sotto la navigazione, su qualunque telefono */
+  body{padding-bottom:calc(var(--nav,108px) + 34px)}
+  footer{padding-bottom:12px}
   body{background:
     linear-gradient(180deg,#16294d 0%,#0a1526 340px,var(--nero) 760px),var(--nero);
     background-attachment:scroll}
   .wrap{padding:0 14px}
-  header.top{padding:22px 0 22px}
+  header.top{padding:18px 0 16px}
+  .brand{gap:10px}
+  .mark{width:40px;height:40px}
+  .brand h1{font-size:36px}
+  .tick{font-size:7.6px;letter-spacing:.12em;margin-top:9px;white-space:nowrap}
+  .tick b{font-size:9px}
+  .claim{font-size:16px;margin-top:12px;max-width:32ch}
+  .hero-stats{gap:7px;margin-top:16px}
+  .hero-stats .hs{padding:11px 8px 10px}
+  .hero-stats b{font-size:25px}
+  .hero-stats span:not(.hi){font-size:8px;letter-spacing:.08em;min-height:20px}
+  .lingue{margin-top:12px}
+  .statusbar{gap:10px;margin-top:12px;font-size:9.5px}
+  .statusbar .linkbtn{font-size:9.5px}
   .card{padding:15px 14px 17px}
   .giorni{grid-template-columns:1fr}
   .listagrid{grid-template-columns:1fr}
   .kpi{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  .due{grid-template-columns:1fr}
-  .action-bar{flex-wrap:nowrap;overflow-x:auto;gap:8px;padding:10px 12px;scrollbar-width:none}
-  .action-bar::-webkit-scrollbar{display:none}
-  .action-bar .grow{display:none}
-  .action-bar .btn{flex:0 0 auto}
+  .action-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+  .action-bar .btn{width:100%;justify-content:center;text-align:center;padding:12px 8px;font-size:13.5px}
+  .action-bar #genera{grid-column:1/-1;font-size:15px;padding:14px}
+  .action-bar #vaiSpesa,.action-bar #esporta{grid-column:1/-1}
+  .action-bar .grow{grid-column:1/-1;order:9;font-size:12.5px;text-align:center;min-width:0;
+    padding-top:4px;border-top:1px solid rgba(32,53,92,.6)}
   .chips{flex-wrap:wrap;gap:6px}
   .chip{padding:9px 13px;font-size:13px}
   .chip .zona{display:none}
   .weekbar{flex-wrap:wrap}
   input,select{font-size:16px;padding:11px 12px}
-  .persona{grid-template-columns:1fr}
   .tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(5,8,15,.97);backdrop-filter:blur(12px);
     border-top:1px solid var(--linea);border-bottom:0;margin:0;overflow:visible;
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
@@ -357,7 +470,7 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
   .tab .lg{display:none}
   .tab .sm{display:inline}
   .tab .pin{top:4px;right:12px}
-  main{padding-bottom:132px}
+  main{padding-bottom:26px}
   .tab[aria-selected=true]{border-bottom-color:transparent;border-top-color:var(--oro)}
   .action-bar{position:sticky;top:8px;z-index:30}
 }
@@ -395,6 +508,11 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 tr:hover td{background:rgba(91,155,255,.05)}
 td input{width:88px;padding:5px 8px;text-align:right;font-family:var(--mono)}
 td input.data{width:130px;text-align:left}
+
+tr.sep td{background:linear-gradient(90deg,rgba(224,180,90,.13),transparent);font-family:var(--mono);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);padding:9px 11px;border-bottom:1px solid var(--linea)}
+tr.sep td .q{color:var(--testo-3);letter-spacing:.06em}
+tr.sep:hover td{background:linear-gradient(90deg,rgba(224,180,90,.16),transparent)}
 .searchbox{margin-bottom:12px}
 
 /* ---------- volantini ---------- */
@@ -432,15 +550,18 @@ td input.data{width:130px;text-align:left}
 footer{border-top:1px solid var(--linea);padding:24px 0 44px;font-size:11.5px;color:var(--testo-3);line-height:1.6}
 
 
+/* ---------- niente traboccamenti, per costruzione ---------- */
+.card *,.kpi *,.giorno *{max-width:100%}
+.card{overflow:hidden}
+.row > *{min-width:0}
+.row{max-width:100%}
 /* ---------- niente scorrimento laterale ---------- */
 html,body{max-width:100%;overflow-x:hidden}
 .grid-setup > div, .card, .due > div, .panel, main, .wrap{min-width:0}
 .chips{max-width:100%}
 .kpi > div, .giorno, .scontrino, .fonte{min-width:0}
 @media(max-width:760px){
-  .persona{grid-template-columns:1fr !important}
-  .persona .del{width:100%;grid-column:1}
-  .budget-box{grid-template-columns:1fr}
+
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .brand h1{font-size:40px}
   .sm-r{grid-template-columns:30px 22px 1fr auto;padding:15px 11px}
@@ -465,31 +586,46 @@ html,body{max-width:100%;overflow-x:hidden}
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <svg class="mark" viewBox="0 0 52 52" aria-hidden="true">
+      <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Gerla">
         <defs>
           <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f7e0ab"/><stop offset=".5" stop-color="#d8a94a"/><stop offset="1" stop-color="#9a7326"/>
+            <stop offset="0" stop-color="#fbe9bb"/><stop offset=".45" stop-color="#e0b45a"/><stop offset="1" stop-color="#8f6d22"/>
           </linearGradient>
+          <linearGradient id="oro2" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#8f6d22"/><stop offset="1" stop-color="#f7dda0"/>
+          </linearGradient>
+          <clipPath id="cesta"><path d="M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z"/></clipPath>
         </defs>
-        <g fill="none" stroke="url(#oro)" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M13 19h26l-3.2 21.5a3.4 3.4 0 0 1-3.4 2.9H19.6a3.4 3.4 0 0 1-3.4-2.9Z" stroke-width="1.6"/>
-          <path d="M15.6 26.5h20.8M14.9 33h22.2M17.6 19v22M26 19v24.4M34.4 19v22" stroke-width=".9" opacity=".75"/>
-          <path d="M11 19h30" stroke-width="2.1"/>
-          <path d="M19 19c0-6.2 3.1-9.6 7-9.6s7 3.4 7 9.6" stroke-width="1.5"/>
-          <path d="M26 9.4V4.6M26 4.6c-2.6 0-4.3 1.3-4.9 3.1 2.4.5 4 .1 4.9-3.1Zm0 0c2.6 0 4.3 1.3 4.9 3.1-2.4.5-4 .1-4.9-3.1Z" stroke-width="1.2"/>
+        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#oro2)" stroke-width="1" opacity=".45"/>
+        <g clip-path="url(#cesta)">
+          <rect x="14" y="24" width="36" height="30" fill="url(#oro)" opacity=".14"/>
+          <g stroke="url(#oro)" stroke-width="1.1" opacity=".85">
+            <path d="M14 30h36M14 36h36M14 42h36M14 48h36"/>
+            <path d="M21 24v30M27 24v30M32 24v30M37 24v30M43 24v30" opacity=".5"/>
+          </g>
         </g>
+        <path d="M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z" fill="none" stroke="url(#oro)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M13.5 25h37" stroke="url(#oro)" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M23 25c0-7.4 4-11.5 9-11.5s9 4.1 9 11.5" fill="none" stroke="url(#oro)" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M32 13.5V7" stroke="url(#oro)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M32 7c-2.6-.4-4.4.8-5.2 3.2 2.6.6 4.4-.4 5.2-3.2Zm0 0c2.6-.4 4.4.8 5.2 3.2-2.6.6-4.4-.4-5.2-3.2Z" fill="url(#oro)" opacity=".9"/>
+        <path d="M24 20.5c1.6-2 4.6-3 8-3s6.4 1 8 3" fill="none" stroke="url(#oro)" stroke-width=".9" opacity=".55"/>
       </svg>
       <h1>Gerla</h1>
     </div>
     <div class="tick"><b>G</b>estione <b>E</b>fficiente di <b>R</b>icette, <b>L</b>iste e <b>A</b>cquisti</div>
-    <p class="claim">Una gerla si riempie di quello che serve e si porta in spalla fino a casa: qui &egrave; lo stesso. Dici chi si siede a tavola e quanto vuoi spendere, e ti ritrovi i menu della settimana, le cene con gli amici, le quantit&agrave; giuste e la lista che si spunta in corsia &mdash; con i prezzi veri delle insegne del Ticino e della Lombardia.</p>
+    <p class="claim" data-i18n="claim">Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.</p>
     <div class="hero-stats">
       <div class="hs"><b id="hs-prod">0</b><span>prodotti a listino</span></div>
       <div class="hs"><b id="hs-piatti">0</b><span>ricette e portate</span></div>
       <div class="hs"><b id="hs-combo">0</b><span>menu combinabili</span></div>
-      <div class="hs"><b id="hs-riv">0</b><span>insegne</span></div>
+      <div class="hs"><b id="hs-riv">0</b><span>negozi</span></div>
       <div class="hs"><b id="hs-mese">&mdash;</b><span>stagione</span></div>
       <div class="hs"><b id="hs-agg">&mdash;</b><span>listino</span></div>
+    </div>
+    <div class="barra-alto">
+      <div id="lingue" class="lingue"></div>
+      <button class="lng tema" id="btnTema" title="Modalità giorno e notte"><span id="temaIc">☾</span> <span id="temaTxt">Notte</span></button>
     </div>
     <div class="statusbar">
       <span id="memoria">memoria attiva</span>
@@ -507,7 +643,6 @@ html,body{max-width:100%;overflow-x:hidden}
       <span class="sc">apri e chiudi</span>
     </summary>
   <div class="grid-setup">
-    <div>
       <section class="card noprint">
         <h2>Chi mangia</h2>
         <div id="persone"></div>
@@ -516,38 +651,6 @@ html,body{max-width:100%;overflow-x:hidden}
           <span class="hint" style="margin:0">Le porzioni si adattano a età e attività.</span>
         </div>
       </section>
-
-      <section class="card noprint">
-        <h2>Dove fai la spesa</h2>
-        <div class="chips" id="rivenditori"></div>
-        <p class="hint">Per ogni prodotto scelgo automaticamente il rivenditore più conveniente tra quelli selezionati. I prezzi italiani sono indicativi e convertiti in CHF.</p>
-      </section>
-
-      <section class="card noprint">
-        <h2>Come vuoi mangiare</h2>
-        <div class="chips" id="prefs"></div>
-        <div style="margin-top:16px" class="budget-box">
-          <div>
-            <label class="f" for="veggDays">Giorni senza carne né pesce</label>
-            <input type="range" id="veggDays" min="0" max="7" value="2">
-            <div class="hint" id="veggLab">2 giorni a settimana</div>
-          </div>
-          <div>
-            <label class="f" for="prio">Priorità nella scelta dei piatti</label>
-            <select id="prio">
-              <option value="equilibrio">Equilibrio (consigliato)</option>
-              <option value="risparmio">Spesa minima</option>
-              <option value="salute">Più salute e verdura</option>
-              <option value="stagione">Massima stagionalità</option>
-              <option value="bimbi">Gusti dei bambini</option>
-            </select>
-            <div class="hint">Cambia il peso dato a costo, salute, stagione e gradimento.</div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div>
       <section class="card noprint">
         <h2>Pasti da pianificare</h2>
         <div class="chips" id="pastiChips"></div>
@@ -589,6 +692,11 @@ html,body{max-width:100%;overflow-x:hidden}
           <input type="checkbox" id="avanzi" style="margin-top:2px">
           <span>Cucina una volta, mangia due: il pranzo riprende la cena della sera prima</span>
         </label>
+      </section>
+      <section class="card noprint">
+        <h2>Dove fai la spesa</h2>
+        <div class="chips" id="rivenditori"></div>
+        <p class="hint">Per ogni prodotto scelgo automaticamente il rivenditore più conveniente tra quelli selezionati. I prezzi italiani sono indicativi e convertiti in CHF.</p>
       </section>
       <section class="card noprint">
         <h2>Budget e periodo</h2>
@@ -637,7 +745,7 @@ html,body{max-width:100%;overflow-x:hidden}
           <label class="f" for="seed">Seme del caso <span style="font-weight:400">(stesso numero = stesso menu)</span></label>
           <div class="row">
             <input type="number" id="seed" value="7" style="max-width:120px">
-            <button class="btn ghost sm" id="dado">🎲 Caso nuovo</button>
+            <button class="btn ghost sm" id="dado"><i aria-hidden="true">🎲</i> <span>Caso nuovo</span></button>
           </div>
         </div>
         <div style="margin-top:14px">
@@ -645,31 +753,37 @@ html,body{max-width:100%;overflow-x:hidden}
           <label class="f" style="margin-top:6px"><input type="checkbox" id="scorte" checked style="width:auto;margin-right:6px">Includi scorte di dispensa (olio, sale, caffè…)</label>
         </div>
       </section>
-
       <section class="card noprint">
-        <h2>Conviene andare in Italia?</h2>
-        <div class="due">
-          <div><label class="f" for="vg_km">Chilometri all'andata</label><input type="number" id="vg_km" value="18"></div>
-          <div><label class="f" for="vg_min">Minuti totali, coda compresa</label><input type="number" id="vg_min" value="70"></div>
+        <h2>Come vuoi mangiare</h2>
+        <div class="chips" id="prefs"></div>
+        <div style="margin-top:16px" class="budget-box">
+          <div>
+            <label class="f" for="veggDays">Giorni senza carne né pesce</label>
+            <input type="range" id="veggDays" min="0" max="7" value="2">
+            <div class="hint" id="veggLab">2 giorni a settimana</div>
+          </div>
+          <div>
+            <label class="f" for="prio">Priorità nella scelta dei piatti</label>
+            <select id="prio">
+              <option value="equilibrio">Equilibrio (consigliato)</option>
+              <option value="risparmio">Spesa minima</option>
+              <option value="salute">Più salute e verdura</option>
+              <option value="stagione">Massima stagionalità</option>
+              <option value="bimbi">Gusti dei bambini</option>
+            </select>
+            <div class="hint">Cambia il peso dato a costo, salute, stagione e gradimento.</div>
+          </div>
         </div>
-        <div class="due" style="margin-top:10px">
-          <div><label class="f" for="vg_carb">Alimentazione</label>
-            <select id="vg_carb"><option value="diesel">Diesel</option><option value="benzina">Benzina 95</option><option value="elettrico">Elettrico</option></select></div>
-          <div><label class="f" for="vg_cons">Consumo per 100 km</label><input type="number" id="vg_cons" step="0.1" value="6.5"></div>
-          <div><label class="f" for="vg_ora">Quanto vale un'ora del tuo tempo</label><input type="number" id="vg_ora" value="20"></div>
-        </div>
-        <div id="viaggioBox" style="margin-top:16px"></div>
       </section>
-    </div>
   </div>
   </details>
 
   <div class="action-bar noprint">
-    <button class="btn giallo" id="genera">Crea il piano</button>
+    <button class="btn oro" id="genera">Crea il piano</button>
     <button class="btn ghost sm" id="rigenera">Rimescola</button>
     <button class="btn ghost sm" id="fitBudget">Fai stare nel budget</button>
     <span class="grow" id="statoGen">Imposta le persone e premi <b>Crea il piano</b>.</span>
-    <button class="btn oro sm" id="vaiSpesa">🛒 Modalità spesa</button>
+    <button class="btn sm bordo-oro" id="vaiSpesa"><i aria-hidden="true">🛒</i> <span>Modalità spesa</span></button>
     <button class="btn ghost sm" id="esporta">Esporta / stampa</button>
   </div>
 
@@ -701,8 +815,8 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="chips" id="occChips" style="margin-bottom:12px"></div>
       <div class="chips" id="livChips"></div>
       <div class="row" style="margin-top:16px">
-        <button class="btn oro sm" id="dadoEv">🎲 Tira il dado</button>
-        <button class="btn sm" id="consigliaEv">✦ Proposta consigliata</button>
+        <button class="btn oro sm" id="dadoEv"><i aria-hidden="true">🎲</i> <span>Tira il dado</span></button>
+        <button class="btn sm" id="consigliaEv"><i aria-hidden="true">✦</i> <span>Proposta consigliata</span></button>
         <button class="btn sm" id="puliciEv">Solo le proposte della casa</button>
       </div>
       <div class="due" style="margin-top:16px;max-width:520px">
@@ -740,6 +854,20 @@ html,body{max-width:100%;overflow-x:hidden}
   </section>
 
   <section class="panel" id="p-analisi" hidden>
+    <div class="card noprint" style="max-width:780px;margin:0 auto 18px">
+        <h2>Conviene andare in Italia?</h2>
+        <div class="due">
+          <div><label class="f" for="vg_km">Chilometri all'andata</label><input type="number" id="vg_km" value="18"></div>
+          <div><label class="f" for="vg_min">Minuti totali, coda compresa</label><input type="number" id="vg_min" value="70"></div>
+        </div>
+        <div class="due" style="margin-top:10px">
+          <div><label class="f" for="vg_carb">Alimentazione</label>
+            <select id="vg_carb"><option value="diesel">Diesel</option><option value="benzina">Benzina 95</option><option value="elettrico">Elettrico</option></select></div>
+          <div><label class="f" for="vg_cons">Consumo per 100 km</label><input type="number" id="vg_cons" step="0.1" value="6.5"></div>
+          <div><label class="f" for="vg_ora">Quanto vale un'ora del tuo tempo</label><input type="number" id="vg_ora" value="20"></div>
+        </div>
+        <div id="viaggioBox" style="margin-top:16px"></div>
+      </div>
     <div id="analisi"><div class="empty"><b>Ancora niente da analizzare</b>Crea il piano per vedere costi, nutrienti e risparmio.</div></div>
   </section>
 
@@ -798,22 +926,25 @@ html,body{max-width:100%;overflow-x:hidden}
         </div>
       </div>
     </div>
+    <div class="card" id="cardGiorni"></div>
     <div class="card" id="cardPromo"></div>
     <div class="card">
       <h2>Listino &mdash; prezzi e promozioni</h2>
-      <p class="hint" style="margin-top:0">Il prezzo di ogni prodotto viene deciso a tre livelli, dal pi&ugrave; affidabile al pi&ugrave; generico: <b>1.</b> una promozione in corso; <b>2.</b> il prezzo davvero rilevato in quella insegna, quando esiste; <b>3.</b> il prezzo base moltiplicato per l'indice dell'insegna. Il livello usato &egrave; scritto sotto il miglior prezzo, cos&igrave; sai sempre quanto fidarti.</p>
+      <p class="hint" style="margin-top:0">Il prezzo di ogni prodotto viene deciso a tre livelli, dal pi&ugrave; affidabile al pi&ugrave; generico: <b>1.</b> una promozione in corso; <b>2.</b> il prezzo davvero rilevato in quella negozio, quando esiste; <b>3.</b> il prezzo base moltiplicato per l'indice dell'negozio. Il livello usato &egrave; scritto sotto il miglior prezzo, cos&igrave; sai sempre quanto fidarti.</p>
+      <div class="chips" id="gruppiListino" style="margin-bottom:12px"></div>
       <div class="row" style="margin-bottom:12px">
         <input type="text" class="searchbox" id="cerca" placeholder="Cerca un prodotto o un reparto&hellip;" style="flex:1;margin:0;min-width:220px">
         <button class="btn sm" id="nuovoProd">+ Aggiungi un prodotto</button>
+        <span class="hint" id="contaListino" style="margin:0"></span>
       </div>
       <div class="tblwrap"><table id="tblProd"><thead><tr>
         <th>Prodotto</th><th>Reparto</th><th>Formato</th><th class="num">Prezzo base CHF</th><th class="num">In azione</th><th>Valida fino al</th><th class="num">Miglior prezzo</th><th>Alternativa</th><th>Stagione</th>
       </tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
-      <h2>Indice prezzi per insegna</h2>
+      <h2>Indice prezzi per negozio</h2>
       <p class="hint" style="margin-top:0">Moltiplicatore sul prezzo di riferimento, con correzioni per reparto. I confronti indipendenti (K-Tipp, RTS) collocano Lidl e Aldi sui prezzi pi&ugrave; bassi per i prodotti base, mentre Denner vince sulle scorte di caff&egrave;, cioccolato e bevande: gli indici seguono questo schema. Regolali sul tuo negozio.</p>
-      <div class="tblwrap"><table id="tblRiv"><thead><tr><th>Insegna</th><th>Zona</th><th class="num">Indice</th><th>Esempio: 1 kg pasta</th></tr></thead><tbody></tbody></table></div>
+      <div class="tblwrap"><table id="tblRiv"><thead><tr><th>Negozio</th><th>Zona</th><th class="num">Indice</th><th>Esempio: 1 kg pasta</th></tr></thead><tbody></tbody></table></div>
     </div>
   </section>
 
@@ -829,7 +960,8 @@ html,body{max-width:100%;overflow-x:hidden}
 </main>
 
 <footer class="wrap">
-  Banco di Casa — strumento personale di pianificazione. I prezzi sono stime indicative modificabili, non listini ufficiali: verifica sempre allo scaffale o sul sito del rivenditore. Nessun dato esce dal tuo dispositivo.
+  <b style="color:var(--oro-l);font-weight:500">Gerla</b> — ideata e diretta da <b style="color:var(--testo-2)">DD</b>, costruita insieme a Claude di Anthropic.<br>
+  Strumento personale di pianificazione. I prezzi sono stime indicative modificabili, non listini ufficiali: verifica sempre allo scaffale o sul sito del rivenditore. Nessun dato esce dal tuo dispositivo.
 </footer>
 
 <div class="overlay" id="overlay" hidden>
@@ -856,7 +988,7 @@ const FLYER = [
   {id:"eurospin", t:"Eurospin",       u:"https://www.eurospin.it/volantino/",                       n:"volantino settimanale"},
   {id:"manor",    t:"Manor Food",     u:"https://it.rabatt-kompass.ch/manor-offerte",               n:"volantino"},
   {id:"aligro",   t:"Aligro",         u:"https://www.aligro.ch/",                                   n:"offerte all'ingrosso"},
-  {id:"volg",     t:"Volg / Crai",    u:"https://www.volg.ch/it/",                                  n:"offerte di quartiere"},
+  {id:"volg",     t:"Volg / Crai",    u:"https://www.volg.ch/",                                  n:"offerte di quartiere"},
   {id:"conad",    t:"Conad",          u:"https://www.promoqui.it/volantino/conad",                  n:"volantino settimanale"},
   {id:"tigros",   t:"Tigros",         u:"https://www.promoqui.it/volantino/tigros",                 n:"volantino Varese"},
   {id:"iperal",   t:"Iperal",         u:"https://www.promoqui.it/volantino/iperal",                 n:"volantino Sondrio-Como"},
@@ -876,13 +1008,19 @@ const FONTI=[
   {id:"bce",n:"BCE — cambio EUR/CHF",t:"api",z:"—",u:"https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-chf.en.html",d:"Cambio ufficiale del giorno, usato per convertire i prezzi italiani."},
   {id:"mimit",n:"MIMIT — prezzi carburanti Italia",t:"csv",z:"IT",u:"https://www.mimit.gov.it/it/prezzo-medio-carburanti",d:"Prezzo di ogni distributore italiano, aggiornato ogni mattina. Serve al calcolo del viaggio."},
   {id:"tcs",n:"TCS — carburanti Svizzera",t:"manuale",z:"CH",u:"https://www.tcs.ch/it/camping-viaggi/informazioni-turistiche/utile-da-sapere/costi-di-viaggio-e-pedaggi/prezzi-carburante.php",d:"Media nazionale benzina 95/98 e diesel. Mappa delle stazioni su tcs.ch/benzina."},
-  {id:"rappn",n:"Rappn — confronto prezzi CH",t:"manuale",z:"CH",u:"https://rappn.ch/it/",d:"Confronta lo stesso prodotto tra le insegne svizzere."},
-  {id:"rabatt",n:"Rabatt Kompass",t:"html",z:"CH",u:"https://it.rabatt-kompass.ch/",d:"Archivio volantini di tutte le insegne svizzere."},
-  {id:"aktionis",n:"Aktionis",t:"html",z:"CH",u:"https://www.aktionis.ch/it/",d:"Volantini e azioni della settimana, ricerca per prodotto."},
+  {id:"rappn",n:"Rappn — confronto prezzi CH",t:"manuale",z:"CH",u:"https://rappn.ch/it/",d:"Confronta lo stesso prodotto tra le negozi svizzere."},
+  {id:"rabatt",n:"Rabatt Kompass",t:"html",z:"CH",u:"https://it.rabatt-kompass.ch/",d:"Archivio volantini di tutte le negozi svizzere."},
+  {id:"aktionis",n:"Aktionis",t:"html",z:"CH",u:"https://www.aktionis.ch/",d:"Volantini e azioni della settimana, ricerca per prodotto."},
   {id:"promoqui",n:"PromoQui",t:"html",z:"IT",u:"https://www.promoqui.it/",d:"Volantini italiani per catena e per città."},
   {id:"volantinofacile",n:"Volantino Facile",t:"html",z:"IT",u:"https://www.volantinofacile.it/",d:"Secondo archivio italiano, utile quando PromoQui non ha la catena."},
   {id:"bfs",n:"UST — indice dei prezzi al consumo",t:"api",z:"CH",u:"https://www.bfs.admin.ch/bfs/it/home/statistiche/prezzi/indice-nazionale-prezzi-consumo.html",d:"Serve a controllare se il tuo paniere sale più o meno dell'inflazione ufficiale."},
 ];
+/* giorno in cui esce il nuovo volantino: 1 = lunedì … 7 = domenica */
+const GIORNI_OFFERTE={
+  migros:2, coop:2, denner:2, aldi:4, lidlch:4, manor:2, volg:2, ottos:4, landi:4, prodega:4, migrolino:2, aligro:4,
+  esselunga:4, iper:4, lidlit:1, eurospin:1, conad:4, tigros:4, iperal:4, carrefour:4, bennet:4, pam:4, md:1,
+};
+const NOMI_GIORNI=["","lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"];
 const oggiISO = ()=> new Date().toISOString().slice(0,10);
 const giorniDa = d=> Math.max(0,Math.round((Date.now()-new Date(d+"T12:00:00").getTime())/86400000));
 
@@ -891,15 +1029,15 @@ const RIV = [
    kc:{Frutta:0.96,Verdura:0.96,Latticini:0.94,Colazione:0.97,Casa:1.03,Igiene:1.03,Bevande:1.05}},
   {id:"coop",     n:"Coop",          z:"CH", c:"#d4021d", k:1.04, url:q=>`https://www.coop.ch/it/search/?text=${q}`,
    kc:{Carne:0.95,Pesce:0.93,Latticini:0.98,Dispensa:1.05,Casa:1.02}},
-  {id:"denner",   n:"Denner",        z:"CH", c:"#b3121e", k:0.88, url:q=>`https://www.denner.ch/it/ricerca/?q=${q}`,
+  {id:"denner",   n:"Denner",        z:"CH", c:"#b3121e", k:0.88, url:()=>`https://www.denner.ch/it`,
    kc:{Bevande:0.80,Dispensa:0.90,Carboidrati:0.93,Frutta:1.10,Verdura:1.10,Carne:1.04,Igiene:1.05}},
   {id:"aldi",     n:"Aldi Suisse",   z:"CH", c:"#0b3b74", k:0.80, url:q=>`https://www.aldi-now.ch/it/search?q=${q}`,
    kc:{Frutta:0.93,Verdura:0.93,Casa:0.88,Igiene:0.90,Latticini:0.97,Pesce:1.06}},
   {id:"lidlch",   n:"Lidl Svizzera", z:"CH", c:"#0050aa", k:0.79, url:q=>`https://www.lidl.ch/q/it-CH/search?q=${q}`,
    kc:{Carboidrati:0.88,Colazione:0.88,Dispensa:0.93,Legumi:0.90,Carne:1.03,Frutta:1.02}},
-  {id:"esselunga",n:"Esselunga",     z:"IT", c:"#00519e", k:0.62, url:q=>`https://www.esselunga.it/it-it/spesa-online/ricerca?text=${q}`,
+  {id:"esselunga",n:"Esselunga",     z:"IT", c:"#00519e", k:0.62, url:()=>`https://www.esselunga.it/it-it/homepage.html`,
    kc:{Latticini:0.94,Carne:0.95,Pesce:0.95,Casa:1.06,Igiene:1.06}},
-  {id:"iper",     n:"Iper",          z:"IT", c:"#e2001a", k:0.63, url:q=>`https://www.ipersoas.it/ricerca?q=${q}`,
+  {id:"iper",     n:"Iper",          z:"IT", c:"#e2001a", k:0.63, url:()=>`https://www.iper.it/`,
    kc:{Frutta:0.92,Verdura:0.92,Carne:0.97,Casa:0.97}},
   {id:"lidlit",   n:"Lidl Italia",   z:"IT", c:"#0050aa", k:0.52, url:q=>`https://www.lidl.it/q/it-IT/search?q=${q}`,
    kc:{Carboidrati:0.90,Colazione:0.90,Casa:0.92,Frutta:1.05,Carne:1.04}},
@@ -909,9 +1047,9 @@ const RIV = [
    kc:{Pesce:0.92,Carne:0.95,Latticini:1.0,Dispensa:1.08,Casa:1.1}},
   {id:"aligro",   n:"Aligro",         z:"CH", c:"#e2001a", k:0.83, url:()=>`https://www.aligro.ch/`,
    kc:{Carne:0.86,Pesce:0.88,Bevande:0.85,Dispensa:0.90,Frutta:1.02,Igiene:1.05}},
-  {id:"volg",     n:"Volg / Crai",    z:"CH", c:"#c8102e", k:1.06, url:()=>`https://www.volg.ch/it/`,
+  {id:"volg",     n:"Volg / Crai",    z:"CH", c:"#c8102e", k:1.06, url:()=>`https://www.volg.ch/`,
    kc:{Frutta:1.0,Verdura:1.0,Carboidrati:1.05,Bevande:1.02}},
-  {id:"conad",    n:"Conad",          z:"IT", c:"#e30613", k:0.66, url:q=>`https://spesaonline.conad.it/ricerca?q=${q}`,
+  {id:"conad",    n:"Conad",          z:"IT", c:"#e30613", k:0.66, url:()=>`https://www.conad.it/`,
    kc:{Latticini:0.95,Carne:0.97,Casa:1.02}},
   {id:"tigros",   n:"Tigros",         z:"IT", c:"#f39200", k:0.64, url:()=>`https://www.tigros.it/`,
    kc:{Frutta:0.94,Verdura:0.94,Pesce:0.95,Carne:0.97}},
@@ -925,7 +1063,7 @@ const RIV = [
    kc:{Carne:0.84,Pesce:0.86,Carboidrati:0.85,Bevande:0.84,Frutta:0.95,Casa:0.90}},
   {id:"migrolino",n:"Migrolino",      z:"CH", c:"#f36f21", k:1.18, url:()=>`https://www.migrolino.ch/`,
    kc:{Bevande:1.1,Colazione:1.05,Verdura:1.2,Carne:1.2}},
-  {id:"carrefour",n:"Carrefour Italia",z:"IT", c:"#0050aa", k:0.66, url:q=>`https://www.carrefour.it/ricerca?q=${q}`,
+  {id:"carrefour",n:"Carrefour Italia",z:"IT", c:"#0050aa", k:0.66, url:()=>`https://www.carrefour.it/`,
    kc:{Latticini:0.96,Casa:0.98,Carne:0.98}},
   {id:"bennet",   n:"Bennet",         z:"IT", c:"#e30613", k:0.64, url:()=>`https://www.bennet.com/`,
    kc:{Frutta:0.94,Verdura:0.94,Carne:0.96}},
@@ -1069,6 +1207,57 @@ const RAW = [
 ["deodorante","Deodorante","Igiene",4.50,1,"pz","🧴",0,0,4,0,0,""],
 ["rasoi","Rasoi","Igiene",8.90,1,"pz","🪒",0,0,4,0,0,""],
 ["fazzoletti","Fazzoletti di carta","Igiene",2.50,1,"pz","🤧",0,0,4,0,0,""],
+["seppioline","Seppioline","Pesce",11.90,400,"g","🦑",80,16,5,0,0,"pesce,molluschi"],
+["orata","Orata","Pesce",13.90,600,"g","🐟",96,18,5,0,0,"pesce"],
+["gamberetti","Gamberetti sgusciati","Pesce",9.90,300,"g","🦐",85,20,5,0,0,"pesce,crostacei"],
+["salmone_surg","Filetti di salmone surgelati","Pesce",11.90,500,"g","🐟",208,20,5,0,0,"pesce"],
+["pollo_intero","Pollo intero","Carne",9.90,1200,"g","🍗",190,21,4,0,0,""],
+["fesa_tacchino","Fesa di tacchino a fette","Carne",4.50,150,"g","🦃",110,24,4,0,0,""],
+["salsiccia_pollo","Salsicce di pollo","Carne",6.90,400,"g","🌭",190,17,3,0,0,""],
+["manzo_stufato","Manzo per stufato","Carne",14.90,700,"g","🥩",200,21,3,0,0,""],
+["uova_bio","Uova biologiche 6 pz","Proteine",5.90,6,"pz","🥚",70,6.3,5,0,0,"uova"],
+["ricotta_vacca","Ricotta vaccina grande","Latticini",4.20,500,"g","🧀",146,11,4,0,0,"lattosio"],
+["yogurt_grande","Yogurt naturale 1 kg","Latticini",3.20,1000,"g","🥣",61,3.5,5,0,0,"lattosio"],
+["latte_intero_uht","Latte UHT 6×1 L","Latticini",9.60,6000,"ml","🥛",64,3.3,4,0,0,"lattosio"],
+["mozzarella_grande","Mozzarella 3×125 g","Latticini",4.50,375,"g","🧀",253,18,4,0,0,"lattosio"],
+["grana_grattugiato","Grana grattugiato 200 g","Latticini",6.50,200,"g","🧀",392,33,4,0,0,"lattosio"],
+["insalata_iceberg","Iceberg","Verdura",2.50,400,"g","🥬",14,0.9,4,0,0,""],
+["misticanza","Misticanza","Verdura",3.50,200,"g","🥬",20,2,5,0,0,""],
+["pomodoro_ramo","Pomodori a grappolo","Verdura",5.50,1000,"g","🍅",18,0.9,5,1,[5,10],""],
+["zucchine_gialle","Zucchine gialle","Verdura",4.20,1000,"g","🥒",17,1.2,5,1,[5,9],""],
+["broccolo_romanesco","Broccolo romanesco","Verdura",4.20,700,"g","🥦",30,2.5,5,0,[10,3],""],
+["cime_rapa","Cime di rapa","Verdura",4.50,500,"g","🥬",32,3,5,0,[11,3],""],
+["funghi_misti","Funghi misti surgelati","Verdura",4.90,450,"g","🍄",25,3,5,0,0,""],
+["verdure_grigliate","Verdure grigliate in vaso","Dispensa",4.90,300,"g","🍆",90,2,4,0,0,""],
+["patate_novelle","Patate novelle","Verdura",4.50,1500,"g","🥔",77,2,5,1,[4,7],""],
+["mele_bio","Mele biologiche","Frutta",4.90,1000,"g","🍎",52,0.3,5,1,0,""],
+["arance_succo","Arance da succo","Frutta",5.90,3000,"g","🍊",47,0.9,5,1,[11,4],""],
+["banane_bio","Banane biologiche","Frutta",3.60,1000,"g","🍌",89,1.1,5,1,0,""],
+["frutta_secca_snack","Snack di frutta secca","Frutta",4.50,200,"g","🥭",300,3,4,0,0,""],
+["pane_integrale_grande","Pane integrale 750 g","Carboidrati",4.50,750,"g","🍞",247,9,5,0,0,"glutine"],
+["pasta_lunga","Spaghetti 3×500 g","Carboidrati",4.20,1500,"g","🍝",355,12,4,0,0,"glutine"],
+["riso_parboiled","Riso parboiled","Carboidrati",4.50,1000,"g","🍚",350,7,4,0,0,""],
+["pizza_margherita_surg","Pizza margherita 2 pz","Carboidrati",6.90,700,"g","🍕",250,10,2,0,0,"glutine,lattosio"],
+["crackers_integrali","Crackers integrali","Carboidrati",3.20,250,"g","🍘",420,11,3,0,0,"glutine"],
+["barrette","Barrette ai cereali","Colazione",4.50,200,"g","🍫",420,7,3,0,0,"glutine,frutta a guscio"],
+["marmellata_bio","Confettura biologica","Dispensa",5.50,350,"g","🍓",240,0.5,4,0,0,""],
+["olio_extra_bio","Olio extravergine biologico","Dispensa",14.90,750,"ml","🫒",884,0,5,0,0,""],
+["passata_bio","Passata biologica","Dispensa",2.90,700,"g","🍅",29,1.5,5,0,0,""],
+["ceci_secchi","Ceci secchi","Legumi",3.20,500,"g","🫘",340,20,5,0,0,""],
+["fagioli_secchi","Fagioli secchi","Legumi",3.50,500,"g","🫘",330,23,5,0,0,""],
+["brodo_veg_bio","Brodo vegetale biologico","Dispensa",4.20,150,"g","🍲",180,8,4,0,0,""],
+["tisane","Tisane","Bevande",3.90,20,"pz","🍵",0,0,5,0,0,""],
+["caffe_macinato","Caffè macinato 250 g","Dispensa",4.90,250,"g","☕",0,0,3,0,0,""],
+["succo_ace","Succo ACE","Bevande",2.50,1000,"ml","🧃",50,0.5,3,0,0,""],
+["acqua_frizzante_pet","Acqua frizzante 6×1 L","Bevande",3.20,6000,"ml","💧",0,0,5,0,0,""],
+["detersivo_pavimenti","Detersivo pavimenti","Casa",4.50,1,"pz","🧴",0,0,3,0,0,""],
+["panni_microfibra","Panni in microfibra","Casa",5.90,1,"pz","🧽",0,0,3,0,0,""],
+["sapone_marsiglia","Sapone di Marsiglia","Casa",4.20,1,"pz","🧼",0,0,4,0,0,""],
+["balsamo","Balsamo capelli","Igiene",5.50,1,"pz","🧴",0,0,4,0,0,""],
+["cotton_fioc","Cotton fioc e dischetti","Igiene",3.20,1,"pz","🧻",0,0,4,0,0,""],
+["collutorio","Collutorio","Igiene",5.90,1,"pz","🦷",0,0,4,0,0,""],
+["filo_interdentale","Filo interdentale","Igiene",4.50,1,"pz","🦷",0,0,5,0,0,""],
+
 ["ricotta_forte","Ricotta salata","Latticini",4.90,200,"g","🧀",340,25,3,0,0,"lattosio"],
 ["scamorza","Scamorza affumicata","Latticini",4.50,250,"g","🧀",330,24,3,0,0,"lattosio"],
 ["yogurtcapra","Yogurt di capra","Latticini",3.20,400,"g","🥣",70,4,5,0,0,"lattosio"],
@@ -1493,6 +1682,15 @@ const RAW = [
 ];
 
 const CATORD=["Verdura","Frutta","Carne","Pesce","Proteine","Legumi","Latticini","Carboidrati","Colazione","Dispensa","Bevande","Casa","Igiene"];
+/* i reparti raccolti in cinque gruppi: è così che si gira in un negozio */
+const GRUPPI=[
+  {id:"freschi", n:"Banco fresco", ic:"❄", cat:["Verdura","Frutta","Carne","Pesce","Proteine","Latticini"]},
+  {id:"dispensa",n:"Dispensa",     ic:"◫", cat:["Carboidrati","Legumi","Dispensa"]},
+  {id:"colazione",n:"Colazione e dolci", ic:"☕", cat:["Colazione"]},
+  {id:"bevande", n:"Bevande",      ic:"🥂", cat:["Bevande"]},
+  {id:"casa",    n:"Casa e igiene",ic:"🧴", cat:["Casa","Igiene"]},
+];
+const gruppoDi = cat => (GRUPPI.find(g=>g.cat.includes(cat))||GRUPPI[1]).id;
 const ordCat=c=>{const i=CATORD.indexOf(c);return i<0?99:i;};
 const PROD = {};
 RAW.forEach(r=>{
@@ -1646,6 +1844,21 @@ const PIATTI = [
 {id:"cecineri",n:"Ceci neri con cicoria",q:"cena",m:45,ing:[["ceci_neri",120],["cicoria",140],["aglio",4],["olio",10],["paneseg",55]],t:["veg","vegano","salute","tradizione","glutine"],sea:[10,4]},
 {id:"astice_pasta",n:"Pasta all'astice",q:"pranzo",m:60,ing:[["pasta",100],["astice",130],["pomodorini",80],["vinobianco",30],["aglio",4],["olio",10],["prezzemolo",0.08]],t:["pesce","elaborato","glutine","crostacei"]},
 {id:"tacchinoripienofesta",n:"Tacchino ripieno delle feste",q:"pranzo",m:200,ing:[["tacchinoripieno",280],["castagne",60],["pancetta",30],["pane",40],["vinobianco",30],["patate",180]],t:["carne_bianca","maiale","elaborato","tradizione","glutine"],sea:[11,1]},
+{id:"oratacartoccio",n:"Orata al cartoccio con patate",q:"pranzo",m:50,ing:[["orata",210],["patate",170],["pomodorini",70],["olive",15],["olio",8],["limoni",20]],t:["pesce","salute","elaborato"]},
+{id:"seppiolinepiselli",n:"Seppioline con piselli",q:"cena",m:45,ing:[["seppioline",160],["piselli",100],["passata",70],["aglio",4],["olio",9],["pane",50]],t:["pesce","salute","tradizione","glutine","molluschi"]},
+{id:"risogamberetti",n:"Riso con gamberetti e zucchine",q:"pranzo",m:35,ing:[["riso",80],["gamberetti",90],["zucchine",110],["aglio",4],["olio",9],["limoni",12]],t:["pesce","salute","veloce","crostacei"]},
+{id:"pollointeroforno",n:"Pollo intero al forno con verdure",q:"pranzo",m:90,ing:[["pollo_intero",260],["patate",180],["carote",80],["rosmarino",0.08],["olio",9]],t:["carne_bianca","economico","tradizione"]},
+{id:"fesalimone",n:"Fesa di tacchino al limone",q:"cena",m:20,ing:[["fesa_tacchino",130],["limoni",25],["farina",10],["olio",8],["misticanza",50]],t:["carne_bianca","veloce","salute","glutine"]},
+{id:"stufatoverdure",n:"Stufato di manzo con verdure",q:"pranzo",m:130,ing:[["manzo_stufato",170],["carote",70],["sedano",30],["cipolle",30],["passata",80],["patate",150]],t:["carne_rossa","elaborato","tradizione"],sea:[10,4]},
+{id:"cimerapa_pasta",n:"Orecchiette con cime di rapa",q:"pranzo",m:35,ing:[["pasta",100],["cime_rapa",160],["aglio",5],["acciughe",10],["olio",11]],t:["pesce","salute","tradizione","glutine"],sea:[11,3]},
+{id:"romanescogratin",n:"Broccolo romanesco gratinato",q:"cena",m:45,ing:[["broccolo_romanesco",200],["latte",70],["farina",10],["grana_grattugiato",20],["burro",10],["pane",40]],t:["veg","salute","lattosio","glutine"],sea:[10,3]},
+{id:"funghitrifolati_pasta",n:"Pasta ai funghi misti",q:"cena",m:30,ing:[["pasta",100],["funghi_misti",140],["aglio",4],["prezzemolo",0.08],["olio",10],["grana_grattugiato",15]],t:["veg","veloce","glutine","lattosio"]},
+{id:"patatenovelle_uova",n:"Patate novelle, uova e misticanza",q:"cena",m:35,ing:[["patate_novelle",220],["uova_bio",2],["misticanza",50],["olio",9]],t:["veg","salute","uova"],sea:[4,7]},
+{id:"ricottaspinaci_pasta",n:"Pasta ricotta e spinaci",q:"pranzo",m:30,ing:[["pasta",100],["ricotta_vacca",70],["spinacifr",120],["grana_grattugiato",15],["olio",7]],t:["veg","salute","veloce","glutine","lattosio"]},
+{id:"cecisecchi_zuppa",n:"Zuppa di ceci e rosmarino",q:"cena",m:70,ing:[["ceci_secchi",70],["rosmarino",0.08],["aglio",4],["passata_bio",60],["olio",10],["pane_integrale_grande",55]],t:["veg","vegano","salute","economico","glutine"]},
+{id:"fagiolisecchi_pasta",n:"Pasta e fagioli",q:"pranzo",m:80,ing:[["fagioli_secchi",65],["pasta",55],["carote",40],["sedano",25],["passata",60],["olio",9]],t:["veg","vegano","economico","tradizione","glutine"],sea:[10,4]},
+{id:"verdurgrigliate_piadina",n:"Piadina con verdure grigliate",q:"cena",m:20,ing:[["piadina",100],["verdure_grigliate",90],["mozzarella_grande",50],["rucola",20]],t:["veg","veloce","glutine","lattosio"]},
+{id:"salsicciapollo_pure",n:"Salsicce di pollo con purè",q:"cena",m:35,ing:[["salsiccia_pollo",140],["patate",220],["latte",50],["burro",10]],t:["carne_bianca","kid","veloce","lattosio"]},
 {id:"focacciafarcita",n:"Focaccia farcita e insalata",q:"cena",m:15,ing:[["focaccia",120],["prosccotto",40],["mozzarella",40],["pomodorini",60],["insalata",40]],t:["veloce","maiale","kid","glutine","lattosio"]},
 ];
 
@@ -1710,8 +1923,9 @@ const S = {
   margine:1.08,
   cottura:"normale",
   giaInCasa:new Set(),
+  lingua:"it", tema:"notte",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{},   // prodotto -> alternativa scelta / provenienza del prezzo
+  sost:{}, qualita:{}, prezziRiv:{}, gruppo:"tutti",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
   viaggio:{km:18,consumo:6.5,carb:"diesel",minuti:70,valoreOra:20,pedaggi:0},
@@ -1790,7 +2004,7 @@ function promoViva(id){
 function rivAttivi(){ const a=RIV.filter(r=>S.riv.has(r.id)); return a.length?a:[RIV[0]]; }
 function fattoreRiv(r,cat){ return r.k * ((r.kc && r.kc[cat]) || 1); }
 /* tre livelli, dal più affidabile al più generico:
-   1. promozione in corso   2. prezzo rilevato in quella insegna   3. riferimento × indice */
+   1. promozione in corso   2. prezzo rilevato in quella negozio   3. riferimento × indice */
 function prezzoDa(id,r){
   if(promoViva(id)){ const p=S.promo[id]; if(!p.riv || p.riv===r.id) return p.p; }
   const reale = S.prezziRiv[id] && S.prezziRiv[id][r.id];
@@ -1843,6 +2057,17 @@ function tagVietati(){
   if(S.prefs.has("nonoci")) v.push("noci");
   if(S.prefs.has("nomanzo")) v.push("carne_rossa");
   return v;
+}
+/* ingrediente che dà carattere al piatto: due piatti con lo stesso perno
+   non devono capitare vicini, anche se hanno nomi diversi */
+const PERNI={};
+function perno(p){
+  if(PERNI[p.id]) return PERNI[p.id];
+  const ordine=["Carne","Pesce","Legumi","Latticini","Carboidrati","Verdura"];
+  let best=null,bp=99;
+  p.ing.forEach(([i])=>{ const pr=PROD[eff(i)]; if(!pr) return;
+    const r=ordine.indexOf(pr.cat); if(r>=0&&r<bp){bp=r;best=pr.id;} });
+  return PERNI[p.id]=best||p.id;
 }
 function piattoOk(p){
   const v=tagVietati();
@@ -1935,14 +2160,16 @@ function generaMenu(mantieniLock){
     idx.forEach(i=>veggSet.add(w*7+i));
   }
   // obiettivo: almeno 2 pesci a settimana
-  const ultimo={}, ultimoC={}, ultimoM={};
+  const ultimo={}, ultimoC={}, ultimoM={}, ultimoPerno={};
   let pesciSett=0;
   const maxUsi = Math.max(2,Math.ceil(g/10));
   const pieno = (...l)=> l.find(x=>x&&x.length) || [];
   const target = kcalNucleo()/Math.max(1,S.persone.length);
   for(let d=0;d<g;d++){
-    const fresco = (arr,mem,gap)=> pieno(arr.filter(p=>(mem[p.id]===undefined||d-mem[p.id]>=gap)&&(usati[p.id]||0)<maxUsi),
-                                          arr.filter(p=>mem[p.id]===undefined||d-mem[p.id]>=1), arr);
+    const fresco = (arr,mem,gap)=> pieno(
+      arr.filter(p=>(mem[p.id]===undefined||d-mem[p.id]>=gap)&&(usati[p.id]||0)<maxUsi&&(ultimoPerno[perno(p)]===undefined||d-ultimoPerno[perno(p)]>=2)),
+      arr.filter(p=>(mem[p.id]===undefined||d-mem[p.id]>=gap)&&(usati[p.id]||0)<maxUsi),
+      arr.filter(p=>mem[p.id]===undefined||d-mem[p.id]>=1), arr);
     if(vecchio && S.lock.has(d) && vecchio[d]){ menu.push(vecchio[d]);
       const v=vecchio[d];
       usati[v.pranzo.id]=(usati[v.pranzo.id]||0)+1; usati[v.cena.id]=(usati[v.cena.id]||0)+1;
@@ -1984,7 +2211,7 @@ function generaMenu(mantieniLock){
     const conProt = poolP.filter(p=>p.t.some(t=>CARNI.includes(t)));
     const poolPranzo = (!veg && !dietaVeg && conProt.length) ? conProt : poolP;
     const pr = scegli(fresco(filtroTempo(poolPranzo),ultimo,6),usati,costoMax,temp,bonusProt) || disponibili[0];
-    usati[pr.id]=(usati[pr.id]||0)+1; ultimo[pr.id]=d;
+    usati[pr.id]=(usati[pr.id]||0)+1; ultimo[pr.id]=d; ultimoPerno[perno(pr)]=d;
     let me = scegli(fresco(merOk.length?merOk:MERENDE,ultimoM,3),usatiM,999,1.6) || MERENDE[0];
     usatiM[me.id]=(usatiM[me.id]||0)+1; ultimoM[me.id]=d;
     me = adattaFrutta(me);
@@ -1994,7 +2221,7 @@ function generaMenu(mantieniLock){
     const prVeg = !pr.t.some(t=>CARNI.includes(t));
     const ce = scegli(poolCena,usati,costoMax,temp,
                       p=>(1/(1+Math.abs(kcalPiatto(p)-residuo)/300))*((prVeg||veg)?bonusProt(p):1)) || pr;
-    usati[ce.id]=(usati[ce.id]||0)+1; ultimo[ce.id]=d;
+    usati[ce.id]=(usati[ce.id]||0)+1; ultimo[ce.id]=d; ultimoPerno[perno(ce)]=d;
     if(pr.t.includes("pesce")||ce.t.includes("pesce")) pesciSett++;
     menu.push({colazione:co,pranzo:pr,merenda:me,cena:ce,avanzo:false});
   }
@@ -2144,7 +2371,7 @@ function riepilogoSetup(){
   const el=$("#setupRiepilogo"); if(!el) return;
   const n=S.persone.length, ins=[...S.riv].length;
   const diete=[...S.prefs].length;
-  el.textContent = `${n} ${n===1?"persona":"persone"} · ${S.giorni} ${S.giorni===1?"giorno":"giorni"} · CHF ${chfr(S.budget)} · ${ins} ${ins===1?"insegna":"insegne"}${diete?" · "+diete+" preferenze":""}`;
+  el.textContent = `${n} ${n===1?"persona":"persone"} · ${S.giorni} ${S.giorni===1?"giorno":"giorni"} · CHF ${chfr(S.budget)} · ${ins} ${ins===1?"negozio":"negozi"}${diete?" · "+diete+" preferenze":""}`;
 }
 function aggiornaBudgetLabel(){
   riepilogoSetup();
@@ -2374,11 +2601,31 @@ function renderAnalisi(){
 /* =========================================================
    12. RENDER — catalogo
    ========================================================= */
+function renderGruppiListino(){
+  const box=$("#gruppiListino"); if(!box) return;
+  const conta={}; Object.values(PROD).forEach(p=>{const g=gruppoDi(p.cat);conta[g]=(conta[g]||0)+1;});
+  box.innerHTML=[{id:"tutti",n:"Tutto il listino",ic:"◆"},...GRUPPI].map(g=>
+    `<button class="chip" type="button" data-g="${g.id}" aria-pressed="${(S.gruppo||"tutti")===g.id}">
+      ${g.ic} <span class="nm">${g.n}</span> <span class="zona">${g.id==="tutti"?Object.keys(PROD).length:(conta[g.id]||0)}</span></button>`).join("");
+  box.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ S.gruppo=b.dataset.g; renderCatalogo(); });
+}
 function renderCatalogo(){
-  renderFlyer();
+  renderFlyer(); renderGruppiListino();
   const q=($("#cerca").value||"").toLowerCase();
+  const gr=S.gruppo||"tutti";
   const tb=$("#tblProd tbody"); tb.innerHTML="";
-  Object.values(PROD).filter(p=> !q || p.n.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)).forEach(p=>{
+  const elenco=Object.values(PROD)
+    .filter(p=> gr==="tutti" || gruppoDi(p.cat)===gr)
+    .filter(p=> !q || p.n.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q))
+    .sort((a,b)=> CATORD.indexOf(a.cat)-CATORD.indexOf(b.cat) || a.n.localeCompare(b.n));
+  let catCorrente=null;
+  elenco.forEach(p=>{
+    if(p.cat!==catCorrente){
+      catCorrente=p.cat;
+      const tr=document.createElement("tr"); tr.className="sep";
+      tr.innerHTML=`<td colspan="8">${p.cat} <span class="q">${elenco.filter(x=>x.cat===p.cat).length} prodotti</span></td>`;
+      tb.appendChild(tr);
+    }
     const best=migliorRiv(p.id);
     const pm=S.promo[p.id]||{};
     const tr=document.createElement("tr");
@@ -2400,7 +2647,7 @@ function renderCatalogo(){
         <br><span style="font-size:10px;color:var(--testo-3)">${best.riv.n}${promoViva(p.id)?" · azione":""}</span>
         ${(()=>{const f=fontePrezzo(p.id,best.riv.id);
           if(f==="azione") return '<br><span class="tagpill oro">in azione</span>';
-          if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa insegna">◆ prezzo del negozio</span>`;
+          if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa negozio">◆ prezzo del negozio</span>`;
           if(f==="verificato") return `<br><span class="tagpill oro" title="${(S.qualita[p.id].negozi||[]).join(', ')} · ${S.qualita[p.id].data||""}">✓ dal web · ${S.qualita[p.id].n} rilevazioni</span>`;
           return '<br><span class="tagpill" style="opacity:.55">stimato</span>';})()}</td>
       <td><button class="btn sm" style="padding:4px 9px;font-size:12px" data-alt="${p.id}">${S.sost[p.id]?PROD[S.sost[p.id]].ic+" "+nomeBreve(PROD[S.sost[p.id]]):"⇄ scegli"}</button></td>
@@ -2417,6 +2664,7 @@ function renderCatalogo(){
     tr.querySelector("[data-alt]").onclick=()=>apriAlternative(p.id);
     tb.appendChild(tr);
   });
+  $("#contaListino") && ($("#contaListino").textContent = elenco.length+" prodotti mostrati");
   const tr2=$("#tblRiv tbody"); tr2.innerHTML="";
   RIV.forEach(r=>{
     const t=document.createElement("tr");
@@ -2440,13 +2688,41 @@ function dopoModificaPrezzi(){
   renderCatalogo();
   if(S.menu) renderTutto();
 }
+function renderGiorniSpesa(){
+  const box=$("#cardGiorni"); if(!box) return;
+  const attivi=rivAttivi();
+  const perGiorno={};
+  attivi.forEach(r=>{ const g=GIORNI_OFFERTE[r.id]||2; (perGiorno[g]=perGiorno[g]||[]).push(r); });
+  const oggiG=(new Date().getDay()||7);
+  const classifica=Object.entries(perGiorno).map(([g,riv])=>({g:+g,riv}))
+    .sort((a,b)=> b.riv.length-a.riv.length || a.g-b.g);
+  const migliore=classifica[0];
+  const attesa=g=>{ const d=(g-oggiG+7)%7; return d===0?"oggi":d===1?"domani":"tra "+d+" giorni"; };
+  const promoInScadenza=Object.entries(S.promo).filter(([id,p])=>PROD[id]&&promoViva(id)&&p.fino&&giorniA(p.fino)<=3);
+  box.innerHTML=`<h2>Quando conviene fare la spesa</h2>
+    <p class="hint" style="margin-top:0">I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.</p>
+    ${migliore?`<div class="kpi" style="margin:14px 0 4px">
+      <div><div class="lab">Giorno migliore</div><div class="val" style="font-size:26px;text-transform:capitalize">${NOMI_GIORNI[migliore.g]}</div>
+        <div class="sub">${migliore.riv.length} dei tuoi negozi rinnovano le offerte · ${attesa(migliore.g)}</div></div>
+      ${classifica[1]?`<div><div class="lab">Seconda scelta</div><div class="val" style="font-size:26px;text-transform:capitalize">${NOMI_GIORNI[classifica[1].g]}</div>
+        <div class="sub">${classifica[1].riv.map(r=>r.n).join(", ")}</div></div>`:""}
+      ${promoInScadenza.length?`<div><div class="lab">Da prendere subito</div><div class="val" style="font-size:26px">${promoInScadenza.length}</div>
+        <div class="sub">promozioni che scadono entro tre giorni</div></div>`:""}
+    </div>`:""}
+    <div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Giorno</th><th>Negozi che rinnovano</th><th></th></tr></thead><tbody>
+      ${classifica.map(c=>`<tr><td style="text-transform:capitalize">${NOMI_GIORNI[c.g]}</td>
+        <td>${c.riv.map(r=>`<span class="chip" style="cursor:default;padding:4px 10px;font-size:12px"><span class="dot" style="background:${r.c}"></span>${r.n}</span>`).join(" ")}</td>
+        <td style="font-family:var(--mono);font-size:11px;color:var(--testo-3)">${attesa(c.g)}</td></tr>`).join("")}
+    </tbody></table></div>
+    ${promoInScadenza.length?`<p class="legenda" style="margin-top:12px"><b>Attenzione alle scadenze:</b> ${promoInScadenza.map(([id,p])=>PROD[id].n+" ("+(giorniA(p.fino)<=0?"oggi":giorniA(p.fino)+" gg")+")").join(", ")}.</p>`:""}`;
+}
 function renderPromo(){
   const box=$("#cardPromo"); if(!box) return;
   const vive=Object.entries(S.promo).filter(([id])=>PROD[id]&&promoViva(id));
   const scadute=Object.entries(S.promo).filter(([id])=>PROD[id]&&!promoViva(id));
   box.innerHTML=`<h2>Promozioni attive</h2>
     <p class="hint" style="margin-top:0">Quelle marcate <i>dal listino</i> arrivano dal file condiviso e si rinnovano da sole a ogni aggiornamento; le altre le hai scritte tu. Alla data di scadenza spariscono e il prezzo torna pieno, senza che tu debba ricordartene.</p>
-    ${vive.length? `<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Prodotto</th><th>Insegna</th><th class="num">In azione</th><th class="num">Invece di</th><th>Fino al</th><th>Origine</th><th></th></tr></thead><tbody>
+    ${vive.length? `<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Prodotto</th><th>Negozio</th><th class="num">In azione</th><th class="num">Invece di</th><th>Fino al</th><th>Origine</th><th></th></tr></thead><tbody>
       ${vive.map(([id,p])=>{const pieno=prezzoRif(id)*(p.riv?fattoreRiv(RIV.find(r=>r.id===p.riv)||RIV[0],PROD[id].cat):1);
         const gg=p.fino?giorniA(p.fino):null;
         return `<tr><td>${PROD[id].ic} ${PROD[id].n}</td>
@@ -2468,7 +2744,7 @@ function renderFonti(){
     <p>${f.d}</p><small>${f.z==="—"?"internazionale":f.z==="CH"?"Svizzera":"Italia"} · ${f.u.replace(/^https?:\/\//,"").split("/")[0]}</small></a>`).join("");
 }
 function renderFlyer(){
-  renderFonti(); renderPromo();
+  renderFonti(); renderGiorniSpesa(); renderPromo();
   const box=$("#flyerBox"); if(!box) return;
   box.innerHTML = FLYER.map(f=>{
     const r=RIV.find(x=>x.id===f.id);
@@ -3384,7 +3660,7 @@ function disegnaAlternative(){
   lista=lista.slice(0,40);
   const reparti=["tutti",...new Set(Object.values(PROD).map(p=>p.cat))];
   apriModale(`<h3>Al posto di ${base.ic} ${base.n}</h3>
-    <p class="hint" style="margin-top:2px">Prezzi confrontati a parità di quantità (${base.pu} ${base.um}), sull'insegna più conveniente tra quelle accese. La sostituzione vale nel piano, nelle occasioni e nella lista.</p>
+    <p class="hint" style="margin-top:2px">Prezzi confrontati a parità di quantità (${base.pu} ${base.um}), sull'negozio più conveniente tra quelle accese. La sostituzione vale nel piano, nelle occasioni e nella lista.</p>
     <div class="row" style="margin:12px 0 4px">
       <input type="text" id="alt_q" placeholder="Cerca…" value="${altStato.q}" style="flex:1;min-width:150px">
       <select id="alt_rep" style="max-width:170px">${reparti.map(r=>`<option value="${r}" ${r===altStato.rep?"selected":""}>${r==="tutti"?"Tutti i reparti":r}</option>`).join("")}</select>
@@ -3502,7 +3778,7 @@ function salva(){
       const d=profiloCorrente();
       d.dispensa=S.dispensa; d.voti=S.voti; d.storico=S.storico; d.prezziStorico=S.prezziStorico;
       d.giaInCasa=[...S.giaInCasa]; d.avvioFatto=S.avvioFatto; d.autoFeed=S.autoFeed;
-      d.viaggio=S.viaggio; d.ev={occ:S.ev.occ,liv:S.ev.liv,pers:S.ev.pers};
+      d.viaggio=S.viaggio; d.lingua=S.lingua; d.tema=S.tema; d.ev={occ:S.ev.occ,liv:S.ev.liv,pers:S.ev.pers};
       localStorage.setItem(CHIAVE,JSON.stringify(d));
       segnaleMemoria("salvato");
     }catch(e){ memoriaOk=false; segnaleMemoria("non disponibile"); }
@@ -3517,7 +3793,7 @@ function carica(){
     S.dispensa=o.dispensa||{}; S.voti=o.voti||{}; S.storico=o.storico||[];
     S.prezziStorico=o.prezziStorico||[]; S.giaInCasa=new Set(o.giaInCasa||[]);
     S.avvioFatto=!!o.avvioFatto; S.autoFeed=o.autoFeed!==false;
-    S.viaggio=o.viaggio||S.viaggio;
+    S.viaggio=o.viaggio||S.viaggio; S.lingua=o.lingua||"it"; S.tema=o.tema||"notte";
     if(o.ev){ S.ev.occ=o.ev.occ||S.ev.occ; S.ev.liv=o.ev.liv||S.ev.liv; S.ev.pers=o.ev.pers||S.ev.pers; }
     segnaleMemoria("ripreso");
     return true;
@@ -3924,11 +4200,11 @@ const GUIDA=[
  {h:"Aggiungere e togliere",p:["<b>+ Aggiungi persona</b> per gli ospiti fissi. Per una cena occasionale non toccare qui: usa la scheda <b>Occasioni</b>, che ragiona a numero di commensali senza scombinare il piano di famiglia."]}]},
 
 {ic:"◉",t:"Dove fai la spesa",s:[
- {h:"Le insegne",p:["Accendi le insegne dove vai davvero. Ognuna ha un indice di prezzo e correzioni per reparto: Aldi e Lidl costano meno sui prodotti base, Denner vince su caffè, cioccolato e bevande, Coop è più forte su carne e pesce, Manor e Migrolino sono i più cari, Prodega e Aligro sono all'ingrosso.",
+ {h:"Le negozi",p:["Accendi le negozi dove vai davvero. Ognuna ha un indice di prezzo e correzioni per reparto: Aldi e Lidl costano meno sui prodotti base, Denner vince su caffè, cioccolato e bevande, Coop è più forte su carne e pesce, Manor e Migrolino sono i più cari, Prodega e Aligro sono all'ingrosso.",
  "Per ogni singolo prodotto Gerla sceglie il più conveniente tra quelli accesi. Non serve che tu lo faccia a mano."]},
  {h:"Quanti negozi vuoi girare",p:["Nella scheda Budget. È la regolazione più sottovalutata: <b>Uno solo</b> ti dà la comodità, <b>Tutti quelli selezionati</b> il prezzo minimo teorico ma con sei tappe.",
  "Con <b>Al massimo due</b> o <b>tre</b> Gerla calcola quale combinazione di negozi costa meno in assoluto: prova tutte le combinazioni possibili, non sceglie i primi due che capitano."]},
- {h:"Le insegne italiane",p:["I prezzi italiani sono convertiti in franchi. Se ne accendi almeno una, nella scheda Analisi compare il calcolo <b>Conviene andare in Italia?</b> e nella lista il controllo della franchigia doganale."]}]},
+ {h:"Le negozi italiane",p:["I prezzi italiani sono convertiti in franchi. Se ne accendi almeno una, nella scheda Analisi compare il calcolo <b>Conviene andare in Italia?</b> e nella lista il controllo della franchigia doganale."]}]},
 
 {ic:"✳",t:"Come vuoi mangiare",s:[
  {h:"Le restrizioni",p:["Le pastiglie in alto tolgono di mezzo interi gruppi: niente maiale, niente pesce, senza glutine, senza lattosio, niente uova, niente frutta a guscio, niente carne rossa.",
@@ -4008,13 +4284,13 @@ const GUIDA=[
 {ic:"◎",t:"Scheda Prezzi e volantini",s:[
  {h:"L'avviso in cima",p:["Dopo sette giorni diventa dorato e la linguetta si segna con un puntino: è il promemoria che le promozioni sono cambiate."]},
  {h:"Aggiorna i 20 che contano",p:["Il modo più efficiente di tenere il conto preciso. Ti porta un prodotto alla volta, partendo da quello che pesa di più sul tuo carrello, con il campo del prezzo, quello dell'azione e il collegamento al volantino di quella catena. Puoi fermarti quando vuoi: <b>Basta così</b> salva quello che hai fatto."]},
- {h:"Volantini della settimana",p:["Collegamenti diretti al volantino di ogni insegna, più gli archivi e il confronto prezzi. Le insegne spente sono in grigio."]},
- {h:"Il listino",p:["Ogni riga: prezzo di riferimento modificabile, prezzo in azione con l'insegna e la data di scadenza, il miglior prezzo calcolato, l'alternativa scelta, la stagione.",
+ {h:"Volantini della settimana",p:["Collegamenti diretti al volantino di ogni negozio, più gli archivi e il confronto prezzi. Le negozi spente sono in grigio."]},
+ {h:"Il listino",p:["Ogni riga: prezzo di riferimento modificabile, prezzo in azione con l'negozio e la data di scadenza, il miglior prezzo calcolato, l'alternativa scelta, la stagione.",
  "L'azione vale finché non scade, poi il prezzo torna da solo a quello pieno. I prezzi con il marchio dorato <b>✓ dal web</b> vengono da rilevazioni reali: passandoci sopra vedi in quali negozi e quando."]},
  {h:"Aggiungi un prodotto",p:["Nome, reparto, prezzo, formato, icona. Entra nel listino come tutti gli altri e compare nelle alternative. Resta nelle tue impostazioni."]},
  {h:"Aggiornamento automatico",p:["Se hai un indirizzo di listino condiviso, incollalo qui e lascia spuntato <b>Aggiorna a ogni apertura</b>: prezzi, indici, promozioni e carburanti si allineano da soli a ogni avvio. Senza indirizzo, l'app funziona esattamente come prima."]},
  {h:"Adegua tutto il listino",p:["Una percentuale su tutti i prezzi insieme, per i rincari generalizzati. <b>Torna ai prezzi di riferimento</b> annulla ogni correzione manuale."]},
- {h:"Indici per insegna",p:["Il moltiplicatore di ogni catena. Se il tuo Denner è più caro della media, alza il suo indice: tutto il resto si ricalcola."]}]},
+ {h:"Indici per negozio",p:["Il moltiplicatore di ogni catena. Se il tuo Denner è più caro della media, alza il suo indice: tutto il resto si ricalcola."]}]},
 
 {ic:"◇",t:"Memoria, impostazioni, privacy",s:[
  {h:"Dove finiscono i tuoi dati",p:["Restano nel browser, sul dispositivo che stai usando. Non c'è nessun invio, nessun account, nessun server. In testata la scritta <i>salvato</i> conferma ogni salvataggio."]},
@@ -4033,6 +4309,16 @@ const GUIDA=[
  {h:"Le proposte della casa",p:["Serata sushi, Omakase in casa, Tex-Mex per tutti, Pizza party, Burger night, Sera indiana, Notte thai, Mezze greco-libanesi, Tavola vegana d'autore, Il grande tavolo. Scritte e bilanciate, con il piano di lavoro già pronto."]},
  {h:"Il dado a tema",p:["Sceglie prima una cucina, poi compone la serata dentro quella cucina: stuzzichini, antipasto, secondo, contorno, dolce e bevande coerenti tra loro."]},
  {h:"Il livello Indimenticabile",p:["Il quarto livello. Non aggiunge solo portate: il dado pesca nella metà più importante di ogni ruolo, quindi escono sashimi, filetto, tartufo, vini in abbinamento. In casa trovi <i>Cena indimenticabile</i>, <i>Il grande tavolo</i> e <i>Pranzo delle cento candeline</i>: dalle sette alle otto portate, intorno ai 26-32 franchi a persona, tutto compreso."]}]},
+
+{ic:"◔",t:"Quando fare la spesa",s:[
+ {h:"Il giorno migliore",p:["Nella scheda Prezzi trovi <b>Quando conviene fare la spesa</b>: i volantini non escono tutti lo stesso giorno. Migros, Coop, Denner e Manor rinnovano il martedì; Aldi, Lidl, Otto's, Landi e i supermercati lombardi il giovedì; Lidl Italia, Eurospin e MD il lunedì.",
+ "Gerla guarda i negozi che hai acceso e ti dice in quale giorno il maggior numero di essi rinnova le offerte. Andare quel giorno significa avere la settimana intera di sconti invece degli avanzi."]},
+ {h:"Le scadenze",p:["Se hai promozioni che finiscono entro tre giorni te lo dice lì, con i nomi dei prodotti: sono quelle da prendere subito."]}]},
+
+{ic:"◈",t:"Lingua",s:[
+ {h:"Giorno e notte",p:["Accanto alle lingue c'\u00e8 il pulsante <b>\u263e Notte / \u2600 Giorno</b>: il primo \u00e8 pensato per la sera e per il telefono, il secondo per la luce piena e per la stampa. La scelta resta salvata."]},
+ {h:"Quattro lingue",p:["In testata, sotto le statistiche, ci sono i quattro pulsanti <b>IT · EN · FR · DE</b>. La scelta resta salvata insieme alle altre impostazioni.",
+ "Sono tradotti comandi, titoli, schede, etichette, opzioni dei menu a tendina e testi dei campi. Restano in italiano i nomi dei prodotti e dei piatti, questa guida e i testi lunghi di spiegazione: <i>zincarlin</i>, <i>luganighetta</i> o <i>ossobuco</i> si chiamano così anche in tedesco."]}]},
 
 {ic:"✧",t:"Domande rapide",s:[
  {h:"Le quantità mi sembrano tante",p:["Controlla tre cose in quest'ordine: le fasce d'età delle persone, il margine di scorta (metti <i>Esatto</i>), e i pasti fuori casa a settimana."]},
@@ -4058,9 +4344,440 @@ function renderGuida(){
 }
 
 /* =========================================================
+   LINGUE — l'interfaccia parla quattro lingue.
+   Il dizionario è indicizzato sulla frase italiana: ogni testo
+   viene marcato alla prima passata, così si può tornare indietro.
+   ========================================================= */
+const LINGUE=[{id:"it",n:"Italiano",b:"IT"},{id:"en",n:"English",b:"EN"},
+              {id:"fr",n:"Français",b:"FR"},{id:"de",n:"Deutsch",b:"DE"}];
+const DIZ={
+en:{
+"Le promozioni cambiano ogni giovedì in Svizzera e ogni lunedì in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di più sul totale.":"Offers change every Thursday in Switzerland and every Monday in Italy. Open the flyer, then correct the prices you care about below: the ten items that weigh most on the total are enough.",
+"I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.":"Flyers don't all come out on the same day. Shopping as soon as the offers appear gives you the whole week of discounts instead of the leftovers.",
+"Le porzioni si adattano a età e attività.":"Portions adapt to age and activity.",
+"Scelgo io la combinazione che costa meno.":"I pick the cheapest combination for you.",
+"Le quantità e i prezzi si ricalcolano subito. Puoi anche partire da 1 persona.":"Quantities and prices recalculate at once. You can start from one person.",
+"Cambia il peso dato a costo, salute, stagione e gradimento.":"Changes the weight given to cost, health, season and taste.",
+"Utile a inizio anno o dopo un rincaro generalizzato.":"Useful at the start of the year or after a general price rise.",
+"Quello che è in dispensa viene tolto dalla lista della spesa. Si riempie da sola ogni volta che chiudi una spesa in modalità corsia.":"Whatever is in the pantry is taken off the shopping list. It fills itself every time you close a shopping trip.",
+"Ordinati per urgenza: prima i piatti che usano ciò che sta per scadere.":"Sorted by urgency: first the dishes that use what is about to expire.",
+
+"Banco fresco":"Fresh counter",
+"Dispensa":"Pantry",
+"Colazione e dolci":"Breakfast and sweets",
+"Bevande":"Drinks",
+"Casa e igiene":"Home and hygiene",
+"Tutto il listino":"Whole list",
+"prodotti mostrati":"products shown",
+"Notte":"Night",
+"Giorno":"Day",
+"Modalità giorno e notte":"Day and night mode",
+"Verdura":"Vegetables",
+"Frutta":"Fruit",
+"Carne":"Meat",
+"Pesce":"Fish",
+"Legumi":"Pulses",
+"Latticini":"Dairy",
+"Carboidrati":"Grains",
+"Proteine":"Protein",
+"Igiene":"Hygiene",
+"Casa":"Household",
+"Un giorno solo":"A single day",
+"3 giorni (fine settimana lungo)":"3 days (long weekend)",
+"5 giorni feriali":"5 weekdays",
+"1 settimana":"1 week",
+"2 settimane":"2 weeks",
+"3 settimane":"3 weeks",
+"1 mese (4 settimane)":"1 month (4 weeks)",
+"6 settimane":"6 weeks",
+"2 mesi":"2 months",
+"Giorni a scelta…":"Custom days…",
+"Linea economica (M-Budget, Prix Garantie)":"Budget line (M-Budget, Prix Garantie)",
+"Marca propria standard":"Standard own brand",
+"Marche note":"Well-known brands",
+"Biologico":"Organic",
+"Esatto, zero avanzi":"Exact, no leftovers",
+"Piccolo margine (+8%)":"Small margin (+8%)",
+"Dispensa piena (+20%)":"Full pantry (+20%)",
+"Normale":"Normal",
+"Poco: piatti rapidi":"Little: quick dishes",
+"Rapidi in settimana, elaborati nel weekend":"Quick on weekdays, elaborate at the weekend",
+"Equilibrio (consigliato)":"Balance (recommended)",
+"Spesa minima":"Lowest spend",
+"Più salute e verdura":"More health and vegetables",
+"Massima stagionalità":"Maximum seasonality",
+"Gusti dei bambini":"Children's tastes",
+"Tutti quelli selezionati (prezzo minimo)":"All selected (lowest price)",
+"Uno solo":"Just one",
+"Al massimo due":"Two at most",
+"Al massimo tre":"Three at most",
+"Diesel":"Diesel",
+"Benzina 95":"Petrol 95",
+"Elettrico":"Electric",
+"Più pertinenti":"Most relevant",
+"Più economiche":"Cheapest",
+"Più sane":"Healthiest",
+"Tutti i reparti":"All departments",
+"ovunque":"everywhere",
+"dal listino":"from the price file",
+"scritta da te":"written by you",
+"stimato":"estimated",
+"in azione":"on offer",
+"prezzo del negozio":"shop price",
+
+"Chi mangia":"Who's eating","Dove fai la spesa":"Where you shop","Come vuoi mangiare":"How you want to eat",
+"Pasti da pianificare":"Meals to plan","Budget e periodo":"Budget and period","Conviene andare in Italia?":"Is the trip to Italy worth it?",
+"Quando conviene fare la spesa":"The best day to shop","Promozioni attive":"Active promotions",
+"Da dove arrivano i prezzi":"Where the prices come from","Aggiornamento automatico":"Automatic updates",
+"Listino — prezzi e promozioni":"Price list — prices and promotions","Indice prezzi per negozio":"Price index by shop",
+"Volantini della settimana":"This week's flyers","Un momento in compagnia":"A moment with company",
+"Cosa c'è in casa":"What's in the house","Cosa cucino con quello che c'è":"What can I cook with what I have",
+"Manuale d'uso":"User manual","Spesa mese per mese":"Spending month by month","Ultime spese":"Recent shopping trips",
+"Budget":"Budget","Dove vanno i soldi":"Where the money goes","Quanto stai risparmiando":"How much you're saving",
+"Come leggere questi numeri":"How to read these numbers",
+"Crea il piano":"Create the plan","Rimescola":"Shuffle","Fai stare nel budget":"Fit the budget",
+"Esporta / stampa":"Export / print","+ Aggiungi persona":"+ Add person","Caso nuovo":"New draw",
+"Aggiorna adesso":"Update now","Aggiorna i 20 che contano":"Update the 20 that matter","Crea il file listino":"Create the price file",
+"Incolla un listino":"Paste a price list","Applica":"Apply","Torna ai prezzi di riferimento":"Reset to base prices",
+"Salva le impostazioni":"Save settings","Carica impostazioni":"Load settings","+ Aggiungi un prodotto":"+ Add a product",
+"Tira il dado":"Roll the dice","Proposta consigliata":"Recommended menu","Solo le proposte della casa":"House menus only",
+"Esporta la lista":"Export the list","Modalità spesa":"Shopping mode","Ho finito la spesa":"I'm done shopping",
+"Manda la lista":"Send the list","Chiudi":"Close","Annulla":"Cancel","Applica":"Apply",
+"+ Metti qualcosa in dispensa":"+ Add to the pantry","Impostazioni":"Settings",
+"Menu":"Menu","Lista della spesa":"Shopping list","Lista":"List","Occasioni":"Occasions","Dispensa":"Pantry",
+"Storico":"History","Analisi e budget":"Analysis and budget","Analisi":"Analysis",
+"Prezzi e volantini":"Prices and flyers","Prezzi":"Prices","Guida":"Guide",
+"Periodo":"Period","Budget totale CHF":"Total budget CHF","Quanti negozi vuoi girare":"How many shops to visit",
+"Quante persone a tavola":"How many at the table","Quanti giorni":"How many days",
+"Pasti fuori casa a settimana":"Meals out per week","Linea di prodotto":"Product line",
+"Margine di scorta":"Safety margin","Tempo per cucinare":"Time to cook",
+"Giorni senza carne né pesce":"Days without meat or fish","Priorità nella scelta dei piatti":"Priority when choosing dishes",
+"Seme del caso (stesso numero = stesso menu)":"Random seed (same number = same menu)",
+"prodotti a listino":"products in the list","ricette e portate":"recipes and courses","menu combinabili":"possible menus",
+"negozi":"shops","stagione":"season","listino":"price list","salvato":"saved",
+"rifai l'avvio guidato":"run the setup again","cancella i dati salvati":"delete saved data",
+"Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Who eats, what you spend, where you buy. I work out the rest.",
+"Vegetariano":"Vegetarian","Vegano":"Vegan","Niente maiale":"No pork","Niente pesce":"No fish",
+"Senza glutine":"Gluten free","Senza lattosio":"Lactose free","Niente uova":"No eggs",
+"Niente frutta a guscio":"No nuts","Niente carne rossa":"No red meat","Solo piatti veloci la sera":"Quick dinners only",
+"Colazione":"Breakfast","Pranzo":"Lunch","Merenda":"Snack","Cena":"Dinner","Aperitivo e serata":"Drinks and evening",
+"Serata a tema":"Themed night","Lusso":"Luxury","Medio":"Middle","Indimenticabile":"Unforgettable",
+"Totale periodo":"Period total","Al giorno":"Per day","Energia media":"Average energy","Proteine":"Protein",
+"Frutta e verdura di stagione":"Fruit and veg in season","Indice salute":"Health index",
+"Spesa da fare":"Shopping to do","Valore consumato":"Value consumed","In cucina":"In the kitchen","Energia":"Energy",
+"Giorno migliore":"Best day","Seconda scelta":"Second choice","Da prendere subito":"Grab now",
+"Speso finora":"Spent so far","Media al mese":"Monthly average","Indice del tuo paniere":"Your basket index",
+"Chilometri all'andata":"Kilometres one way","Minuti totali, coda compresa":"Total minutes, queue included",
+"Alimentazione":"Fuel","Consumo per 100 km":"Consumption per 100 km","Quanto vale un'ora del tuo tempo":"What an hour of your time is worth",
+"Prodotto":"Product","Reparto":"Department","Formato":"Size","Stagione":"Season","In azione":"On offer",
+"Valida fino al":"Valid until","Miglior prezzo":"Best price","Alternativa":"Alternative","Zona":"Area","Indice":"Index",
+"Cerca un prodotto o un reparto…":"Search a product or department…","Cerca…":"Search…",
+"Aggiungi al listino":"Add to the list","Prepara la lista":"Prepare the list","Faccio da solo":"I'll do it myself",
+"Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
+},
+fr:{
+"Le promozioni cambiano ogni giovedì in Svizzera e ogni lunedì in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di più sul totale.":"Les promotions changent chaque jeudi en Suisse et chaque lundi en Italie. Ouvrez le prospectus, puis corrigez ci-dessous les prix qui vous intéressent : les dix articles qui pèsent le plus suffisent.",
+"I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.":"Les prospectus ne sortent pas tous le même jour. Faire les courses dès la parution des offres vous donne toute la semaine de rabais au lieu des restes.",
+"Le porzioni si adattano a età e attività.":"Les portions s'adaptent à l'âge et à l'activité.",
+"Scelgo io la combinazione che costa meno.":"Je choisis la combinaison la moins chère.",
+"Le quantità e i prezzi si ricalcolano subito. Puoi anche partire da 1 persona.":"Les quantités et les prix se recalculent aussitôt. Vous pouvez partir d'une seule personne.",
+"Cambia il peso dato a costo, salute, stagione e gradimento.":"Modifie le poids donné au coût, à la santé, à la saison et au goût.",
+"Utile a inizio anno o dopo un rincaro generalizzato.":"Utile en début d'année ou après une hausse générale.",
+"Quello che è in dispensa viene tolto dalla lista della spesa. Si riempie da sola ogni volta che chiudi una spesa in modalità corsia.":"Ce qui est au garde-manger est retiré de la liste. Il se remplit tout seul à chaque fin de courses.",
+"Ordinati per urgenza: prima i piatti che usano ciò che sta per scadere.":"Classés par urgence : d'abord les plats qui utilisent ce qui va périmer.",
+
+"Banco fresco":"Rayon frais",
+"Dispensa":"Garde-manger",
+"Colazione e dolci":"Petit-déjeuner et douceurs",
+"Bevande":"Boissons",
+"Casa e igiene":"Maison et hygiène",
+"Tutto il listino":"Toute la liste",
+"prodotti mostrati":"produits affichés",
+"Notte":"Nuit",
+"Giorno":"Jour",
+"Modalità giorno e notte":"Mode jour et nuit",
+"Verdura":"Légumes",
+"Frutta":"Fruits",
+"Carne":"Viande",
+"Pesce":"Poisson",
+"Legumi":"Légumineuses",
+"Latticini":"Produits laitiers",
+"Carboidrati":"Féculents",
+"Proteine":"Protéines",
+"Igiene":"Hygiène",
+"Casa":"Maison",
+"Un giorno solo":"Une seule journée",
+"3 giorni (fine settimana lungo)":"3 jours (week-end prolongé)",
+"5 giorni feriali":"5 jours ouvrables",
+"1 settimana":"1 semaine",
+"2 settimane":"2 semaines",
+"3 settimane":"3 semaines",
+"1 mese (4 settimane)":"1 mois (4 semaines)",
+"6 settimane":"6 semaines",
+"2 mesi":"2 mois",
+"Giorni a scelta…":"Nombre de jours au choix…",
+"Linea economica (M-Budget, Prix Garantie)":"Gamme économique (M-Budget, Prix Garantie)",
+"Marca propria standard":"Marque propre standard",
+"Marche note":"Grandes marques",
+"Biologico":"Bio",
+"Esatto, zero avanzi":"Juste, sans reste",
+"Piccolo margine (+8%)":"Petite marge (+8%)",
+"Dispensa piena (+20%)":"Garde-manger plein (+20%)",
+"Normale":"Normal",
+"Poco: piatti rapidi":"Peu : plats rapides",
+"Rapidi in settimana, elaborati nel weekend":"Rapides en semaine, élaborés le week-end",
+"Equilibrio (consigliato)":"Équilibre (conseillé)",
+"Spesa minima":"Dépense minimale",
+"Più salute e verdura":"Plus de santé et de légumes",
+"Massima stagionalità":"Saisonnalité maximale",
+"Gusti dei bambini":"Goûts des enfants",
+"Tutti quelli selezionati (prezzo minimo)":"Tous les magasins choisis (prix le plus bas)",
+"Uno solo":"Un seul",
+"Al massimo due":"Deux au maximum",
+"Al massimo tre":"Trois au maximum",
+"Diesel":"Diesel",
+"Benzina 95":"Essence 95",
+"Elettrico":"Électrique",
+"Più pertinenti":"Les plus pertinentes",
+"Più economiche":"Les moins chères",
+"Più sane":"Les plus saines",
+"Tutti i reparti":"Tous les rayons",
+"ovunque":"partout",
+"dal listino":"de la liste de prix",
+"scritta da te":"écrite par vous",
+"stimato":"estimé",
+"in azione":"en action",
+"prezzo del negozio":"prix du magasin",
+
+"Chi mangia":"Qui mange","Dove fai la spesa":"Où vous faites les courses","Come vuoi mangiare":"Comment vous voulez manger",
+"Pasti da pianificare":"Repas à planifier","Budget e periodo":"Budget et période","Conviene andare in Italia?":"Le trajet en Italie vaut-il la peine ?",
+"Quando conviene fare la spesa":"Le meilleur jour pour faire les courses","Promozioni attive":"Promotions en cours",
+"Da dove arrivano i prezzi":"D'où viennent les prix","Aggiornamento automatico":"Mise à jour automatique",
+"Listino — prezzi e promozioni":"Liste des prix et promotions","Indice prezzi per negozio":"Indice de prix par magasin",
+"Volantini della settimana":"Les prospectus de la semaine","Un momento in compagnia":"Un moment en compagnie",
+"Cosa c'è in casa":"Ce qu'il y a à la maison","Cosa cucino con quello che c'è":"Que cuisiner avec ce qu'il y a",
+"Manuale d'uso":"Mode d'emploi","Spesa mese per mese":"Dépenses mois par mois","Ultime spese":"Derniers achats",
+"Budget":"Budget","Dove vanno i soldi":"Où va l'argent","Quanto stai risparmiando":"Ce que vous économisez",
+"Come leggere questi numeri":"Comment lire ces chiffres",
+"Crea il piano":"Créer le plan","Rimescola":"Mélanger","Fai stare nel budget":"Tenir le budget",
+"Esporta / stampa":"Exporter / imprimer","+ Aggiungi persona":"+ Ajouter une personne","Caso nuovo":"Nouveau tirage",
+"Aggiorna adesso":"Mettre à jour","Aggiorna i 20 che contano":"Mettre à jour les 20 qui comptent","Crea il file listino":"Créer le fichier de prix",
+"Incolla un listino":"Coller une liste de prix","Applica":"Appliquer","Torna ai prezzi di riferimento":"Revenir aux prix de base",
+"Salva le impostazioni":"Enregistrer les réglages","Carica impostazioni":"Charger les réglages","+ Aggiungi un prodotto":"+ Ajouter un produit",
+"Tira il dado":"Lancer le dé","Proposta consigliata":"Menu conseillé","Solo le proposte della casa":"Menus de la maison seulement",
+"Esporta la lista":"Exporter la liste","Modalità spesa":"Mode courses","Ho finito la spesa":"J'ai fini les courses",
+"Manda la lista":"Envoyer la liste","Chiudi":"Fermer","Annulla":"Annuler",
+"+ Metti qualcosa in dispensa":"+ Mettre au garde-manger","Impostazioni":"Réglages",
+"Menu":"Menu","Lista della spesa":"Liste de courses","Lista":"Liste","Occasioni":"Occasions","Dispensa":"Garde-manger",
+"Storico":"Historique","Analisi e budget":"Analyse et budget","Analisi":"Analyse",
+"Prezzi e volantini":"Prix et prospectus","Prezzi":"Prix","Guida":"Guide",
+"Periodo":"Période","Budget totale CHF":"Budget total CHF","Quanti negozi vuoi girare":"Combien de magasins visiter",
+"Quante persone a tavola":"Combien de personnes à table","Quanti giorni":"Combien de jours",
+"Pasti fuori casa a settimana":"Repas hors de la maison par semaine","Linea di prodotto":"Gamme de produits",
+"Margine di scorta":"Marge de sécurité","Tempo per cucinare":"Temps pour cuisiner",
+"Giorni senza carne né pesce":"Jours sans viande ni poisson","Priorità nella scelta dei piatti":"Priorité dans le choix des plats",
+"Seme del caso (stesso numero = stesso menu)":"Graine du hasard (même nombre = même menu)",
+"prodotti a listino":"produits répertoriés","ricette e portate":"recettes et plats","menu combinabili":"menus possibles",
+"negozi":"magasins","stagione":"saison","listino":"liste de prix","salvato":"enregistré",
+"rifai l'avvio guidato":"refaire la configuration","cancella i dati salvati":"effacer les données",
+"Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Qui mange, combien vous dépensez, où vous achetez. Je calcule le reste.",
+"Vegetariano":"Végétarien","Vegano":"Végétalien","Niente maiale":"Sans porc","Niente pesce":"Sans poisson",
+"Senza glutine":"Sans gluten","Senza lattosio":"Sans lactose","Niente uova":"Sans œufs",
+"Niente frutta a guscio":"Sans fruits à coque","Niente carne rossa":"Sans viande rouge","Solo piatti veloci la sera":"Plats rapides le soir",
+"Colazione":"Petit-déjeuner","Pranzo":"Déjeuner","Merenda":"Goûter","Cena":"Dîner","Aperitivo e serata":"Apéritif et soirée",
+"Serata a tema":"Soirée à thème","Lusso":"Luxe","Medio":"Moyen","Indimenticabile":"Inoubliable",
+"Totale periodo":"Total de la période","Al giorno":"Par jour","Energia media":"Énergie moyenne","Proteine":"Protéines",
+"Frutta e verdura di stagione":"Fruits et légumes de saison","Indice salute":"Indice santé",
+"Spesa da fare":"Courses à faire","Valore consumato":"Valeur consommée","In cucina":"En cuisine","Energia":"Énergie",
+"Giorno migliore":"Meilleur jour","Seconda scelta":"Deuxième choix","Da prendere subito":"À prendre tout de suite",
+"Speso finora":"Dépensé jusqu'ici","Media al mese":"Moyenne mensuelle","Indice del tuo paniere":"Indice de votre panier",
+"Chilometri all'andata":"Kilomètres à l'aller","Minuti totali, coda compresa":"Minutes au total, file comprise",
+"Alimentazione":"Carburant","Consumo per 100 km":"Consommation aux 100 km","Quanto vale un'ora del tuo tempo":"Ce que vaut une heure de votre temps",
+"Prodotto":"Produit","Reparto":"Rayon","Formato":"Format","Stagione":"Saison","In azione":"En action",
+"Valida fino al":"Valable jusqu'au","Miglior prezzo":"Meilleur prix","Alternativa":"Alternative","Zona":"Zone","Indice":"Indice",
+"Cerca un prodotto o un reparto…":"Chercher un produit ou un rayon…","Cerca…":"Chercher…",
+"Prepara la lista":"Préparer la liste","Faccio da solo":"Je fais moi-même",
+"Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
+},
+de:{
+"Le promozioni cambiano ogni giovedì in Svizzera e ogni lunedì in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di più sul totale.":"Die Aktionen wechseln in der Schweiz jeden Donnerstag und in Italien jeden Montag. Öffnen Sie den Prospekt und korrigieren Sie unten die Preise, die Ihnen wichtig sind: die zehn schwersten Posten genügen.",
+"I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.":"Die Prospekte erscheinen nicht alle am selben Tag. Wer gleich zu Beginn einkauft, hat die ganze Woche Rabatte statt der Reste.",
+"Le porzioni si adattano a età e attività.":"Die Portionen richten sich nach Alter und Aktivität.",
+"Scelgo io la combinazione che costa meno.":"Ich wähle die günstigste Kombination.",
+"Le quantità e i prezzi si ricalcolano subito. Puoi anche partire da 1 persona.":"Mengen und Preise werden sofort neu berechnet. Sie können bei einer Person beginnen.",
+"Cambia il peso dato a costo, salute, stagione e gradimento.":"Ändert die Gewichtung von Preis, Gesundheit, Saison und Vorliebe.",
+"Utile a inizio anno o dopo un rincaro generalizzato.":"Nützlich zu Jahresbeginn oder nach einer allgemeinen Teuerung.",
+"Quello che è in dispensa viene tolto dalla lista della spesa. Si riempie da sola ogni volta che chiudi una spesa in modalità corsia.":"Was im Vorrat liegt, wird von der Einkaufsliste abgezogen. Er füllt sich bei jedem abgeschlossenen Einkauf selbst.",
+"Ordinati per urgenza: prima i piatti che usano ciò che sta per scadere.":"Nach Dringlichkeit sortiert: zuerst die Gerichte mit bald ablaufenden Zutaten.",
+
+"Banco fresco":"Frischtheke",
+"Dispensa":"Vorrat",
+"Colazione e dolci":"Frühstück und Süsses",
+"Bevande":"Getränke",
+"Casa e igiene":"Haushalt und Hygiene",
+"Tutto il listino":"Ganze Liste",
+"prodotti mostrati":"Produkte angezeigt",
+"Notte":"Nacht",
+"Giorno":"Tag",
+"Modalità giorno e notte":"Tag- und Nachtmodus",
+"Verdura":"Gemüse",
+"Frutta":"Obst",
+"Carne":"Fleisch",
+"Pesce":"Fisch",
+"Legumi":"Hülsenfrüchte",
+"Latticini":"Milchprodukte",
+"Carboidrati":"Getreide",
+"Proteine":"Eiweiss",
+"Igiene":"Hygiene",
+"Casa":"Haushalt",
+"Un giorno solo":"Nur ein Tag",
+"3 giorni (fine settimana lungo)":"3 Tage (langes Wochenende)",
+"5 giorni feriali":"5 Werktage",
+"1 settimana":"1 Woche",
+"2 settimane":"2 Wochen",
+"3 settimane":"3 Wochen",
+"1 mese (4 settimane)":"1 Monat (4 Wochen)",
+"6 settimane":"6 Wochen",
+"2 mesi":"2 Monate",
+"Giorni a scelta…":"Tage nach Wahl…",
+"Linea economica (M-Budget, Prix Garantie)":"Budgetlinie (M-Budget, Prix Garantie)",
+"Marca propria standard":"Standard-Eigenmarke",
+"Marche note":"Bekannte Marken",
+"Biologico":"Bio",
+"Esatto, zero avanzi":"Genau, ohne Reste",
+"Piccolo margine (+8%)":"Kleine Reserve (+8%)",
+"Dispensa piena (+20%)":"Voller Vorrat (+20%)",
+"Normale":"Normal",
+"Poco: piatti rapidi":"Wenig: schnelle Gerichte",
+"Rapidi in settimana, elaborati nel weekend":"Schnell unter der Woche, aufwendig am Wochenende",
+"Equilibrio (consigliato)":"Ausgewogen (empfohlen)",
+"Spesa minima":"Tiefste Ausgaben",
+"Più salute e verdura":"Mehr Gesundheit und Gemüse",
+"Massima stagionalità":"Maximale Saisonalität",
+"Gusti dei bambini":"Geschmack der Kinder",
+"Tutti quelli selezionati (prezzo minimo)":"Alle gewählten (tiefster Preis)",
+"Uno solo":"Nur einer",
+"Al massimo due":"Höchstens zwei",
+"Al massimo tre":"Höchstens drei",
+"Diesel":"Diesel",
+"Benzina 95":"Benzin 95",
+"Elettrico":"Elektrisch",
+"Più pertinenti":"Am passendsten",
+"Più economiche":"Am günstigsten",
+"Più sane":"Am gesündesten",
+"Tutti i reparti":"Alle Abteilungen",
+"ovunque":"überall",
+"dal listino":"aus der Preisliste",
+"scritta da te":"von Ihnen erfasst",
+"stimato":"geschätzt",
+"in azione":"in Aktion",
+"prezzo del negozio":"Ladenpreis",
+
+"Chi mangia":"Wer isst mit","Dove fai la spesa":"Wo Sie einkaufen","Come vuoi mangiare":"Wie Sie essen möchten",
+"Pasti da pianificare":"Zu planende Mahlzeiten","Budget e periodo":"Budget und Zeitraum","Conviene andare in Italia?":"Lohnt sich die Fahrt nach Italien?",
+"Quando conviene fare la spesa":"Der beste Einkaufstag","Promozioni attive":"Laufende Aktionen",
+"Da dove arrivano i prezzi":"Woher die Preise kommen","Aggiornamento automatico":"Automatische Aktualisierung",
+"Listino — prezzi e promozioni":"Preisliste und Aktionen","Indice prezzi per negozio":"Preisindex pro Laden",
+"Volantini della settimana":"Prospekte der Woche","Un momento in compagnia":"Ein Moment in Gesellschaft",
+"Cosa c'è in casa":"Was im Haus ist","Cosa cucino con quello che c'è":"Was koche ich mit dem, was da ist",
+"Manuale d'uso":"Bedienungsanleitung","Spesa mese per mese":"Ausgaben Monat für Monat","Ultime spese":"Letzte Einkäufe",
+"Budget":"Budget","Dove vanno i soldi":"Wohin das Geld geht","Quanto stai risparmiando":"Wie viel Sie sparen",
+"Come leggere questi numeri":"Wie diese Zahlen zu lesen sind",
+"Crea il piano":"Plan erstellen","Rimescola":"Neu mischen","Fai stare nel budget":"Ins Budget bringen",
+"Esporta / stampa":"Exportieren / drucken","+ Aggiungi persona":"+ Person hinzufügen","Caso nuovo":"Neue Ziehung",
+"Aggiorna adesso":"Jetzt aktualisieren","Aggiorna i 20 che contano":"Die 20 wichtigsten aktualisieren","Crea il file listino":"Preisdatei erstellen",
+"Incolla un listino":"Preisliste einfügen","Applica":"Anwenden","Torna ai prezzi di riferimento":"Zurück zu den Basispreisen",
+"Salva le impostazioni":"Einstellungen speichern","Carica impostazioni":"Einstellungen laden","+ Aggiungi un prodotto":"+ Produkt hinzufügen",
+"Tira il dado":"Würfeln","Proposta consigliata":"Empfohlenes Menü","Solo le proposte della casa":"Nur Hausmenüs",
+"Esporta la lista":"Liste exportieren","Modalità spesa":"Einkaufsmodus","Ho finito la spesa":"Einkauf beendet",
+"Manda la lista":"Liste senden","Chiudi":"Schliessen","Annulla":"Abbrechen",
+"+ Metti qualcosa in dispensa":"+ In den Vorrat legen","Impostazioni":"Einstellungen",
+"Menu":"Menü","Lista della spesa":"Einkaufsliste","Lista":"Liste","Occasioni":"Anlässe","Dispensa":"Vorrat",
+"Storico":"Verlauf","Analisi e budget":"Auswertung und Budget","Analisi":"Auswertung",
+"Prezzi e volantini":"Preise und Prospekte","Prezzi":"Preise","Guida":"Anleitung",
+"Periodo":"Zeitraum","Budget totale CHF":"Gesamtbudget CHF","Quanti negozi vuoi girare":"Wie viele Läden besuchen",
+"Quante persone a tavola":"Wie viele Personen am Tisch","Quanti giorni":"Wie viele Tage",
+"Pasti fuori casa a settimana":"Mahlzeiten auswärts pro Woche","Linea di prodotto":"Produktlinie",
+"Margine di scorta":"Sicherheitsmarge","Tempo per cucinare":"Zeit zum Kochen",
+"Giorni senza carne né pesce":"Tage ohne Fleisch und Fisch","Priorità nella scelta dei piatti":"Priorität bei der Auswahl",
+"Seme del caso (stesso numero = stesso menu)":"Zufallszahl (gleiche Zahl = gleiches Menü)",
+"prodotti a listino":"Produkte im Sortiment","ricette e portate":"Rezepte und Gänge","menu combinabili":"mögliche Menüs",
+"negozi":"Läden","stagione":"Saison","listino":"Preisliste","salvato":"gespeichert",
+"rifai l'avvio guidato":"Einrichtung neu starten","cancella i dati salvati":"gespeicherte Daten löschen",
+"Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Wer isst, was Sie ausgeben, wo Sie kaufen. Den Rest rechne ich aus.",
+"Vegetariano":"Vegetarisch","Vegano":"Vegan","Niente maiale":"Ohne Schweinefleisch","Niente pesce":"Ohne Fisch",
+"Senza glutine":"Glutenfrei","Senza lattosio":"Laktosefrei","Niente uova":"Ohne Eier",
+"Niente frutta a guscio":"Ohne Nüsse","Niente carne rossa":"Ohne rotes Fleisch","Solo piatti veloci la sera":"Abends nur schnelle Gerichte",
+"Colazione":"Frühstück","Pranzo":"Mittagessen","Merenda":"Zwischenmahlzeit","Cena":"Abendessen","Aperitivo e serata":"Apéro und Abend",
+"Serata a tema":"Themenabend","Lusso":"Luxus","Medio":"Mittel","Indimenticabile":"Unvergesslich",
+"Totale periodo":"Gesamt für den Zeitraum","Al giorno":"Pro Tag","Energia media":"Durchschnittliche Energie","Proteine":"Eiweiss",
+"Frutta e verdura di stagione":"Saisonales Obst und Gemüse","Indice salute":"Gesundheitsindex",
+"Spesa da fare":"Einzukaufen","Valore consumato":"Verbrauchter Wert","In cucina":"In der Küche","Energia":"Energie",
+"Giorno migliore":"Bester Tag","Seconda scelta":"Zweite Wahl","Da prendere subito":"Sofort mitnehmen",
+"Speso finora":"Bisher ausgegeben","Media al mese":"Monatsdurchschnitt","Indice del tuo paniere":"Index Ihres Warenkorbs",
+"Chilometri all'andata":"Kilometer pro Weg","Minuti totali, coda compresa":"Minuten insgesamt, mit Wartezeit",
+"Alimentazione":"Treibstoff","Consumo per 100 km":"Verbrauch pro 100 km","Quanto vale un'ora del tuo tempo":"Was eine Stunde Ihrer Zeit wert ist",
+"Prodotto":"Produkt","Reparto":"Abteilung","Formato":"Grösse","Stagione":"Saison","In azione":"In Aktion",
+"Valida fino al":"Gültig bis","Miglior prezzo":"Bester Preis","Alternativa":"Alternative","Zona":"Gebiet","Indice":"Index",
+"Cerca un prodotto o un reparto…":"Produkt oder Abteilung suchen…","Cerca…":"Suchen…",
+"Prepara la lista":"Liste vorbereiten","Faccio da solo":"Ich mache es selbst",
+"Bentornato a tavola":"Willkommen zurück am Tisch","Lingua":"Sprache",
+}};
+
+const SEL_TRAD = ".card>h2, .tab .lg, .tab .sm, .btn, .btn>span, .chip, .chip .nm, option, .hint, .legenda, "+
+                 ".kpi .sub, .sc-note, .setup-h .sc, .empty b, .empty, .sm-sub, .fonte b, .fonte small, "+
+                 ".voce h4, .cap summary, .lab, .et, .meta, .zona, .q, label.f, th, .claim, .kpi .lab, "+
+                 ".statusbar #memoria, .statusbar .linkbtn, .hero-stats span, .setup-h .st b, "+
+                 ".modal h3, .cap summary, .sc-cat, .giorno-h b, .empty b, .pasto .et, .sm-tit";
+
+function traduci(){
+  const L=S.lingua||"it";
+  // segnaposto dei campi di ricerca e di inserimento
+  document.querySelectorAll("[placeholder]").forEach(el=>{
+    if(el.dataset.itPh===undefined) el.dataset.itPh=el.getAttribute("placeholder")||"";
+    const it=el.dataset.itPh; if(!it) return;
+    el.setAttribute("placeholder", L==="it" ? it : ((DIZ[L]&&DIZ[L][it])||it));
+  });
+  document.querySelectorAll("[title]").forEach(el=>{
+    if(el.dataset.itTi===undefined) el.dataset.itTi=el.getAttribute("title")||"";
+    const it=el.dataset.itTi; if(!it) return;
+    el.setAttribute("title", L==="it" ? it : ((DIZ[L]&&DIZ[L][it])||it));
+  });
+  document.querySelectorAll(SEL_TRAD).forEach(el=>{
+    if(el.children.length && !el.classList.contains("chip") && !el.classList.contains("btn")
+       && el.tagName!=="LABEL" && el.tagName!=="SUMMARY") return;
+    if(el.dataset.it===undefined) el.dataset.it=el.textContent.trim();
+    const it=el.dataset.it;
+    if(!it) return;
+    const t = L==="it" ? it : (DIZ[L] && DIZ[L][it]);
+    if(t && el.textContent.trim()!==t){
+      // sostituisco solo il testo, lasciando intatti pallini e icone interne
+      const nodi=[...el.childNodes].filter(n=>n.nodeType===3 && n.textContent.trim());
+      if(nodi.length) nodi[nodi.length-1].textContent = (nodi[nodi.length-1].textContent.startsWith(" ")?" ":"")+t;
+      else if(!el.children.length) el.textContent=t;
+    }
+  });
+  document.documentElement.lang=L;
+}
+function applicaTema(){
+  document.documentElement.dataset.tema = S.tema==="giorno" ? "giorno" : "notte";
+  const ic=$("#temaIc"), tx=$("#temaTxt");
+  if(ic) ic.textContent = S.tema==="giorno" ? "☀" : "☾";
+  if(tx){ tx.dataset.it = S.tema==="giorno" ? "Giorno" : "Notte"; tx.textContent = tx.dataset.it; }
+  setTimeout(traduci,0);
+}
+function renderLingue(){
+  const box=$("#lingue"); if(!box) return;
+  box.innerHTML=LINGUE.map(l=>`<button class="lng${(S.lingua||"it")===l.id?" on":""}" data-l="${l.id}" title="${l.n}">${l.b}</button>`).join("");
+  box.querySelectorAll(".lng").forEach(b=>b.onclick=()=>{
+    S.lingua=b.dataset.l; salva(); renderLingue(); traduci();
+  });
+}
+
+/* =========================================================
    13. MODALE ed export
    ========================================================= */
-function apriModale(html){ $("#modal").innerHTML=html; $("#overlay").hidden=false; }
+function apriModale(html){ $("#modal").innerHTML=html; $("#overlay").hidden=false; setTimeout(traduci,0); }
 function chiudiModale(){ $("#overlay").hidden=true; }
 $("#overlay").addEventListener("click",e=>{ if(e.target.id==="overlay") chiudiModale(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") chiudiModale(); });
@@ -4124,6 +4841,7 @@ function esporta(){
    ========================================================= */
 function renderTutto(){
   renderMenu(); renderLista(); renderAnalisi(); calcolaViaggio();
+  setTimeout(traduci,0);
   const righe=costruisciLista();
   if(righe){
     const t=totale(righe);
@@ -4287,11 +5005,12 @@ $$(".tab").forEach(t=>{
   t.onclick=()=>{
     $$(".tab").forEach(x=>x.setAttribute("aria-selected",x===t));
     $$(".panel").forEach(p=>p.hidden = p.id!=="p-"+t.dataset.p);
-    vaiAllaSezione(t.dataset.p);
+    misuraNav(); vaiAllaSezione(t.dataset.p);
   };
 });
 /* portare davvero l'occhio sulla sezione scelta, non solo cambiarla */
 function vaiAllaSezione(id){
+  setTimeout(misuraNav,200);
   const el=document.getElementById("p-"+id); if(!el) return;
   const mobile=window.matchMedia("(max-width:760px)").matches;
   const barra=document.querySelector(".tabs");
@@ -4300,6 +5019,17 @@ function vaiAllaSezione(id){
   try{ window.scrollTo({top:Math.max(0,y),behavior:"smooth"}); }
   catch(e){ window.scrollTo(0,Math.max(0,y)); }
 }
+
+/* la barra di navigazione dice quanto spazio serve in fondo */
+function misuraNav(){
+  const t=document.querySelector(".tabs");
+  if(!t) return;
+  const fissa=getComputedStyle(t).position==="fixed";
+  document.documentElement.style.setProperty("--nav", fissa ? t.offsetHeight+"px" : "0px");
+}
+window.addEventListener("resize",misuraNav);
+window.addEventListener("orientationchange",()=>setTimeout(misuraNav,150));
+if(window.visualViewport) window.visualViewport.addEventListener("resize",misuraNav);
 
 /* avvio */
 (function init(){
@@ -4329,7 +5059,9 @@ function vaiAllaSezione(id){
   });
   $("#autoFeed").checked=S.autoFeed;
   renderEventiControlli(); renderEventi(); renderDispensa(); renderStorico(); renderGuida();
-  registraIndice(); renderStorico();
+  registraIndice(); renderStorico(); misuraNav(); setTimeout(misuraNav,400);
+  renderLingue(); applicaTema(); traduci();
+  $("#btnTema").onclick=()=>{ S.tema = S.tema==="giorno" ? "notte" : "giorno"; applicaTema(); salva(); };
   if(!listaDaLink() && !S.avvioFatto) setTimeout(avvioGuidato,400);
   if(S.autoFeed && S.feedUrl) aggiornaDaFeed(true);
   $$(".panel").forEach(p=>p.hidden = p.id!=="p-menu");
