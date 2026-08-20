@@ -195,7 +195,13 @@ header.top::after{content:"";position:absolute;inset:0;pointer-events:none;
 @media(prefers-reduced-motion:reduce){.panel:not([hidden]),.giorno,.scontrino,.kpi>div,.propostaBtn,.modal{animation:none!important}}
 
 /* ---------- menu ---------- */
-.weekbar{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.weekbar{display:flex;gap:8px;margin:0 auto 18px;flex-wrap:wrap;justify-content:center;
+  padding:6px;border:1px solid var(--linea);border-radius:999px;width:max-content;max-width:100%;
+  background:linear-gradient(180deg,rgba(26,45,82,.4),rgba(8,13,22,.35))}
+.weekbar .chip{border:0;background:transparent;padding:8px 16px}
+.weekbar .chip .nm{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.weekbar .chip[aria-pressed=true]{background:linear-gradient(180deg,var(--oro-l),var(--oro));color:#241a05;box-shadow:0 6px 16px -10px rgba(224,180,90,.8)}
+.weekbar .chip:not([aria-pressed=true]):hover{background:rgba(224,180,90,.09)}
 .giorni{display:grid;grid-template-columns:repeat(auto-fill,minmax(246px,1fr));gap:12px}
 .giorno{background:linear-gradient(180deg,rgba(22,41,78,.6),rgba(8,13,22,.82));border:1px solid var(--linea);border-radius:16px;transition:border-color .15s,transform .12s}
 .giorno:hover{border-color:var(--linea-2);transform:translateY(-1px)}
@@ -246,8 +252,10 @@ header.top::after{content:"";position:absolute;inset:0;pointer-events:none;
 .sc-r a{color:var(--testo-2);text-decoration:none;border-bottom:1px dotted var(--linea-2)}
 .sc-r a:hover{color:var(--oro-l);border-bottom-color:var(--oro)}
 .sc-r input[type=checkbox]{margin:0;cursor:pointer}
-.sc-r .alt{border:1px solid var(--linea-2);background:transparent;color:var(--testo-3);border-radius:5px;
-  font-size:10px;padding:0 4px;margin-left:5px;cursor:pointer;line-height:1.5}
+.sc-r .alt{border:1px solid var(--linea-2);background:transparent;color:var(--testo-3);border-radius:6px;
+  font-size:11px;padding:2px 6px;cursor:pointer;line-height:1.4;align-self:center;opacity:.45;transition:.15s}
+.sc-r:hover .alt{opacity:1}
+@media(hover:none){ .sc-r .alt{opacity:.8;padding:4px 8px} }
 .sc-r .alt:hover{border-color:var(--oro);color:var(--oro-l)}
 .sc-tot{margin:14px 16px 0;padding-top:10px;border-top:1px solid var(--oro);display:flex;justify-content:space-between;font-size:15px;color:var(--oro-l);font-weight:500}
 .sc-note{padding:10px 16px 0;font-size:10px;color:var(--testo-3);line-height:1.5;letter-spacing:.04em}
@@ -372,6 +380,38 @@ html[data-tema="giorno"] .sm-top,html[data-tema="giorno"] .sm-foot{background:#f
 html[data-tema="giorno"] .sm-foot{background:linear-gradient(180deg,rgba(246,244,238,0),var(--nero) 35%)}
 html[data-tema="giorno"] .sm-r.preso{opacity:.5}
 html[data-tema="giorno"] ::selection{background:var(--oro);color:#fff}
+html[data-tema="giorno"]{--ombra:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -20px #5a6070}
+html[data-tema="giorno"] body{color:#141922}
+html[data-tema="giorno"] .giorno,html[data-tema="giorno"] .card,html[data-tema="giorno"] .kpi>div,
+html[data-tema="giorno"] .hero-stats .hs,html[data-tema="giorno"] .fonte,html[data-tema="giorno"] .cap,
+html[data-tema="giorno"] .setup-h{border-color:#dcdfe5}
+html[data-tema="giorno"] .pasto{border-bottom-color:#e6e8ec}
+html[data-tema="giorno"] .pasto .nm{color:#141922}
+html[data-tema="giorno"] .giorno-f,html[data-tema="giorno"] .sc-note,html[data-tema="giorno"] .hint,
+html[data-tema="giorno"] .kpi .sub,html[data-tema="giorno"] .pie-note{color:#5d6878}
+html[data-tema="giorno"] .giorno-h b,html[data-tema="giorno"] .kpi .val,html[data-tema="giorno"] .bigval,
+html[data-tema="giorno"] .hero-stats b,html[data-tema="giorno"] .modal h3,html[data-tema="giorno"] .cap summary,
+html[data-tema="giorno"] .empty b,html[data-tema="giorno"] .pie-frase{color:#7a5c15}
+html[data-tema="giorno"] .card>h2,html[data-tema="giorno"] .sc-cat,html[data-tema="giorno"] tr.sep td,
+html[data-tema="giorno"] .tabs .tab[aria-selected=true]{color:#8a681a}
+html[data-tema="giorno"] .chip{color:#3d4757;border-color:#d3d8e0}
+html[data-tema="giorno"] .chip[aria-pressed=true]{color:#4a3505}
+html[data-tema="giorno"] .tagpill{background:#e8edf6;color:#2c4d8f}
+html[data-tema="giorno"] .tagpill.oro{background:#f7e9c9;color:#6a4f11}
+html[data-tema="giorno"] .mi,html[data-tema="giorno"] .swap{border-color:#d3d8e0;color:#6b7686}
+html[data-tema="giorno"] .mi.on{background:var(--oro);color:#241a05}
+html[data-tema="giorno"] .scontrino{border-color:#e2ddd0;border-top-color:#c9a24a}
+html[data-tema="giorno"] .sc-r{color:#3d4757}
+html[data-tema="giorno"] .sc-r .p{color:#141922}
+html[data-tema="giorno"] .sc-r a{color:#3d4757;border-bottom-color:#c9ccd3}
+html[data-tema="giorno"] .weekbar{background:#fff}
+html[data-tema="giorno"] .weekbar .chip:not([aria-pressed=true]){color:#5d6878}
+html[data-tema="giorno"] .statusbar,html[data-tema="giorno"] .linkbtn{color:#6d7889}
+html[data-tema="giorno"] .lng{color:#5d6878}
+html[data-tema="giorno"] .tick{color:#8a94a4}
+html[data-tema="giorno"] .claim{color:#3d4757}
+html[data-tema="giorno"] .sm-r .nm small,html[data-tema="giorno"] .sm-sub{color:#5d6878}
+html[data-tema="giorno"] .bar{border-color:#dcdfe5}
 
 /* ---------- barre di scorrimento discrete ---------- */
 *{scrollbar-width:thin;scrollbar-color:var(--linea-2) transparent}
@@ -385,7 +425,8 @@ html[data-tema="giorno"] ::selection{background:var(--oro);color:#fff}
 
 /* ---------- scelta della lingua ---------- */
 .lingue{display:flex;gap:4px;justify-content:center;margin-top:16px}
-.lng .bandiera{font-size:13px;line-height:1;margin-right:5px;filter:saturate(.9)}
+.lng .bandiera{width:17px;height:12px;margin-right:6px;vertical-align:-1px;border-radius:2px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.12)}
 .lng .sigla{font-size:10px}
 .lng.tema{font-size:14px;padding:5px 11px}
 .lng{border:1px solid var(--linea);background:rgba(13,24,48,.5);color:var(--testo-3);
@@ -439,6 +480,29 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .tappa-q{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--oro);line-height:1.5}
 .tappa-v{font-size:14.5px;color:var(--testo);line-height:1.5}
 @media(max-width:620px){ .tappa{grid-template-columns:1fr;gap:4px} }
+
+
+.nutri{display:inline-block;line-height:0;vertical-align:middle}
+.nutri.p{margin-left:8px}
+.nutri svg{display:block}
+
+
+.paese{margin-bottom:14px}
+.paese:last-child{margin-bottom:0}
+.paese-h{display:flex;align-items:center;gap:9px;margin-bottom:9px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--testo-3)}
+.paese-h .bandiera{width:20px;height:14px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.paese-h .q{margin-left:auto;color:var(--oro-d)}
+
+
+.avanzate{border:1px solid var(--linea);border-radius:12px;padding:0}
+.avanzate summary{cursor:pointer;list-style:none;padding:11px 14px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--testo-3)}
+.avanzate summary::-webkit-details-marker{display:none}
+.avanzate summary::after{content:"+";float:right;color:var(--oro-d)}
+.avanzate[open] summary::after{content:"−"}
+.avanzate[open]{border-color:var(--linea-2)}
+.avanzate > .due,.avanzate > div{padding:0 14px 14px}
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
@@ -538,7 +602,34 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
   .statusbar{gap:10px;margin-top:12px;font-size:9.5px}
   .statusbar .linkbtn{font-size:9.5px}
   .card{padding:15px 14px 17px}
-  .giorni{grid-template-columns:1fr}
+  .giorni{grid-template-columns:1fr;gap:10px}
+  .giorno-h{padding:12px 14px}
+  .giorno-h b{font-size:21px}
+  .pasto{padding:12px 14px}
+  .pasto .nm{font-size:15.5px;line-height:1.35}
+  .pasto .et{font-size:10px;letter-spacing:.18em}
+  .pasto .azioni{gap:8px;margin-top:10px}
+  .mi,.swap{width:36px;height:32px}
+  .mi svg,.swap svg{width:18px;height:18px}
+  .giorno-f{padding:11px 14px;font-size:12.5px}
+  .scontrino{font-size:13.5px}
+  .sc-r{grid-template-columns:20px 22px 1fr auto auto;gap:8px;padding:9px 0;align-items:center}
+  .sc-r .q .formato{display:none}
+  .sc-r .nomeprod{display:block}
+  .sc-r .q{font-size:11.5px}
+  .sc-r input[type=checkbox]{width:19px;height:19px}
+  .sc-cat{font-size:10.5px;margin:16px 0 6px}
+  .sc-tot{font-size:17px}
+  .kpi{grid-template-columns:1fr 1fr;gap:9px}
+  .kpi > div{padding:13px 12px}
+  .kpi .val{font-size:26px}
+  .kpi .lab{font-size:9px;letter-spacing:.12em}
+  .kpi .sub{font-size:11px}
+  .barlist .l{font-size:13px}
+  .weekbar{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;border-radius:999px;padding:5px}
+  .weekbar .chip{padding:8px 13px}
+  .weekbar .chip .nm{font-size:10.5px}
+  .tblwrap table{font-size:12.5px}
   .listagrid{grid-template-columns:1fr}
   .kpi{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
   .action-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
@@ -706,6 +797,11 @@ html,body{max-width:100%;overflow-x:hidden}
         <path d="M32 7c-2.6-.4-4.4.8-5.2 3.2 2.6.6 4.4-.4 5.2-3.2Zm0 0c2.6-.4 4.4.8 5.2 3.2-2.6.6-4.4-.4-5.2-3.2Z" fill="url(#oro)" opacity=".9"/>
         <path d="M24 20.5c1.6-2 4.6-3 8-3s6.4 1 8 3" fill="none" stroke="url(#oro)" stroke-width=".9" opacity=".55"/>
       </symbol>
+<symbol id="fl-ch" viewBox="0 0 24 16"><rect width="24" height="16" rx="2.4" fill="#d52b1e"/><path d="M10.4 3.6h3.2v3.2h3.2v3.2h-3.2v3.2h-3.2V10H7.2V6.8h3.2Z" fill="#fff"/></symbol>
+<symbol id="fl-it" viewBox="0 0 24 16"><clipPath id="cit"><rect width="24" height="16" rx="2.4"/></clipPath><g clip-path="url(#cit)"><rect width="8" height="16" fill="#008C45"/><rect x="8" width="8" height="16" fill="#F4F5F0"/><rect x="16" width="8" height="16" fill="#CD212A"/></g></symbol>
+<symbol id="fl-gb" viewBox="0 0 24 16"><clipPath id="cgb"><rect width="24" height="16" rx="2.4"/></clipPath><g clip-path="url(#cgb)"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0l24 16M24 0L0 16" stroke="#C8102E" stroke-width="1.8"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5.4"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3.2"/></g></symbol>
+<symbol id="fl-fr" viewBox="0 0 24 16"><clipPath id="cfr"><rect width="24" height="16" rx="2.4"/></clipPath><g clip-path="url(#cfr)"><rect width="8" height="16" fill="#002395"/><rect x="8" width="8" height="16" fill="#F4F5F0"/><rect x="16" width="8" height="16" fill="#ED2939"/></g></symbol>
+<symbol id="fl-de" viewBox="0 0 24 16"><clipPath id="cde"><rect width="24" height="16" rx="2.4"/></clipPath><g clip-path="url(#cde)"><rect width="24" height="5.34" fill="#111"/><rect y="5.34" width="24" height="5.33" fill="#DD0000"/><rect y="10.67" width="24" height="5.33" fill="#FFCE00"/></g></symbol>
 <symbol id="ic-cuore" viewBox="0 0 24 24"><path d="M12 20s-7.4-4.6-7.4-9.6A4.4 4.4 0 0 1 12 7.6a4.4 4.4 0 0 1 7.4 2.8C19.4 15.4 12 20 12 20Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
 <symbol id="ic-no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 15l6-6M9 9l6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
 <symbol id="ic-cambia" viewBox="0 0 24 24"><path d="M5 9h10.5a3.5 3.5 0 0 1 0 7H12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 6 5 9l3 3M15 13l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -765,7 +861,7 @@ html,body{max-width:100%;overflow-x:hidden}
       <button class="lng tema" id="btnTema" title="Modalità giorno e notte" aria-label="Giorno / notte"><span id="temaIc">☾</span></button>
     </div>
     <div class="statusbar">
-      <span id="memoria">salvato</span>
+      <span id="memoria">impostazioni salvate sul dispositivo</span>
       <button class="linkbtn" id="riavvia">rifai l'avvio guidato</button>
       <button class="linkbtn" id="scorda">cancella i dati salvati</button>
     </div>
@@ -833,7 +929,7 @@ html,body{max-width:100%;overflow-x:hidden}
       <section class="card noprint">
         <h2>Dove fai la spesa</h2>
         <div class="chips" id="rivenditori"></div>
-        <p class="hint">Per ogni prodotto scelgo automaticamente il rivenditore più conveniente tra quelli selezionati. I prezzi italiani sono indicativi e convertiti in CHF.</p>
+        <p class="hint">Per ogni prodotto scelgo il negozio pi&ugrave; conveniente tra quelli accesi. I prezzi italiani sono convertiti in franchi al cambio del giorno.</p>
       </section>
       <section class="card noprint">
         <h2>Budget e periodo</h2>
@@ -1017,6 +1113,8 @@ html,body{max-width:100%;overflow-x:hidden}
     </div>
     <div class="card">
       <h2 data-sez="aggiorna">Aggiornamento automatico</h2>
+      <div id="statoAgg" class="banner ok" style="margin-bottom:14px"></div>
+      <details class="avanzate"><summary><span class="nm">Impostazioni avanzate</span></summary>
       <div class="due">
         <div>
           <label class="f" for="feedUrl">Indirizzo del listino condiviso (JSON)</label>
@@ -1038,6 +1136,7 @@ html,body{max-width:100%;overflow-x:hidden}
           <div class="hint" id="statoFeed">Nessun listino collegato.</div>
         </div>
       </div>
+      </details>
       <div class="due" style="margin-top:16px">
         <div>
           <label class="f" for="adegua">Adegua tutto il listino</label>
@@ -1070,7 +1169,7 @@ html,body{max-width:100%;overflow-x:hidden}
         <span class="hint" id="contaListino" style="margin:0"></span>
       </div>
       <div class="tblwrap"><table id="tblProd"><thead><tr>
-        <th>Prodotto</th><th>Reparto</th><th>Formato</th><th class="num">Prezzo base CHF</th><th class="num">In azione</th><th>Valida fino al</th><th class="num">Miglior prezzo</th><th>Alternativa</th><th>Stagione</th>
+        <th>Prodotto</th><th>Reparto</th><th>Formato</th><th class="num">Prezzo base CHF</th><th class="num">In azione</th><th>Valida fino al</th><th class="num">Miglior prezzo</th><th>Nutri-Score</th><th>Alternativa</th><th>Stagione</th>
       </tr></thead><tbody></tbody></table></div>
     </div>
     <div class="card">
@@ -2078,7 +2177,7 @@ const S = {
   giaInCasa:new Set(),
   lingua:"it", tema:"notte", cambio:0.94, nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{}, gruppo:"tutti", sezPrezzi:"listino",   // prodotto -> alternativa scelta / provenienza del prezzo
+  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, gruppo:"tutti", sezPrezzi:"listino",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
   viaggio:{km:18,consumo:6.5,carb:"diesel",minuti:70,valoreOra:20,pedaggi:0},
@@ -2158,6 +2257,29 @@ function prezzoRif(id){
   return base*k;
 }
 const eff = id => (S.sost && S.sost[id] && PROD[S.sost[id]]) ? S.sost[id] : id;
+/* Nutri-Score: quando l'archivio aperto dà un dato solido lo uso,
+   altrimenti lo ricavo dall'indice salute del prodotto. In entrambi i casi
+   è un'indicazione di categoria, non il punteggio di una marca precisa. */
+const LETTERE=["a","b","c","d","e"];
+function nutriDi(id){
+  const p=PROD[eff(id)]; if(!p) return null;
+  if(["Casa","Igiene"].includes(p.cat)) return null;
+  const d=S.nutri && S.nutri[p.id];
+  if(d && d.g && d.n>=10 && (d.sicurezza||0)>=60) return {g:d.g, fonte:"rilevato", n:d.n};
+  return {g:LETTERE[Math.max(0,Math.min(4,5-(p.hs||3)))], fonte:"stimato"};
+}
+function nutriBadge(id,piccolo){
+  const n=nutriDi(id); if(!n) return "";
+  const i=LETTERE.indexOf(n.g);
+  const col=["#1e8f4e","#8bc34a","#f4c430","#ef7d1a","#e1442a"];
+  const h=piccolo?13:17, w=h*2.6;
+  return `<span class="nutri${piccolo?" p":""}" title="Nutri-Score ${n.g.toUpperCase()} · ${n.fonte==="rilevato"?T("rilevato su")+" "+n.n+" "+T("prodotti simili"):T("stimato dalla composizione")}">
+    <svg viewBox="0 0 130 26" style="height:${h}px;width:${w}px">
+      ${LETTERE.map((l,k)=>`<g><rect x="${k*26}" y="${k===i?0:4}" width="25" height="${k===i?26:18}" rx="${k===i?6:4}" fill="${col[k]}" opacity="${k===i?1:.32}"/>
+        <text x="${k*26+12.5}" y="${k===i?19:17}" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800"
+          font-size="${k===i?16:12}" fill="#fff">${l.toUpperCase()}</text></g>`).join("")}
+    </svg></span>`;
+}
 function promoViva(id){
   const p=S.promo[id];
   return !!(p && p.p>0 && (!p.fino || p.fino>=oggiISO()));
@@ -2503,13 +2625,23 @@ function renderPersone(){
 }
 function renderRiv(){
   const c=$("#rivenditori"); c.innerHTML="";
-  RIV.forEach(r=>{
-    const b=document.createElement("button");
-    b.className="chip"; b.type="button";
-    b.setAttribute("aria-pressed", S.riv.has(r.id));
-    b.innerHTML=`<span class="dot" style="background:${r.c}"></span>${r.n} <span class="zona">${r.z}</span>`;
-    b.onclick=()=>{ S.riv.has(r.id)?S.riv.delete(r.id):S.riv.add(r.id); if(!S.riv.size)S.riv.add(r.id); renderRiv(); if(S.menu)renderTutto(); renderCatalogo(); };
-    c.appendChild(b);
+  [["CH","Svizzera","ch"],["IT","Italia","it"]].forEach(([z,nome,fl])=>{
+    const gruppo=RIV.filter(r=>r.z===z).sort((a,b)=>a.n.localeCompare(b.n,"it"));
+    const t=document.createElement("div"); t.className="paese";
+    t.innerHTML=`<div class="paese-h"><svg class="bandiera" viewBox="0 0 24 16"><use href="#fl-${fl}"/></svg>
+      <span class="nm">${nome}</span><span class="q">${gruppo.filter(r=>S.riv.has(r.id)).length}/${gruppo.length}</span></div>
+      <div class="chips"></div>`;
+    const box=t.querySelector(".chips");
+    gruppo.forEach(r=>{
+      const b=document.createElement("button");
+      b.className="chip"; b.type="button";
+      b.setAttribute("aria-pressed", S.riv.has(r.id));
+      b.innerHTML=`<span class="dot" style="background:${r.c}"></span>${r.n}`;
+      b.onclick=()=>{ S.riv.has(r.id)?S.riv.delete(r.id):S.riv.add(r.id); if(!S.riv.size)S.riv.add(r.id);
+        renderRiv(); if(S.menu)renderTutto(); renderCatalogo(); salva(); };
+      box.appendChild(b);
+    });
+    c.appendChild(t);
   });
 }
 function renderPrefs(){
@@ -2652,8 +2784,8 @@ function renderLista(){
               <input type="checkbox" data-id="${r.id}" ${r.off?"checked":""} title="Ce l'ho gi\u00e0 in casa">
               <span>${r.pr.ic}</span>
               <span><a href="${riv.url(encodeURIComponent(r.pr.n))}" target="_blank" rel="noopener">${r.pr.n}</a>
-                <span class="q">${qtaLabel(r)}${r.pr.sfuso?"":" ("+r.pr.pu+" "+r.pr.um+")"}</span>${r.promo?' <span class="tagpill oro">azione</span>':""}
-                <button class="alt" data-alt="${r.id}" title="Cerca un'alternativa">⇄</button></span>
+                <span class="q">${qtaLabel(r)}${r.pr.sfuso?"":'<span class="formato"> ('+r.pr.pu+" "+r.pr.um+')</span>'}</span>${r.promo?' <span class="tagpill oro">azione</span>':""}
+                </span><button class="alt" data-alt="${r.id}" title="Cerca un'alternativa">⇄</button>
               <span class="p${r.promo?" promo":""}">${r.off?"—":chfr(r.costo)}</span>
             </div>`).join("")}
         `).join("")}
@@ -2810,7 +2942,7 @@ function renderCatalogo(){
     if(p.cat!==catCorrente){
       catCorrente=p.cat;
       const tr=document.createElement("tr"); tr.className="sep";
-      tr.innerHTML=`<td colspan="8">${p.cat} <span class="q">${elenco.filter(x=>x.cat===p.cat).length} prodotti</span></td>`;
+      tr.innerHTML=`<td colspan="9">${p.cat} <span class="q">${elenco.filter(x=>x.cat===p.cat).length} prodotti</span></td>`;
       tb.appendChild(tr);
     }
     const best=migliorRiv(p.id);
@@ -2837,6 +2969,7 @@ function renderCatalogo(){
           if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa negozio">◆ prezzo del negozio</span>`;
           if(f==="verificato") return `<br><span class="tagpill oro" title="${(S.qualita[p.id].negozi||[]).join(', ')} · ${S.qualita[p.id].data||""}">✓ dal web · ${S.qualita[p.id].n} rilevazioni</span>`;
           return '<br><span class="tagpill" style="opacity:.55">stimato</span>';})()}</td>
+      <td>${nutriBadge(p.id)}</td>
       <td><button class="btn sm" style="padding:4px 9px;font-size:12px" data-alt="${p.id}">${S.sost[p.id]?PROD[S.sost[p.id]].ic+" "+nomeBreve(PROD[S.sost[p.id]]):"⇄ "+T("scegli")}</button></td>
       <td style="font-size:12px;color:var(--testo-3)">${p.sea? (inStagione(p.sea,MESE)?"● di stagione":"○ "+NOMIMESI[p.sea[0]].slice(0,3)+"–"+NOMIMESI[p.sea[1]].slice(0,3)) : "tutto l'anno"}</td>`;
     const [ib,ip,ir,idt] = [tr.querySelector(".base"),tr.querySelector(".promo"),tr.querySelector(".rivpromo"),tr.querySelector(".fino")];
@@ -2931,7 +3064,16 @@ function renderPromo(){
     ${scadute.length?`<p class="hint">${scadute.length} promozioni scadute sono state tolte in automatico.</p>`:""}`;
   box.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{ delete S.promo[b.dataset.rm]; renderCatalogo(); renderTutto(); salva(); });
 }
+function statoAggiornamento(){
+  const box=$("#statoAgg"); if(!box) return;
+  const g=giorniDa(S.ultimoAgg);
+  const auto=!!S.feedUrl;
+  box.innerHTML=`<span class="ic">${auto?"◆":"◇"}</span><span>${
+    auto ? TF("Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.",[S.ultimoAgg.split("-").reverse().join("."), g===0?T("oggi"):g+" "+T("gg fa")])
+         : T("Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.")}</span>`;
+}
 function renderFonti(){
+  statoAggiornamento();
   const box=$("#fontiBox"); if(!box) return;
   const c=$("#cambioOggi");
   if(c) c.innerHTML = `1 &euro; = CHF ${(S.cambio||0.94).toFixed(4)} · <span class="q">${T("aggiornato con il listino del")} ${S.ultimoAgg.split("-").reverse().join(".")}</span>`;
@@ -2983,6 +3125,7 @@ function applicaListino(o){
       cambio:o.cambioEUR||S.cambio||S.carburanti.cambio,
       data:o.data||S.carburanti.data, fonte:"TCS e MIMIT"}; }
   if(o.qualita) S.qualita=o.qualita;
+  if(o.nutri) S.nutri=o.nutri;
   if(o.prezziRiv) S.prezziRiv=o.prezziRiv;
   Object.entries(S.promo).forEach(([k,v])=>{ if(v.da==="listino") delete S.promo[k]; });
   if(o.promo) Object.entries(o.promo).forEach(([k,v])=>{
@@ -3899,7 +4042,7 @@ function disegnaAlternative(){
           <span>${a.p.ic} ${a.p.n}${eff(id)===a.p.id?' <span class="tagpill oro">in uso</span>':""}</span>
           <b style="font-family:var(--mono);font-size:12.5px;color:${a.prezzo<rif?"var(--verde)":"var(--testo-2)"}">${a.prezzo<rif?"−":"+"}${chfr(Math.abs(a.prezzo-rif))}</b>
         </span>
-        <small>CHF ${chfr(a.prezzo)} a parità · ${a.p.pu} ${a.p.um} · ${a.riv.n} · salute ${a.p.hs}/5${a.p.sea?" · stagione "+(inStagione(a.p.sea,MESE)?"ora":"altro periodo"):""}</small></button>`).join("")}
+        ${nutriBadge(a.p.id,true)}<small>CHF ${chfr(a.prezzo)} a parità · ${a.p.pu} ${a.p.um} · ${a.riv.n}${a.p.sea?" · stagione "+(inStagione(a.p.sea,MESE)?"ora":"altro periodo"):""}</small></button>`).join("")}
     </div>
     <div class="row" style="margin-top:14px"><button class="btn sm" onclick="chiudiModale()">Chiudi</button>
       <span class="hint" style="margin:0">${lista.length} alternative</span></div>`);
@@ -3971,6 +4114,7 @@ function applicaProfilo(o){
     .forEach(k=>{ if(o[k]!==undefined) S[k]=o[k]; });
   if(o.sost) S.sost=o.sost;
   if(o.prezziRiv) S.prezziRiv=o.prezziRiv;
+  if(o.nutri) S.nutri=o.nutri;
   if(o.listino) applicaListino(o.listino);
   sincronizzaControlli();
   genera(false); renderCatalogo(); renderEventiControlli(); renderEventi();
@@ -4022,7 +4166,8 @@ function carica(){
 }
 function segnaleMemoria(t){
   const el=$("#memoria"); if(!el) return;
-  el.textContent = t==="non disponibile" ? T("memoria non disponibile") : (t==="ripreso"?T("ripreso da dove eri"):T("salvato"));
+  el.dataset.it = t==="non disponibile" ? "memoria non disponibile" : (t==="ripreso"?"ripreso da dove eri":"impostazioni salvate sul dispositivo");
+  el.textContent = T(el.dataset.it);
   el.style.color = t==="non disponibile" ? "var(--rosso)" : "var(--testo-3)";
 }
 function dimenticaTutto(){
@@ -4597,10 +4742,23 @@ function renderGuida(){
    Il dizionario è indicizzato sulla frase italiana: ogni testo
    viene marcato alla prima passata, così si può tornare indietro.
    ========================================================= */
-const LINGUE=[{id:"it",n:"Italiano",b:"IT",f:"🇮🇹"},{id:"en",n:"English",b:"EN",f:"🇬🇧"},
-              {id:"fr",n:"Français",b:"FR",f:"🇫🇷"},{id:"de",n:"Deutsch",b:"DE",f:"🇩🇪"}];
+const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",fl:"gb"},
+              {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"Impostazioni avanzate":"Advanced settings",
+"Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.":"Automatic updates on. Latest price file from {0}, {1}.",
+"Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.":"No price file linked: prices are the ones built into the app. You can correct them by hand or link a shared price file below.",
+"Svizzera":"Switzerland",
+"Italia":"Italy",
+
+"Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.":"The lowest reachable with these settings is <b>CHF {0}</b>, CHF {1} over budget. Try changing the period, the safety margin, the product line or the selected shops.",
+"impostazioni salvate sul dispositivo":"settings saved on this device",
+"Nutri-Score":"Nutri-Score",
+"rilevato su":"measured on",
+"prodotti simili":"similar products",
+"stimato dalla composizione":"estimated from composition",
+
 "Piano":"Plan",
 "Casa":"Home",
 "Prezzi":"Prices",
@@ -4985,6 +5143,19 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Impostazioni avanzate":"Réglages avancés",
+"Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.":"Mise à jour automatique active. Dernière liste du {0}, {1}.",
+"Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.":"Aucune liste liée : les prix sont ceux intégrés à l'application. Corrigez-les à la main ou liez une liste partagée ci-dessous.",
+"Svizzera":"Suisse",
+"Italia":"Italie",
+
+"Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.":"Le minimum atteignable avec ces réglages est <b>CHF {0}</b>, soit CHF {1} au-dessus du budget. Essayez de changer la période, la marge, la gamme de produits ou les magasins sélectionnés.",
+"impostazioni salvate sul dispositivo":"réglages enregistrés sur cet appareil",
+"Nutri-Score":"Nutri-Score",
+"rilevato su":"relevé sur",
+"prodotti simili":"produits similaires",
+"stimato dalla composizione":"estimé d'après la composition",
+
 "Piano":"Plan",
 "Casa":"Maison",
 "Prezzi":"Prix",
@@ -5369,6 +5540,19 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Impostazioni avanzate":"Erweiterte Einstellungen",
+"Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.":"Automatische Aktualisierung aktiv. Letzte Preisliste vom {0}, {1}.",
+"Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.":"Keine Preisdatei verbunden: die Preise stammen aus der App. Korrigieren Sie sie von Hand oder verbinden Sie unten eine geteilte Preisliste.",
+"Svizzera":"Schweiz",
+"Italia":"Italien",
+
+"Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.":"Das mit diesen Einstellungen erreichbare Minimum ist <b>CHF {0}</b>, CHF {1} über dem Budget. Ändern Sie Zeitraum, Reserve, Produktlinie oder die gewählten Läden.",
+"impostazioni salvate sul dispositivo":"Einstellungen auf diesem Gerät gespeichert",
+"Nutri-Score":"Nutri-Score",
+"rilevato su":"erhoben an",
+"prodotti simili":"ähnlichen Produkten",
+"stimato dalla composizione":"aus der Zusammensetzung geschätzt",
+
 "Piano":"Plan",
 "Casa":"Zuhause",
 "Prezzi":"Preise",
@@ -5838,7 +6022,8 @@ function applicaTema(){
 }
 function renderLingue(){
   const box=$("#lingue"); if(!box) return;
-  box.innerHTML=LINGUE.map(l=>`<button class="lng${(S.lingua||"it")===l.id?" on":""}" data-l="${l.id}" title="${l.n}" aria-label="${l.n}"><span class="bandiera">${l.f}</span><span class="sigla">${l.b}</span></button>`).join("");
+  box.innerHTML=LINGUE.map(l=>`<button class="lng${(S.lingua||"it")===l.id?" on":""}" data-l="${l.id}" title="${l.n}" aria-label="${l.n}">
+    <svg class="bandiera" viewBox="0 0 24 16"><use href="#fl-${l.fl}"/></svg><span class="sigla">${l.b}</span></button>`).join("");
   box.querySelectorAll(".lng").forEach(b=>b.onclick=()=>{
     S.lingua=b.dataset.l; salva(); renderLingue();
     if(window.__riepAvvio) try{ window.__riepAvvio(); }catch(e){}
@@ -5953,7 +6138,7 @@ function fitBudget(){
   renderTutto();
   const t=totale(costruisciLista());
   if(t>S.budget){
-    $("#statoGen").innerHTML=`Il minimo raggiungibile con queste impostazioni è <b>CHF ${chfr(t)}</b>, sopra il budget di CHF ${chfr(t-S.budget)}. Aggiungi Aldi, Lidl o un rivenditore italiano, oppure alza il budget.`;
+    $("#statoGen").innerHTML=TF("Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.",[chfr(t),chfr(t-S.budget)]);
   }
 }
 

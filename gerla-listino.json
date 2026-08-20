@@ -1,7 +1,7 @@
 {
  "versione": 3,
  "data": "2026-08-20",
- "generato": "2026-08-20T17:49:10.260Z",
+ "generato": "2026-08-20T19:18:36.187Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9333,
  "prezzi": {
@@ -23,7 +23,7 @@
   "porri": 3.8,
   "sedano": 2.5,
   "coste": 3.2,
-  "funghi": 3.95,
+  "funghi": 2.2,
   "fagiolini": 3.9,
   "piselli": 2.9,
   "minestrone": 4.5,
@@ -61,8 +61,8 @@
   "ceci": 1.5,
   "fagioli": 1.4,
   "tofu": 2.95,
-  "latte": 1.85,
-  "yogurtnat": 2.65,
+  "latte": 1.95,
+  "yogurtnat": 2.95,
   "yogurtfru": 2.4,
   "grattugiato": 3.9,
   "mozzarella": 0.85,
@@ -82,16 +82,16 @@
   "gnocchi": 2.6,
   "pizzasurg": 4.55,
   "gallette": 2.5,
-  "latteveg": 1.1,
+  "latteveg": 2.2,
   "avena": 2.5,
   "cornflakes": 3.5,
   "fettebis": 2.2,
   "biscotti": 7.25,
-  "olio": 13.25,
+  "olio": 17.5,
   "oliosem": 3.5,
   "aceto": 2.2,
   "sale": 0.9,
-  "zucchero": 2.5,
+  "zucchero": 2.3,
   "spezie": 1.9,
   "dado": 2.2,
   "pesto": 4.4,
@@ -442,7 +442,7 @@
   "feta": 3.2,
   "robiola": 3.5,
   "quark": 2.2,
-  "skyr": 2.9,
+  "skyr": 1.5,
   "kefir": 2.9,
   "lattesenzalatt": 2.1,
   "emmental": 5.9,
@@ -475,7 +475,7 @@
   "biscottiint": 3.5,
   "succomela": 2.2,
   "curry": 2.2,
-  "paprika": 3.95,
+  "paprika": 2,
   "cannella": 2.2,
   "origano": 1.9,
   "ketchup": 2.5,
@@ -525,14 +525,14 @@
   "mascarpone": 3.2,
   "pannamontare": 2.9,
   "yogurtgreco": 2.6,
-  "gelato": 5.5,
+  "gelato": 5.15,
   "carnaroli": 4.9,
   "lasagne": 3.2,
   "pastauovo": 3.5,
   "focaccia": 3.9,
   "grissini": 2.5,
   "crackers": 2.2,
-  "baguette": 1.2,
+  "baguette": 2.2,
   "brioche": 3.5,
   "savoiardi": 3.2,
   "lievito": 1.5,
@@ -631,7 +631,7 @@
   },
   "funghi": {
    "q": "verificato",
-   "n": 3,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -717,7 +717,7 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 5,
+   "n": 6,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -796,8 +796,8 @@
   },
   "latte": {
    "q": "verificato",
-   "n": 18,
-   "data": "2026-08-17",
+   "n": 13,
+   "data": "2026-07-31",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
@@ -807,7 +807,7 @@
   },
   "yogurtnat": {
    "q": "verificato",
-   "n": 20,
+   "n": 22,
    "data": "2026-08-20",
    "fonte": "off-prices",
    "negozi": [
@@ -857,7 +857,13 @@
    "q": "riferimento"
   },
   "uova": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "La Maladière centre"
+   ]
   },
   "pasta": {
    "q": "verificato",
@@ -919,13 +925,7 @@
    "q": "riferimento"
   },
   "latteveg": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2026-08-14",
-   "fonte": "off-prices",
-   "negozi": [
-    "Lidl"
-   ]
+   "q": "riferimento"
   },
   "avena": {
    "q": "riferimento"
@@ -949,7 +949,7 @@
   },
   "olio": {
    "q": "verificato",
-   "n": 10,
+   "n": 12,
    "data": "2026-04-23",
    "fonte": "off-prices",
    "negozi": [
@@ -969,8 +969,8 @@
   },
   "zucchero": {
    "q": "verificato",
-   "n": 4,
-   "data": "2026-07-25",
+   "n": 5,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
@@ -1008,7 +1008,7 @@
   },
   "caffe": {
    "q": "verificato",
-   "n": 7,
+   "n": 8,
    "data": "2025-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -1020,7 +1020,7 @@
   },
   "cioccolato": {
    "q": "verificato",
-   "n": 31,
+   "n": 32,
    "data": "2026-07-19",
    "fonte": "off-prices",
    "negozi": [
@@ -2092,7 +2092,11 @@
    "q": "riferimento"
   },
   "skyr": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": []
   },
   "kefir": {
    "q": "riferimento"
@@ -2199,14 +2203,7 @@
    "q": "riferimento"
   },
   "paprika": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2026-08-07",
-   "fonte": "off-prices",
-   "negozi": [
-    "Denner",
-    "Migros"
-   ]
+   "q": "riferimento"
   },
   "cannella": {
    "q": "riferimento"
@@ -2357,7 +2354,7 @@
   },
   "gelato": {
    "q": "verificato",
-   "n": 10,
+   "n": 7,
    "data": "2025-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -2383,14 +2380,7 @@
    "q": "riferimento"
   },
   "baguette": {
-   "q": "verificato",
-   "n": 3,
-   "data": "2025-11-11",
-   "fonte": "off-prices",
-   "negozi": [
-    "La Maladière centre",
-    "Coop"
-   ]
+   "q": "riferimento"
   },
   "brioche": {
    "q": "riferimento"
@@ -2507,10 +2497,8 @@
    "aldi": 1.8
   },
   "pettopollo": {
+   "migros": 18.75,
    "coop": 31.45
-  },
-  "fiocchipatate": {
-   "migros": 4.85
   },
   "biscotti": {
    "migros": 7.25
@@ -2518,11 +2506,12 @@
   "tonno": {
    "coop": 8.15
   },
-  "olio": {
-   "lidlch": 10
-  },
   "pane": {
    "coop": 4.25
+  },
+  "olio": {
+   "lidlch": 10,
+   "migros": 21.9
   },
   "frutta_secca_snack": {
    "migros": 9.1
@@ -2544,11 +2533,11 @@
   "mele": {
    "coop": 4.2
   },
-  "muesli": {
-   "migros": 5.5
-  },
   "olive": {
    "coop": 3.75
+  },
+  "muesli": {
+   "migros": 5.5
   },
   "avocado": {
    "coop": 2.1
@@ -2565,17 +2554,17 @@
    "migros": 5.15
   },
   "gelato": {
-   "migros": 5.5
+   "migros": 5.15
   },
-  "farina": {
-   "migros": 3.4,
-   "coop": 3.2
+  "burgerveg": {
+   "migros": 3.8
   },
   "pesto": {
    "migros": 4.4
   },
-  "burgerveg": {
-   "migros": 4.9
+  "farina": {
+   "migros": 3.4,
+   "coop": 3.2
   },
   "cioccolato": {
    "migros": 0.55
@@ -2590,12 +2579,12 @@
  "indici": {},
  "indiciOsservati": {
   "lidlch": {
-   "k": 0.66,
+   "k": 0.93,
    "n": 6
   },
   "carrefour": {
-   "k": 0.9,
-   "n": 13
+   "k": 0.8,
+   "n": 11
   }
  },
  "promo": {},
@@ -2624,6 +2613,798 @@
      "diesel": 2.119
     }
    }
+  }
+ },
+ "nutri": {
+  "patate": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 36
+  },
+  "carote": {
+   "g": "a",
+   "n": 19,
+   "sicurezza": 37
+  },
+  "zucchine": {
+   "g": "c",
+   "n": 18,
+   "sicurezza": 50
+  },
+  "pomodori": {
+   "g": "a",
+   "n": 24,
+   "sicurezza": 50
+  },
+  "broccoli": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 36
+  },
+  "verza": {
+   "g": "a",
+   "n": 7,
+   "sicurezza": 57
+  },
+  "porri": {
+   "g": "c",
+   "n": 7,
+   "sicurezza": 57
+  },
+  "sedano": {
+   "g": "b",
+   "n": 9,
+   "sicurezza": 33
+  },
+  "funghi": {
+   "g": "c",
+   "n": 20,
+   "sicurezza": 55
+  },
+  "piselli": {
+   "g": "a",
+   "n": 15,
+   "sicurezza": 87
+  },
+  "passata": {
+   "g": "a",
+   "n": 23,
+   "sicurezza": 74
+  },
+  "pesche": {
+   "g": "c",
+   "n": 22,
+   "sicurezza": 45
+  },
+  "limoni": {
+   "g": "d",
+   "n": 16,
+   "sicurezza": 56
+  },
+  "wurstel": {
+   "g": "e",
+   "n": 18,
+   "sicurezza": 78
+  },
+  "prosccotto": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 58
+  },
+  "proscrudo": {
+   "g": "e",
+   "n": 25,
+   "sicurezza": 80
+  },
+  "tonno": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 39
+  },
+  "merluzzo": {
+   "g": "a",
+   "n": 9,
+   "sicurezza": 67
+  },
+  "lenticchie": {
+   "g": "a",
+   "n": 14,
+   "sicurezza": 64
+  },
+  "ceci": {
+   "g": "b",
+   "n": 25,
+   "sicurezza": 60
+  },
+  "fagioli": {
+   "g": "a",
+   "n": 18,
+   "sicurezza": 67
+  },
+  "tofu": {
+   "g": "a",
+   "n": 24,
+   "sicurezza": 54
+  },
+  "latte": {
+   "g": "c",
+   "n": 25,
+   "sicurezza": 52
+  },
+  "grattugiato": {
+   "g": "d",
+   "n": 20,
+   "sicurezza": 65
+  },
+  "ricotta": {
+   "g": "c",
+   "n": 24,
+   "sicurezza": 67
+  },
+  "burro": {
+   "g": "a",
+   "n": 24,
+   "sicurezza": 42
+  },
+  "pasta": {
+   "g": "a",
+   "n": 22,
+   "sicurezza": 100
+  },
+  "pane": {
+   "g": "c",
+   "n": 25,
+   "sicurezza": 44
+  },
+  "couscous": {
+   "g": "a",
+   "n": 22,
+   "sicurezza": 45
+  },
+  "gnocchi": {
+   "g": "c",
+   "n": 24,
+   "sicurezza": 88
+  },
+  "pizzasurg": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 64
+  },
+  "cornflakes": {
+   "g": "c",
+   "n": 25,
+   "sicurezza": 36
+  },
+  "biscotti": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 48
+  },
+  "olio": {
+   "g": "b",
+   "n": 24,
+   "sicurezza": 63
+  },
+  "cipolle": {
+   "g": "c",
+   "n": 15,
+   "sicurezza": 47
+  },
+  "aglio": {
+   "g": "e",
+   "n": 20,
+   "sicurezza": 85
+  },
+  "peperoni": {
+   "g": "d",
+   "n": 21,
+   "sicurezza": 52
+  },
+  "cavolfiore": {
+   "g": "a",
+   "n": 14,
+   "sicurezza": 29
+  },
+  "minestrone": {
+   "g": "a",
+   "n": 7,
+   "sicurezza": 100
+  },
+  "pelati": {
+   "g": "a",
+   "n": 21,
+   "sicurezza": 90
+  },
+  "banane": {
+   "g": "a",
+   "n": 23,
+   "sicurezza": 43
+  },
+  "mandarini": {
+   "g": "d",
+   "n": 13,
+   "sicurezza": 85
+  },
+  "pere": {
+   "g": "c",
+   "n": 25,
+   "sicurezza": 44
+  },
+  "uva": {
+   "g": "d",
+   "n": 22,
+   "sicurezza": 73
+  },
+  "salmone": {
+   "g": "a",
+   "n": 22,
+   "sicurezza": 55
+  },
+  "yogurtnat": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 68
+  },
+  "panna": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 83
+  },
+  "riso": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 32
+  },
+  "gallette": {
+   "g": "b",
+   "n": 24,
+   "sicurezza": 38
+  },
+  "fettebis": {
+   "g": "c",
+   "n": 24,
+   "sicurezza": 67
+  },
+  "zucchero": {
+   "g": "c",
+   "n": 22,
+   "sicurezza": 32
+  },
+  "pesto": {
+   "g": "e",
+   "n": 25,
+   "sicurezza": 64
+  },
+  "marmellata": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 58
+  },
+  "miele": {
+   "g": "e",
+   "n": 23,
+   "sicurezza": 43
+  },
+  "cremacacao": {
+   "g": "e",
+   "n": 24,
+   "sicurezza": 71
+  },
+  "cioccolato": {
+   "g": "e",
+   "n": 24,
+   "sicurezza": 50
+  },
+  "noci": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 48
+  },
+  "mandorle": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 39
+  },
+  "orata": {
+   "g": "a",
+   "n": 10,
+   "sicurezza": 50
+  },
+  "cime_rapa": {
+   "g": "d",
+   "n": 8,
+   "sicurezza": 38
+  },
+  "patate_novelle": {
+   "g": "a",
+   "n": 7,
+   "sicurezza": 57
+  },
+  "banane_bio": {
+   "g": "a",
+   "n": 5,
+   "sicurezza": 80
+  },
+  "frutta_secca_snack": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 43
+  },
+  "riso_parboiled": {
+   "g": "b",
+   "n": 21,
+   "sicurezza": 90
+  },
+  "crackers_integrali": {
+   "g": "c",
+   "n": 24,
+   "sicurezza": 71
+  },
+  "barrette": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 54
+  },
+  "marmellata_bio": {
+   "g": "d",
+   "n": 8,
+   "sicurezza": 100
+  },
+  "succo_ace": {
+   "g": "e",
+   "n": 22,
+   "sicurezza": 45
+  },
+  "lupini": {
+   "g": "d",
+   "n": 17,
+   "sicurezza": 29
+  },
+  "soiagranulare": {
+   "g": "a",
+   "n": 6,
+   "sicurezza": 100
+  },
+  "kefirveg": {
+   "g": "c",
+   "n": 8,
+   "sicurezza": 38
+  },
+  "cusgf": {
+   "g": "b",
+   "n": 8,
+   "sicurezza": 75
+  },
+  "carnesalada": {
+   "g": "d",
+   "n": 22,
+   "sicurezza": 50
+  },
+  "pestoveg": {
+   "g": "e",
+   "n": 20,
+   "sicurezza": 45
+  },
+  "oliotartufo": {
+   "g": "b",
+   "n": 13,
+   "sicurezza": 77
+  },
+  "cioccbianco": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 40
+  },
+  "amaretti": {
+   "g": "e",
+   "n": 24,
+   "sicurezza": 88
+  },
+  "panettone": {
+   "g": "e",
+   "n": 6,
+   "sicurezza": 83
+  },
+  "nori": {
+   "g": "e",
+   "n": 5,
+   "sicurezza": 40
+  },
+  "miso": {
+   "g": "e",
+   "n": 13,
+   "sicurezza": 54
+  },
+  "pakchoi": {
+   "g": "a",
+   "n": 11,
+   "sicurezza": 82
+  },
+  "salsamessicana": {
+   "g": "e",
+   "n": 6,
+   "sicurezza": 50
+  },
+  "lime": {
+   "g": "c",
+   "n": 22,
+   "sicurezza": 41
+  },
+  "mais_tortillas": {
+   "g": "c",
+   "n": 12,
+   "sicurezza": 75
+  },
+  "salsabbq": {
+   "g": "e",
+   "n": 18,
+   "sicurezza": 56
+  },
+  "lenticchierosse": {
+   "g": "a",
+   "n": 22,
+   "sicurezza": 86
+  },
+  "curcuma": {
+   "g": "b",
+   "n": 11,
+   "sicurezza": 27
+  },
+  "sriracha": {
+   "g": "e",
+   "n": 23,
+   "sicurezza": 74
+  },
+  "risojasmine": {
+   "g": "b",
+   "n": 8,
+   "sicurezza": 75
+  },
+  "formaggioveg": {
+   "g": "c",
+   "n": 23,
+   "sicurezza": 35
+  },
+  "lattavena": {
+   "g": "c",
+   "n": 24,
+   "sicurezza": 46
+  },
+  "burgerveg": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 40
+  },
+  "sciroppoagave": {
+   "g": "d",
+   "n": 19,
+   "sicurezza": 89
+  },
+  "cavolonero": {
+   "g": "b",
+   "n": 13,
+   "sicurezza": 38
+  },
+  "finferli": {
+   "g": "d",
+   "n": 7,
+   "sicurezza": 86
+  },
+  "tartufonero": {
+   "g": "d",
+   "n": 11,
+   "sicurezza": 36
+  },
+  "mirtilli": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 50
+  },
+  "pompelmo": {
+   "g": "e",
+   "n": 20,
+   "sicurezza": 30
+  },
+  "prosciuttocrudo24": {
+   "g": "e",
+   "n": 7,
+   "sicurezza": 100
+  },
+  "salmonebio": {
+   "g": "d",
+   "n": 21,
+   "sicurezza": 48
+  },
+  "caviale": {
+   "g": "e",
+   "n": 12,
+   "sicurezza": 67
+  },
+  "taleggio": {
+   "g": "d",
+   "n": 16,
+   "sicurezza": 88
+  },
+  "gnocchetti": {
+   "g": "a",
+   "n": 13,
+   "sicurezza": 77
+  },
+  "pizzabase": {
+   "g": "c",
+   "n": 6,
+   "sicurezza": 50
+  },
+  "sciroppoacero": {
+   "g": "d",
+   "n": 19,
+   "sicurezza": 68
+  },
+  "salsapomodoroP": {
+   "g": "c",
+   "n": 15,
+   "sicurezza": 53
+  },
+  "fiocchipatate": {
+   "g": "a",
+   "n": 8,
+   "sicurezza": 50
+  },
+  "succomirtillo": {
+   "g": "e",
+   "n": 20,
+   "sicurezza": 55
+  },
+  "trippa": {
+   "g": "b",
+   "n": 12,
+   "sicurezza": 67
+  },
+  "castagne": {
+   "g": "a",
+   "n": 15,
+   "sicurezza": 53
+  },
+  "paneseg": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 52
+  },
+  "spinacifr": {
+   "g": "c",
+   "n": 7,
+   "sicurezza": 71
+  },
+  "patatedolci": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 56
+  },
+  "pomodorisecchi": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 52
+  },
+  "edamame": {
+   "g": "a",
+   "n": 24,
+   "sicurezza": 38
+  },
+  "ciliegie": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 52
+  },
+  "mango": {
+   "g": "d",
+   "n": 22,
+   "sicurezza": 36
+  },
+  "uvetta": {
+   "g": "d",
+   "n": 13,
+   "sicurezza": 77
+  },
+  "albicoccheS": {
+   "g": "d",
+   "n": 17,
+   "sicurezza": 47
+  },
+  "costine": {
+   "g": "d",
+   "n": 5,
+   "sicurezza": 80
+  },
+  "cordonbleu": {
+   "g": "c",
+   "n": 25,
+   "sicurezza": 72
+  },
+  "pancetta": {
+   "g": "e",
+   "n": 20,
+   "sicurezza": 95
+  },
+  "acciughe": {
+   "g": "e",
+   "n": 20,
+   "sicurezza": 100
+  },
+  "surimi": {
+   "g": "c",
+   "n": 25,
+   "sicurezza": 96
+  },
+  "polpo": {
+   "g": "a",
+   "n": 10,
+   "sicurezza": 60
+  },
+  "feta": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 54
+  },
+  "kefir": {
+   "g": "b",
+   "n": 25,
+   "sicurezza": 60
+  },
+  "pastaint": {
+   "g": "a",
+   "n": 24,
+   "sicurezza": 96
+  },
+  "pastagf": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 48
+  },
+  "orzo": {
+   "g": "b",
+   "n": 11,
+   "sicurezza": 64
+  },
+  "panegf": {
+   "g": "c",
+   "n": 19,
+   "sicurezza": 37
+  },
+  "patatinesurg": {
+   "g": "b",
+   "n": 10,
+   "sicurezza": 50
+  },
+  "muesli": {
+   "g": "a",
+   "n": 25,
+   "sicurezza": 40
+  },
+  "burroarachidi": {
+   "g": "a",
+   "n": 24,
+   "sicurezza": 67
+  },
+  "cerealicioc": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 48
+  },
+  "ketchup": {
+   "g": "d",
+   "n": 25,
+   "sicurezza": 56
+  },
+  "brodoveg": {
+   "g": "c",
+   "n": 7,
+   "sicurezza": 43
+  },
+  "analcolico": {
+   "g": "e",
+   "n": 8,
+   "sicurezza": 88
+  },
+  "mortadella": {
+   "g": "e",
+   "n": 22,
+   "sicurezza": 55
+  },
+  "speck": {
+   "g": "e",
+   "n": 23,
+   "sicurezza": 57
+  },
+  "salmoneaff": {
+   "g": "d",
+   "n": 23,
+   "sicurezza": 74
+  },
+  "cozze": {
+   "g": "a",
+   "n": 16,
+   "sicurezza": 44
+  },
+  "calamari": {
+   "g": "d",
+   "n": 19,
+   "sicurezza": 32
+  },
+  "gorgonzola": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 75
+  },
+  "brie": {
+   "g": "d",
+   "n": 9,
+   "sicurezza": 78
+  },
+  "burrata": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 67
+  },
+  "mascarpone": {
+   "g": "d",
+   "n": 24,
+   "sicurezza": 71
+  },
+  "pannamontare": {
+   "g": "d",
+   "n": 16,
+   "sicurezza": 75
+  },
+  "pastauovo": {
+   "g": "a",
+   "n": 23,
+   "sicurezza": 57
+  },
+  "baguette": {
+   "g": "c",
+   "n": 22,
+   "sicurezza": 86
+  },
+  "pomodorini": {
+   "g": "a",
+   "n": 18,
+   "sicurezza": 61
+  },
+  "rucola": {
+   "g": "c",
+   "n": 18,
+   "sicurezza": 44
+  },
+  "basilico": {
+   "g": "e",
+   "n": 8,
+   "sicurezza": 50
+  },
+  "asparagi": {
+   "g": "c",
+   "n": 17,
+   "sicurezza": 53
+  },
+  "carciofi": {
+   "g": "c",
+   "n": 21,
+   "sicurezza": 52
+  },
+  "ananas": {
+   "g": "c",
+   "n": 24,
+   "sicurezza": 33
+  },
+  "pinoli": {
+   "g": "a",
+   "n": 16,
+   "sicurezza": 69
+  },
+  "zafferano": {
+   "g": "d",
+   "n": 6,
+   "sicurezza": 33
   }
  },
  "fonti": [
@@ -2746,19 +3527,19 @@
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 811
+    "osservazioni": 808
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 3954
+    "osservazioni": 3944
    }
   ],
   "cambioEUR": 0.9333,
   "copertura": {
-   "Migros": 357,
+   "Migros": 354,
    "Coop": 147,
-   "Lidl": 44,
+   "Lidl": 42,
    "Coop Maladière": 41,
    "La Maladière centre": 35,
    "Métropole Centre": 33,

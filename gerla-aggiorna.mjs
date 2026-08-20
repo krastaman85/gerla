@@ -284,6 +284,44 @@ function indiciDaiDati(catalogo, osservazioni) {
 }
 
 /* =========================================================
+   NUTRI-SCORE — dalla banca dati prodotti di Open Food Facts.
+   I prezzi stanno in un progetto separato (prices.openfoodfacts.org);
+   qui invece si pesca dal catalogo prodotti, che ha il punteggio nutrizionale.
+   Il valore è la lettera più frequente su un campione di prodotti simili:
+   è un'indicazione di categoria, non il punteggio di una marca precisa.
+   ========================================================= */
+const SENZA_NUTRI = new Set(["Casa","Igiene"]);
+async function nutriScore(catalogo, vecchi, limite) {
+  const out = { ...(vecchi || {}) };
+  const daFare = catalogo.filter(p => !SENZA_NUTRI.has(p.cat));
+  let fatti = 0, nuovi = 0;
+  for (const p of daFare) {
+    if (limite && fatti >= limite) break;
+    const u = "https://world.openfoodfacts.org/cgi/search.pl?search_terms=" +
+      encodeURIComponent(p.nome) + "&search_simple=1&action=process&json=1&page_size=25&fields=nutriscore_grade";
+    try {
+      const r = await fetch(u, { headers: { "User-Agent": UA, Accept: "application/json" } });
+      const testo = await r.text();
+      if (!testo.startsWith("{")) { await pausa(1500); continue; }   // limite di richieste: rallento
+      const j = JSON.parse(testo);
+      const g = (j.products || []).map(x => x.nutriscore_grade).filter(x => x && x.length === 1 && "abcde".includes(x));
+      if (g.length >= 5) {
+        const conta = {};
+        g.forEach(x => conta[x] = (conta[x] || 0) + 1);
+        const [lettera, quanti] = Object.entries(conta).sort((a, b) => b[1] - a[1])[0];
+        out[p.id] = { g: lettera, n: g.length, sicurezza: Math.round(quanti / g.length * 100) };
+        nuovi++;
+      }
+    } catch (e) { /* salto e vado avanti */ }
+    fatti++;
+    await pausa(750);
+  }
+  console.log(`Nutri-Score: ${nuovi} nuovi su ${fatti} interrogazioni, ${Object.keys(out).length} prodotti coperti in tutto`);
+  return out;
+}
+const pausa = ms => new Promise(r => setTimeout(r, ms));
+
+/* =========================================================
    5. CARBURANTI
    ========================================================= */
 const PROV_LOMBARDIA = new Set(["CO","VA","LC","SO","MI","MB","LO","BG","PV","CR","BS","MN"]);
@@ -378,13 +416,15 @@ async function main() {
   else console.log("Indici osservati: dati ancora insufficienti per un confronto tra insegne");
   console.log(`Incrocio: ${Object.keys(trovati).length} prodotti con prezzo reale`);
 
+  let vecchio = {};
+  try { vecchio = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) {}
+  const limiteNutri = process.argv.includes("--nutri-tutto") ? 0 : +((process.argv[process.argv.indexOf("--nutri")+1])||120);
+  const nutri = await nutriScore(catalogo, vecchio.nutri, limiteNutri);
+
   const carb = await carburanti();
   console.log(`Carburanti ${carb.it.zona ?? "IT"}: benzina €${carb.it.benzina ?? "—"} diesel €${carb.it.diesel ?? "—"} su ${carb.it.campione ?? 0} rilevazioni${carb.it.errore ? " — " + carb.it.errore : ""}`);
 
   /* listino precedente: i prezzi non confermati restano com'erano */
-  let vecchio = {};
-  try { vecchio = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) {}
-
   const prezzi = { ...(vecchio.prezzi || {}) };
   const qualita = { ...(vecchio.qualita || {}) };
   for (const p of catalogo) if (prezzi[p.id] === undefined) { prezzi[p.id] = p.p; qualita[p.id] = { q: "riferimento" }; }
@@ -410,6 +450,7 @@ async function main() {
     promo: Object.fromEntries(Object.entries(vecchio.promo || {})
              .filter(([, p]) => !p.fino || p.fino >= oggi)),
     carburanti: carb,
+    nutri,
     fonti: FONTI.map(f => ({ id: f.id, nome: f.nome, tipo: f.tipo, zona: f.zona, url: f.url, auto: !!f.auto })),
     rapporto,
   };
