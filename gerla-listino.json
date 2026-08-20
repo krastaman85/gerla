@@ -1,7 +1,7 @@
 {
  "versione": 3,
- "data": "2026-08-19",
- "generato": "2026-08-19T23:18:51.940Z",
+ "data": "2026-08-20",
+ "generato": "2026-08-20T06:04:26.448Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9402,
  "prezzi": {
@@ -42,7 +42,7 @@
   "melone": 3.9,
   "susine": 4.2,
   "limoni": 2.6,
-  "pettopollo": 23.85,
+  "pettopollo": 21.25,
   "cosciapollo": 8.9,
   "macinato": 8.9,
   "spezzatino": 12.9,
@@ -86,12 +86,12 @@
   "avena": 2.5,
   "cornflakes": 3.5,
   "fettebis": 2.2,
-  "biscotti": 10.3,
-  "olio": 13.25,
+  "biscotti": 7.25,
+  "olio": 17.5,
   "oliosem": 3.5,
   "aceto": 2.2,
   "sale": 0.9,
-  "zucchero": 2.5,
+  "zucchero": 2.3,
   "spezie": 1.9,
   "dado": 2.2,
   "pesto": 4.4,
@@ -511,7 +511,7 @@
   "vinobianco": 8.9,
   "vinorosso": 9.9,
   "prosecco": 9.9,
-  "birra": 7.7,
+  "birra": 10.4,
   "bitter": 12.9,
   "bibite": 6.9,
   "acquagas": 3.6
@@ -587,7 +587,7 @@
   },
   "funghi": {
    "q": "verificato",
-   "n": 3,
+   "n": 4,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -618,7 +618,7 @@
   },
   "mele": {
    "q": "verificato",
-   "n": 7,
+   "n": 11,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -673,8 +673,8 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 4,
-   "data": "2026-07-11",
+   "n": 6,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -753,12 +753,12 @@
   "latte": {
    "q": "verificato",
    "n": 13,
-   "data": "2026-08-17",
+   "data": "2026-07-31",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
     "Migros",
-    "La Maladière centre"
+    "Migros Serrières"
    ]
   },
   "yogurtnat": {
@@ -797,7 +797,7 @@
   },
   "burro": {
    "q": "verificato",
-   "n": 18,
+   "n": 17,
    "data": "2026-07-31",
    "fonte": "off-prices",
    "negozi": [
@@ -836,7 +836,7 @@
   },
   "pane": {
    "q": "verificato",
-   "n": 6,
+   "n": 7,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -850,7 +850,7 @@
   },
   "farina": {
    "q": "verificato",
-   "n": 7,
+   "n": 8,
    "data": "2026-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -869,7 +869,7 @@
   },
   "pizzasurg": {
    "q": "verificato",
-   "n": 3,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -894,7 +894,7 @@
   },
   "biscotti": {
    "q": "verificato",
-   "n": 8,
+   "n": 7,
    "data": "2026-06-03",
    "fonte": "off-prices",
    "negozi": [
@@ -905,7 +905,7 @@
   },
   "olio": {
    "q": "verificato",
-   "n": 10,
+   "n": 12,
    "data": "2026-04-23",
    "fonte": "off-prices",
    "negozi": [
@@ -925,13 +925,13 @@
   },
   "zucchero": {
    "q": "verificato",
-   "n": 4,
+   "n": 6,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
     "Agrola",
-    "Coop"
+    "Migros"
    ]
   },
   "spezie": {
@@ -942,7 +942,7 @@
   },
   "pesto": {
    "q": "verificato",
-   "n": 3,
+   "n": 5,
    "data": "2025-11-25",
    "fonte": "off-prices",
    "negozi": [
@@ -964,7 +964,7 @@
   },
   "caffe": {
    "q": "verificato",
-   "n": 7,
+   "n": 8,
    "data": "2025-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -1418,7 +1418,7 @@
   },
   "burgerveg": {
    "q": "verificato",
-   "n": 5,
+   "n": 6,
    "data": "2026-08-04",
    "fonte": "off-prices",
    "negozi": [
@@ -2269,7 +2269,7 @@
   },
   "birra": {
    "q": "verificato",
-   "n": 3,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -2288,7 +2288,12 @@
   }
  },
  "indici": {},
- "indiciOsservati": {},
+ "indiciOsservati": {
+  "carrefour": {
+   "k": 0.94,
+   "n": 7
+  }
+ },
  "promo": {},
  "carburanti": {
   "ch": {
@@ -2296,13 +2301,13 @@
    "diesel": 2.11,
    "elettrico_kwh": 0.35,
    "fonte": "TCS — rilevazione manuale",
-   "data": "2026-08-19"
+   "data": "2026-08-20"
   },
   "it": {
    "benzina": 1.999,
    "diesel": 2.099,
    "fonte": "MIMIT",
-   "data": "2026-08-19",
+   "data": "2026-08-20",
    "zona": "Como, Varese, Lecco, Sondrio",
    "campione": 1116,
    "confronto": {
@@ -2432,17 +2437,17 @@
   }
  ],
  "rapporto": {
-  "data": "2026-08-19",
+  "data": "2026-08-20",
   "fonti": [
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 808
+    "osservazioni": 807
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 2160
+    "osservazioni": 2185
    }
   ],
   "cambioEUR": 0.9402
