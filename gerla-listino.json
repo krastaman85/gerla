@@ -1,7 +1,7 @@
 {
  "versione": 3,
  "data": "2026-08-20",
- "generato": "2026-08-20T16:49:08.494Z",
+ "generato": "2026-08-20T17:49:10.260Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9333,
  "prezzi": {
@@ -42,7 +42,7 @@
   "melone": 3.9,
   "susine": 4.2,
   "limoni": 2.6,
-  "pettopollo": 23.85,
+  "pettopollo": 18.75,
   "cosciapollo": 8.9,
   "macinato": 8.9,
   "spezzatino": 12.9,
@@ -61,7 +61,7 @@
   "ceci": 1.5,
   "fagioli": 1.4,
   "tofu": 2.95,
-  "latte": 1.95,
+  "latte": 1.85,
   "yogurtnat": 2.65,
   "yogurtfru": 2.4,
   "grattugiato": 3.9,
@@ -80,9 +80,9 @@
   "polenta": 2.5,
   "couscous": 2.9,
   "gnocchi": 2.6,
-  "pizzasurg": 4.5,
+  "pizzasurg": 4.55,
   "gallette": 2.5,
-  "latteveg": 2.2,
+  "latteveg": 1.1,
   "avena": 2.5,
   "cornflakes": 3.5,
   "fettebis": 2.2,
@@ -151,7 +151,7 @@
   "mele_bio": 4.9,
   "arance_succo": 5.9,
   "banane_bio": 3.6,
-  "frutta_secca_snack": 5.85,
+  "frutta_secca_snack": 5.9,
   "pane_integrale_grande": 4.5,
   "pasta_lunga": 4.2,
   "riso_parboiled": 4.5,
@@ -532,7 +532,7 @@
   "focaccia": 3.9,
   "grissini": 2.5,
   "crackers": 2.2,
-  "baguette": 2.2,
+  "baguette": 1.2,
   "brioche": 3.5,
   "savoiardi": 3.2,
   "lievito": 1.5,
@@ -662,7 +662,7 @@
   },
   "mele": {
    "q": "verificato",
-   "n": 8,
+   "n": 10,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -717,10 +717,11 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 3,
+   "n": 5,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
+    "Migros",
     "Coop"
    ]
   },
@@ -795,7 +796,7 @@
   },
   "latte": {
    "q": "verificato",
-   "n": 14,
+   "n": 18,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -807,7 +808,7 @@
   "yogurtnat": {
    "q": "verificato",
    "n": 20,
-   "data": "2026-07-21",
+   "data": "2026-08-20",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -828,8 +829,8 @@
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
-    "Coop",
-    "Migros"
+    "Migros",
+    "Coop"
    ]
   },
   "semiduro": {
@@ -873,8 +874,8 @@
   },
   "pane": {
    "q": "verificato",
-   "n": 5,
-   "data": "2026-01-09",
+   "n": 6,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Migros",
@@ -887,7 +888,7 @@
   },
   "farina": {
    "q": "verificato",
-   "n": 10,
+   "n": 7,
    "data": "2026-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -905,13 +906,26 @@
    "q": "riferimento"
   },
   "pizzasurg": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "La Maladière centre",
+    "Coop"
+   ]
   },
   "gallette": {
    "q": "riferimento"
   },
   "latteveg": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-14",
+   "fonte": "off-prices",
+   "negozi": [
+    "Lidl"
+   ]
   },
   "avena": {
    "q": "riferimento"
@@ -935,7 +949,7 @@
   },
   "olio": {
    "q": "verificato",
-   "n": 11,
+   "n": 10,
    "data": "2026-04-23",
    "fonte": "off-prices",
    "negozi": [
@@ -956,12 +970,12 @@
   "zucchero": {
    "q": "verificato",
    "n": 4,
-   "data": "2026-08-17",
+   "data": "2026-07-25",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
     "Agrola",
-    "Coop"
+    "Migros"
    ]
   },
   "spezie": {
@@ -1170,7 +1184,7 @@
   },
   "frutta_secca_snack": {
    "q": "verificato",
-   "n": 5,
+   "n": 6,
    "data": "2026-03-05",
    "fonte": "off-prices",
    "negozi": [
@@ -2343,7 +2357,7 @@
   },
   "gelato": {
    "q": "verificato",
-   "n": 5,
+   "n": 10,
    "data": "2025-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -2369,7 +2383,14 @@
    "q": "riferimento"
   },
   "baguette": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2025-11-11",
+   "fonte": "off-prices",
+   "negozi": [
+    "La Maladière centre",
+    "Coop"
+   ]
   },
   "brioche": {
    "q": "riferimento"
@@ -2456,7 +2477,14 @@
    "q": "riferimento"
   },
   "birra": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-17",
+   "fonte": "off-prices",
+   "negozi": [
+    "Laufen Bahnhof",
+    "La Maladière centre"
+   ]
   },
   "bitter": {
    "q": "riferimento"
@@ -2469,9 +2497,6 @@
   }
  },
  "prezziRiv": {
-  "paprika": {
-   "migros": 3.95
-  },
   "latte": {
    "migros": 1.95,
    "coop": 2.05
@@ -2481,27 +2506,26 @@
    "coop": 2.2,
    "aldi": 1.8
   },
+  "pettopollo": {
+   "coop": 31.45
+  },
   "fiocchipatate": {
    "migros": 4.85
   },
   "biscotti": {
    "migros": 7.25
   },
-  "pettopollo": {
-   "coop": 31.45
-  },
   "tonno": {
    "coop": 8.15
   },
   "olio": {
-   "lidlch": 10,
-   "migros": 21.9
+   "lidlch": 10
   },
   "pane": {
    "coop": 4.25
   },
   "frutta_secca_snack": {
-   "migros": 9.9
+   "migros": 9.1
   },
   "pomodori": {
    "migros": 4.5,
@@ -2520,25 +2544,25 @@
   "mele": {
    "coop": 4.2
   },
-  "olive": {
-   "coop": 3.75
-  },
   "muesli": {
    "migros": 5.5
+  },
+  "olive": {
+   "coop": 3.75
   },
   "avocado": {
    "coop": 2.1
   },
   "mozzarella": {
-   "coop": 0.85,
    "migros": 0.85,
+   "coop": 0.85,
    "denner": 0.85
-  },
-  "burro": {
-   "migros": 5.15
   },
   "caffe": {
    "migros": 6.5
+  },
+  "burro": {
+   "migros": 5.15
   },
   "gelato": {
    "migros": 5.5
@@ -2558,13 +2582,20 @@
   },
   "farinabona": {
    "lidlch": 3.75
+  },
+  "latteveg": {
+   "lidlch": 1.1
   }
  },
  "indici": {},
  "indiciOsservati": {
+  "lidlch": {
+   "k": 0.66,
+   "n": 6
+  },
   "carrefour": {
-   "k": 0.8,
-   "n": 10
+   "k": 0.9,
+   "n": 13
   }
  },
  "promo": {},
@@ -2715,25 +2746,25 @@
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 808
+    "osservazioni": 811
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 3950
+    "osservazioni": 3954
    }
   ],
   "cambioEUR": 0.9333,
   "copertura": {
-   "Migros": 356,
-   "Coop": 146,
-   "Lidl": 43,
+   "Migros": 357,
+   "Coop": 147,
+   "Lidl": 44,
    "Coop Maladière": 41,
    "La Maladière centre": 35,
    "Métropole Centre": 33,
    "Denner": 31,
    "Aldi Suisse": 23,
-   "Migros Serrières": 20,
+   "Migros Serrières": 21,
    "Coop City": 7,
    "Manor": 7,
    "Aldi": 5
