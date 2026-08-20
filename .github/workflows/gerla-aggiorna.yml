@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: "24"   # i runner GitHub non eseguono più Node 20
       - name: Estrai i prezzi dalle fonti aperte
-        run: node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json
+        run: node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json --skrimpers 160 --nutri 40
       - name: Pubblica il listino aggiornato
         run: |
           git config user.name "Gerla"
