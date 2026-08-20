@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gerla — Gestione Efficiente di Ricette, Liste e Acquisti</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3Cpath d='M13 25h38' stroke='%23e0b45a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M23 25c0-7 4-11 9-11s9 4 9 11' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -77,7 +78,8 @@ header.top::after{
 @media(max-width:640px){.hero-stats div{padding-right:18px;margin-right:18px;margin-bottom:10px}}
 
 main{padding:26px 0 60px}
-.grid-setup{column-width:350px;column-gap:18px;column-fill:balance;orphans:1;widows:1}
+.grid-setup{column-width:330px;column-gap:18px;column-fill:balance;orphans:1;widows:1;max-width:1080px;margin:0 auto}
+@media(min-width:1500px){ .grid-setup{column-count:3;column-width:auto;max-width:1180px} }
 .grid-setup > div{display:contents}
 .grid-setup .card{break-inside:avoid;display:inline-block;width:100%;vertical-align:top}
 @media(max-width:900px){.grid-setup{column-width:auto;column-count:1}}
@@ -164,18 +166,33 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 
 /* ---------- schede a tab ---------- */
 .tabs{display:flex;gap:4px;justify-content:center;border-bottom:1px solid var(--linea);margin-bottom:22px;overflow-x:auto}
-.tab{
-  border:0;background:none;padding:12px 16px;cursor:pointer;font-weight:500;color:var(--testo-3);
-  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;font-size:14px;position:relative;
-}
-.tab[aria-selected=true]{color:var(--oro-l);border-bottom-color:var(--oro)}
-.tab:hover{color:var(--testo)}
-.tab i{display:none}
+
+
+
+.tab i{display:inline-flex;align-items:center;line-height:0;margin-right:8px;opacity:.55;transition:opacity .2s}
+.tab i svg{width:17px;height:17px;color:currentColor}
+.tab[aria-selected=true] i{opacity:1}
+.tab{display:inline-flex;align-items:center;border-radius:12px 12px 0 0;transition:color .18s,background .18s}
+.tab:hover{background:rgba(224,180,90,.06)}
+.tab[aria-selected=true]{background:linear-gradient(180deg,rgba(224,180,90,.13),transparent)}
 .tab .sm{display:none}
-.tab .pin{position:absolute;top:8px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--rosso);display:none}
+.tab .pin{position:absolute;top:9px;right:10px;width:6px;height:6px;border-radius:50%;background:var(--rosso);display:none}
 .tab.attenzione .pin{display:block}
 .panel{min-height:62vh}
 .panel[hidden]{display:none}
+.panel:not([hidden]){animation:entra .32s cubic-bezier(.22,.7,.3,1)}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.giorno,.scontrino,.kpi>div,.propostaBtn{animation:sali .4s cubic-bezier(.22,.7,.3,1) both}
+@keyframes sali{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.giorni .giorno:nth-child(2){animation-delay:.04s}.giorni .giorno:nth-child(3){animation-delay:.08s}
+.giorni .giorno:nth-child(4){animation-delay:.12s}.giorni .giorno:nth-child(5){animation-delay:.16s}
+.giorni .giorno:nth-child(6){animation-delay:.2s}.giorni .giorno:nth-child(7){animation-delay:.24s}
+.modal{animation:entraM .26s cubic-bezier(.22,.7,.3,1)}
+@keyframes entraM{from{opacity:0;transform:translateY(14px) scale(.99)}to{opacity:1;transform:none}}
+header.top::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(600px 220px at var(--mx,50%) var(--my,30%),rgba(224,180,90,.07),transparent 70%);
+  transition:background .3s}
+@media(prefers-reduced-motion:reduce){.panel:not([hidden]),.giorno,.scontrino,.kpi>div,.propostaBtn,.modal{animation:none!important}}
 
 /* ---------- menu ---------- */
 .weekbar{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
@@ -194,7 +211,7 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .pasto{padding-bottom:9px}
 .pasto .azioni{position:static;transform:none;display:flex;gap:4px;margin-top:7px;opacity:1}
 .pasto.avanzo .nm{color:var(--testo-2);font-style:italic}
-.swap{border:1px solid var(--linea-2);background:#0d1a30;border-radius:7px;width:28px;height:26px;cursor:pointer;font-size:12px;color:var(--testo-2);padding:0}
+.swap{border:1px solid var(--linea-2);background:#0d1a30;border-radius:8px;width:29px;height:27px;cursor:pointer;color:var(--testo-3);padding:0;display:inline-flex;align-items:center;justify-content:center}
 .swap:hover{background:var(--oro);color:#12100a;border-color:var(--oro)}
 .giorno-f{margin-top:auto;padding:9px 13px;background:rgba(5,8,15,.5);border-top:1px solid var(--linea);font-family:var(--mono);font-size:11px;color:var(--testo-3);display:flex;justify-content:space-between}
 .giorno-f b{color:var(--oro-l);font-weight:500}
@@ -238,7 +255,7 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 
 
 /* ---------- statistiche di testata ---------- */
-.hero-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:30px auto 0;max-width:980px;border-top:0;padding-top:0}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin:30px auto 0;max-width:1000px;border-top:0;padding-top:0}
 .hero-stats .hs{position:relative;padding:16px 12px 15px;text-align:center;border:1px solid var(--linea);border-radius:14px;
   background:linear-gradient(180deg,rgba(26,45,82,.42),rgba(8,13,22,.3));overflow:hidden;
   transition:border-color .2s, transform .2s, background .2s}
@@ -246,10 +263,10 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .hero-stats .hs::after{content:"";position:absolute;left:50%;top:0;width:44px;height:1px;transform:translateX(-50%);
   background:linear-gradient(90deg,transparent,var(--oro),transparent);opacity:.75}
 
-.hero-stats b{display:block;font-family:var(--disp);font-size:34px;font-weight:400;color:var(--oro-l);
+.hero-stats b{display:block;font-family:var(--disp);font-size:clamp(19px,2.4vw,34px);font-weight:400;color:var(--oro-l);hyphens:auto;
   font-variant-numeric:lining-nums tabular-nums;line-height:1.05;margin-bottom:3px}
 .hero-stats span:not(.hi){display:block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3);line-height:1.35;min-height:24px}
-.hero-stats b{white-space:nowrap}
+.hero-stats b{white-space:normal;overflow-wrap:anywhere;line-height:1.05}
 /* ---------- fonti ---------- */
 .fonti{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
 .fonte{display:block;padding:13px 14px;border:1px solid var(--linea);border-radius:12px;text-decoration:none;
@@ -293,7 +310,8 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .setup-h .st span{font-size:14px;color:var(--testo-2)}
 .setup-h .sc{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--testo-3)}
 .setup .sc{white-space:nowrap}
-.setup[open] .grid-setup{border:1px solid var(--oro-d);border-top:0;border-radius:0 0 var(--r) var(--r);padding:18px;background:rgba(6,10,19,.35)}
+.setup[open] .grid-setup{border:1px solid var(--oro-d);border-top:0;border-radius:0 0 var(--r) var(--r);padding:20px 20px 6px;background:rgba(6,10,19,.35);max-width:none}
+.setup[open] .grid-setup{animation:entra .3s cubic-bezier(.22,.7,.3,1)}
 .setup[open] .grid-setup .card:last-child{margin-bottom:0}
 
 
@@ -367,6 +385,9 @@ html[data-tema="giorno"] ::selection{background:var(--oro);color:#fff}
 
 /* ---------- scelta della lingua ---------- */
 .lingue{display:flex;gap:4px;justify-content:center;margin-top:16px}
+.lng .bandiera{font-size:13px;line-height:1;margin-right:5px;filter:saturate(.9)}
+.lng .sigla{font-size:10px}
+.lng.tema{font-size:14px;padding:5px 11px}
 .lng{border:1px solid var(--linea);background:rgba(13,24,48,.5);color:var(--testo-3);
   font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:5px 10px;border-radius:8px;cursor:pointer}
 .lng:hover{border-color:var(--linea-2);color:var(--testo)}
@@ -410,6 +431,15 @@ footer::before{content:"";position:absolute;left:50%;top:-1px;transform:translat
 @media(max-width:520px){ .pie{padding:30px 0 34px} .pie-frase{font-size:17px} }
 html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.6))}
 
+
+/* ---------- piano di lavoro ---------- */
+.tappa{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid rgba(32,53,92,.55)}
+.tappa:last-child{border-bottom:0}
+.tappa-q{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--oro);line-height:1.5}
+.tappa-v{font-size:14.5px;color:var(--testo);line-height:1.5}
+@media(max-width:620px){ .tappa{grid-template-columns:1fr;gap:4px} }
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -419,7 +449,10 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .mi,.swap{opacity:.28;transition:opacity .15s,background .15s,border-color .15s}
 .pasto:hover .mi,.pasto:hover .swap,.pasto:focus-within .mi,.pasto:focus-within .swap,.mi.on,.mi.no{opacity:1}
 @media(hover:none){ .mi,.swap{opacity:.75} }
-.mi{border:1px solid var(--linea-2);background:#0d1a30;border-radius:7px;width:28px;height:26px;cursor:pointer;font-size:11px;color:var(--testo-3);padding:0}
+.mi{border:1px solid var(--linea-2);background:#0d1a30;border-radius:8px;width:29px;height:27px;cursor:pointer;
+  color:var(--testo-3);padding:0;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.mi svg,.swap svg{width:16px;height:16px;color:currentColor}
+.mi.ric:hover{border-color:var(--azzurro);color:var(--azzurro)}
 .mi:hover{border-color:var(--oro);color:var(--oro-l)}
 .mi.on{background:var(--oro);color:#12100a;border-color:var(--oro);opacity:1}
 .mi.no{background:#3a1a12;color:var(--rosso);border-color:var(--rosso);opacity:1}
@@ -449,7 +482,38 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .sm-foot{position:absolute;left:0;right:0;bottom:0;display:flex;gap:10px;justify-content:space-between;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
   background:linear-gradient(180deg,transparent,var(--nero) 35%);border-top:1px solid var(--linea)}
 .sm-foot .btn{flex:1}
-/* ---------- navigazione in basso su telefono ---------- */
+
+/* ---------- navigazione a quattro sezioni ---------- */
+.tabs{display:flex;gap:6px;justify-content:center;border-bottom:1px solid var(--linea);margin-bottom:0;padding:0 4px}
+.tabs .tab{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;font-size:15px;font-weight:500;
+  border:0;border-bottom:2px solid transparent;background:none;color:var(--testo-3);cursor:pointer;
+  border-radius:12px 12px 0 0;transition:color .18s,background .18s,border-color .18s;position:relative}
+.tabs .tab:hover{color:var(--testo);background:rgba(224,180,90,.05)}
+.tabs .tab[aria-selected=true]{color:var(--oro-l);border-bottom-color:var(--oro);
+  background:linear-gradient(180deg,rgba(224,180,90,.14),transparent)}
+.tabs .tab i{display:inline-flex;line-height:0;opacity:.6}
+.tabs .tab i svg{width:19px;height:19px}
+.tabs .tab[aria-selected=true] i{opacity:1}
+.tabs .guida-btn{margin-left:14px;opacity:.75}
+.tabs .guida-btn .nm{display:none}
+.tabs .guida-btn i svg{width:20px;height:20px}
+.sottonav{display:flex;justify-content:center;margin:16px 0 20px}
+.sottonav .chips{justify-content:center}
+.sottonav .chip{padding:9px 16px;font-size:13.5px}
+.sottonav .chip svg.mini{width:15px;height:15px;color:currentColor;opacity:.7}
+.sottonav .chip[aria-pressed=true] svg.mini{opacity:1}
+@media(max-width:760px){
+  .tabs{grid-template-columns:repeat(5,1fr);display:grid;gap:2px}
+  .tabs .tab{flex-direction:column;gap:4px;padding:9px 2px 8px;font-size:10.5px;border-radius:10px;border-bottom:0}
+  .tabs .tab i svg{width:22px;height:22px}
+  .tabs .guida-btn{margin-left:0}
+  .tabs .guida-btn .nm{display:block}
+  .sottonav{margin:12px 0 16px}
+  .sottonav .chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:2px}
+  .sottonav .chip{flex:0 0 auto}
+}
+
+/* ---------- vecchia navigazione ---------- */
 @media(max-width:760px){
   /* lo spazio sotto è calcolato sull'altezza reale della barra, misurata a ogni ridisegno:
      così nessuna scheda finisce mai sotto la navigazione, su qualunque telefono */
@@ -490,11 +554,8 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
   input,select{font-size:16px;padding:11px 12px}
   .tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(5,8,15,.97);backdrop-filter:blur(12px);
     border-top:1px solid var(--linea);border-bottom:0;margin:0;overflow:visible;
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     padding:5px 5px calc(5px + env(safe-area-inset-bottom))}
-  .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-    min-width:0;font-size:10px;letter-spacing:.01em;padding:8px 2px 7px;margin:0;
-    border-bottom:0;border-radius:10px;border-top:0;white-space:normal;line-height:1.15}
+
   .tab i{display:block;font-style:normal;line-height:0;opacity:.62}
   .tab i svg{width:21px;height:21px;color:currentColor}
   .tab[aria-selected=true] i{opacity:1}
@@ -645,6 +706,10 @@ html,body{max-width:100%;overflow-x:hidden}
         <path d="M32 7c-2.6-.4-4.4.8-5.2 3.2 2.6.6 4.4-.4 5.2-3.2Zm0 0c2.6-.4 4.4.8 5.2 3.2-2.6.6-4.4-.4-5.2-3.2Z" fill="url(#oro)" opacity=".9"/>
         <path d="M24 20.5c1.6-2 4.6-3 8-3s6.4 1 8 3" fill="none" stroke="url(#oro)" stroke-width=".9" opacity=".55"/>
       </symbol>
+<symbol id="ic-cuore" viewBox="0 0 24 24"><path d="M12 20s-7.4-4.6-7.4-9.6A4.4 4.4 0 0 1 12 7.6a4.4 4.4 0 0 1 7.4 2.8C19.4 15.4 12 20 12 20Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+<symbol id="ic-no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 15l6-6M9 9l6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="ic-cambia" viewBox="0 0 24 24"><path d="M5 9h10.5a3.5 3.5 0 0 1 0 7H12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 6 5 9l3 3M15 13l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="ic-ricetta" viewBox="0 0 24 24"><path d="M7 4.5h7.6L18 8v11.5H7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.2 4.5V8H18" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9.6 11.5h5M9.6 14.5h3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13.4 17.6l2.4-2.4a1 1 0 0 1 1.5 1.4l-2.4 2.4-1.8.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
 <symbol id="ic-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></symbol>
 <symbol id="ic-lista" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
 <symbol id="ic-occasioni" viewBox="0 0 24 24"><path d="M7 3.5h10l-1.4 6a4.7 4.7 0 0 1-4.6 3.6A4.7 4.7 0 0 1 8.4 9.5Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M12 13.2V19M8.5 20.5h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
@@ -697,7 +762,7 @@ html,body{max-width:100%;overflow-x:hidden}
     </div>
     <div class="barra-alto">
       <div id="lingue" class="lingue"></div>
-      <button class="lng tema" id="btnTema" title="Modalità giorno e notte"><span id="temaIc">☾</span> <span id="temaTxt">Notte</span></button>
+      <button class="lng tema" id="btnTema" title="Modalità giorno e notte" aria-label="Giorno / notte"><span id="temaIc">☾</span></button>
     </div>
     <div class="statusbar">
       <span id="memoria">salvato</span>
@@ -810,11 +875,11 @@ html,body{max-width:100%;overflow-x:hidden}
           <div class="hint">Scelgo io la combinazione che costa meno.</div>
         </div>
         <div style="margin-top:14px">
-          <div class="bigval" id="budgetGiorno">— <span>al giorno</span></div>
+          <div class="bigval" id="budgetGiorno">— <span class="nm">al giorno</span></div>
           <div class="hint" id="budgetPersona"></div>
         </div>
         <div style="margin-top:14px">
-          <label class="f" for="seed">Seme del caso <span style="font-weight:400">(stesso numero = stesso menu)</span></label>
+          <label class="f" for="seed"><span class="nm">Seme del caso (stesso numero = stesso menu)</span></label>
           <div class="row">
             <input type="number" id="seed" value="7" style="max-width:120px">
             <button class="btn ghost sm" id="dado"><i aria-hidden="true">🎲</i> <span>Caso nuovo</span></button>
@@ -859,16 +924,9 @@ html,body{max-width:100%;overflow-x:hidden}
     <button class="btn ghost sm" id="esporta">Esporta / stampa</button>
   </div>
 
-  <div class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-p="menu"><i><svg viewBox="0 0 24 24"><use href="#ic-menu"/></svg></i><span class="lg">Menu</span><span class="sm">Menu</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="lista"><i><svg viewBox="0 0 24 24"><use href="#ic-lista"/></svg></i><span class="lg">Lista della spesa</span><span class="sm">Lista</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="eventi"><i><svg viewBox="0 0 24 24"><use href="#ic-occasioni"/></svg></i><span class="lg">Occasioni</span><span class="sm">Occasioni</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="dispensa"><i><svg viewBox="0 0 24 24"><use href="#ic-dispensa"/></svg></i><span class="lg">Dispensa</span><span class="sm">Dispensa</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="storico"><i><svg viewBox="0 0 24 24"><use href="#ic-storico"/></svg></i><span class="lg">Storico</span><span class="sm">Storico</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="analisi"><i><svg viewBox="0 0 24 24"><use href="#ic-analisi"/></svg></i><span class="lg">Analisi e budget</span><span class="sm">Analisi</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="catalogo" id="tabPrezzi"><i><svg viewBox="0 0 24 24"><use href="#ic-prezzi"/></svg></i><span class="lg">Prezzi e volantini</span><span class="sm">Prezzi</span><span class="pin"></span></button>
-    <button class="tab" role="tab" aria-selected="false" data-p="guida"><i><svg viewBox="0 0 24 24"><use href="#ic-guida"/></svg></i><span class="lg">Guida</span><span class="sm">Guida</span></button>
-  </div>
+  <nav class="tabs" role="tablist" id="navPrincipale"></nav>
+  <div class="sottonav" id="sottoNav"></div>
+
 
   <section class="panel" id="p-menu">
     <div class="weekbar" id="weekbar"></div>
@@ -2018,7 +2076,7 @@ const S = {
   margine:1.08,
   cottura:"normale",
   giaInCasa:new Set(),
-  lingua:"it", tema:"notte", cambio:0.94,
+  lingua:"it", tema:"notte", cambio:0.94, nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
   sost:{}, qualita:{}, prezziRiv:{}, gruppo:"tutti", sezPrezzi:"listino",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
@@ -2479,7 +2537,7 @@ function riepilogoSetup(){
 function aggiornaBudgetLabel(){
   riepilogoSetup(); aggiornaVegg();
   const g=S.giorni, n=S.persone.length||1;
-  $("#budgetGiorno").innerHTML = `CHF ${chfr(S.budget/g)} <span>al giorno</span>`;
+  $("#budgetGiorno").innerHTML = `CHF ${chfr(S.budget/g)} <span class="nm">${T("al giorno")}</span>`;
   $("#budgetPersona").textContent = `CHF ${chfr(S.budget/g/n)} ${T("a persona al giorno")} · ${n} ${n===1?T("persona"):T("persone")} · ${T("fabbisogno del nucleo")} ${Math.round(kcalNucleo())} ${T("kcal al giorno")}`;
 }
 
@@ -2542,11 +2600,13 @@ function pastoHTML(et,p,d,k,avanzo){
   else if(p.t && p.t.includes("salute")) tag='<span class="tagpill">salute</span>';
   if(p.t && p.t.includes("veloce")) tag+='<span class="tagpill oro">rapido</span>';
   const v=S.voti[p.id];
+  const ric = "https://www.giallozafferano.it/ricerca-ricette/"+encodeURIComponent(p.n.replace(/\s*\(.*?\)/g,""))+"/";
   return `<div class="pasto${avanzo?" avanzo":""}"><div class="et">${et}</div><div class="nm">${p.n}${tag}</div>
     <div class="azioni">
-      <button class="mi ${v===1?"on":""}" data-voto="1" data-p="${p.id}" title="Piace">♡</button>
-      <button class="mi ${v===-1?"no":""}" data-voto="-1" data-p="${p.id}" title="Non piace">✕</button>
-      ${avanzo?"":`<button class="swap" data-k="${k}" title="Cambia piatto">↻</button>`}
+      <button class="mi ${v===1?"on":""}" data-voto="1" data-p="${p.id}" title="Piace"><svg><use href="#ic-cuore"/></svg></button>
+      <button class="mi ${v===-1?"no":""}" data-voto="-1" data-p="${p.id}" title="Non piace"><svg><use href="#ic-no"/></svg></button>
+      ${avanzo?"":`<button class="swap" data-k="${k}" title="Cambia piatto"><svg><use href="#ic-cambia"/></svg></button>`}
+      <a class="mi ric" href="${ric}" target="_blank" rel="noopener" title="Apri la ricetta"><svg><use href="#ic-ricetta"/></svg></a>
     </div></div>`;
 }
 function apriSwap(d,k){
@@ -2893,7 +2953,8 @@ function renderFlyer(){
   }).join("");
   const g=giorniDa(S.ultimoAgg);
   const b=$("#bannerAgg");
-  const tab=$("#tabPrezzi");
+  const tab=document.querySelector('.tab[data-g="prezzi"]');
+  if(!tab){ b.innerHTML=""; return; }
   if(g>=7){
     b.innerHTML=`<div class="banner"><span class="ic">◆</span><span>${TF("<b>Il listino ha {0} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.",[g])}</span></div>`;
     tab.classList.add("attenzione");
@@ -2951,6 +3012,27 @@ function indirizzoListino(u){
   m=u.match(/^https?:\/\/(?:www\.)?dropbox\.com\/(.+)$/i);
   if(m) return "https://dl.dropboxusercontent.com/"+m[1].replace(/[?&]dl=0/,"");
   return u;
+}
+/* se l'app è pubblicata sul web, il listino sta quasi sempre nella stessa cartella:
+   lo cerco da solo, senza chiedere niente. Solo se non c'è si usa l'indirizzo scritto a mano. */
+async function avviaListino(){
+  if(!S.autoFeed) return;
+  if(!S.feedUrl && /^https?:/.test(location.protocol)){
+    const vicino = location.href.replace(/[^/]*$/,"") + "gerla-listino.json";
+    try{
+      const r=await fetch(vicino,{cache:"no-store"});
+      if(r.ok && !(r.headers.get("content-type")||"").includes("text/html")){
+        const o=await r.json();
+        if(o && o.prezzi){
+          S.feedUrl=vicino; $("#feedUrl").value=vicino;
+          const n=applicaListino(o);
+          $("#statoFeed").textContent=TF("Listino trovato accanto all'app: {0} prezzi aggiornati.",[n]);
+          salva(); return;
+        }
+      }
+    }catch(e){}
+  }
+  if(S.feedUrl) aggiornaDaFeed(true);
 }
 async function aggiornaDaFeed(silenzioso){
   if(!S.feedUrl){ if(!silenzioso) apriModale('<h3>Manca l\u2019indirizzo</h3><p class="hint">Incolla prima l\u2019indirizzo del file listino, oppure usa \u201cIncolla un listino\u201d.</p><div class="row" style="margin-top:12px"><button class="btn sm" onclick="chiudiModale()">Chiudi</button></div>'); return; }
@@ -3324,8 +3406,9 @@ function renderEventoDettaglio(m,n){
       <div class="card" style="margin:18px 0 0;background:rgba(216,169,74,.06);border-color:var(--oro-d)">
         <h2>Piano di lavoro</h2>
         <div class="portate">
-          ${pianoLavoro(m).map(g=>`<div class="portata"><div class="pnum" style="font-size:12px;font-family:var(--mono);letter-spacing:.06em;color:var(--oro)">${g.t.toUpperCase()}</div>
-            <div><b style="font-weight:400;font-size:14px">${g.v.join(" · ")}</b></div></div>`).join("")}
+          ${pianoLavoro(m).map(g=>`<div class="tappa">
+            <div class="tappa-q">${T(g.t)}</div>
+            <div class="tappa-v">${g.v.join(" · ")}</div></div>`).join("")}
         </div>
       </div>
       <div class="row" style="margin-top:16px">
@@ -4346,6 +4429,11 @@ function passoGuida(){
    GUIDA — manuale d'uso integrato
    ========================================================= */
 const GUIDA=[
+{ic:"◇",t:"Come è organizzata",s:[
+ {h:"Quattro sezioni",p:["<b>Piano</b> è il lavoro di tutti i giorni: il menu, la lista della spesa che ne nasce e l'analisi dei costi. <b>Occasioni</b> è per gli ospiti. <b>Casa</b> tiene dispensa e storico delle spese. <b>Prezzi</b> è la manutenzione: listino, promozioni, volantini e aggiornamento.",
+ "Dentro Piano e Casa, una seconda fila di pastiglie porta alle singole schede. La <b>guida</b> è il libro aperto in fondo alla barra."]},
+ {h:"Da dove si comincia",p:["Dalle impostazioni in cima, che si chiudono da sole appena premi <b>Crea il piano</b> e lasciano lo schermo al menu. Il riepilogo in una riga ti ricorda sempre com'è configurato."]}]},
+
 {ic:"◇",t:"In tre mosse",s:[
  {h:"Il giro completo",p:["Dici chi si siede a tavola, per quanti giorni e quanto vuoi spendere. Premi <b>Crea il piano</b>. Da quel momento hai il menu di ogni giorno, la lista della spesa divisa per negozio con le quantità già calcolate, e il conto che si confronta con il budget.",
  "Tutto il resto — dispensa, occasioni, storico, prezzi — serve a rendere quel giro più preciso, ma non è obbligatorio: si può usare Gerla anche solo per quei tre passi."]},
@@ -4509,10 +4597,32 @@ function renderGuida(){
    Il dizionario è indicizzato sulla frase italiana: ogni testo
    viene marcato alla prima passata, così si può tornare indietro.
    ========================================================= */
-const LINGUE=[{id:"it",n:"Italiano",b:"IT"},{id:"en",n:"English",b:"EN"},
-              {id:"fr",n:"Français",b:"FR"},{id:"de",n:"Deutsch",b:"DE"}];
+const LINGUE=[{id:"it",n:"Italiano",b:"IT",f:"🇮🇹"},{id:"en",n:"English",b:"EN",f:"🇬🇧"},
+              {id:"fr",n:"Français",b:"FR",f:"🇫🇷"},{id:"de",n:"Deutsch",b:"DE",f:"🇩🇪"}];
 const DIZ={
 en:{
+"Piano":"Plan",
+"Casa":"Home",
+"Prezzi":"Prices",
+"Occasioni":"Occasions",
+"Guida":"Guide",
+
+"Apri la ricetta":"Open the recipe",
+"Piace":"Like",
+"Non piace":"Don't like",
+"Cambia piatto":"Change dish",
+
+"al giorno":"per day",
+"Seme del caso (stesso numero = stesso menu)":"Random seed (same number = same menu)",
+"Passa alla modalità giorno":"Switch to day mode",
+"Passa alla modalità notte":"Switch to night mode",
+"Listino trovato accanto all'app: {0} prezzi aggiornati.":"Price list found next to the app: {0} prices updated.",
+"Il giorno prima":"The day before",
+"La mattina stessa":"That morning",
+"Tre ore prima":"Three hours before",
+"Un'ora prima":"An hour before",
+"All'ultimo momento":"At the last moment",
+
 "g":"d",
 
 "Ideata e diretta da DD, costruita insieme a Claude di Anthropic":"Conceived and directed by DD, built together with Claude by Anthropic",
@@ -4875,6 +4985,28 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Piano":"Plan",
+"Casa":"Maison",
+"Prezzi":"Prix",
+"Occasioni":"Occasions",
+"Guida":"Guide",
+
+"Apri la ricetta":"Ouvrir la recette",
+"Piace":"J'aime",
+"Non piace":"Je n'aime pas",
+"Cambia piatto":"Changer de plat",
+
+"al giorno":"par jour",
+"Seme del caso (stesso numero = stesso menu)":"Graine du hasard (même nombre = même menu)",
+"Passa alla modalità giorno":"Passer en mode jour",
+"Passa alla modalità notte":"Passer en mode nuit",
+"Listino trovato accanto all'app: {0} prezzi aggiornati.":"Liste trouvée à côté de l'application : {0} prix mis à jour.",
+"Il giorno prima":"La veille",
+"La mattina stessa":"Le matin même",
+"Tre ore prima":"Trois heures avant",
+"Un'ora prima":"Une heure avant",
+"All'ultimo momento":"Au dernier moment",
+
 "g":"j",
 
 "Ideata e diretta da DD, costruita insieme a Claude di Anthropic":"Conçue et dirigée par DD, construite avec Claude d'Anthropic",
@@ -5237,6 +5369,28 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Piano":"Plan",
+"Casa":"Zuhause",
+"Prezzi":"Preise",
+"Occasioni":"Anlässe",
+"Guida":"Anleitung",
+
+"Apri la ricetta":"Rezept öffnen",
+"Piace":"Gefällt mir",
+"Non piace":"Gefällt mir nicht",
+"Cambia piatto":"Gericht wechseln",
+
+"al giorno":"pro Tag",
+"Seme del caso (stesso numero = stesso menu)":"Zufallszahl (gleiche Zahl = gleiches Menü)",
+"Passa alla modalità giorno":"Zum Tagmodus wechseln",
+"Passa alla modalità notte":"Zum Nachtmodus wechseln",
+"Listino trovato accanto all'app: {0} prezzi aggiornati.":"Preisliste neben der App gefunden: {0} Preise aktualisiert.",
+"Il giorno prima":"Am Tag davor",
+"La mattina stessa":"Am selben Morgen",
+"Tre ore prima":"Drei Stunden vorher",
+"Un'ora prima":"Eine Stunde vorher",
+"All'ultimo momento":"Im letzten Moment",
+
 "g":"T",
 
 "Ideata e diretta da DD, costruita insieme a Claude di Anthropic":"Erdacht und geleitet von DD, gebaut zusammen mit Claude von Anthropic",
@@ -5600,6 +5754,41 @@ de:{
 }};
 
 function TF(it,vals){ let t=T(it); (vals||[]).forEach((v,i)=>t=t.split("{"+i+"}").join(v)); return t; }
+/* Quattro sezioni invece di otto: il piano di casa, le occasioni, la dispensa
+   con lo storico, i prezzi. La guida sta in testata, dove si cerca l'aiuto. */
+const NAV=[
+  {id:"piano",  n:"Piano",     ic:"ic-menu",     pan:[{id:"menu",n:"Menu",ic:"ic-menu"},{id:"lista",n:"Lista della spesa",ic:"ic-lista"},{id:"analisi",n:"Analisi e budget",ic:"ic-analisi"}]},
+  {id:"eventi", n:"Occasioni", ic:"ic-occasioni",pan:[{id:"eventi",n:"Occasioni",ic:"ic-occasioni"}]},
+  {id:"casa",   n:"Casa",      ic:"ic-dispensa", pan:[{id:"dispensa",n:"Dispensa",ic:"ic-dispensa"},{id:"storico",n:"Storico",ic:"ic-storico"}]},
+  {id:"prezzi", n:"Prezzi",    ic:"ic-prezzi",   pan:[{id:"catalogo",n:"Prezzi e volantini",ic:"ic-prezzi"}]},
+];
+function renderNav(){
+  const g=NAV.find(x=>x.id===S.nav)||NAV[0];
+  if(!g.pan.some(p=>p.id===S.pan)) S.pan=g.pan[0].id;
+  $("#navPrincipale").innerHTML=NAV.map(x=>`
+    <button class="tab" role="tab" data-g="${x.id}" aria-selected="${x.id===S.nav}">
+      <i><svg viewBox="0 0 24 24"><use href="#${x.ic}"/></svg></i><span class="nm">${x.n}</span>
+      ${x.id==="prezzi"?'<span class="pin"></span>':""}</button>`).join("")
+    +`<button class="tab guida-btn" data-g="guida" aria-selected="${S.nav==="guida"}" title="Guida">
+        <i><svg viewBox="0 0 24 24"><use href="#ic-guida"/></svg></i><span class="nm">Guida</span></button>`;
+  if(S.nav==="guida"){ S.pan="guida"; }
+  $("#sottoNav").innerHTML = (S.nav!=="guida" && g.pan.length>1)
+    ? `<div class="chips">${g.pan.map(p=>`<button class="chip" type="button" data-p="${p.id}" aria-pressed="${p.id===S.pan}">
+        <svg class="mini"><use href="#${p.ic}"/></svg> <span class="nm">${p.n}</span></button>`).join("")}</div>` : "";
+  $$(".tab").forEach(t=>t.onclick=()=>{
+    S.nav=t.dataset.g;
+    const gg=NAV.find(x=>x.id===S.nav);
+    S.pan = gg ? (gg.pan.some(p=>p.id===S.pan)?S.pan:gg.pan[0].id) : "guida";
+    renderNav(); mostraPannello(); salva(); misuraNav(); vaiAllaSezione(S.pan);
+  });
+  $("#sottoNav").querySelectorAll("[data-p]").forEach(c=>c.onclick=()=>{
+    S.pan=c.dataset.p; renderNav(); mostraPannello(); salva(); vaiAllaSezione(S.pan);
+  });
+  setTimeout(traduci,0);
+}
+function mostraPannello(){
+  $$(".panel").forEach(p=>p.hidden = p.id!=="p-"+S.pan);
+}
 function T(it){ const L=S.lingua||"it"; return L==="it" ? it : ((DIZ[L]&&DIZ[L][it])||it); }
 const SEL_TRAD = ".pie-frase .nm, .pie-note .nm, .card>h2, .tab .lg, .tab .sm, .btn, .btn>span, .chip, .chip .nm, option, .hint, .legenda, "+
                  ".kpi .sub, .sc-note, .setup-h .sc, .empty b, .empty, .sm-sub, .fonte b, .fonte small, "+
@@ -5640,14 +5829,16 @@ function traduci(){
 }
 function applicaTema(){
   document.documentElement.dataset.tema = S.tema==="giorno" ? "giorno" : "notte";
-  const ic=$("#temaIc"), tx=$("#temaTxt");
+  const ic=$("#temaIc");
   if(ic) ic.textContent = S.tema==="giorno" ? "☀" : "☾";
-  if(tx){ tx.dataset.it = S.tema==="giorno" ? "Giorno" : "Notte"; tx.textContent = tx.dataset.it; }
+  const b=$("#btnTema");
+  if(b){ b.dataset.itTi = S.tema==="giorno" ? "Passa alla modalità notte" : "Passa alla modalità giorno";
+         b.setAttribute("title", T(b.dataset.itTi)); }
   setTimeout(traduci,0);
 }
 function renderLingue(){
   const box=$("#lingue"); if(!box) return;
-  box.innerHTML=LINGUE.map(l=>`<button class="lng${(S.lingua||"it")===l.id?" on":""}" data-l="${l.id}" title="${l.n}">${l.b}</button>`).join("");
+  box.innerHTML=LINGUE.map(l=>`<button class="lng${(S.lingua||"it")===l.id?" on":""}" data-l="${l.id}" title="${l.n}" aria-label="${l.n}"><span class="bandiera">${l.f}</span><span class="sigla">${l.b}</span></button>`).join("");
   box.querySelectorAll(".lng").forEach(b=>b.onclick=()=>{
     S.lingua=b.dataset.l; salva(); renderLingue();
     if(window.__riepAvvio) try{ window.__riepAvvio(); }catch(e){}
@@ -5865,7 +6056,11 @@ $("#fitBudget").onclick=fitBudget;
 $("#esporta").onclick=esporta;
 $("#cerca").oninput=()=>{ S.listinoTutto=false; renderCatalogo(); };
 $("#cercaGuida").oninput=renderGuida;
-function apriScheda(id){ const t=$$(".tab").find(x=>x.dataset.p===id); if(t) t.click(); }
+function apriScheda(id){
+  const g=NAV.find(x=>x.pan.some(p=>p.id===id));
+  if(!g) return;
+  S.nav=g.id; S.pan=id; renderNav(); mostraPannello(); vaiAllaSezione(id);
+}
 $("#vaiSpesa").onclick=()=>apriSpesa(null,"Spesa di "+S.giorni+" giorni");
 $("#addDispensa").onclick=apriAggiungiDispensa;
 $("#guidato").onclick=aggiornamentoGuidato;
@@ -5907,13 +6102,6 @@ $("#caricaProfilo").onclick=()=>{
     catch(e){ $("#errp").textContent=e.message; } };
 };
 $("#evPers").oninput=e=>{ S.ev.pers=Math.min(60,Math.max(1,+e.target.value||1)); renderEventi(); };
-$$(".tab").forEach(t=>{
-  t.onclick=()=>{
-    $$(".tab").forEach(x=>x.setAttribute("aria-selected",x===t));
-    $$(".panel").forEach(p=>p.hidden = p.id!=="p-"+t.dataset.p);
-    misuraNav(); vaiAllaSezione(t.dataset.p);
-  };
-});
 /* portare davvero l'occhio sulla sezione scelta, non solo cambiarla */
 function vaiAllaSezione(id){
   setTimeout(misuraNav,200);
@@ -5929,10 +6117,21 @@ function vaiAllaSezione(id){
 /* la barra di navigazione dice quanto spazio serve in fondo */
 function misuraNav(){
   const t=document.querySelector(".tabs");
-  if(!t) return;
+  if(!t || !window.getComputedStyle) return;
   const fissa=getComputedStyle(t).position==="fixed";
   document.documentElement.style.setProperty("--nav", fissa ? t.offsetHeight+"px" : "0px");
 }
+/* un accenno di profondità sotto il puntatore, spento sui dispositivi a tocco */
+try{
+if(window.matchMedia && window.matchMedia("(hover:hover)").matches && !window.matchMedia("(prefers-reduced-motion:reduce)").matches){
+  const h=document.querySelector("header.top");
+  h.addEventListener("pointermove",e=>{
+    const r=h.getBoundingClientRect();
+    h.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");
+    h.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%");
+  });
+  h.addEventListener("pointerleave",()=>{h.style.setProperty("--mx","50%");h.style.setProperty("--my","30%")});
+}}catch(e){}
 window.addEventListener("resize",misuraNav);
 window.addEventListener("orientationchange",()=>setTimeout(misuraNav,150));
 if(window.visualViewport) window.visualViewport.addEventListener("resize",misuraNav);
@@ -5970,8 +6169,8 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
   renderLingue(); applicaTema(); traduci();
   $("#btnTema").onclick=()=>{ S.tema = S.tema==="giorno" ? "notte" : "giorno"; applicaTema(); salva(); };
   if(!listaDaLink() && !S.avvioFatto) setTimeout(avvioGuidato,400);
-  if(S.autoFeed && S.feedUrl) aggiornaDaFeed(true);
-  $$(".panel").forEach(p=>p.hidden = p.id!=="p-menu");
+  avviaListino();
+  renderNav(); mostraPannello();
   genera(false);
 })();
 </script>
