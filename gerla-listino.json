@@ -1,7 +1,7 @@
 {
  "versione": 3,
  "data": "2026-08-20",
- "generato": "2026-08-20T14:41:30.115Z",
+ "generato": "2026-08-20T16:49:08.494Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9333,
  "prezzi": {
@@ -29,7 +29,7 @@
   "minestrone": 4.5,
   "pelati": 1.2,
   "passata": 2.5,
-  "mele": 4.2,
+  "mele": 4.3,
   "banane": 3.2,
   "arance": 4.9,
   "mandarini": 3.5,
@@ -42,7 +42,7 @@
   "melone": 3.9,
   "susine": 4.2,
   "limoni": 2.6,
-  "pettopollo": 21.25,
+  "pettopollo": 23.85,
   "cosciapollo": 8.9,
   "macinato": 8.9,
   "spezzatino": 12.9,
@@ -76,7 +76,7 @@
   "riso": 3.2,
   "pane": 4.25,
   "paneint": 3.2,
-  "farina": 3.6,
+  "farina": 3.4,
   "polenta": 2.5,
   "couscous": 2.9,
   "gnocchi": 2.6,
@@ -91,7 +91,7 @@
   "oliosem": 3.5,
   "aceto": 2.2,
   "sale": 0.9,
-  "zucchero": 2.3,
+  "zucchero": 2.5,
   "spezie": 1.9,
   "dado": 2.2,
   "pesto": 4.4,
@@ -151,7 +151,7 @@
   "mele_bio": 4.9,
   "arance_succo": 5.9,
   "banane_bio": 3.6,
-  "frutta_secca_snack": 5.9,
+  "frutta_secca_snack": 5.85,
   "pane_integrale_grande": 4.5,
   "pasta_lunga": 4.2,
   "riso_parboiled": 4.5,
@@ -475,7 +475,7 @@
   "biscottiint": 3.5,
   "succomela": 2.2,
   "curry": 2.2,
-  "paprika": 2,
+  "paprika": 3.95,
   "cannella": 2.2,
   "origano": 1.9,
   "ketchup": 2.5,
@@ -662,7 +662,7 @@
   },
   "mele": {
    "q": "verificato",
-   "n": 9,
+   "n": 8,
    "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
@@ -717,11 +717,10 @@
   },
   "pettopollo": {
    "q": "verificato",
-   "n": 5,
-   "data": "2026-07-11",
+   "n": 3,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
-    "Migros",
     "Coop"
    ]
   },
@@ -796,8 +795,8 @@
   },
   "latte": {
    "q": "verificato",
-   "n": 13,
-   "data": "2026-07-31",
+   "n": 14,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
@@ -807,7 +806,7 @@
   },
   "yogurtnat": {
    "q": "verificato",
-   "n": 19,
+   "n": 20,
    "data": "2026-07-21",
    "fonte": "off-prices",
    "negozi": [
@@ -888,7 +887,7 @@
   },
   "farina": {
    "q": "verificato",
-   "n": 6,
+   "n": 10,
    "data": "2026-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -925,7 +924,7 @@
   },
   "biscotti": {
    "q": "verificato",
-   "n": 6,
+   "n": 7,
    "data": "2026-06-03",
    "fonte": "off-prices",
    "negozi": [
@@ -936,7 +935,7 @@
   },
   "olio": {
    "q": "verificato",
-   "n": 10,
+   "n": 11,
    "data": "2026-04-23",
    "fonte": "off-prices",
    "negozi": [
@@ -956,13 +955,13 @@
   },
   "zucchero": {
    "q": "verificato",
-   "n": 5,
-   "data": "2026-07-25",
+   "n": 4,
+   "data": "2026-08-17",
    "fonte": "off-prices",
    "negozi": [
     "Métropole Centre",
     "Agrola",
-    "Migros"
+    "Coop"
    ]
   },
   "spezie": {
@@ -1007,7 +1006,7 @@
   },
   "cioccolato": {
    "q": "verificato",
-   "n": 32,
+   "n": 31,
    "data": "2026-07-19",
    "fonte": "off-prices",
    "negozi": [
@@ -1171,7 +1170,7 @@
   },
   "frutta_secca_snack": {
    "q": "verificato",
-   "n": 7,
+   "n": 5,
    "data": "2026-03-05",
    "fonte": "off-prices",
    "negozi": [
@@ -1613,7 +1612,14 @@
    "q": "riferimento"
   },
   "burgerveg": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 4,
+   "data": "2026-08-04",
+   "fonte": "off-prices",
+   "negozi": [
+    "Coop Maladière",
+    "Migros"
+   ]
   },
   "hummusrosso": {
    "q": "riferimento"
@@ -2179,7 +2185,14 @@
    "q": "riferimento"
   },
   "paprika": {
-   "q": "riferimento"
+   "q": "verificato",
+   "n": 3,
+   "data": "2026-08-07",
+   "fonte": "off-prices",
+   "negozi": [
+    "Denner",
+    "Migros"
+   ]
   },
   "cannella": {
    "q": "riferimento"
@@ -2330,7 +2343,7 @@
   },
   "gelato": {
    "q": "verificato",
-   "n": 12,
+   "n": 5,
    "data": "2025-08-16",
    "fonte": "off-prices",
    "negozi": [
@@ -2456,6 +2469,9 @@
   }
  },
  "prezziRiv": {
+  "paprika": {
+   "migros": 3.95
+  },
   "latte": {
    "migros": 1.95,
    "coop": 2.05
@@ -2465,23 +2481,27 @@
    "coop": 2.2,
    "aldi": 1.8
   },
-  "pettopollo": {
-   "coop": 23.85
+  "fiocchipatate": {
+   "migros": 4.85
   },
   "biscotti": {
    "migros": 7.25
+  },
+  "pettopollo": {
+   "coop": 31.45
   },
   "tonno": {
    "coop": 8.15
   },
   "olio": {
-   "lidlch": 10
+   "lidlch": 10,
+   "migros": 21.9
   },
   "pane": {
    "coop": 4.25
   },
   "frutta_secca_snack": {
-   "migros": 9.1
+   "migros": 9.9
   },
   "pomodori": {
    "migros": 4.5,
@@ -2514,27 +2534,24 @@
    "migros": 0.85,
    "denner": 0.85
   },
-  "caffe": {
-   "migros": 6.5
-  },
   "burro": {
    "migros": 5.15
   },
-  "dessertcucchiaio": {
-   "migros": 3.95
+  "caffe": {
+   "migros": 6.5
   },
   "gelato": {
    "migros": 5.5
   },
-  "zucchero": {
-   "migros": 2.3
-  },
   "farina": {
-   "migros": 7,
+   "migros": 3.4,
    "coop": 3.2
   },
   "pesto": {
    "migros": 4.4
+  },
+  "burgerveg": {
+   "migros": 4.9
   },
   "cioccolato": {
    "migros": 0.55
@@ -2545,13 +2562,9 @@
  },
  "indici": {},
  "indiciOsservati": {
-  "lidlch": {
-   "k": 0.66,
-   "n": 7
-  },
   "carrefour": {
-   "k": 1.09,
-   "n": 12
+   "k": 0.8,
+   "n": 10
   }
  },
  "promo": {},
@@ -2702,25 +2715,25 @@
    {
     "id": "off-prices-ch",
     "stato": "ok",
-    "osservazioni": 813
+    "osservazioni": 808
    },
    {
     "id": "off-prices-it",
     "stato": "ok",
-    "osservazioni": 3975
+    "osservazioni": 3950
    }
   ],
   "cambioEUR": 0.9333,
   "copertura": {
-   "Migros": 358,
-   "Coop": 148,
+   "Migros": 356,
+   "Coop": 146,
+   "Lidl": 43,
    "Coop Maladière": 41,
-   "Lidl": 41,
    "La Maladière centre": 35,
    "Métropole Centre": 33,
    "Denner": 31,
    "Aldi Suisse": 23,
-   "Migros Serrières": 21,
+   "Migros Serrières": 20,
    "Coop City": 7,
    "Manor": 7,
    "Aldi": 5
