@@ -195,13 +195,20 @@ header.top::after{content:"";position:absolute;inset:0;pointer-events:none;
 @media(prefers-reduced-motion:reduce){.panel:not([hidden]),.giorno,.scontrino,.kpi>div,.propostaBtn,.modal{animation:none!important}}
 
 /* ---------- menu ---------- */
-.weekbar{display:flex;gap:8px;margin:0 auto 18px;flex-wrap:wrap;justify-content:center;
-  padding:6px;border:1px solid var(--linea);border-radius:999px;width:max-content;max-width:100%;
-  background:linear-gradient(180deg,rgba(26,45,82,.4),rgba(8,13,22,.35))}
-.weekbar .chip{border:0;background:transparent;padding:8px 16px}
-.weekbar .chip .nm{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
-.weekbar .chip[aria-pressed=true]{background:linear-gradient(180deg,var(--oro-l),var(--oro));color:#241a05;box-shadow:0 6px 16px -10px rgba(224,180,90,.8)}
-.weekbar .chip:not([aria-pressed=true]):hover{background:rgba(224,180,90,.09)}
+.weekbar{display:flex;justify-content:center;margin:0 auto 20px}
+.segm{display:inline-flex;gap:3px;padding:4px;border:1px solid var(--linea);border-radius:14px;
+  background:linear-gradient(180deg,rgba(26,45,82,.45),rgba(8,13,22,.4));max-width:100%}
+.segm-b{flex:1 1 0;min-width:52px;border:0;background:transparent;color:var(--testo-3);cursor:pointer;
+  border-radius:11px;padding:7px 10px;display:flex;flex-direction:column;align-items:center;gap:1px;
+  transition:background .16s,color .16s}
+.segm-b .sw{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.segm-b b{font-family:var(--disp);font-size:19px;font-weight:400;line-height:1}
+.segm-b.tutto{justify-content:center}
+.segm-b.tutto .nm{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 4px}
+.segm-b:hover{color:var(--testo);background:rgba(224,180,90,.07)}
+.segm-b[aria-pressed=true]{background:linear-gradient(180deg,var(--oro-l),var(--oro));color:#241a05;
+  box-shadow:0 6px 16px -12px rgba(224,180,90,.9)}
+.segm-b[aria-pressed=true] .sw{opacity:.8}
 .giorni{display:grid;grid-template-columns:repeat(auto-fill,minmax(246px,1fr));gap:12px}
 .giorno{background:linear-gradient(180deg,rgba(22,41,78,.6),rgba(8,13,22,.82));border:1px solid var(--linea);border-radius:16px;transition:border-color .15s,transform .12s}
 .giorno:hover{border-color:var(--linea-2);transform:translateY(-1px)}
@@ -447,7 +454,12 @@ html[data-tema="giorno"] .bar{border-color:#dcdfe5}
 .sottomenu .chip{padding:9px 15px}
 
 
-.avvio-h{display:flex;gap:14px;align-items:center;padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--linea)}
+.avvio-h{display:flex;gap:14px;align-items:center;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--linea)}
+#modal label.f{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--testo-2);margin:0 0 9px}
+#modal label.f b{font-family:var(--disp);font-size:18px;line-height:1}
+#modal .paese{margin-bottom:10px}
+#modal .paese-h{margin-bottom:6px}
+#modal #ag_riv .chip{padding:7px 12px;font-size:12.5px}
 .avvio-f{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
   margin-top:22px;padding-top:16px;border-top:1px solid var(--linea)}
 .avvio-f .hint{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--oro-l)}
@@ -455,21 +467,21 @@ html[data-tema="giorno"] .bar{border-color:#dcdfe5}
 
 
 /* ---------- piè di pagina ---------- */
-footer{border-top:1px solid var(--linea);margin-top:34px;padding:0;position:relative}
+footer{border-top:1px solid var(--linea);margin-top:26px;padding:0;position:relative}
 footer::before{content:"";position:absolute;left:50%;top:-1px;transform:translateX(-50%);
   width:min(420px,70%);height:1px;background:linear-gradient(90deg,transparent,var(--oro),transparent);opacity:.85}
-.pie{text-align:center;padding:38px 0 44px;color:var(--testo-3)}
-.pie-marchi{display:flex;align-items:center;justify-content:center;gap:18px}
-.pie-logo svg{width:44px;height:44px;opacity:.95}
-.pie-dd svg{width:52px;height:34px;opacity:.95}
+.pie{text-align:center;padding:26px 0 30px;color:var(--testo-3)}
+.pie-marchi{display:flex;align-items:center;justify-content:center;gap:14px}
+.pie-logo svg{width:36px;height:36px;opacity:.95}
+.pie-dd svg{width:44px;height:29px;opacity:.95}
 .pie-x{font-family:var(--disp);font-size:20px;color:var(--oro-d);opacity:.7}
-.pie-frase{margin:16px auto 0;font-family:var(--disp);font-size:clamp(17px,2.3vw,22px);
-  color:var(--testo-2);letter-spacing:.01em;max-width:44ch;line-height:1.35}
-.pie-firma{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;
+.pie-frase{margin:12px auto 0;font-family:var(--disp);font-size:clamp(18px,2.4vw,25px);white-space:nowrap;
+  color:var(--testo-2);letter-spacing:.005em;max-width:none;line-height:1.25}
+.pie-firma{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:9px;
   font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--oro-d)}
 .pie-sep{width:26px;height:1px;background:var(--oro-d);opacity:.6}
-.pie-note{margin:20px auto 0;max-width:62ch;font-size:11.5px;line-height:1.65;color:var(--testo-3);opacity:.85}
-@media(max-width:520px){ .pie{padding:30px 0 34px} .pie-frase{font-size:17px} }
+.pie-note{margin:14px auto 0;max-width:62ch;font-size:11.5px;line-height:1.65;color:var(--testo-3);opacity:.85}
+@media(max-width:520px){ .pie{padding:22px 0 24px} .pie-frase{font-size:16px;white-space:normal;max-width:28ch} }
 html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.6))}
 
 
@@ -503,6 +515,26 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .avanzate[open] summary::after{content:"−"}
 .avanzate[open]{border-color:var(--linea-2)}
 .avanzate > .due,.avanzate > div{padding:0 14px 14px}
+
+
+/* ---------- ricettario ---------- */
+.ricettario{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.ric{background:linear-gradient(180deg,rgba(22,41,78,.5),rgba(8,13,22,.7));border:1px solid var(--linea);
+  border-radius:16px;padding:15px 16px 13px;display:flex;flex-direction:column;gap:10px;transition:.15s}
+.ric:hover{border-color:var(--linea-2);transform:translateY(-1px)}
+.ric.esclusa{opacity:.5}
+.ric h4{font-family:var(--disp);font-size:20px;font-weight:400;color:var(--testo);line-height:1.15}
+.ric-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--oro-d);margin-top:5px}
+.ric-ing{display:flex;flex-wrap:wrap;gap:5px 10px;font-size:12.5px;color:var(--testo-3);line-height:1.5}
+.ric-tag{display:flex;flex-wrap:wrap;gap:5px}
+.ric footer{display:flex;gap:6px;align-items:center;margin-top:auto;padding-top:10px;border-top:1px solid rgba(32,53,92,.6)}
+.ric footer .btn{margin-left:auto}
+/* ---------- tessere cliccabili ---------- */
+.hs-btn{cursor:pointer;font:inherit;text-align:center;color:inherit}
+.hs-btn:hover{border-color:var(--oro-d)}
+.hs-btn:active{transform:translateY(0)}
+.stag-ic{display:block;margin:0 auto 4px;color:var(--oro)}
+.stag-ic svg{width:22px;height:22px;display:block;margin:0 auto}
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
@@ -568,13 +600,19 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .sottonav .chip[aria-pressed=true] svg.mini{opacity:1}
 @media(max-width:760px){
   .tabs{grid-template-columns:repeat(5,1fr);display:grid;gap:2px}
-  .tabs .tab{flex-direction:column;gap:4px;padding:9px 2px 8px;font-size:10.5px;border-radius:10px;border-bottom:0}
+  .tabs .tab{flex-direction:column;gap:4px;padding:7px 1px 6px;font-size:8.8px;letter-spacing:0;border-radius:11px;
+    border-bottom:0;justify-content:center;text-align:center;line-height:1.05;min-width:0}
+  .tabs .tab .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+  .tabs .tab i svg{width:20px;height:20px}
+  .tabs .tab i{margin-right:0;justify-content:center}
   .tabs .tab i svg{width:22px;height:22px}
-  .tabs .guida-btn{margin-left:0}
+  .tabs .guida-btn{margin-left:0;opacity:1}
   .tabs .guida-btn .nm{display:block}
   .sottonav{margin:12px 0 16px}
-  .sottonav .chips{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:2px}
-  .sottonav .chip{flex:0 0 auto}
+  .sottonav{width:100%}
+  .sottonav .chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:6px;width:100%;flex-wrap:wrap}
+  .sottonav .chip{justify-content:center;padding:9px 6px;font-size:12px;text-align:center;min-width:0}
+  .sottonav .chip .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
 
 /* ---------- vecchia navigazione ---------- */
@@ -626,9 +664,12 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
   .kpi .lab{font-size:9px;letter-spacing:.12em}
   .kpi .sub{font-size:11px}
   .barlist .l{font-size:13px}
-  .weekbar{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;border-radius:999px;padding:5px}
-  .weekbar .chip{padding:8px 13px}
-  .weekbar .chip .nm{font-size:10.5px}
+  .weekbar{width:100%}
+  .segm{display:flex;width:100%;padding:3px;border-radius:12px}
+  .segm-b{min-width:0;padding:6px 4px}
+  .segm-b b{font-size:16px}
+  .segm-b .sw{font-size:7.5px;letter-spacing:.1em}
+  .segm-b.tutto .nm{font-size:9px;letter-spacing:.06em;padding:3px 2px}
   .tblwrap table{font-size:12.5px}
   .listagrid{grid-template-columns:1fr}
   .kpi{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
@@ -645,7 +686,8 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
   input,select{font-size:16px;padding:11px 12px}
   .tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(5,8,15,.97);backdrop-filter:blur(12px);
     border-top:1px solid var(--linea);border-bottom:0;margin:0;overflow:visible;
-    padding:5px 5px calc(5px + env(safe-area-inset-bottom))}
+    display:grid;grid-template-columns:repeat(6,1fr);gap:2px;
+    padding:5px 4px calc(5px + env(safe-area-inset-bottom))}
 
   .tab i{display:block;font-style:normal;line-height:0;opacity:.62}
   .tab i svg{width:21px;height:21px;color:currentColor}
@@ -849,21 +891,21 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="tick"><b>G</b>estione <b>E</b>fficiente di <b>R</b>icette, <b>L</b>iste e <b>A</b>cquisti</div>
     <p class="claim" data-i18n="claim">Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.</p>
     <div class="hero-stats">
-      <div class="hs"><b id="hs-prod">0</b><span>prodotti a listino</span></div>
-      <div class="hs"><b id="hs-piatti">0</b><span>ricette e portate</span></div>
-      <div class="hs"><b id="hs-combo">0</b><span>menu combinabili</span></div>
-      <div class="hs"><b id="hs-riv">0</b><span>negozi</span></div>
-      <div class="hs"><b id="hs-mese">&mdash;</b><span>stagione</span></div>
-      <div class="hs"><b id="hs-agg">&mdash;</b><span>listino</span></div>
+      <button class="hs hs-btn" data-va="catalogo"><b id="hs-prod">0</b><span class="nm">prodotti a listino</span></button>
+      <button class="hs hs-btn" data-va="ricette"><b id="hs-piatti">0</b><span class="nm">ricette e portate</span></button>
+      <button class="hs hs-btn" data-va="eventi"><b id="hs-combo">0</b><span class="nm">menu combinabili</span></button>
+      <button class="hs hs-btn" data-va="negozi"><b id="hs-riv">0</b><span class="nm">negozi</span></button>
+      <button class="hs hs-btn" id="cardStagione"><span class="stag-ic" id="stagIc"></span><b id="hs-mese">&mdash;</b><span class="nm">stagione</span></button>
+      <button class="hs hs-btn" data-va="prezzi-agg"><b id="hs-agg">&mdash;</b><span class="nm">listino</span></button>
     </div>
     <div class="barra-alto">
       <div id="lingue" class="lingue"></div>
       <button class="lng tema" id="btnTema" title="Modalità giorno e notte" aria-label="Giorno / notte"><span id="temaIc">☾</span></button>
     </div>
     <div class="statusbar">
-      <span id="memoria">impostazioni salvate sul dispositivo</span>
-      <button class="linkbtn" id="riavvia">rifai l'avvio guidato</button>
-      <button class="linkbtn" id="scorda">cancella i dati salvati</button>
+      <span id="memoria">dati salvati nel dispositivo</span>
+      <button class="linkbtn" id="riavvia">riavvia l'avvio guidato</button>
+      <button class="linkbtn" id="scorda">cancella e ripristina</button>
     </div>
   </div>
 </header>
@@ -1179,6 +1221,16 @@ html,body{max-width:100%;overflow-x:hidden}
     </div>
   </section>
 
+  <section class="panel" id="p-ricette" hidden>
+    <div class="card noprint">
+      <h2>Tutte le ricette</h2>
+      <p class="hint" style="margin-top:0"><span class="nm">Il ricettario completo: cerca, filtra per reparto o per tipo, guarda ingredienti, tempi e costo per il tuo nucleo, apri la ricetta o mettila subito in tavola.</span></p>
+      <input type="text" class="searchbox" id="cercaRic" placeholder="Cerca una ricetta o un ingrediente…" style="margin:12px 0">
+      <div class="chips" id="filtriRic"></div>
+    </div>
+    <div id="elencoRic"></div>
+  </section>
+
   <section class="panel" id="p-guida" hidden>
     <div class="card noprint">
       <h2>Manuale d'uso</h2>
@@ -1205,12 +1257,8 @@ html,body{max-width:100%;overflow-x:hidden}
           </svg>
         </span>
       </div>
-      <p class="pie-frase"><span class="nm">Ideata e diretta da DD, costruita insieme a Claude di Anthropic</span></p>
-      <div class="pie-firma">
-        <span class="pie-anno">MMXXVI</span>
-        <span class="pie-sep"></span>
-        <span class="nm">Ticino</span>
-      </div>
+      <p class="pie-frase"><span class="nm">Ideata da DD, costruita con Claude</span></p>
+      <div class="pie-firma"><span class="pie-anno">MMXXVI</span></div>
       <p class="pie-note"><span class="nm">Strumento personale di pianificazione. I prezzi sono stime modificabili, non listini ufficiali: verifica sempre allo scaffale. Nessun dato esce dal tuo dispositivo.</span></p>
     </div>
   </div>
@@ -1311,6 +1359,8 @@ const RIV = [
    kc:{Dispensa:0.85,Casa:0.82,Igiene:0.82,Bevande:0.88,Frutta:1.15,Verdura:1.15,Carne:1.12}},
   {id:"landi",    n:"Landi",          z:"CH", c:"#008b3d", k:0.82, url:()=>`https://www.landi.ch/`,
    kc:{Bevande:0.80,Dispensa:0.88,Casa:0.85,Latticini:1.05,Pesce:1.15}},
+  {id:"topcc",    n:"TopCC",          z:"CH", c:"#e2001a", k:0.80, url:()=>`https://www.topcc.ch/`,
+   kc:{Carne:0.86,Bevande:0.84,Carboidrati:0.86,Dispensa:0.90,Casa:0.90}},
   {id:"prodega",  n:"Prodega / Transgourmet", z:"CH", c:"#004a99", k:0.79, url:()=>`https://www.prodega.ch/`,
    kc:{Carne:0.84,Pesce:0.86,Carboidrati:0.85,Bevande:0.84,Frutta:0.95,Casa:0.90}},
   {id:"migrolino",n:"Migrolino",      z:"CH", c:"#f36f21", k:1.18, url:()=>`https://www.migrolino.ch/`,
@@ -1321,6 +1371,8 @@ const RIV = [
    kc:{Frutta:0.94,Verdura:0.94,Carne:0.96}},
   {id:"pam",      n:"Pam / Panorama", z:"IT", c:"#009640", k:0.68, url:()=>`https://www.pampanorama.it/`,
    kc:{Latticini:0.96,Dispensa:0.97}},
+  {id:"topcc",    n:"TopCC",          z:"CH", c:"#e30613", k:0.80, url:()=>`https://www.topcc.ch/`,
+   kc:{Carne:0.86,Bevande:0.85,Dispensa:0.90,Carboidrati:0.88,Frutta:0.98,Casa:0.92}},
   {id:"md",       n:"MD",             z:"IT", c:"#e2001a", k:0.47, url:()=>`https://www.mdspa.it/`,
    kc:{Dispensa:0.93,Casa:0.90,Carne:1.09,Pesce:1.09,Frutta:1.07}},
 ];
@@ -2660,6 +2712,20 @@ function renderPrefs(){
     c.appendChild(b);
   });
 }
+const STAGIONI=[
+  {id:"inverno",n:"inverno",mesi:[12,1,2],ic:`<svg viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/><path d="M12 6.4l-2 -2M12 6.4l2 -2M12 17.6l-2 2M12 17.6l2 2"/></g></svg>`},
+  {id:"primavera",n:"primavera",mesi:[3,4,5],ic:`<svg viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M12 21v-7"/><path d="M12 14c-3.6 0-5.6-2-5.6-5.6C10 8.4 12 10.4 12 14Z"/><path d="M12 14c3.6 0 5.6-2 5.6-5.6C14 8.4 12 10.4 12 14Z"/><circle cx="12" cy="5.4" r="2.1"/></g></svg>`},
+  {id:"estate",n:"estate",mesi:[6,7,8],ic:`<svg viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></g></svg>`},
+  {id:"autunno",n:"autunno",mesi:[9,10,11],ic:`<svg viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c6.5-1 10.5-4.6 12-11"/><path d="M17 9c0 4.4-3 7.4-7.4 7.4C7.4 12 10.4 9 17 9Z"/><path d="M12.6 13.4 9 17"/></g></svg>`},
+];
+function stagioneOra(){ return STAGIONI.find(s0=>s0.mesi.includes(MESE))||STAGIONI[0]; }
+function aggiornaStagione(){
+  const st=stagioneOra();
+  const b=$("#hs-mese"); if(b){ b.dataset.it=st.n; b.textContent=T(st.n); }
+  const ic=$("#stagIc"); if(ic) ic.innerHTML=st.ic;
+  const card=$("#cardStagione");
+  if(card){ card.dataset.itTi=`Prodotti di stagione in ${st.n}`; card.setAttribute("title",T(card.dataset.itTi)); }
+}
 function riepilogoSetup(){
   const el=$("#setupRiepilogo"); if(!el) return;
   const n=S.persone.length, ins=[...S.riv].length;
@@ -2682,18 +2748,20 @@ function renderMenu(){
   const settimane=Math.ceil(S.giorni/7);
   wb.innerHTML="";
   if(settimane>1){
+    const seg=document.createElement("div"); seg.className="segm";
     for(let w=0;w<settimane;w++){
       const b=document.createElement("button");
-      b.className="chip"; b.type="button"; b.setAttribute("aria-pressed",w===S.settimana);
-      b.innerHTML=`<span class="nm">Settimana</span> ${w+1}`;
+      b.type="button"; b.className="segm-b"; b.setAttribute("aria-pressed",w===S.settimana);
+      b.innerHTML=`<span class="sw">${T("Sett.")}</span><b>${w+1}</b>`;
       b.onclick=()=>{S.settimana=w;renderMenu();};
-      wb.appendChild(b);
+      seg.appendChild(b);
     }
-    const b=document.createElement("button");
-    b.className="chip";b.type="button";b.setAttribute("aria-pressed",S.settimana===-1);
-    b.innerHTML=`<span class="nm">${T("Tutto il periodo")}</span>`;
-    b.onclick=()=>{S.settimana=-1;renderMenu();};
-    wb.appendChild(b);
+    const t=document.createElement("button");
+    t.type="button"; t.className="segm-b tutto"; t.setAttribute("aria-pressed",S.settimana===-1);
+    t.innerHTML=`<span class="nm">Tutto</span>`;
+    t.onclick=()=>{S.settimana=-1;renderMenu();};
+    seg.appendChild(t);
+    wb.appendChild(seg);
   }
   const da = S.settimana===-1?0:S.settimana*7;
   const a  = S.settimana===-1?S.giorni:Math.min(S.giorni,da+7);
@@ -2967,6 +3035,8 @@ function renderCatalogo(){
         ${(()=>{const f=fontePrezzo(p.id,best.riv.id);
           if(f==="azione") return '<br><span class="tagpill oro">in azione</span>';
           if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa negozio">◆ prezzo del negozio</span>`;
+          if(S.qualita[p.id] && S.qualita[p.id].q==="negozio")
+            return `<br><span class="tagpill oro" title="${(S.qualita[p.id].negozi||[]).join(", ")}">◆ ${T("prezzo reale")} · ${S.qualita[p.id].n} ${T("negozi")}</span>`;
           if(f==="verificato") return `<br><span class="tagpill oro" title="${(S.qualita[p.id].negozi||[]).join(', ')} · ${S.qualita[p.id].data||""}">✓ dal web · ${S.qualita[p.id].n} rilevazioni</span>`;
           return '<br><span class="tagpill" style="opacity:.55">stimato</span>';})()}</td>
       <td>${nutriBadge(p.id)}</td>
@@ -3008,7 +3078,7 @@ function renderCatalogo(){
   });
   const n=Object.keys(S.prezzi).length, np=Object.keys(S.promo).length;
   $("#contaMod").textContent = (n||np) ? TF("{0} prezzi corretti a mano, {1} promozioni attive.",[n,np]) : T("Nessuna modifica manuale.");
-  $("#hs-agg").textContent = giorniDa(S.ultimoAgg)===0 ? T("oggi") : giorniDa(S.ultimoAgg)+" "+T("gg fa");
+  $("#hs-agg").textContent = S.ultimoAgg.split("-").reverse().slice(0,2).join(".");
 }
 function dopoModificaPrezzi(){
   S.ultimoAgg = oggiISO();
@@ -3118,6 +3188,8 @@ function applicaListino(o){
       ch:{benzina95:o.carburanti.ch?.benzina95??S.carburanti.ch.benzina95,
           diesel:o.carburanti.ch?.diesel??S.carburanti.ch.diesel,
           elettrico:o.carburanti.ch?.elettrico_kwh??o.carburanti.ch?.elettrico??S.carburanti.ch.elettrico},
+      fonte_benzina:o.carburanti.ch?.fonte_benzina, fonte_diesel:o.carburanti.ch?.fonte_diesel,
+      mese:o.carburanti.ch?.mese,
       it:{benzina:o.carburanti.it?.benzina??S.carburanti.it.benzina,
           diesel:o.carburanti.it?.diesel??S.carburanti.it.diesel,
           zona:o.carburanti.it?.zona||S.carburanti.it.zona,
@@ -4166,7 +4238,7 @@ function carica(){
 }
 function segnaleMemoria(t){
   const el=$("#memoria"); if(!el) return;
-  el.dataset.it = t==="non disponibile" ? "memoria non disponibile" : (t==="ripreso"?"ripreso da dove eri":"impostazioni salvate sul dispositivo");
+  el.dataset.it = t==="non disponibile" ? "memoria non disponibile" : (t==="ripreso"?"ripreso da dove eri":"dati salvati nel dispositivo");
   el.textContent = T(el.dataset.it);
   el.style.color = t==="non disponibile" ? "var(--rosso)" : "var(--testo-3)";
 }
@@ -4183,14 +4255,17 @@ function avvioGuidato(){
   apriModale(`<div class="avvio-h">
       <svg class="mark" style="width:44px;height:44px" aria-hidden="true"><use href="#logo-gerla"/></svg>
       <div><h3 style="margin:0">Bentornato a tavola</h3>
-      <p class="hint" style="margin:2px 0 0"><span class="nm">Quattro domande e la prima lista è pronta. Tutto il resto si regola dopo.</span></p></div>
+      <p class="hint" style="margin:2px 0 0"><span class="nm">Quattro domande, meno di un minuto, e la prima lista è pronta.</span></p></div>
     </div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">1.</b> <span class="nm">Quante persone mangiano di solito</span></label>
       <div class="chips" id="ag_pers">${[1,2,3,4,5,6].map(n=>`<button class="chip" type="button" data-v="${n}" ${n===3?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">2.</b> <span class="nm">Per quanti giorni vuoi organizzarti</span></label>
       <div class="chips" id="ag_gg">${[[1,"un giorno"],[3,"3 giorni"],[7,"una settimana"],[28,"un mese"]].map(([v,n])=>`<button class="chip" type="button" data-v="${v}" ${v===7?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">3.</b> <span class="nm">Dove fai la spesa di solito</span></label>
-      <div class="chips" id="ag_riv">${RIV.map(r=>`<button class="chip" type="button" data-v="${r.id}" ${["migros","coop","aldi","lidlch"].includes(r.id)?'aria-pressed="true"':''}><span class="dot" style="background:${r.c}"></span>${r.n}</button>`).join("")}</div></div>
+      <div id="ag_riv">${[["CH","Svizzera","ch"],["IT","Italia","it"]].map(([z,nome,fl])=>`
+        <div class="paese"><div class="paese-h"><svg class="bandiera" viewBox="0 0 24 16"><use href="#fl-${fl}"/></svg><span class="nm">${nome}</span></div>
+        <div class="chips">${RIV.filter(r=>r.z===z).sort((a,b)=>a.n.localeCompare(b.n,"it")).map(r=>
+          `<button class="chip" type="button" data-v="${r.id}" ${["migros","coop","aldi","lidlch"].includes(r.id)?'aria-pressed="true"':''}><span class="dot" style="background:${r.c}"></span>${r.n}</button>`).join("")}</div></div>`).join("")}</div></div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">4.</b> <span class="nm">Quanto vuoi spendere in questo periodo</span></label>
       <div class="row"><input type="number" id="ag_budget" value="180" style="max-width:140px"> <span style="color:var(--testo-3)">franchi in tutto</span></div></div>
     <div class="avvio-f">
@@ -4456,10 +4531,12 @@ function calcolaViaggio(){
       <div><div class="lab">Costo del viaggio</div><div class="val">CHF ${chfr(carburante+tempo+v.pedaggi)}</div><div class="sub">${v.km*2} km · ${v.consumo} ${v.carb==="elettrico"?"kWh":"l"}/100 a CHF ${prezzoCarb.toFixed(2)} · ${v.minuti} min</div></div>
       <div><div class="lab">Ci guadagni</div><div class="val" style="color:${netto>0?"var(--verde)":"var(--rosso)"}">${netto>0?"+":""}${chfr(netto)}</div><div class="sub">${netto>0?T("conviene partire"):T("conviene restare")}</div></div>
     </div>
-    <p class="legenda" style="margin-top:10px">${TF("Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).",
+    <p class="legenda" style="margin-top:10px">${TF("Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro ({7}); {3} benzina € {4} e diesel € {5}{6} (MIMIT).",
       [S.carburanti.data.split("-").reverse().join("."), C.ch.benzina95.toFixed(2), C.ch.diesel.toFixed(2),
        C.it.zona?C.it.zona:T("in Italia"), C.it.benzina.toFixed(2), C.it.diesel.toFixed(2),
-       C.it.campione?" "+TF("su {0} distributori",[C.it.campione]):""])}
+       C.it.campione?" "+TF("su {0} distributori",[C.it.campione]):"",
+       C.fonte_benzina||T("valore di riferimento")])}
+      ${C.fonte_benzina?`<span class="q" style="display:block;margin-top:4px">${TF("Benzina svizzera da {0}{1}; diesel svizzero: {2}.",[C.fonte_benzina, C.mese?" ("+C.mese+")":"", T(C.fonte_diesel||"valore di riferimento")])}</span>`:""}
       ${(()=>{const camb=C.cambio||0.94;
         const chL=v.carb==="benzina"?C.ch.benzina95:C.ch.diesel;
         const itL=(v.carb==="benzina"?C.it.benzina:C.it.diesel)*camb;
@@ -4582,7 +4659,7 @@ const GUIDA=[
 {ic:"◇",t:"In tre mosse",s:[
  {h:"Il giro completo",p:["Dici chi si siede a tavola, per quanti giorni e quanto vuoi spendere. Premi <b>Crea il piano</b>. Da quel momento hai il menu di ogni giorno, la lista della spesa divisa per negozio con le quantità già calcolate, e il conto che si confronta con il budget.",
  "Tutto il resto — dispensa, occasioni, storico, prezzi — serve a rendere quel giro più preciso, ma non è obbligatorio: si può usare Gerla anche solo per quei tre passi."]},
- {h:"Se ti sei perso",p:["In alto, accanto alla scritta della memoria, c'è <b>rifai l'avvio guidato</b>: quattro domande e riparti da una situazione pulita, senza perdere prezzi e impostazioni."]},
+ {h:"Se ti sei perso",p:["In alto, accanto alla scritta della memoria, c'è <b>riavvia l'avvio guidato</b>: quattro domande e riparti da una situazione pulita, senza perdere prezzi e impostazioni."]},
  {h:"Niente si perde",p:["Ogni modifica viene salvata sul tuo dispositivo appena la fai. Puoi chiudere la finestra in qualsiasi momento: alla riapertura trovi tutto com'era, menu compreso."]}]},
 
 {ic:"◈",t:"Chi mangia",s:[
@@ -4723,6 +4800,66 @@ const GUIDA=[
  {h:"Voglio solo la lista, senza menu",p:["Spegni i pasti che non ti interessano, tieni acceso il minimo, e usa la Dispensa per escludere ciò che hai. Oppure lavora direttamente in modalità spesa."]}]},
 ];
 
+/* ---------- ricettario ---------- */
+const FILTRI_RIC=[
+  {id:"tutte",n:"Tutte"},{id:"veloce",n:"Rapide"},{id:"elaborato",n:"Elaborate"},
+  {id:"veg",n:"Vegetariane"},{id:"vegano",n:"Vegane"},{id:"pesce",n:"Di pesce"},
+  {id:"carne_bianca",n:"Carne bianca"},{id:"carne_rossa",n:"Carne rossa"},
+  {id:"tradizione",n:"Tradizione"},{id:"etnico",n:"Dal mondo"},{id:"kid",n:"Per i bambini"},
+  {id:"stagione",n:"Di stagione"},
+];
+function renderFiltriRic(){
+  const box=$("#filtriRic"); if(!box) return;
+  box.innerHTML=FILTRI_RIC.map(f=>`<button class="chip" type="button" data-f="${f.id}" aria-pressed="${(S.filtroRic||"tutte")===f.id}"><span class="nm">${f.n}</span></button>`).join("");
+  box.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{ S.filtroRic=b.dataset.f; renderRicette(); });
+}
+function renderRicette(){
+  const box=$("#elencoRic"); if(!box) return;
+  renderFiltriRic();
+  const q=(($("#cercaRic")||{}).value||"").toLowerCase();
+  const f=S.filtroRic||"tutte";
+  const F=fattoreNucleo();
+  const lista=PIATTI.filter(p=>{
+    if(f==="stagione") { if(p.sea && !inStagione(p.sea,MESE)) return false; if(!p.sea) return stagionalita(p)>=0.75; }
+    else if(f!=="tutte" && !p.t.includes(f)) return false;
+    if(!q) return true;
+    return p.n.toLowerCase().includes(q) || p.ing.some(([i])=>PROD[i] && PROD[i].n.toLowerCase().includes(q));
+  }).sort((a,b)=>a.n.localeCompare(b.n,"it"));
+  const min=p=>p.m || (p.t.includes("veloce")?20:p.t.includes("elaborato")?75:40);
+  box.innerHTML = !lista.length
+    ? `<div class="empty"><b>Nessuna ricetta</b><span class="nm">Prova con un'altra parola o un altro filtro.</span></div>`
+    : `<p class="hint" style="text-align:center;margin:0 0 14px">${lista.length} ${T("ricette")}${!piattoOk(lista[0])?"":""}</p>
+      <div class="ricettario">${lista.map(p=>{
+      const ok=piattoOk(p), c=costoPiatto(p)*F, k=kcalPiatto(p), pr=protPiatto(p);
+      const ric="https://www.giallozafferano.it/ricerca-ricette/"+encodeURIComponent(p.n.replace(/\s*\(.*?\)/g,""))+"/";
+      const v=S.voti[p.id];
+      return `<article class="ric ${ok?"":"esclusa"}">
+        <header>
+          <h4>${p.n}</h4>
+          <div class="ric-meta">${min(p)}′ · CHF ${chfr(c)} · ${Math.round(k)} kcal · ${Math.round(pr)} g ${T("proteine")}</div>
+        </header>
+        <div class="ric-ing">${p.ing.map(([i,g])=>`<span>${PROD[i]?PROD[i].ic+" "+nomeBreve(PROD[i]):i}</span>`).join("")}</div>
+        <div class="ric-tag">${p.t.filter(t=>!["glutine","lattosio","uova","noci","soia","sesamo"].includes(t)).slice(0,4).map(t=>`<span class="tagpill">${T(t)}</span>`).join("")}
+          ${p.sea?`<span class="tagpill ${inStagione(p.sea,MESE)?"oro":""}">${inStagione(p.sea,MESE)?T("di stagione"):NOMIMESI[p.sea[0]].slice(0,3)+"–"+NOMIMESI[p.sea[1]].slice(0,3)}</span>`:""}
+          ${ok?"":`<span class="tagpill" style="color:var(--rosso)">${T("esclusa dalle tue preferenze")}</span>`}</div>
+        <footer>
+          <button class="mi ${v===1?"on":""}" data-voto="1" data-p="${p.id}" title="Piace"><svg><use href="#ic-cuore"/></svg></button>
+          <button class="mi ${v===-1?"no":""}" data-voto="-1" data-p="${p.id}" title="Non piace"><svg><use href="#ic-no"/></svg></button>
+          <a class="mi ric-link" href="${ric}" target="_blank" rel="noopener" title="Apri la ricetta"><svg><use href="#ic-ricetta"/></svg></a>
+          <button class="btn sm" data-oggi="${p.id}"><span class="nm">Mettila in tavola</span></button>
+        </footer></article>`;}).join("")}</div>`;
+  box.querySelectorAll("[data-voto]").forEach(b=>b.onclick=()=>{ voto(b.dataset.p,+b.dataset.voto); renderRicette(); });
+  box.querySelectorAll("[data-oggi]").forEach(b=>b.onclick=()=>mettiInTavola(b.dataset.oggi));
+  setTimeout(traduci,0);
+}
+function mettiInTavola(id){
+  const p=PIATTI.find(x=>x.id===id); if(!p||!S.menu) return;
+  const oggi=0;
+  const k = p.q==="cena" ? "cena" : "pranzo";
+  S.menu[oggi][k]=p; S.menu[oggi].avanzo=false;
+  S.lock.add(oggi); salva(); renderTutto();
+  apriScheda("menu");
+}
 function renderGuida(){
   const box=$("#guidaBox"); if(!box) return;
   const q=(($("#cercaGuida")||{}).value||"").toLowerCase();
@@ -4746,6 +4883,68 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"prezzo reale":"real price",
+"Skrimpers (rilevazioni TCS)":"Skrimpers (TCS readings)",
+
+"Benzina svizzera da {0}{1}; diesel svizzero: {2}.":"Swiss petrol from {0}{1}; Swiss diesel: {2}.",
+"valore di riferimento":"reference value",
+"Trading Economics":"Trading Economics",
+
+"Sett.":"Wk",
+"Tutto":"All",
+
+"Ricette":"Recipes",
+"Tutte le ricette":"All recipes",
+"ricette":"recipes",
+"proteine":"protein",
+"Tutte":"All",
+"Rapide":"Quick",
+"Elaborate":"Elaborate",
+"Vegetariane":"Vegetarian",
+"Vegane":"Vegan",
+"Di pesce":"Fish",
+"Carne bianca":"White meat",
+"Carne rossa":"Red meat",
+"Tradizione":"Tradition",
+"Dal mondo":"From the world",
+"Per i bambini":"For children",
+"Di stagione":"In season",
+"di stagione":"in season",
+"esclusa dalle tue preferenze":"excluded by your preferences",
+"Mettila in tavola":"Put it on the table",
+"Cerca una ricetta o un ingrediente…":"Search a recipe or an ingredient…",
+"Il ricettario completo: cerca, filtra per reparto o per tipo, guarda ingredienti, tempi e costo per il tuo nucleo, apri la ricetta o mettila subito in tavola.":"The full recipe book: search, filter by kind, see ingredients, times and cost for your household, open the recipe or put it straight on the table.",
+"Nessuna ricetta":"No recipe",
+"Prova con un'altra parola o un altro filtro.":"Try another word or another filter.",
+"veloce":"quick",
+"elaborato":"elaborate",
+"veg":"vegetarian",
+"vegano":"vegan",
+"pesce":"fish",
+"carne_bianca":"white meat",
+"carne_rossa":"red meat",
+"maiale":"pork",
+"kid":"kids",
+"salute":"healthy",
+"economico":"cheap",
+"tradizione":"tradition",
+"grotto":"grotto",
+"etnico":"world",
+
+"inverno":"winter",
+"primavera":"spring",
+"estate":"summer",
+"autunno":"autumn",
+"dati salvati nel dispositivo":"data saved on this device",
+"riavvia l'avvio guidato":"restart the setup",
+"cancella e ripristina":"erase and reset",
+"Ideata da DD, costruita con Claude":"Conceived by DD, built with Claude",
+"Prodotti di stagione in inverno":"Seasonal produce in winter",
+"Prodotti di stagione in primavera":"Seasonal produce in spring",
+"Prodotti di stagione in estate":"Seasonal produce in summer",
+"Prodotti di stagione in autunno":"Seasonal produce in autumn",
+"listino":"price list",
+
 "Impostazioni avanzate":"Advanced settings",
 "Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.":"Automatic updates on. Latest price file from {0}, {1}.",
 "Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.":"No price file linked: prices are the ones built into the app. You can correct them by hand or link a shared price file below.",
@@ -4753,7 +4952,7 @@ en:{
 "Italia":"Italy",
 
 "Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.":"The lowest reachable with these settings is <b>CHF {0}</b>, CHF {1} over budget. Try changing the period, the safety margin, the product line or the selected shops.",
-"impostazioni salvate sul dispositivo":"settings saved on this device",
+"dati salvati nel dispositivo":"settings saved on this device",
 "Nutri-Score":"Nutri-Score",
 "rilevato su":"measured on",
 "prodotti simili":"similar products",
@@ -4810,7 +5009,7 @@ en:{
 "superi la franchigia di CHF {0}":"you exceed the CHF {0} allowance",
 "dichiara l'IVA con QuickZoll":"declare the VAT with QuickZoll",
 "Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.":"For this basket it isn't worth it: saving CHF {0} doesn't cover CHF {1} of fuel, time and tolls. It pays off above roughly <b>CHF {2}</b> of shopping.",
-"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Fuel on {0}: in Switzerland petrol CHF {1} and diesel CHF {2} a litre (TCS); {3} petrol € {4} and diesel € {5}{6} (MIMIT).",
+"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro ({7}); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Fuel on {0}: in Switzerland petrol CHF {1} and diesel CHF {2} a litre ({7}); {3} petrol € {4} and diesel € {5}{6} (MIMIT).",
 "su {0} distributori":"across {0} stations",
 "in Italia":"in Italy",
 "Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.":"Filling up there changes almost nothing: at today's rate fuel costs practically the same.",
@@ -5122,7 +5321,7 @@ en:{
 "Seme del caso (stesso numero = stesso menu)":"Random seed (same number = same menu)",
 "prodotti a listino":"products in the list","ricette e portate":"recipes and courses","menu combinabili":"possible menus",
 "negozi":"shops","stagione":"season","listino":"price list","salvato":"saved",
-"rifai l'avvio guidato":"run the setup again","cancella i dati salvati":"delete saved data",
+"riavvia l'avvio guidato":"run the setup again","cancella e ripristina":"delete saved data",
 "Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Who eats, what you spend, where you buy. I work out the rest.",
 "Vegetariano":"Vegetarian","Vegano":"Vegan","Niente maiale":"No pork","Niente pesce":"No fish",
 "Senza glutine":"Gluten free","Senza lattosio":"Lactose free","Niente uova":"No eggs",
@@ -5143,6 +5342,68 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"prezzo reale":"prix réel",
+"Skrimpers (rilevazioni TCS)":"Skrimpers (relevés TCS)",
+
+"Benzina svizzera da {0}{1}; diesel svizzero: {2}.":"Essence suisse d'après {0}{1} ; diesel suisse : {2}.",
+"valore di riferimento":"valeur de référence",
+"Trading Economics":"Trading Economics",
+
+"Sett.":"Sem.",
+"Tutto":"Tout",
+
+"Ricette":"Recettes",
+"Tutte le ricette":"Toutes les recettes",
+"ricette":"recettes",
+"proteine":"protéines",
+"Tutte":"Toutes",
+"Rapide":"Rapides",
+"Elaborate":"Élaborées",
+"Vegetariane":"Végétariennes",
+"Vegane":"Végétaliennes",
+"Di pesce":"Poisson",
+"Carne bianca":"Viande blanche",
+"Carne rossa":"Viande rouge",
+"Tradizione":"Tradition",
+"Dal mondo":"Du monde",
+"Per i bambini":"Pour les enfants",
+"Di stagione":"De saison",
+"di stagione":"de saison",
+"esclusa dalle tue preferenze":"exclue par vos préférences",
+"Mettila in tavola":"Mettez-la à table",
+"Cerca una ricetta o un ingrediente…":"Chercher une recette ou un ingrédient…",
+"Il ricettario completo: cerca, filtra per reparto o per tipo, guarda ingredienti, tempi e costo per il tuo nucleo, apri la ricetta o mettila subito in tavola.":"Le livre de recettes complet : cherchez, filtrez, voyez ingrédients, temps et coût pour votre foyer, ouvrez la recette ou mettez-la à table.",
+"Nessuna ricetta":"Aucune recette",
+"Prova con un'altra parola o un altro filtro.":"Essayez un autre mot ou un autre filtre.",
+"veloce":"rapide",
+"elaborato":"élaboré",
+"veg":"végétarien",
+"vegano":"végétalien",
+"pesce":"poisson",
+"carne_bianca":"viande blanche",
+"carne_rossa":"viande rouge",
+"maiale":"porc",
+"kid":"enfants",
+"salute":"santé",
+"economico":"économique",
+"tradizione":"tradition",
+"grotto":"grotto",
+"etnico":"monde",
+
+"inverno":"hiver",
+"primavera":"printemps",
+"estate":"été",
+"autunno":"automne",
+"dati salvati nel dispositivo":"données enregistrées sur cet appareil",
+"riavvia l'avvio guidato":"relancer la configuration",
+"cancella e ripristina":"effacer et réinitialiser",
+"Ideata da DD, costruita con Claude":"Conçue par DD, construite avec Claude",
+"Prodotti di stagione in inverno":"Produits de saison en hiver",
+"Prodotti di stagione in primavera":"Produits de saison au printemps",
+"Prodotti di stagione in estate":"Produits de saison en été",
+"Prodotti di stagione in autunno":"Produits de saison en automne",
+"listino":"liste de prix",
+
 "Impostazioni avanzate":"Réglages avancés",
 "Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.":"Mise à jour automatique active. Dernière liste du {0}, {1}.",
 "Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.":"Aucune liste liée : les prix sont ceux intégrés à l'application. Corrigez-les à la main ou liez une liste partagée ci-dessous.",
@@ -5150,7 +5411,7 @@ fr:{
 "Italia":"Italie",
 
 "Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.":"Le minimum atteignable avec ces réglages est <b>CHF {0}</b>, soit CHF {1} au-dessus du budget. Essayez de changer la période, la marge, la gamme de produits ou les magasins sélectionnés.",
-"impostazioni salvate sul dispositivo":"réglages enregistrés sur cet appareil",
+"dati salvati nel dispositivo":"réglages enregistrés sur cet appareil",
 "Nutri-Score":"Nutri-Score",
 "rilevato su":"relevé sur",
 "prodotti simili":"produits similaires",
@@ -5207,7 +5468,7 @@ fr:{
 "superi la franchigia di CHF {0}":"vous dépassez la franchise de CHF {0}",
 "dichiara l'IVA con QuickZoll":"déclarez la TVA avec QuickZoll",
 "Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.":"Pour ce panier cela n'en vaut pas la peine : économiser CHF {0} ne couvre pas CHF {1} de carburant, temps et péages. Rentable au-delà d'environ <b>CHF {2}</b> de courses.",
-"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Carburant au {0} : en Suisse essence CHF {1} et diesel CHF {2} le litre (TCS) ; {3} essence € {4} et diesel € {5}{6} (MIMIT).",
+"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro ({7}); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Carburant au {0} : en Suisse essence CHF {1} et diesel CHF {2} le litre ({7}) ; {3} essence € {4} et diesel € {5}{6} (MIMIT).",
 "su {0} distributori":"sur {0} stations",
 "in Italia":"en Italie",
 "Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.":"Faire le plein là-bas ne change presque rien : au cours du jour le carburant coûte pratiquement pareil.",
@@ -5519,7 +5780,7 @@ fr:{
 "Seme del caso (stesso numero = stesso menu)":"Graine du hasard (même nombre = même menu)",
 "prodotti a listino":"produits répertoriés","ricette e portate":"recettes et plats","menu combinabili":"menus possibles",
 "negozi":"magasins","stagione":"saison","listino":"liste de prix","salvato":"enregistré",
-"rifai l'avvio guidato":"refaire la configuration","cancella i dati salvati":"effacer les données",
+"riavvia l'avvio guidato":"refaire la configuration","cancella e ripristina":"effacer les données",
 "Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Qui mange, combien vous dépensez, où vous achetez. Je calcule le reste.",
 "Vegetariano":"Végétarien","Vegano":"Végétalien","Niente maiale":"Sans porc","Niente pesce":"Sans poisson",
 "Senza glutine":"Sans gluten","Senza lattosio":"Sans lactose","Niente uova":"Sans œufs",
@@ -5540,6 +5801,68 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"prezzo reale":"echter Preis",
+"Skrimpers (rilevazioni TCS)":"Skrimpers (TCS-Erhebungen)",
+
+"Benzina svizzera da {0}{1}; diesel svizzero: {2}.":"Schweizer Benzin von {0}{1}; Schweizer Diesel: {2}.",
+"valore di riferimento":"Richtwert",
+"Trading Economics":"Trading Economics",
+
+"Sett.":"Wo.",
+"Tutto":"Alles",
+
+"Ricette":"Rezepte",
+"Tutte le ricette":"Alle Rezepte",
+"ricette":"Rezepte",
+"proteine":"Eiweiss",
+"Tutte":"Alle",
+"Rapide":"Schnell",
+"Elaborate":"Aufwendig",
+"Vegetariane":"Vegetarisch",
+"Vegane":"Vegan",
+"Di pesce":"Fisch",
+"Carne bianca":"Weisses Fleisch",
+"Carne rossa":"Rotes Fleisch",
+"Tradizione":"Tradition",
+"Dal mondo":"Aus aller Welt",
+"Per i bambini":"Für Kinder",
+"Di stagione":"Saisonal",
+"di stagione":"saisonal",
+"esclusa dalle tue preferenze":"durch Ihre Vorlieben ausgeschlossen",
+"Mettila in tavola":"Auf den Tisch bringen",
+"Cerca una ricetta o un ingrediente…":"Rezept oder Zutat suchen…",
+"Il ricettario completo: cerca, filtra per reparto o per tipo, guarda ingredienti, tempi e costo per il tuo nucleo, apri la ricetta o mettila subito in tavola.":"Das ganze Rezeptbuch: suchen, filtern, Zutaten, Zeiten und Kosten für Ihren Haushalt sehen, das Rezept öffnen oder gleich auf den Tisch bringen.",
+"Nessuna ricetta":"Kein Rezept",
+"Prova con un'altra parola o un altro filtro.":"Versuchen Sie ein anderes Wort oder einen anderen Filter.",
+"veloce":"schnell",
+"elaborato":"aufwendig",
+"veg":"vegetarisch",
+"vegano":"vegan",
+"pesce":"Fisch",
+"carne_bianca":"weisses Fleisch",
+"carne_rossa":"rotes Fleisch",
+"maiale":"Schwein",
+"kid":"Kinder",
+"salute":"gesund",
+"economico":"günstig",
+"tradizione":"Tradition",
+"grotto":"Grotto",
+"etnico":"Welt",
+
+"inverno":"Winter",
+"primavera":"Frühling",
+"estate":"Sommer",
+"autunno":"Herbst",
+"dati salvati nel dispositivo":"Daten auf diesem Gerät gespeichert",
+"riavvia l'avvio guidato":"Einrichtung neu starten",
+"cancella e ripristina":"löschen und zurücksetzen",
+"Ideata da DD, costruita con Claude":"Erdacht von DD, gebaut mit Claude",
+"Prodotti di stagione in inverno":"Saisonale Produkte im Winter",
+"Prodotti di stagione in primavera":"Saisonale Produkte im Frühling",
+"Prodotti di stagione in estate":"Saisonale Produkte im Sommer",
+"Prodotti di stagione in autunno":"Saisonale Produkte im Herbst",
+"listino":"Preisliste",
+
 "Impostazioni avanzate":"Erweiterte Einstellungen",
 "Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.":"Automatische Aktualisierung aktiv. Letzte Preisliste vom {0}, {1}.",
 "Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.":"Keine Preisdatei verbunden: die Preise stammen aus der App. Korrigieren Sie sie von Hand oder verbinden Sie unten eine geteilte Preisliste.",
@@ -5547,7 +5870,7 @@ de:{
 "Italia":"Italien",
 
 "Il minimo raggiungibile con queste impostazioni è <b>CHF {0}</b>, sopra il budget di CHF {1}. Prova a cambiare periodo, margine di scorta, linea di prodotto o i negozi selezionati.":"Das mit diesen Einstellungen erreichbare Minimum ist <b>CHF {0}</b>, CHF {1} über dem Budget. Ändern Sie Zeitraum, Reserve, Produktlinie oder die gewählten Läden.",
-"impostazioni salvate sul dispositivo":"Einstellungen auf diesem Gerät gespeichert",
+"dati salvati nel dispositivo":"Einstellungen auf diesem Gerät gespeichert",
 "Nutri-Score":"Nutri-Score",
 "rilevato su":"erhoben an",
 "prodotti simili":"ähnlichen Produkten",
@@ -5604,7 +5927,7 @@ de:{
 "superi la franchigia di CHF {0}":"Sie überschreiten die Freigrenze von CHF {0}",
 "dichiara l'IVA con QuickZoll":"melden Sie die MWST mit QuickZoll an",
 "Per questo carrello non vale la pena: il risparmio di CHF {0} non copre CHF {1} tra carburante, tempo e pedaggi. Conviene sopra una spesa di circa <b>CHF {2}</b>.":"Für diesen Warenkorb lohnt es sich nicht: CHF {0} Ersparnis decken CHF {1} für Treibstoff, Zeit und Maut nicht. Lohnend ab etwa <b>CHF {2}</b> Einkauf.",
-"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro (TCS); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Treibstoff am {0}: in der Schweiz Benzin CHF {1} und Diesel CHF {2} pro Liter (TCS); {3} Benzin € {4} und Diesel € {5}{6} (MIMIT).",
+"Carburante al {0}: in Svizzera benzina CHF {1} e diesel CHF {2} al litro ({7}); {3} benzina € {4} e diesel € {5}{6} (MIMIT).":"Treibstoff am {0}: in der Schweiz Benzin CHF {1} und Diesel CHF {2} pro Liter ({7}); {3} Benzin € {4} und Diesel € {5}{6} (MIMIT).",
 "su {0} distributori":"über {0} Tankstellen",
 "in Italia":"in Italien",
 "Fare il pieno di là non cambia quasi nulla: al cambio di oggi il carburante costa praticamente uguale.":"Dort zu tanken ändert kaum etwas: zum heutigen Kurs kostet der Treibstoff praktisch gleich viel.",
@@ -5916,7 +6239,7 @@ de:{
 "Seme del caso (stesso numero = stesso menu)":"Zufallszahl (gleiche Zahl = gleiches Menü)",
 "prodotti a listino":"Produkte im Sortiment","ricette e portate":"Rezepte und Gänge","menu combinabili":"mögliche Menüs",
 "negozi":"Läden","stagione":"Saison","listino":"Preisliste","salvato":"gespeichert",
-"rifai l'avvio guidato":"Einrichtung neu starten","cancella i dati salvati":"gespeicherte Daten löschen",
+"riavvia l'avvio guidato":"Einrichtung neu starten","cancella e ripristina":"gespeicherte Daten löschen",
 "Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Wer isst, was Sie ausgeben, wo Sie kaufen. Den Rest rechne ich aus.",
 "Vegetariano":"Vegetarisch","Vegano":"Vegan","Niente maiale":"Ohne Schweinefleisch","Niente pesce":"Ohne Fisch",
 "Senza glutine":"Glutenfrei","Senza lattosio":"Laktosefrei","Niente uova":"Ohne Eier",
@@ -5941,9 +6264,10 @@ function TF(it,vals){ let t=T(it); (vals||[]).forEach((v,i)=>t=t.split("{"+i+"}"
 /* Quattro sezioni invece di otto: il piano di casa, le occasioni, la dispensa
    con lo storico, i prezzi. La guida sta in testata, dove si cerca l'aiuto. */
 const NAV=[
-  {id:"piano",  n:"Piano",     ic:"ic-menu",     pan:[{id:"menu",n:"Menu",ic:"ic-menu"},{id:"lista",n:"Lista della spesa",ic:"ic-lista"},{id:"analisi",n:"Analisi e budget",ic:"ic-analisi"}]},
+  {id:"piano",  n:"Piano",     ic:"ic-menu",     pan:[{id:"menu",n:"Menu",ic:"ic-menu"},{id:"lista",n:"Lista",ic:"ic-lista"},{id:"analisi",n:"Analisi",ic:"ic-analisi"}]},
   {id:"eventi", n:"Occasioni", ic:"ic-occasioni",pan:[{id:"eventi",n:"Occasioni",ic:"ic-occasioni"}]},
   {id:"casa",   n:"Casa",      ic:"ic-dispensa", pan:[{id:"dispensa",n:"Dispensa",ic:"ic-dispensa"},{id:"storico",n:"Storico",ic:"ic-storico"}]},
+  {id:"ricette",n:"Ricette",   ic:"ic-ricetta",  pan:[{id:"ricette",n:"Ricette",ic:"ic-ricetta"}]},
   {id:"prezzi", n:"Prezzi",    ic:"ic-prezzi",   pan:[{id:"catalogo",n:"Prezzi e volantini",ic:"ic-prezzi"}]},
 ];
 function renderNav(){
@@ -6030,9 +6354,9 @@ function renderLingue(){
     aggiornaApriChiudi();
     renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo();
     aggiornaBudgetLabel(); renderEventiControlli(); renderEventi();
-    renderDispensa(); renderStorico(); renderGuida();
-    $("#hs-mese").textContent=NOMIMESI[MESE];
-    $("#hs-agg").textContent = giorniDa(S.ultimoAgg)===0 ? T("oggi") : giorniDa(S.ultimoAgg)+" "+T("gg fa");
+    renderDispensa(); renderStorico(); renderGuida(); renderRicette();
+    aggiornaStagione();
+    $("#hs-agg").textContent = S.ultimoAgg.split("-").reverse().slice(0,2).join(".");
     if(S.menu) renderTutto();
     traduci();
   });
@@ -6241,6 +6565,7 @@ $("#fitBudget").onclick=fitBudget;
 $("#esporta").onclick=esporta;
 $("#cerca").oninput=()=>{ S.listinoTutto=false; renderCatalogo(); };
 $("#cercaGuida").oninput=renderGuida;
+$("#cercaRic").oninput=renderRicette;
 function apriScheda(id){
   const g=NAV.find(x=>x.pan.some(p=>p.id===id));
   if(!g) return;
@@ -6291,7 +6616,7 @@ $("#evPers").oninput=e=>{ S.ev.pers=Math.min(60,Math.max(1,+e.target.value||1));
 function vaiAllaSezione(id){
   setTimeout(misuraNav,200);
   const el=document.getElementById("p-"+id); if(!el) return;
-  const mobile=window.matchMedia("(max-width:760px)").matches;
+  const mobile=!!(window.matchMedia && window.matchMedia("(max-width:760px)").matches);
   const barra=document.querySelector(".tabs");
   const offset = mobile ? 12 : (barra?barra.getBoundingClientRect().height:0)+18;
   const y=el.getBoundingClientRect().top+window.scrollY-offset;
@@ -6336,8 +6661,7 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
       combo>=1e6  ? (combo/1e6 ).toFixed(1).replace(".",",")+" mln" :
       combo>=1e3  ? Math.round(combo/1e3)+" mila" : String(combo);
   $("#hs-riv").textContent=RIV.length;
-  $("#hs-mese").textContent=NOMIMESI[MESE];
-  $("#hs-mese").dataset.dinamico="1";
+  aggiornaStagione();
   const ripreso = carica();
   renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo(); aggiornaBudgetLabel();
   $("#setup").open = !S.avvioFatto; aggiornaApriChiudi();
@@ -6349,9 +6673,17 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
     el.value = k==="km"?S.viaggio.km : k==="min"?S.viaggio.minuti : k==="cons"?S.viaggio.consumo : S.viaggio.valoreOra;
   });
   $("#autoFeed").checked=S.autoFeed;
-  renderEventiControlli(); renderEventi(); renderDispensa(); renderStorico(); renderGuida();
+  renderEventiControlli(); renderEventi(); renderDispensa(); renderStorico(); renderGuida(); renderRicette();
   registraIndice(); renderStorico(); misuraNav(); setTimeout(misuraNav,400);
   renderLingue(); applicaTema(); traduci();
+  document.querySelectorAll("[data-va]").forEach(b=>b.onclick=()=>{
+    const d=b.dataset.va;
+    if(d==="negozi"){ $("#setup").open=true; aggiornaApriChiudi();
+      document.querySelector("#rivenditori").scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    if(d==="prezzi-agg"){ S.sezPrezzi="aggiorna"; apriScheda("catalogo"); renderCatalogo(); return; }
+    apriScheda(d);
+  });
+  $("#cardStagione").onclick=()=>{ S.filtroRic="stagione"; apriScheda("ricette"); renderRicette(); };
   $("#btnTema").onclick=()=>{ S.tema = S.tema==="giorno" ? "notte" : "giorno"; applicaTema(); salva(); };
   if(!listaDaLink() && !S.avvioFatto) setTimeout(avvioGuidato,400);
   avviaListino();
