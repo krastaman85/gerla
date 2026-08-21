@@ -573,6 +573,19 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .promo-s{margin-top:auto;color:var(--oro-d)}
 html[data-tema="giorno"] .promo-c{background:#fff}
 
+
+/* ---------- catalogo unificato ---------- */
+.cat-barra{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cat-barra .searchbox{flex:2 1 260px}
+.cat-barra select{flex:1 1 150px}
+.riga-mia td{background:linear-gradient(90deg,rgba(224,180,90,.07),transparent)}
+.ic-p{margin-right:7px}
+@media(max-width:620px){ .cat-barra{flex-direction:column;align-items:stretch} .cat-barra select{max-width:none!important} }
+
+
+.prod-vero{display:block;margin-top:3px;font-size:11px;line-height:1.35;color:var(--testo-3);max-width:230px}
+.riga-mia .prod-vero{color:var(--testo-2)}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -1188,7 +1201,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="sottomenu" id="sottoPrezzi"></div>
     <div id="bannerAgg"></div>
     <div class="card">
-      <h2 data-sez="volantini">Volantini della settimana</h2>
+      <h2 data-sez="offerte">Volantini della settimana</h2>
       <p class="hint" style="margin-top:0">Le promozioni cambiano ogni gioved&igrave; in Svizzera e ogni luned&igrave; in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di pi&ugrave; sul totale.</p>
       <div class="flyer" id="flyerBox"></div>
     </div>
@@ -1199,7 +1212,7 @@ html,body{max-width:100%;overflow-x:hidden}
       <div class="fonti" id="fontiBox"></div>
     </div>
     <div class="card">
-      <h2 data-sez="aggiorna">Aggiornamento automatico</h2>
+      <h2 data-sez="fonti">Aggiornamento automatico</h2>
       <div id="statoAgg" class="banner ok" style="margin-bottom:14px"></div>
       <details class="avanzate"><summary><span class="nm">Impostazioni avanzate</span></summary>
       <div class="due">
@@ -1247,7 +1260,9 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="card" id="cardGiorni"></div>
     <div class="card" id="cardPromo"></div>
     <div class="card">
-      <h2 data-sez="listino">Listino &mdash; prezzi e promozioni</h2>
+      <h2 data-sez="catalogo">Catalogo &mdash; il tuo listino e i negozi</h2>
+      <div id="catUnico"></div>
+      <details class="avanzate" style="margin-top:16px"><summary><span class="nm">Listino di casa: prezzi e promozioni da correggere a mano</span></summary>
       <p class="hint" style="margin-top:0">Il prezzo di ogni prodotto viene deciso a tre livelli, dal pi&ugrave; affidabile al pi&ugrave; generico: <b>1.</b> una promozione in corso; <b>2.</b> il prezzo davvero rilevato in quella negozio, quando esiste; <b>3.</b> il prezzo base moltiplicato per l'indice dell'negozio. Il livello usato &egrave; scritto sotto il miglior prezzo, cos&igrave; sai sempre quanto fidarti.</p>
       <div class="chips" id="gruppiListino" style="margin-bottom:12px"></div>
       <div class="row" style="margin-bottom:12px">
@@ -1255,15 +1270,11 @@ html,body{max-width:100%;overflow-x:hidden}
         <button class="btn sm" id="nuovoProd">+ Aggiungi un prodotto</button>
         <span class="hint" id="contaListino" style="margin:0"></span>
       </div>
-      <div class="tblwrap"><table id="tblProd"><thead><tr>
+      <div class="tblwrap" style="margin-top:12px"><table id="tblProd"><thead><tr>
         <th>Prodotto</th><th>Reparto</th><th>Formato</th><th class="num">Prezzo base CHF</th><th class="num">In azione</th><th>Valida fino al</th><th class="num">Miglior prezzo</th><th>Nutri-Score</th><th>Alternativa</th><th>Stagione</th>
       </tr></thead><tbody></tbody></table></div>
     </div>
-    <div class="card">
-      <h2 data-sez="esteso">Catalogo esteso dei negozi</h2>
-      <p class="hint" style="margin-top:0"><span class="nm">Qui c'è il catalogo vero dei negozi svizzeri, decine di migliaia di prodotti con prezzo, formato e Nutri-Score. Cerca quello che ti serve e aggiungilo al tuo listino con un clic: da quel momento entra nei menu, nelle liste e nelle alternative.</span></p>
-      <input type="text" class="searchbox" id="cercaEsteso" placeholder="Cerca nel catalogo dei negozi… (spesso in tedesco: Milch, Brot, Käse)" style="margin:12px 0">
-      <div id="risultatiEsteso"></div>
+    
     </div>
     <div class="card">
       <h2 data-sez="offerte">Offerte vere della settimana</h2>
@@ -1271,7 +1282,7 @@ html,body{max-width:100%;overflow-x:hidden}
       <div id="promoVere" style="margin-top:12px"></div>
     </div>
     <div class="card">
-      <h2 data-sez="indici">Indice prezzi per negozio</h2>
+      <h2 data-sez="fonti">Indice prezzi per negozio</h2>
       <p class="hint" style="margin-top:0">Moltiplicatore sul prezzo di riferimento, con correzioni per reparto. I confronti indipendenti (K-Tipp, RTS) collocano Lidl e Aldi sui prezzi pi&ugrave; bassi per i prodotti base, mentre Denner vince sulle scorte di caff&egrave;, cioccolato e bevande: gli indici seguono questo schema. Regolali sul tuo negozio.</p>
       <div class="tblwrap"><table id="tblRiv"><thead><tr><th>Negozio</th><th>Zona</th><th class="num">Indice</th><th>Esempio: 1 kg pasta</th></tr></thead><tbody></tbody></table></div>
     </div>
@@ -2363,7 +2374,8 @@ const S = {
   giaInCasa:new Set(),
   lingua:"it", tema:"notte", cambio:0.94, nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, gruppo:"tutti", sezPrezzi:"listino",   // prodotto -> alternativa scelta / provenienza del prezzo
+  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, gruppo:"tutti", sezPrezzi:"catalogo",
+  qCat:"", filtroCat:"tutto", repCat:"tutti", negCat:"tutti",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
   viaggio:{km:18,consumo:6.5,carb:"diesel",minuti:70,valoreOra:20,pedaggi:0},
@@ -3115,19 +3127,13 @@ function renderGruppiListino(){
   box.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ S.gruppo=b.dataset.g; S.listinoTutto=false; renderCatalogo(); });
 }
 const SEZ_PREZZI=[
-  {id:"listino",  n:"Listino",        ic:"◫"},
-  {id:"promo",    n:"Promozioni",     ic:"◆"},
-  {id:"giorni",   n:"Giorni migliori",ic:"◔"},
-  {id:"volantini",n:"Volantini",      ic:"◧"},
-  {id:"fonti",    n:"Fonti",          ic:"◉"},
-  {id:"aggiorna", n:"Aggiornamento",  ic:"↻"},
-  {id:"indici",   n:"Indici",         ic:"≡"},
-  {id:"esteso",   n:"Catalogo esteso",ic:"⌕"},
-  {id:"offerte",  n:"Offerte vere",   ic:"%"},
+  {id:"catalogo", n:"Catalogo",     ic:"◫"},
+  {id:"offerte",  n:"Offerte",      ic:"%"},
+  {id:"fonti",    n:"Aggiornamento",ic:"↻"},
 ];
 function renderSottomenu(){
   const box=$("#sottoPrezzi"); if(!box) return;
-  if(!S.sezPrezzi) S.sezPrezzi="listino";
+  if(!S.sezPrezzi||!SEZ_PREZZI.some(x=>x.id===S.sezPrezzi)) S.sezPrezzi="catalogo";
   box.innerHTML=`<div class="chips">${SEZ_PREZZI.map(x=>
     `<button class="chip" type="button" data-s="${x.id}" aria-pressed="${S.sezPrezzi===x.id}">${x.ic} <span class="nm">${x.n}</span></button>`).join("")}</div>`;
   box.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{ S.sezPrezzi=b.dataset.s; renderSottomenu(); salva(); });
@@ -3135,8 +3141,8 @@ function renderSottomenu(){
     const h=c.querySelector("h2[data-sez]");
     c.hidden = !!h && h.dataset.sez!==S.sezPrezzi;
   });
-  const b=$("#bannerAgg"); if(b) b.hidden = !["listino","aggiorna","promo"].includes(S.sezPrezzi);
-  if(S.sezPrezzi==="esteso") cercaEsteso();
+  const b=$("#bannerAgg"); if(b) b.hidden = !["catalogo","fonti","offerte"].includes(S.sezPrezzi);
+  if(S.sezPrezzi==="catalogo") renderCatalogoUnico();
   if(S.sezPrezzi==="offerte") renderPromoVere();
 }
 function renderCatalogo(){
@@ -3178,7 +3184,12 @@ function renderCatalogo(){
       <td class="num" style="font-family:var(--mono)">
         <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${best.riv.c};margin-right:5px"></span>${chfr(best.prezzo)}
         <br><span style="font-size:10px;color:var(--testo-3)">${best.riv.n}${promoViva(p.id)?" · azione":""}</span>
-        ${(()=>{const f=fontePrezzo(p.id,best.riv.id);
+        ${(()=>{
+          const v=S.ing&&S.ing[p.id];
+          const neg=best.riv.id==="lidlch"?"lidl":best.riv.id;
+          const d=v&&v.negozi&&v.negozi[neg];
+          if(d) return `<br><span class="prod-vero" title="${T("prodotto vero scelto in questo negozio")}">${d.n}${d.f?" · "+d.f:""}</span>`;
+          const f=fontePrezzo(p.id,best.riv.id);
           if(f==="azione") return '<br><span class="tagpill oro">in azione</span>';
           if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa negozio">◆ prezzo del negozio</span>`;
           if(S.qualita[p.id] && S.qualita[p.id].q==="negozio")
@@ -3243,7 +3254,7 @@ function renderGiorniSpesa(){
   const migliore=classifica[0];
   const attesa=g=>{ const d=(g-oggiG+7)%7; return d===0?T("oggi"):d===1?T("domani"):T("tra")+" "+d+" "+T("giorni"); };
   const promoInScadenza=Object.entries(S.promo).filter(([id,p])=>PROD[id]&&promoViva(id)&&p.fino&&giorniA(p.fino)<=3);
-  box.innerHTML=`<h2 data-sez="giorni">Quando conviene fare la spesa</h2>
+  box.innerHTML=`<h2 data-sez="offerte">Quando conviene fare la spesa</h2>
     <p class="hint" style="margin-top:0">I volantini non escono tutti lo stesso giorno. Facendo la spesa appena escono le offerte prendi la settimana intera di sconti invece degli avanzi.</p>
     ${migliore?`<div class="kpi" style="margin:14px 0 4px">
       <div><div class="lab">Giorno migliore</div><div class="val" style="font-size:26px;text-transform:capitalize">${NOMI_GIORNI[migliore.g]}</div>
@@ -3264,7 +3275,7 @@ function renderPromo(){
   const box=$("#cardPromo"); if(!box) return;
   const vive=Object.entries(S.promo).filter(([id])=>PROD[id]&&promoViva(id));
   const scadute=Object.entries(S.promo).filter(([id])=>PROD[id]&&!promoViva(id));
-  box.innerHTML=`<h2 data-sez="promo">Promozioni attive</h2>
+  box.innerHTML=`<h2 data-sez="offerte">Promozioni attive</h2>
     <p class="hint" style="margin-top:0">Quelle marcate <i>dal listino</i> arrivano dal file condiviso e si rinnovano da sole a ogni aggiornamento; le altre le hai scritte tu. Alla data di scadenza spariscono e il prezzo torna pieno, senza che tu debba ricordartene.</p>
     ${vive.length? `<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Prodotto</th><th>Negozio</th><th class="num">In azione</th><th class="num">Invece di</th><th>Fino al</th><th>Origine</th><th></th></tr></thead><tbody>
       ${vive.map(([id,p])=>{const pieno=prezzoRif(id)*(p.riv?fattoreRiv(RIV.find(r=>r.id===p.riv)||RIV[0],PROD[id].cat):1);
@@ -3376,6 +3387,37 @@ function indirizzoListino(u){
 }
 /* se l'app è pubblicata sul web, il listino sta quasi sempre nella stessa cartella:
    lo cerco da solo, senza chiedere niente. Solo se non c'è si usa l'indirizzo scritto a mano. */
+/* I prezzi non nascono più da stime scritte a mano: arrivano dal file
+   degli ingredienti, dove ogni voce delle ricette è legata a un prodotto
+   vero di ogni negozio. Il prezzo di riferimento resta solo come rete di
+   sicurezza per ciò che nei negozi non si trova (casa e igiene). */
+async function caricaIngredienti(){
+  try{
+    const r=await fetch(cartellaApp()+"gerla-ingredienti.json",{cache:"no-store"});
+    if(!r.ok) throw new Error("assente");
+    const o=await r.json();
+    S.ing = o.voci||{};
+    S.ingData = o.data; S.ingCopertura = o.copertura;
+    let n=0;
+    for(const [id,v] of Object.entries(S.ing)){
+      if(!PROD[id]) continue;
+      const perNegozio={};
+      for(const [neg,d] of Object.entries(v.negozi||{})){
+        const nostro = neg==="lidl" ? "lidlch" : neg;
+        if(d.p>0) perNegozio[nostro]=d.p;
+      }
+      if(Object.keys(perNegozio).length){
+        S.prezziRiv[id]=perNegozio;
+        S.prezzi[id]=v.base;
+        S.qualita[id]={q:"negozio",n:Object.keys(perNegozio).length,data:o.data,fonte:"prodotti veri",
+                       negozi:Object.keys(perNegozio)};
+        n++;
+      }
+      if(v.nutri) S.nutri[id]={...v.nutri, fonte:"prodotti veri"};
+    }
+    return n;
+  }catch(e){ S.ing={}; return 0; }
+}
 async function avviaListino(){
   if(!S.autoFeed) return;
   if(!S.feedUrl && /^https?:/.test(location.protocol)){
@@ -3394,6 +3436,12 @@ async function avviaListino(){
     }catch(e){}
   }
   if(S.feedUrl) aggiornaDaFeed(true);
+  const n = await caricaIngredienti();
+  if(n){
+    renderCatalogo(); if(S.menu) renderTutto();
+    const e=$("#statoFeed");
+    if(e) e.textContent = TF("{0} ingredienti legati a prodotti veri dei negozi.",[n]);
+  }
 }
 async function aggiornaDaFeed(silenzioso){
   if(!S.feedUrl){ if(!silenzioso) apriModale('<h3>Manca l\u2019indirizzo</h3><p class="hint">Incolla prima l\u2019indirizzo del file listino, oppure usa \u201cIncolla un listino\u201d.</p><div class="row" style="margin-top:12px"><button class="btn sm" onclick="chiudiModale()">Chiudi</button></div>'); return; }
@@ -5029,6 +5077,31 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"{0} ingredienti legati a prodotti veri dei negozi.":"{0} ingredients linked to real products from the shops.",
+"prodotto vero scelto in questo negozio":"real product chosen in this shop",
+"ingrediente":"ingredient",
+"come ingrediente":"as an ingredient",
+
+"Catalogo":"Catalogue",
+"Offerte":"Offers",
+"Aggiornamento":"Updates",
+"Catalogo — il tuo listino e i negozi":"Catalogue — your list and the shops",
+"Listino di casa: prezzi e promozioni da correggere a mano":"Home list: prices and promotions to correct by hand",
+"Tutto":"All",
+"Nel mio listino":"In my list",
+"Dai negozi":"From the shops",
+"In azione":"On offer",
+"nel listino":"in the list",
+"alternative":"alternatives",
+"Cerco nel catalogo dei negozi…":"Searching the shops' catalogue…",
+"{0} prodotti a portata di mano":"{0} products at hand",
+"Scrivi almeno due lettere. Cerco nel tuo listino e nel catalogo dei negozi svizzeri: puoi scrivere in italiano anche se i nomi nei negozi sono in tedesco.":"Type at least two letters. I search your list and the Swiss shops' catalogue: you can write in English even though the shop names are in German.",
+"{0} risultati · {1} nel tuo listino, {2} dai negozi":"{0} results · {1} in your list, {2} from the shops",
+"Prova con una parola più corta, o togli i filtri.":"Try a shorter word, or clear the filters.",
+"Cerca un prodotto — anche in italiano: latte, pane, mele…":"Search a product — in English too: milk, bread, apples…",
+"Tutti i reparti":"All departments",
+"Tutti i negozi":"All shops",
+
 "Catalogo esteso":"Extended catalogue",
 "Offerte vere":"Real offers",
 "Catalogo esteso dei negozi":"Shops' extended catalogue",
@@ -5522,6 +5595,31 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"{0} ingredienti legati a prodotti veri dei negozi.":"{0} ingrédients liés à de vrais produits des magasins.",
+"prodotto vero scelto in questo negozio":"produit réel choisi dans ce magasin",
+"ingrediente":"ingrédient",
+"come ingrediente":"comme ingrédient",
+
+"Catalogo":"Catalogue",
+"Offerte":"Offres",
+"Aggiornamento":"Mise à jour",
+"Catalogo — il tuo listino e i negozi":"Catalogue — votre liste et les magasins",
+"Listino di casa: prezzi e promozioni da correggere a mano":"Liste maison : prix et promotions à corriger à la main",
+"Tutto":"Tout",
+"Nel mio listino":"Dans ma liste",
+"Dai negozi":"Des magasins",
+"In azione":"En action",
+"nel listino":"dans la liste",
+"alternative":"alternatives",
+"Cerco nel catalogo dei negozi…":"Recherche dans le catalogue des magasins…",
+"{0} prodotti a portata di mano":"{0} produits à portée de main",
+"Scrivi almeno due lettere. Cerco nel tuo listino e nel catalogo dei negozi svizzeri: puoi scrivere in italiano anche se i nomi nei negozi sono in tedesco.":"Écrivez au moins deux lettres. Je cherche dans votre liste et dans le catalogue des magasins suisses : vous pouvez écrire en français même si les noms sont en allemand.",
+"{0} risultati · {1} nel tuo listino, {2} dai negozi":"{0} résultats · {1} dans votre liste, {2} des magasins",
+"Prova con una parola più corta, o togli i filtri.":"Essayez un mot plus court, ou enlevez les filtres.",
+"Cerca un prodotto — anche in italiano: latte, pane, mele…":"Cherchez un produit — aussi en français : lait, pain, pommes…",
+"Tutti i reparti":"Tous les rayons",
+"Tutti i negozi":"Tous les magasins",
+
 "Catalogo esteso":"Catalogue étendu",
 "Offerte vere":"Vraies offres",
 "Catalogo esteso dei negozi":"Catalogue étendu des magasins",
@@ -6015,6 +6113,31 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"{0} ingredienti legati a prodotti veri dei negozi.":"{0} Zutaten mit echten Produkten aus den Läden verknüpft.",
+"prodotto vero scelto in questo negozio":"echtes Produkt in diesem Laden",
+"ingrediente":"Zutat",
+"come ingrediente":"als Zutat",
+
+"Catalogo":"Sortiment",
+"Offerte":"Angebote",
+"Aggiornamento":"Aktualisierung",
+"Catalogo — il tuo listino e i negozi":"Sortiment — Ihre Liste und die Läden",
+"Listino di casa: prezzi e promozioni da correggere a mano":"Hausliste: Preise und Aktionen von Hand korrigieren",
+"Tutto":"Alles",
+"Nel mio listino":"In meiner Liste",
+"Dai negozi":"Aus den Läden",
+"In azione":"In Aktion",
+"nel listino":"in der Liste",
+"alternative":"Alternativen",
+"Cerco nel catalogo dei negozi…":"Suche im Sortiment der Läden…",
+"{0} prodotti a portata di mano":"{0} Produkte griffbereit",
+"Scrivi almeno due lettere. Cerco nel tuo listino e nel catalogo dei negozi svizzeri: puoi scrivere in italiano anche se i nomi nei negozi sono in tedesco.":"Mindestens zwei Buchstaben. Ich suche in Ihrer Liste und im Sortiment der Schweizer Läden.",
+"{0} risultati · {1} nel tuo listino, {2} dai negozi":"{0} Treffer · {1} in Ihrer Liste, {2} aus den Läden",
+"Prova con una parola più corta, o togli i filtri.":"Versuchen Sie ein kürzeres Wort oder entfernen Sie die Filter.",
+"Cerca un prodotto — anche in italiano: latte, pane, mele…":"Produkt suchen — Milch, Brot, Äpfel…",
+"Tutti i reparti":"Alle Abteilungen",
+"Tutti i negozi":"Alle Läden",
+
 "Catalogo esteso":"Erweitertes Sortiment",
 "Offerte vere":"Echte Angebote",
 "Catalogo esteso dei negozi":"Erweitertes Sortiment der Läden",
@@ -6728,7 +6851,7 @@ async function cercaEsteso(){
       <td class="num" style="font-family:var(--mono);color:var(--testo)">${r.p!=null?"CHF "+chfr(r.p):"—"}</td>
       <td class="num" style="font-family:var(--mono);font-size:12px;color:var(--testo-3)">${r.pu?chfr(r.pu)+" "+(r.u||""):"—"}</td>
       <td>${r.nu?badgeLettera(r.nu):""}</td>
-      <td><button class="btn sm" data-imp="${i}">+ ${T("al mio listino")}</button></td>
+      <td><button class="btn sm" data-imp="${i}">+ ${T("come ingrediente")}</button></td>
     </tr>`).join("")}
     </tbody></table></div>`;
   box.querySelectorAll("[data-imp]").forEach(b=>b.onclick=()=>importaDalCatalogo(mostra[+b.dataset.imp]));
@@ -6767,26 +6890,20 @@ function importaDalCatalogo(r){
 }
 
 /* ---------- promozioni reali dei negozi ---------- */
-async function renderPromoVere(){
+async function renderPromoVere(soloGriglia){
   const box = $("#promoVere"); if(!box) return;
   const p = await caricaPromozioni();
   const negozi = Object.keys(p.negozi||{}).filter(n=>S.riv.has(idNostro(n)));
   const tutte = negozi.flatMap(n => (p.negozi[n]||[]).map(x=>({...x, neg:n})))
     .filter(x=>x.a >= oggiISO() && Number(x.p) > 0)
     .sort((a,b)=> (b.sc||0)-(a.sc||0));
-  if(!tutte.length){
+  if(!tutte.length && !box.querySelector("#cercaPromo")){
     box.innerHTML = `<p class="legenda">${T("Nessuna promozione caricata: manca il file gerla-promozioni.json accanto all'app, oppure i negozi accesi non ne hanno in corso.")}</p>`;
     return;
   }
   const filtro = (S.filtroPromo||"").toLowerCase();
   const lista = (filtro ? tutte.filter(x=>(x.n+" "+x.m).toLowerCase().includes(filtro)) : tutte).slice(0,60);
-  box.innerHTML = `
-    <div class="row" style="margin-bottom:12px">
-      <input type="text" id="cercaPromo" class="searchbox" style="flex:1;margin:0;min-width:200px"
-        placeholder="${T("Filtra le promozioni…")}" value="${S.filtroPromo||""}">
-      <span class="hint" style="margin:0">${TF("{0} offerte in corso nei tuoi negozi",[tutte.length])}</span>
-    </div>
-    <div class="promo-griglia">
+  const griglia = `<div class="promo-griglia">
       ${lista.map(x=>`<div class="promo-c">
         <div class="promo-h"><span class="dot" style="background:${(RIV.find(r=>r.id===idNostro(x.neg))||{c:"#888"}).c}"></span>
           ${nomeNegozio(x.neg)}${x.carta?` <span class="q">${T("con carta fedeltà")}</span>`:""}</div>
@@ -6798,8 +6915,229 @@ async function renderPromoVere(){
         <div class="promo-s">${x.a?TF("fino al {0}",[x.a.split("-").reverse().join(".")]):""}</div>
       </div>`).join("")}
     </div>`;
-  const c=$("#cercaPromo");
-  if(c) c.oninput=()=>{ S.filtroPromo=c.value; clearTimeout(ricercaTimer); ricercaTimer=setTimeout(renderPromoVere,220); };
+  /* il campo di ricerca si disegna una sola volta: ridisegnandolo a ogni lettera
+     il cursore saltava fuori e si riusciva a scrivere un carattere per volta */
+  if(!box.querySelector("#cercaPromo")){
+    box.innerHTML = `
+      <div class="row" style="margin-bottom:12px">
+        <input type="text" id="cercaPromo" class="searchbox" style="flex:1;margin:0;min-width:200px"
+          placeholder="${T("Filtra le promozioni…")}" value="${(S.filtroPromo||"").replace(/"/g,"&quot;")}">
+        <span class="hint" style="margin:0" id="contaPromo"></span>
+      </div>
+      <div id="grigliaPromo"></div>`;
+    const c=box.querySelector("#cercaPromo");
+    c.oninput=()=>{ S.filtroPromo=c.value; clearTimeout(ricercaTimer); ricercaTimer=setTimeout(()=>renderPromoVere(true),240); };
+  }
+  const cp=box.querySelector("#contaPromo");
+  if(cp) cp.textContent=TF("{0} offerte in corso nei tuoi negozi",[tutte.length]);
+  box.querySelector("#grigliaPromo").innerHTML = griglia;
+}
+
+/* =========================================================
+   CATALOGO UNIFICATO
+   ---------------------------------------------------------
+   Un solo posto per tutto: i prodotti del tuo listino (quelli che
+   entrano nei menu) e i quarantamila dei negozi svizzeri. La ricerca
+   guarda in entrambi, capisce italiano, francese e inglese anche se
+   i nomi nei negozi sono in tedesco, e da qualsiasi risultato puoi
+   agire: correggere un prezzo, cercare un'alternativa, o portarti
+   un prodotto del negozio dentro il listino di casa.
+   ========================================================= */
+
+/* ---------- dizionario di ricerca: dalla tua lingua al tedesco ---------- */
+const TRAD_CERCA = {
+  // latticini e uova
+  latte:"milch", milch:"milch", lait:"milch", milk:"milch",
+  burro:"butter", beurre:"butter", formaggio:"käse", fromage:"käse", cheese:"käse",
+  yogurt:"joghurt", yaourt:"joghurt", panna:"rahm", crème:"rahm", cream:"rahm",
+  uova:"eier", oeufs:"eier", eggs:"eier", mozzarella:"mozzarella", ricotta:"ricotta",
+  // pane e cereali
+  pane:"brot", pain:"brot", bread:"brot", pasta:"teigwaren", pâtes:"teigwaren",
+  riso:"reis", riz:"reis", rice:"reis", farina:"mehl", farine:"mehl", flour:"mehl",
+  biscotti:"guetzli", biscuits:"biscuits", cereali:"müesli", cornflakes:"cornflakes",
+  // carne e pesce
+  carne:"fleisch", viande:"fleisch", meat:"fleisch", pollo:"poulet", chicken:"poulet",
+  manzo:"rind", boeuf:"rind", beef:"rind", maiale:"schwein", porc:"schwein", pork:"schwein",
+  vitello:"kalb", veau:"kalb", tacchino:"trute", salsiccia:"wurst", saucisse:"wurst",
+  prosciutto:"schinken", jambon:"schinken", ham:"schinken", salame:"salami", speck:"speck",
+  pesce:"fisch", poisson:"fisch", fish:"fisch", salmone:"lachs", saumon:"lachs", salmon:"lachs",
+  tonno:"thon", thunfisch:"thon", gamberi:"crevetten", crevettes:"crevetten", shrimp:"crevetten",
+  // frutta e verdura
+  mele:"äpfel", mela:"äpfel", pomme:"äpfel", apple:"äpfel",
+  banane:"bananen", banana:"bananen", arance:"orangen", arancia:"orangen", orange:"orangen",
+  pere:"birnen", pera:"birnen", poire:"birnen", uva:"trauben", raisin:"trauben", grapes:"trauben",
+  fragole:"erdbeeren", fraises:"erdbeeren", strawberry:"erdbeeren",
+  limoni:"zitronen", limone:"zitronen", citron:"zitronen", lemon:"zitronen",
+  patate:"kartoffeln", patata:"kartoffeln", pommes:"kartoffeln", potato:"kartoffeln",
+  carote:"karotten", carota:"rüebli", carotte:"karotten", carrot:"karotten",
+  cipolle:"zwiebeln", cipolla:"zwiebeln", oignon:"zwiebeln", onion:"zwiebeln",
+  pomodori:"tomaten", pomodoro:"tomaten", tomate:"tomaten", tomato:"tomaten",
+  insalata:"salat", salade:"salat", salad:"salat", zucchine:"zucchetti", courgette:"zucchetti",
+  melanzane:"auberginen", aubergine:"auberginen", peperoni:"peperoni", poivron:"peperoni",
+  spinaci:"spinat", épinards:"spinat", spinach:"spinat", funghi:"champignons", mushroom:"champignons",
+  aglio:"knoblauch", ail:"knoblauch", garlic:"knoblauch", zucca:"kürbis", courge:"kürbis",
+  cavolo:"kohl", chou:"kohl", cabbage:"kohl", broccoli:"broccoli", finocchi:"fenchel",
+  // dispensa
+  olio:"öl", huile:"öl", oil:"öl", aceto:"essig", vinaigre:"essig", vinegar:"essig",
+  sale:"salz", sel:"salz", salt:"salz", zucchero:"zucker", sucre:"zucker", sugar:"zucker",
+  caffè:"kaffee", caffe:"kaffee", café:"kaffee", coffee:"kaffee", tè:"tee", the:"tee", thé:"tee",
+  cioccolato:"schokolade", chocolat:"schokolade", chocolate:"schokolade",
+  miele:"honig", miel:"honig", honey:"honig", marmellata:"konfitüre", confiture:"konfitüre", jam:"konfitüre",
+  legumi:"hülsenfrüchte", lenticchie:"linsen", lentilles:"linsen", lentils:"linsen",
+  ceci:"kichererbsen", fagioli:"bohnen", haricots:"bohnen", beans:"bohnen",
+  // bevande
+  acqua:"wasser", eau:"wasser", water:"wasser", vino:"wein", vin:"wein", wine:"wein",
+  birra:"bier", bière:"bier", beer:"bier", succo:"saft", jus:"saft", juice:"saft",
+  // casa e igiene
+  detersivo:"waschmittel", lessive:"waschmittel", detergent:"waschmittel",
+  sapone:"seife", savon:"seife", soap:"seife", carta:"papier", papier:"papier", paper:"papier",
+  dentifricio:"zahnpasta", shampoo:"shampoo", pannolini:"windeln", couches:"windeln", diapers:"windeln",
+  // parole utili
+  bio:"bio", biologico:"bio", integrale:"vollkorn", complet:"vollkorn", wholegrain:"vollkorn",
+  fresco:"frisch", frais:"frisch", fresh:"frisch", surgelato:"tiefkühl", congelé:"tiefkühl", frozen:"tiefkühl",
+  vegano:"vegan", végane:"vegan", senza:"ohne", sans:"ohne", without:"ohne",
+};
+/* dal termine scritto ai termini da cercare davvero */
+function terminiRicerca(q){
+  const base = q.toLowerCase().trim();
+  const parole = base.split(/\s+/).filter(Boolean);
+  const varianti = new Set([base]);
+  const tradotte = parole.map(p => TRAD_CERCA[p] || TRAD_CERCA[p.replace(/[ae]$/,"")] || null);
+  if(tradotte.some(Boolean)){
+    varianti.add(parole.map((p,i)=>tradotte[i]||p).join(" "));
+    tradotte.filter(Boolean).forEach(t=>varianti.add(t));
+  }
+  return [...varianti];
+}
+
+function tabellaListino(){ return ""; }
+function agganciaListino(){}
+
+/* ---------- ricerca unificata ---------- */
+const FILTRI_CAT = [
+  {id:"tutto",   n:"Tutto"},
+  {id:"mio",     n:"Nel mio listino"},
+  {id:"negozi",  n:"Dai negozi"},
+  {id:"azione",  n:"In azione"},
+];
+let catTimer=null;
+
+async function renderCatalogoUnico(){
+  const box=$("#catUnico"); if(!box) return;
+  if(!S.filtroCat) S.filtroCat="tutto";
+  const q=(S.qCat||"").trim();
+  const idx=await caricaIndiceCatalogo();
+  const totNegozi=Object.values(idx.negozi||{}).reduce((a,x)=>a+(x.prodotti||0),0);
+
+  /* la barra di ricerca si disegna una volta sola: se la ridisegnassi a ogni
+     lettera perderei il cursore, ed è il difetto che c'era nelle promozioni */
+  if(!box.querySelector("#qCat")){
+    box.innerHTML=`
+      <div class="cat-barra">
+        <input type="text" id="qCat" class="searchbox" style="margin:0"
+          placeholder="Cerca un prodotto — anche in italiano: latte, pane, mele…" value="${(S.qCat||"").replace(/"/g,"&quot;")}">
+        <select id="repCat" style="max-width:190px"></select>
+        <select id="negCat" style="max-width:190px"></select>
+      </div>
+      <div class="chips" id="filtriCat" style="margin:12px 0"></div>
+      <div id="risCat"></div>`;
+    const inp=box.querySelector("#qCat");
+    inp.oninput=()=>{ S.qCat=inp.value; clearTimeout(catTimer); catTimer=setTimeout(()=>disegnaRisultati(totNegozi),240); };
+    const reparti=["tutti",...CATORD];
+    box.querySelector("#repCat").innerHTML=reparti.map(r=>`<option value="${r}">${r==="tutti"?"Tutti i reparti":r}</option>`).join("");
+    box.querySelector("#repCat").value=S.repCat||"tutti";
+    box.querySelector("#repCat").onchange=e=>{ S.repCat=e.target.value; disegnaRisultati(totNegozi); };
+    const negozi=["tutti",...Object.keys(idx.negozi||{})];
+    box.querySelector("#negCat").innerHTML=negozi.map(n=>`<option value="${n}">${n==="tutti"?"Tutti i negozi":nomeNegozio(n)}</option>`).join("");
+    box.querySelector("#negCat").value=S.negCat||"tutti";
+    box.querySelector("#negCat").onchange=e=>{ S.negCat=e.target.value; disegnaRisultati(totNegozi); };
+  }
+  const fb=box.querySelector("#filtriCat");
+  fb.innerHTML=FILTRI_CAT.map(f=>`<button class="chip" type="button" data-fc="${f.id}" aria-pressed="${S.filtroCat===f.id}"><span class="nm">${f.n}</span></button>`).join("");
+  fb.querySelectorAll("[data-fc]").forEach(b=>b.onclick=()=>{ S.filtroCat=b.dataset.fc; renderCatalogoUnico(); });
+  disegnaRisultati(totNegozi);
+}
+
+async function disegnaRisultati(totNegozi){
+  const zona=$("#risCat"); if(!zona) return;
+  const q=(S.qCat||"").trim();
+  const f=S.filtroCat||"tutto", rep=S.repCat||"tutti", neg=S.negCat||"tutti";
+  const termini=q.length>=2 ? terminiRicerca(q) : null;
+  const combacia = testo => !termini || termini.some(t=>testo.includes(t));
+
+  /* 1. i miei prodotti */
+  let miei=[];
+  if(f!=="negozi"){
+    miei=Object.values(PROD)
+      .filter(p=>rep==="tutti"||p.cat===rep)
+      .filter(p=>combacia((p.n+" "+p.cat).toLowerCase()))
+      .filter(p=>f!=="azione"||promoViva(p.id))
+      .map(p=>{ const mr=migliorRiv(p.id);
+        const v=S.ing&&S.ing[p.id];
+        const nneg=mr.riv.id==="lidlch"?"lidl":mr.riv.id;
+        const d=v&&v.negozi&&v.negozi[nneg];
+        return {mio:true, id:p.id, n:p.n, ic:p.ic, m:"", f:p.pu+" "+p.um, cat:p.cat,
+                vero:d?d.n+(d.f?" · "+d.f:""):null,
+                p:mr.prezzo, neg:mr.riv.id, nu:(nutriDi(p.id)||{}).g, az:promoViva(p.id)?1:0}; })
+      .filter(x=>neg==="tutti"||idNostro(neg)===x.neg);
+  }
+  /* 2. i prodotti dei negozi */
+  let daNegozi=[];
+  if(f!=="mio" && termini){
+    const idx=await caricaIndiceCatalogo();
+    const elenco=Object.keys(idx.negozi||{}).filter(n=>neg==="tutti"||n===neg);
+    if(elenco.length){
+      zona.innerHTML=`<p class="hint" style="text-align:center" id="statoCat">${T("Cerco nel catalogo dei negozi…")}</p>`;
+      for(const n of elenco){
+        const dati=await caricaNegozio(n, t=>{ const e=$("#statoCat"); if(e) e.textContent=t; });
+        for(const [id,v] of Object.entries(dati.voci||{})){
+          if(!combacia(((v[0]||"")+" "+(v[1]||"")).toLowerCase())) continue;
+          if(f==="azione" && !v[8]) continue;
+          const cat=repartoDi("",v[7]);
+          if(rep!=="tutti" && cat!==rep) continue;
+          daNegozi.push({mio:false, id, n:v[0], m:v[1], f:v[2], cat, p:v[3], pu:v[4], u:v[5], nu:v[6], az:v[8], neg:n});
+          if(daNegozi.length>6000) break;
+        }
+      }
+    }
+  }
+  const tutti=[...miei, ...daNegozi].sort((a,b)=>(b.mio-a.mio)||(b.az-a.az)||((a.p??999)-(b.p??999)));
+  const mostra=tutti.slice(0,90);
+
+  if(!q || q.length<2){
+    zona.innerHTML=`<div class="empty"><b>${TF("{0} prodotti a portata di mano",[(Object.keys(PROD).length+totNegozi).toLocaleString("it-CH")])}</b>
+      <span class="nm">Scrivi almeno due lettere. Cerco nel tuo listino e nel catalogo dei negozi svizzeri: puoi scrivere in italiano anche se i nomi nei negozi sono in tedesco.</span></div>
+      ${f==="mio"?tabellaListino():""}`;
+    if(f==="mio") agganciaListino();
+    return;
+  }
+  if(!mostra.length){
+    zona.innerHTML=`<div class="empty"><b>${T("Nessun prodotto")}</b><span class="nm">${T("Prova con una parola più corta, o togli i filtri.")}</span></div>`;
+    return;
+  }
+  zona.innerHTML=`
+    <p class="hint" style="text-align:center">${TF("{0} risultati · {1} nel tuo listino, {2} dai negozi",[tutti.length, miei.length, daNegozi.length])}</p>
+    <div class="tblwrap"><table><thead><tr>
+      <th>${T("Prodotto")}</th><th>${T("Reparto")}</th><th>${T("Formato")}</th>
+      <th class="num">${T("Prezzo")}</th><th class="num">${T("Al chilo o al litro")}</th>
+      <th>${T("Negozio")}</th><th>Nutri</th><th></th></tr></thead><tbody>
+    ${mostra.map((r,i)=>`<tr class="${r.mio?"riga-mia":""}">
+      <td>${r.mio?`<span class="ic-p">${r.ic}</span>`:""}${r.n}${r.m&&!r.n.includes(r.m)?` <span class="q">${r.m}</span>`:""}
+        ${r.mio?` <span class="tagpill oro">${T("ingrediente")}</span>`:""}
+        ${r.mio&&r.vero?`<span class="prod-vero">${r.vero}</span>`:""}
+        ${r.az?` <span class="tagpill" style="background:rgba(224,180,90,.2);color:var(--oro-l)">${T("in azione")}</span>`:""}</td>
+      <td class="q">${r.cat||"—"}</td>
+      <td style="font-family:var(--mono);font-size:12px;color:var(--testo-3)">${r.f||"—"}</td>
+      <td class="num" style="font-family:var(--mono)">${r.p!=null?"CHF "+chfr(r.p):"—"}</td>
+      <td class="num" style="font-family:var(--mono);font-size:12px;color:var(--testo-3)">${r.pu?chfr(r.pu)+" "+(r.u||""):"—"}</td>
+      <td><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${(RIV.find(x=>x.id===idNostro(r.neg))||{c:"#888"}).c};margin-right:6px"></span>${nomeNegozio(r.neg)}</td>
+      <td>${r.nu?badgeLettera(r.nu):""}</td>
+      <td>${r.mio
+        ? `<button class="btn sm" data-alt2="${r.id}">⇄ ${T("alternative")}</button>`
+        : `<button class="btn sm" data-imp2="${i}">+ ${T("come ingrediente")}</button>`}</td>
+    </tr>`).join("")}</tbody></table></div>`;
+  zona.querySelectorAll("[data-alt2]").forEach(b=>b.onclick=()=>apriAlternative(b.dataset.alt2));
+  zona.querySelectorAll("[data-imp2]").forEach(b=>b.onclick=()=>importaDalCatalogo(mostra[+b.dataset.imp2]));
 }
 
 /* =========================================================
@@ -7027,8 +7365,7 @@ $("#esporta").onclick=esporta;
 $("#cerca").oninput=()=>{ S.listinoTutto=false; renderCatalogo(); };
 $("#cercaGuida").oninput=renderGuida;
 $("#cercaRic").oninput=renderRicette;
-let estesoTimer=null;
-$("#cercaEsteso").oninput=()=>{ clearTimeout(estesoTimer); estesoTimer=setTimeout(cercaEsteso,260); };
+
 function apriScheda(id){
   const g=NAV.find(x=>x.pan.some(p=>p.id===id));
   if(!g) return;
@@ -7154,7 +7491,7 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
     const d=b.dataset.va;
     if(d==="negozi"){ $("#setup").open=true; aggiornaApriChiudi();
       document.querySelector("#rivenditori").scrollIntoView({behavior:"smooth",block:"center"}); return; }
-    if(d==="prezzi-agg"){ S.sezPrezzi="aggiorna"; apriScheda("catalogo"); renderCatalogo(); return; }
+    if(d==="prezzi-agg"){ S.sezPrezzi="fonti"; apriScheda("catalogo"); renderCatalogo(); return; }
     apriScheda(d);
   });
   $("#cardStagione").onclick=()=>{ S.filtroRic="stagione"; apriScheda("ricette"); renderRicette(); };
