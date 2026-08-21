@@ -20,16 +20,18 @@ jobs:
           node-version: "24"   # i runner GitHub non eseguono più Node 20
       - name: Estrai i prezzi dalle fonti aperte
         run: node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json --skrimpers 160 --nutri 40
+      - name: Raccogli le promozioni in corso
+        run: node gerla-catalogo.mjs --promozioni
       - name: Pubblica il listino aggiornato
         run: |
           git config user.name "Gerla"
           git config user.email "gerla@users.noreply.github.com"
-          git add gerla-listino.json
+          git add gerla-listino.json gerla-promozioni.json
           if git diff --staged --quiet; then
             echo "Nessuna variazione: niente da pubblicare."
             exit 0
           fi
-          git commit -m "Listino del $(date +%F)"
+          git commit -m "Listino e promozioni del $(date +%F)"
 
           # Il deposito può essere andato avanti mentre lo script lavorava
           # (per esempio un caricamento fatto a mano dalla pagina web):
@@ -42,8 +44,8 @@ jobs:
             echo "Il deposito è cambiato nel frattempo: mi riallineo e riprovo."
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || {
               echo "Riallineamento non riuscito: tengo la mia versione del listino."
-              git checkout --ours gerla-listino.json || true
-              git add gerla-listino.json
+              git checkout --ours gerla-listino.json gerla-promozioni.json || true
+              git add gerla-listino.json gerla-promozioni.json
               git rebase --continue || git rebase --abort
             }
             sleep 5
