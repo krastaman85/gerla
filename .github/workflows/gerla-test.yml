@@ -1,0 +1,20 @@
+# .github/workflows/gerla-test.yml
+# Le prove girano a ogni modifica: se qualcosa si rompe, si vede subito
+# invece di scoprirlo usando l'app in corsia.
+name: Prove di Gerla
+on:
+  push:
+    paths: ["gerla.html", "gerla-*.mjs", "prove/**"]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - run: npm i --no-save jsdom
+      - name: Struttura e dati
+        run: node prove/prove.mjs
