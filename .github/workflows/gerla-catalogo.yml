@@ -22,11 +22,13 @@ jobs:
           node-version: "24"
       - name: Scarica il catalogo dei nove negozi
         run: node gerla-catalogo.mjs --indice --max 40000
+      - name: Rilega gli ingredienti sul catalogo nuovo
+        run: node gerla-lega.mjs --html gerla.html --catalogo catalogo --out gerla-ingredienti.json
       - name: Pubblica il catalogo aggiornato
         run: |
           git config user.name "Gerla"
           git config user.email "gerla@users.noreply.github.com"
-          git add catalogo
+          git add catalogo gerla-ingredienti.json
           if git diff --staged --quiet; then
             echo "Catalogo invariato: niente da pubblicare."
             exit 0
@@ -37,7 +39,7 @@ jobs:
             echo "Il deposito è cambiato nel frattempo: mi riallineo e riprovo."
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || {
               git checkout --ours catalogo || true
-              git add catalogo
+              git add catalogo gerla-ingredienti.json
               git rebase --continue || git rebase --abort
             }
             sleep 5
