@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gerla — Gestione Efficiente di Ricette, Liste e Acquisti</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#060a13">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icona-192.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3Cpath d='M13 25h38' stroke='%23e0b45a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M23 25c0-7 4-11 9-11s9 4 9 11' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -586,6 +591,29 @@ html[data-tema="giorno"] .promo-c{background:#fff}
 .prod-vero{display:block;margin-top:3px;font-size:11px;line-height:1.35;color:var(--testo-3);max-width:230px}
 .riga-mia .prod-vero{color:var(--testo-2)}
 
+
+.prod-vero.corr{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:2px 0;
+  cursor:pointer;text-align:left;font:inherit;font-size:11px;color:var(--testo-3);border-bottom:1px dashed rgba(123,142,178,.4)}
+.prod-vero.corr:hover{color:var(--oro-l);border-bottom-color:var(--oro-d)}
+.prod-vero .matita{opacity:.5;font-size:10px}
+.prod-vero.corr:hover .matita{opacity:1}
+
+
+.lng.inst{border-color:var(--oro-d);color:var(--oro-l)}
+.lng.inst:hover{background:rgba(224,180,90,.14)}
+#offline{border-color:var(--rosso);background:linear-gradient(180deg,rgba(200,80,50,.16),rgba(8,13,22,.5))}
+#offline .ic{color:var(--rosso)}
+
+
+.fr-griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.fr-r{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 12px;
+  border:1px solid var(--linea);border-radius:10px;background:rgba(13,24,48,.35)}
+.fr-r .nm{font-size:12.5px;color:var(--testo-2)}
+.fr-v{font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+.fr-v.ok{color:var(--verde)} .fr-v.media{color:var(--oro)} .fr-v.vecchia{color:var(--rosso)}
+.fr-v.assente{color:var(--testo-3)}
+html[data-tema="giorno"] .fr-r{background:#fff}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -948,7 +976,9 @@ html,body{max-width:100%;overflow-x:hidden}
       <button class="hs hs-btn" id="cardStagione"><span class="stag-ic" id="stagIc"></span><b id="hs-mese">&mdash;</b><span class="nm">stagione</span></button>
       <button class="hs hs-btn" data-va="prezzi-agg"><b id="hs-agg">&mdash;</b><span class="nm">listino</span></button>
     </div>
+    <div id="offline" class="banner" hidden style="margin:14px auto 0;max-width:680px"></div>
     <div class="barra-alto">
+      <button class="lng inst" id="btnInstalla" hidden title="Installa Gerla sul dispositivo">⤓ <span class="nm">Installa</span></button>
       <div id="lingue" class="lingue"></div>
       <button class="lng tema" id="btnTema" title="Modalità giorno e notte" aria-label="Giorno / notte"><span id="temaIc">☾</span></button>
     </div>
@@ -994,7 +1024,7 @@ html,body{max-width:100%;overflow-x:hidden}
             <div class="hint" id="fuoriLab">nessuno &mdash; si mangia sempre a casa</div>
           </div>
           <div>
-            <label class="f" for="linea">Linea di prodotto</label>
+            <div id="lineaBox"><label class="f" for="linea">Linea di prodotto</label>
             <select id="linea">
               <option value="budget">Linea economica (M-Budget, Prix Garantie)</option>
               <option value="standard" selected>Marca propria standard</option>
@@ -1208,6 +1238,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="card">
       <h2 data-sez="fonti">Da dove arrivano i prezzi</h2>
       <p class="hint" style="margin-top:0">Le pagine dei volantini non si lasciano leggere da un programma: bloccano le richieste o disegnano i prezzi con JavaScript. Le fonti qui sotto invece sono aperte e leggibili, ed &egrave; da queste che lo script di aggiornamento pesca i prezzi veri.</p>
+      <div id="freschezza" style="margin:0 0 14px"></div>
       <p class="hint" id="cambioOggi" style="margin:0 0 12px"></p>
       <div class="fonti" id="fontiBox"></div>
     </div>
@@ -1250,7 +1281,8 @@ html,body{max-width:100%;overflow-x:hidden}
           <label class="f">Ripristino</label>
           <div class="row">
             <button class="btn sm" id="resetPrezzi">Torna ai prezzi di riferimento</button>
-            <button class="btn sm" id="salvaProfilo">Salva le impostazioni</button>
+            <button class="btn sm" id="espCorr">Esporta le correzioni</button>
+        <button class="btn sm" id="salvaProfilo">Salva le impostazioni</button>
             <button class="btn sm" id="caricaProfilo">Carica impostazioni</button>
           </div>
           <div class="hint" id="contaMod">Nessuna modifica manuale.</div>
@@ -2372,9 +2404,9 @@ const S = {
   margine:1.08,
   cottura:"normale",
   giaInCasa:new Set(),
-  lingua:"it", tema:"notte", cambio:0.94, nav:"piano", pan:"menu",
+  lingua:"it", tema:"notte", cambio:0.94, primoRaccontato:false, nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, gruppo:"tutti", sezPrezzi:"catalogo",
+  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, corr:{}, gruppo:"tutti", sezPrezzi:"catalogo",
   qCat:"", filtroCat:"tutto", repCat:"tutti", negCat:"tutti",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
@@ -2488,12 +2520,10 @@ function fattoreRiv(r,cat){ return r.k * ((r.kc && r.kc[cat]) || 1); }
    1. promozione in corso   2. prezzo rilevato in quella negozio   3. riferimento × indice */
 function prezzoDa(id,r){
   if(promoViva(id)){ const p=S.promo[id]; if(!p.riv || p.riv===r.id) return p.p; }
+  /* se il prezzo è quello di un prodotto vero, è già il prezzo: moltiplicarlo
+     per una "linea di prodotto" significherebbe inventare sopra un dato certo */
   const reale = S.prezziRiv[id] && S.prezziRiv[id][r.id];
-  if(reale>0){
-    const cat=PROD[id].cat;
-    const k=(cat==="Casa"||cat==="Igiene")?(S.linea==="bio"?1.18:S.linea==="marca"?1.2:S.linea==="budget"?0.8:1):LINEA[S.linea];
-    return reale*k;
-  }
+  if(reale>0) return reale;
   return prezzoRif(id)*fattoreRiv(r,PROD[id].cat);
 }
 function fontePrezzo(id,rivId){
@@ -3145,8 +3175,21 @@ function renderSottomenu(){
   if(S.sezPrezzi==="catalogo") renderCatalogoUnico();
   if(S.sezPrezzi==="offerte") renderPromoVere();
 }
+function copertureVere(){
+  const n=Object.keys(S.prezziRiv||{}).length;
+  return {n, quota: Math.round(n/Math.max(1,Object.keys(PROD).length)*100)};
+}
+function aggiornaLinea(){
+  const c=copertureVere();
+  const box=$("#lineaBox"); if(!box) return;
+  box.hidden = c.quota >= 50;              // con i prezzi veri la stima non serve più
+  const nota=$("#notaVeri");
+  if(nota) nota.innerHTML = c.n
+    ? `<span class="nm">${TF("{0} prodotti hanno il prezzo vero dei negozi ({1}%). Per gli altri resta una stima modificabile.",[c.n,c.quota])}</span>`
+    : "";
+}
 function renderCatalogo(){
-  renderFlyer(); renderGruppiListino(); renderSottomenu();
+  renderFlyer(); renderGruppiListino(); renderSottomenu(); aggiornaLinea();
   const q=($("#cerca").value||"").toLowerCase();
   const gr=S.gruppo||"tutti";
   const tb=$("#tblProd tbody"); tb.innerHTML="";
@@ -3185,10 +3228,10 @@ function renderCatalogo(){
         <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${best.riv.c};margin-right:5px"></span>${chfr(best.prezzo)}
         <br><span style="font-size:10px;color:var(--testo-3)">${best.riv.n}${promoViva(p.id)?" · azione":""}</span>
         ${(()=>{
-          const v=S.ing&&S.ing[p.id];
-          const neg=best.riv.id==="lidlch"?"lidl":best.riv.id;
-          const d=v&&v.negozi&&v.negozi[neg];
-          if(d) return `<br><span class="prod-vero" title="${T("prodotto vero scelto in questo negozio")}">${d.n}${d.f?" · "+d.f:""}</span>`;
+          const d=prodottoVero(p.id,best.riv.id);
+          if(d) return `<br><button class="prod-vero corr" data-corr="${p.id}" data-neg="${best.riv.id}"
+            title="${T("prodotto vero: tocca per cambiarlo")}">${d.n}${d.f?" · "+d.f:""}
+            <span class="matita">${d.corretto?"✓":"✎"}</span></button>`;
           const f=fontePrezzo(p.id,best.riv.id);
           if(f==="azione") return '<br><span class="tagpill oro">in azione</span>';
           if(f==="rilevato") return `<br><span class="tagpill oro" title="prezzo rilevato in questa negozio">◆ prezzo del negozio</span>`;
@@ -3209,6 +3252,8 @@ function renderCatalogo(){
     };
     ip.onchange=salvaPromo; ir.onchange=salvaPromo; idt.onchange=salvaPromo;
     tr.querySelector("[data-alt]").onclick=()=>apriAlternative(p.id);
+    const bc=tr.querySelector("[data-corr]");
+    if(bc) bc.onclick=()=>apriCorrezione(bc.dataset.corr, bc.dataset.neg);
     tb.appendChild(tr);
   });
   if(troppi){
@@ -3300,7 +3345,7 @@ function statoAggiornamento(){
          : T("Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.")}</span>`;
 }
 function renderFonti(){
-  statoAggiornamento();
+  statoAggiornamento(); renderFreschezza();
   const box=$("#fontiBox"); if(!box) return;
   const c=$("#cambioOggi");
   if(c) c.innerHTML = `1 &euro; = CHF ${(S.cambio||0.94).toFixed(4)} · <span class="q">${T("aggiornato con il listino del")} ${S.ultimoAgg.split("-").reverse().join(".")}</span>`;
@@ -3398,13 +3443,15 @@ async function caricaIngredienti(){
     const o=await r.json();
     S.ing = o.voci||{};
     S.ingData = o.data; S.ingCopertura = o.copertura;
+    setTimeout(renderFreschezza,0);
     let n=0;
     for(const [id,v] of Object.entries(S.ing)){
       if(!PROD[id]) continue;
       const perNegozio={};
-      for(const [neg,d] of Object.entries(v.negozi||{})){
+      for(const neg of Object.keys(v.negozi||{})){
         const nostro = neg==="lidl" ? "lidlch" : neg;
-        if(d.p>0) perNegozio[nostro]=d.p;
+        const d = prodottoVero(id, nostro);
+        if(d && d.p>0) perNegozio[nostro]=d.p;
       }
       if(Object.keys(perNegozio).length){
         S.prezziRiv[id]=perNegozio;
@@ -3436,6 +3483,7 @@ async function avviaListino(){
     }catch(e){}
   }
   if(S.feedUrl) aggiornaDaFeed(true);
+  caricaPromozioni().then(()=>renderFreschezza());
   const n = await caricaIngredienti();
   if(n){
     renderCatalogo(); if(S.menu) renderTutto();
@@ -4409,7 +4457,7 @@ function salva(){
       const d=profiloCorrente();
       d.dispensa=S.dispensa; d.voti=S.voti; d.storico=S.storico; d.prezziStorico=S.prezziStorico;
       d.giaInCasa=[...S.giaInCasa]; d.avvioFatto=S.avvioFatto; d.autoFeed=S.autoFeed;
-      d.viaggio=S.viaggio; d.lingua=S.lingua; d.tema=S.tema; d.ev={occ:S.ev.occ,liv:S.ev.liv,pers:S.ev.pers};
+      d.viaggio=S.viaggio; d.lingua=S.lingua; d.tema=S.tema; d.corr=S.corr; d.primoRaccontato=S.primoRaccontato; d.ev={occ:S.ev.occ,liv:S.ev.liv,pers:S.ev.pers};
       localStorage.setItem(CHIAVE,JSON.stringify(d));
       segnaleMemoria("salvato");
     }catch(e){ memoriaOk=false; segnaleMemoria("non disponibile"); }
@@ -4424,7 +4472,7 @@ function carica(){
     S.dispensa=o.dispensa||{}; S.voti=o.voti||{}; S.storico=o.storico||[];
     S.prezziStorico=o.prezziStorico||[]; S.giaInCasa=new Set(o.giaInCasa||[]);
     S.avvioFatto=!!o.avvioFatto; S.autoFeed=o.autoFeed!==false;
-    S.viaggio=o.viaggio||S.viaggio; S.lingua=o.lingua||"it"; S.tema=o.tema||"notte";
+    S.viaggio=o.viaggio||S.viaggio; S.lingua=o.lingua||"it"; S.tema=o.tema||"notte"; S.corr=o.corr||{};
     if(o.ev){ S.ev.occ=o.ev.occ||S.ev.occ; S.ev.liv=o.ev.liv||S.ev.liv; S.ev.pers=o.ev.pers||S.ev.pers; }
     segnaleMemoria("ripreso");
     return true;
@@ -5077,6 +5125,41 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"Ecco il tuo piano":"Here's your plan",
+"Da dove vengono questi numeri, in breve.":"Where these numbers come from, in short.",
+"Risparmio":"Saving",
+"rispetto al prezzo pieno":"compared with full price",
+"{0} {1} · {2} {3}":"{0} {1} · {2} {3}",
+"Ho scelto {0} articoli nei negozi che hai acceso, prendendo per ognuno il più conveniente fra {1}.":"I picked {0} items in the shops you switched on, taking the cheapest of {1} for each.",
+" Di questi, <b>{0} hanno il prezzo vero</b> rilevato oggi nei negozi: sotto ogni voce del listino c'è scritto quale prodotto.":" Of these, <b>{0} carry the real price</b> measured today in the shops: under each entry you can see which product.",
+"Il piano non è definitivo: metti ♡ ai piatti che vi piacciono, ✕ a quelli che non volete più vedere, e rigenera. Impara da quello che gli dici.":"The plan isn't final: put ♡ on the dishes you like, ✕ on those you'd rather not see again, then regenerate. It learns from what you tell it.",
+"Guarda il piano":"Look at the plan",
+"Vai alla lista della spesa":"Go to the shopping list",
+"Prezzi del listino":"Price list",
+"Prodotti veri legati":"Real products linked",
+"Promozioni":"Promotions",
+"Carburanti":"Fuel",
+"mai aggiornato":"never updated",
+"ieri":"yesterday",
+"{0} giorni fa":"{0} days ago",
+"Qualcosa non si aggiorna da più di una settimana: probabilmente una fonte non risponde. Controlla il flusso automatico nel deposito.":"Something hasn't updated for over a week: a source is probably not responding. Check the automatic workflow in the repository.",
+
+"{0} prodotti hanno il prezzo vero dei negozi ({1}%). Per gli altri resta una stima modificabile.":"{0} products carry the shops' real price ({1}%). The rest keep an editable estimate.",
+
+"Installa":"Install",
+"Installa Gerla sul dispositivo":"Install Gerla on this device",
+"Senza rete: sto usando l'ultima copia dei prezzi. Le liste e la modalità spesa funzionano lo stesso.":"No connection: I'm using the last copy of the prices. Lists and shopping mode work anyway.",
+
+"prodotto vero: tocca per cambiarlo":"real product: tap to change it",
+"Quale prodotto di {0} corrisponde davvero a questo ingrediente? Il prezzo del piano e della lista cambia di conseguenza.":"Which product from {0} really matches this ingredient? The plan and list prices follow your choice.",
+"scelto automaticamente":"chosen automatically",
+"in negozio":"in shop",
+"Nessuno di questi va bene":"None of these fit",
+"tolgo il prodotto e torno al prezzo di riferimento per questo negozio":"I drop the product and fall back to the reference price for this shop",
+"{0} correzioni salvate finora":"{0} corrections saved so far",
+"Per questo ingrediente non ho trovato un prodotto in questo negozio: resta il prezzo di riferimento.":"I found no product for this ingredient in this shop: the reference price stays.",
+"Esporta le correzioni":"Export the corrections",
+
 "{0} ingredienti legati a prodotti veri dei negozi.":"{0} ingredients linked to real products from the shops.",
 "prodotto vero scelto in questo negozio":"real product chosen in this shop",
 "ingrediente":"ingredient",
@@ -5595,6 +5678,41 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Ecco il tuo piano":"Voici votre plan",
+"Da dove vengono questi numeri, in breve.":"D'où viennent ces chiffres, en bref.",
+"Risparmio":"Économie",
+"rispetto al prezzo pieno":"par rapport au prix plein",
+"{0} {1} · {2} {3}":"{0} {1} · {2} {3}",
+"Ho scelto {0} articoli nei negozi che hai acceso, prendendo per ognuno il più conveniente fra {1}.":"J'ai choisi {0} articles dans vos magasins, en prenant le moins cher parmi {1}.",
+" Di questi, <b>{0} hanno il prezzo vero</b> rilevato oggi nei negozi: sotto ogni voce del listino c'è scritto quale prodotto.":" Parmi eux, <b>{0} ont le vrai prix</b> relevé aujourd'hui : sous chaque ligne vous voyez quel produit.",
+"Il piano non è definitivo: metti ♡ ai piatti che vi piacciono, ✕ a quelli che non volete più vedere, e rigenera. Impara da quello che gli dici.":"Le plan n'est pas définitif : mettez ♡ sur les plats que vous aimez, ✕ sur les autres, puis régénérez. Il apprend de vos choix.",
+"Guarda il piano":"Voir le plan",
+"Vai alla lista della spesa":"Aller à la liste de courses",
+"Prezzi del listino":"Liste des prix",
+"Prodotti veri legati":"Produits réels liés",
+"Promozioni":"Promotions",
+"Carburanti":"Carburants",
+"mai aggiornato":"jamais mis à jour",
+"ieri":"hier",
+"{0} giorni fa":"il y a {0} jours",
+"Qualcosa non si aggiorna da più di una settimana: probabilmente una fonte non risponde. Controlla il flusso automatico nel deposito.":"Quelque chose n'est plus à jour depuis une semaine : une source ne répond sans doute pas. Vérifiez le flux automatique.",
+
+"{0} prodotti hanno il prezzo vero dei negozi ({1}%). Per gli altri resta una stima modificabile.":"{0} produits ont le vrai prix des magasins ({1}%). Les autres gardent une estimation modifiable.",
+
+"Installa":"Installer",
+"Installa Gerla sul dispositivo":"Installer Gerla sur cet appareil",
+"Senza rete: sto usando l'ultima copia dei prezzi. Le liste e la modalità spesa funzionano lo stesso.":"Sans réseau : j'utilise la dernière copie des prix. Les listes et le mode courses fonctionnent quand même.",
+
+"prodotto vero: tocca per cambiarlo":"produit réel : touchez pour le changer",
+"Quale prodotto di {0} corrisponde davvero a questo ingrediente? Il prezzo del piano e della lista cambia di conseguenza.":"Quel produit de {0} correspond vraiment à cet ingrédient ? Les prix du plan et de la liste suivent votre choix.",
+"scelto automaticamente":"choisi automatiquement",
+"in negozio":"en magasin",
+"Nessuno di questi va bene":"Aucun ne convient",
+"tolgo il prodotto e torno al prezzo di riferimento per questo negozio":"je retire le produit et reviens au prix de référence pour ce magasin",
+"{0} correzioni salvate finora":"{0} corrections enregistrées",
+"Per questo ingrediente non ho trovato un prodotto in questo negozio: resta il prezzo di riferimento.":"Aucun produit trouvé pour cet ingrédient dans ce magasin : le prix de référence reste.",
+"Esporta le correzioni":"Exporter les corrections",
+
 "{0} ingredienti legati a prodotti veri dei negozi.":"{0} ingrédients liés à de vrais produits des magasins.",
 "prodotto vero scelto in questo negozio":"produit réel choisi dans ce magasin",
 "ingrediente":"ingrédient",
@@ -6113,6 +6231,41 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Ecco il tuo piano":"Hier ist Ihr Plan",
+"Da dove vengono questi numeri, in breve.":"Woher diese Zahlen kommen, in Kürze.",
+"Risparmio":"Ersparnis",
+"rispetto al prezzo pieno":"gegenüber dem vollen Preis",
+"{0} {1} · {2} {3}":"{0} {1} · {2} {3}",
+"Ho scelto {0} articoli nei negozi che hai acceso, prendendo per ognuno il più conveniente fra {1}.":"Ich habe {0} Artikel in Ihren Läden gewählt, jeweils den günstigsten unter {1}.",
+" Di questi, <b>{0} hanno il prezzo vero</b> rilevato oggi nei negozi: sotto ogni voce del listino c'è scritto quale prodotto.":" Davon haben <b>{0} den echten Preis</b> von heute: unter jedem Eintrag steht, welches Produkt.",
+"Il piano non è definitivo: metti ♡ ai piatti che vi piacciono, ✕ a quelli che non volete più vedere, e rigenera. Impara da quello che gli dici.":"Der Plan ist nicht endgültig: ♡ für Gerichte, die Ihnen schmecken, ✕ für die anderen, dann neu erzeugen. Er lernt daraus.",
+"Guarda il piano":"Plan ansehen",
+"Vai alla lista della spesa":"Zur Einkaufsliste",
+"Prezzi del listino":"Preisliste",
+"Prodotti veri legati":"Verknüpfte echte Produkte",
+"Promozioni":"Aktionen",
+"Carburanti":"Treibstoff",
+"mai aggiornato":"nie aktualisiert",
+"ieri":"gestern",
+"{0} giorni fa":"vor {0} Tagen",
+"Qualcosa non si aggiorna da più di una settimana: probabilmente una fonte non risponde. Controlla il flusso automatico nel deposito.":"Etwas ist seit über einer Woche nicht aktualisiert: vermutlich antwortet eine Quelle nicht. Prüfen Sie den automatischen Ablauf.",
+
+"{0} prodotti hanno il prezzo vero dei negozi ({1}%). Per gli altri resta una stima modificabile.":"{0} Produkte haben den echten Ladenpreis ({1}%). Für die übrigen bleibt eine änderbare Schätzung.",
+
+"Installa":"Installieren",
+"Installa Gerla sul dispositivo":"Gerla auf diesem Gerät installieren",
+"Senza rete: sto usando l'ultima copia dei prezzi. Le liste e la modalità spesa funzionano lo stesso.":"Keine Verbindung: ich verwende die letzte Preiskopie. Listen und Einkaufsmodus funktionieren trotzdem.",
+
+"prodotto vero: tocca per cambiarlo":"echtes Produkt: zum Ändern tippen",
+"Quale prodotto di {0} corrisponde davvero a questo ingrediente? Il prezzo del piano e della lista cambia di conseguenza.":"Welches Produkt von {0} entspricht dieser Zutat wirklich? Plan- und Listenpreise folgen Ihrer Wahl.",
+"scelto automaticamente":"automatisch gewählt",
+"in negozio":"im Laden",
+"Nessuno di questi va bene":"Keines davon passt",
+"tolgo il prodotto e torno al prezzo di riferimento per questo negozio":"ich entferne das Produkt und nehme wieder den Richtwert für diesen Laden",
+"{0} correzioni salvate finora":"{0} Korrekturen gespeichert",
+"Per questo ingrediente non ho trovato un prodotto in questo negozio: resta il prezzo di riferimento.":"Für diese Zutat wurde in diesem Laden kein Produkt gefunden: der Richtwert bleibt.",
+"Esporta le correzioni":"Korrekturen exportieren",
+
 "{0} ingredienti legati a prodotti veri dei negozi.":"{0} Zutaten mit echten Produkten aus den Läden verknüpft.",
 "prodotto vero scelto in questo negozio":"echtes Produkt in diesem Laden",
 "ingrediente":"Zutat",
@@ -6665,8 +6818,17 @@ function renderNav(){
   });
   setTimeout(traduci,0);
 }
+/* Guida e ricettario sono migliaia di nodi: si disegnano alla prima apertura,
+   non all'avvio. Da 16.700 nodi iniziali a poco più di seimila. */
+const DISEGNATI={};
 function mostraPannello(){
   $$(".panel").forEach(p=>p.hidden = p.id!=="p-"+S.pan);
+  if(!DISEGNATI[S.pan]){
+    DISEGNATI[S.pan]=true;
+    if(S.pan==="guida") renderGuida();
+    if(S.pan==="ricette") renderRicette();
+    if(S.pan==="catalogo") renderCatalogo();
+  }
 }
 function T(it){ const L=S.lingua||"it"; return L==="it" ? it : ((DIZ[L]&&DIZ[L][it])||it); }
 const SEL_TRAD = ".pie-frase .nm, .pie-note .nm, .card>h2, .tab .lg, .tab .sm, .btn, .btn>span, .chip, .chip .nm, option, .hint, .legenda, "+
@@ -6725,7 +6887,9 @@ function renderLingue(){
     aggiornaApriChiudi();
     renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo();
     aggiornaBudgetLabel(); renderEventiControlli(); renderEventi();
-    renderDispensa(); renderStorico(); renderGuida(); renderRicette();
+    renderDispensa(); renderStorico();
+    if(DISEGNATI.guida) renderGuida();
+    if(DISEGNATI.ricette) renderRicette();
     aggiornaStagione();
     $("#hs-agg").textContent = S.ultimoAgg.split("-").reverse().slice(0,2).join(".");
     if(S.menu) renderTutto();
@@ -7073,9 +7237,7 @@ async function disegnaRisultati(totNegozi){
       .filter(p=>combacia((p.n+" "+p.cat).toLowerCase()))
       .filter(p=>f!=="azione"||promoViva(p.id))
       .map(p=>{ const mr=migliorRiv(p.id);
-        const v=S.ing&&S.ing[p.id];
-        const nneg=mr.riv.id==="lidlch"?"lidl":mr.riv.id;
-        const d=v&&v.negozi&&v.negozi[nneg];
+        const d=prodottoVero(p.id, mr.riv.id);
         return {mio:true, id:p.id, n:p.n, ic:p.ic, m:"", f:p.pu+" "+p.um, cat:p.cat,
                 vero:d?d.n+(d.f?" · "+d.f:""):null,
                 p:mr.prezzo, neg:mr.riv.id, nu:(nutriDi(p.id)||{}).g, az:promoViva(p.id)?1:0}; })
@@ -7124,7 +7286,7 @@ async function disegnaRisultati(totNegozi){
     ${mostra.map((r,i)=>`<tr class="${r.mio?"riga-mia":""}">
       <td>${r.mio?`<span class="ic-p">${r.ic}</span>`:""}${r.n}${r.m&&!r.n.includes(r.m)?` <span class="q">${r.m}</span>`:""}
         ${r.mio?` <span class="tagpill oro">${T("ingrediente")}</span>`:""}
-        ${r.mio&&r.vero?`<span class="prod-vero">${r.vero}</span>`:""}
+        ${r.mio&&r.vero?`<button class="prod-vero corr" data-corr2="${r.id}" data-neg2="${r.neg}" title="${T("prodotto vero: tocca per cambiarlo")}">${r.vero}<span class="matita">✎</span></button>`:""}
         ${r.az?` <span class="tagpill" style="background:rgba(224,180,90,.2);color:var(--oro-l)">${T("in azione")}</span>`:""}</td>
       <td class="q">${r.cat||"—"}</td>
       <td style="font-family:var(--mono);font-size:12px;color:var(--testo-3)">${r.f||"—"}</td>
@@ -7137,7 +7299,112 @@ async function disegnaRisultati(totNegozi){
         : `<button class="btn sm" data-imp2="${i}">+ ${T("come ingrediente")}</button>`}</td>
     </tr>`).join("")}</tbody></table></div>`;
   zona.querySelectorAll("[data-alt2]").forEach(b=>b.onclick=()=>apriAlternative(b.dataset.alt2));
+  zona.querySelectorAll("[data-corr2]").forEach(b=>b.onclick=()=>apriCorrezione(b.dataset.corr2,b.dataset.neg2));
   zona.querySelectorAll("[data-imp2]").forEach(b=>b.onclick=()=>importaDalCatalogo(mostra[+b.dataset.imp2]));
+}
+
+/* =========================================================
+   CORREZIONE DEGLI ABBINAMENTI
+   ---------------------------------------------------------
+   Nessun algoritmo indovina tutto: "Milch" prende anche il
+   cioccolato al latte. Qui chi usa l'app può dire in un clic
+   "questo non c'entra" e scegliere il prodotto giusto fra le
+   alternative già scaricate — senza rete, senza aspettare.
+   Le correzioni restano sul dispositivo e si possono esportare
+   per farle diventare permanenti nel file condiviso.
+   ========================================================= */
+
+function correzioniAttive(){ return Object.keys(S.corr||{}).length; }
+
+/* il prodotto vero attualmente legato a un ingrediente in un negozio */
+function prodottoVero(idIng, negNostro){
+  const v = S.ing && S.ing[idIng]; if(!v) return null;
+  const neg = negNostro === "lidlch" ? "lidl" : negNostro;
+  const scelto = v.negozi && v.negozi[neg];
+  if(!scelto) return null;
+  const c = S.corr && S.corr[idIng] && S.corr[idIng][neg];
+  if(c){
+    if(c.sku === scelto.sku) return scelto;
+    const alt = (scelto.alt||[]).find(a=>a.sku===c.sku);
+    if(alt) return {...alt, m:"", u:scelto.u, az:0, alt:scelto.alt, corretto:true};
+  }
+  return scelto;
+}
+
+/* ricalcola i prezzi dell'ingrediente tenendo conto delle correzioni */
+function applicaCorrezioni(idIng){
+  const v = S.ing && S.ing[idIng]; if(!v) return;
+  const perNegozio = {};
+  for(const neg of Object.keys(v.negozi||{})){
+    const nostro = neg === "lidl" ? "lidlch" : neg;
+    const d = prodottoVero(idIng, nostro);
+    if(d && d.p > 0) perNegozio[nostro] = d.p;
+  }
+  if(Object.keys(perNegozio).length){
+    S.prezziRiv[idIng] = perNegozio;
+    S.prezzi[idIng] = Math.min(...Object.values(perNegozio));
+  }
+  salva();
+}
+
+/* finestra di scelta: le alternative già in memoria, nessuna attesa */
+function apriCorrezione(idIng, negNostro){
+  const p = PROD[idIng]; if(!p) return;
+  const neg = negNostro === "lidlch" ? "lidl" : negNostro;
+  const v = S.ing && S.ing[idIng];
+  const scelto = v && v.negozi && v.negozi[neg];
+  if(!scelto){
+    apriModale(`<h3>${p.ic} ${p.n}</h3>
+      <p class="hint">${T("Per questo ingrediente non ho trovato un prodotto in questo negozio: resta il prezzo di riferimento.")}</p>
+      <div class="row" style="margin-top:14px"><button class="btn sm" onclick="chiudiModale()">${T("Chiudi")}</button></div>`);
+    return;
+  }
+  const attuale = prodottoVero(idIng, negNostro);
+  const opzioni = [scelto, ...(scelto.alt||[])];
+  apriModale(`
+    <h3>${p.ic} ${p.n}</h3>
+    <p class="hint" style="margin-top:2px">${TF("Quale prodotto di {0} corrisponde davvero a questo ingrediente? Il prezzo del piano e della lista cambia di conseguenza.",[nomeNegozio(neg)])}</p>
+    <div class="swaplist" style="margin-top:14px">
+      ${opzioni.map((o,i)=>`<button data-sku="${o.sku}" ${attuale && o.sku===attuale.sku?'style="border-color:var(--oro)"':""}>
+        <span style="display:flex;justify-content:space-between;gap:12px">
+          <span>${o.n}${attuale && o.sku===attuale.sku?` <span class="tagpill oro">${T("in uso")}</span>`:""}</span>
+          <b style="font-family:var(--mono);font-size:12.5px">CHF ${chfr(o.p)}</b></span>
+        <small>${o.f||""}${o.pcf?" · "+T("in negozio")+" CHF "+chfr(o.pcf):""}${o.nu?" · Nutri "+o.nu.toUpperCase():""}
+          ${i===0?" · "+T("scelto automaticamente"):""}</small></button>`).join("")}
+      <button data-sku="__nessuno__" style="border-style:dashed">
+        <span>${T("Nessuno di questi va bene")}</span>
+        <small>${T("tolgo il prodotto e torno al prezzo di riferimento per questo negozio")}</small></button>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn sm" onclick="chiudiModale()">${T("Chiudi")}</button>
+      <span class="hint" style="margin:0">${TF("{0} correzioni salvate finora",[correzioniAttive()])}</span>
+    </div>`);
+  $("#modal").querySelectorAll("[data-sku]").forEach(b=>b.onclick=()=>{
+    const sku=b.dataset.sku;
+    S.corr = S.corr || {};
+    S.corr[idIng] = S.corr[idIng] || {};
+    if(sku==="__nessuno__"){
+      S.corr[idIng][neg] = {sku:"", scartato:scelto.sku};
+      delete (S.prezziRiv[idIng]||{})[negNostro];
+    } else {
+      S.corr[idIng][neg] = {sku};
+    }
+    applicaCorrezioni(idIng);
+    chiudiModale(); renderCatalogo(); if(S.menu) renderTutto();
+  });
+}
+
+/* esportazione delle correzioni, per farle diventare permanenti */
+function esportaCorrezioni(){
+  const voci = {};
+  for(const [ing,negozi] of Object.entries(S.corr||{})){
+    for(const [neg,c] of Object.entries(negozi)){
+      if(c.sku){ (voci[ing]=voci[ing]||{})[neg]=c.sku; }
+      else { const sc=voci.__scartati__=voci.__scartati__||{};
+             (sc[ing]=sc[ing]||[]).push(c.scartato); }
+    }
+  }
+  scarica("gerla-correzioni.json", JSON.stringify({versione:1, data:oggiISO(), voci}, null, 1));
 }
 
 /* =========================================================
@@ -7352,7 +7619,47 @@ $("#seed").oninput=e=>S.seed=+e.target.value||1;
 $("#dado").onclick=()=>{ S.seed=Math.floor(Math.random()*99999); $("#seed").value=S.seed; genera(true); };
 $("#nonfood").onchange=e=>{ S.nonfood=e.target.checked; if(S.menu)renderTutto(); };
 $("#scorte").onchange=e=>{ S.scorte=e.target.checked; if(S.menu)renderTutto(); };
-$("#genera").onclick=()=>{ genera(true); $("#setup").open=false; aggiornaApriChiudi(); apriScheda("menu"); };
+$("#genera").onclick=()=>{
+  genera(true); $("#setup").open=false; aggiornaApriChiudi(); apriScheda("menu");
+  if(!S.primoRaccontato){ S.primoRaccontato=true; salva(); setTimeout(raccontaPrimoPiano,700); }
+};
+/* Il primo piano è il momento in cui si decide se fidarsi: qui invece di
+   lasciare l'utente davanti a una tabella di ventotto giorni, gli spiego
+   cosa ha in mano e da dove vengono i numeri. */
+function raccontaPrimoPiano(){
+  const righe=costruisciLista(); if(!righe.length) return;
+  const tot=totale(righe), g=S.giorni, n=S.persone.length;
+  const caro=righe.reduce((a,r)=>a+r.pr.p*r.q*(r.pr.sfuso?r.g/r.pr.pu:1),0);
+  const risparmio=Math.max(0,caro-tot);
+  const veri=righe.filter(r=>S.prezziRiv[r.id]).length;
+  const negozi=[...new Set(righe.map(r=>r.riv.n))];
+  const giorno=$("#giorniBox")?null:null;
+  apriModale(`
+    <div class="avvio-h">
+      <svg class="mark" style="width:40px;height:40px" aria-hidden="true"><use href="#logo-gerla"/></svg>
+      <div><h3 style="margin:0">${T("Ecco il tuo piano")}</h3>
+      <p class="hint" style="margin:2px 0 0"><span class="nm">Da dove vengono questi numeri, in breve.</span></p></div>
+    </div>
+    <div class="kpi" style="margin:16px 0 0">
+      <div><div class="lab">${T("Totale periodo")}</div><div class="val">CHF ${chfr(tot)}</div>
+        <div class="sub">${TF("{0} {1} · {2} {3}",[g,g===1?T("giorno"):T("giorni"),n,n===1?T("persona"):T("persone")])}</div></div>
+      <div><div class="lab">${T("Al giorno")}</div><div class="val">CHF ${chfr(tot/g)}</div>
+        <div class="sub">CHF ${chfr(tot/g/n)} ${T("a persona")}</div></div>
+      ${risparmio>1?`<div><div class="lab">${T("Risparmio")}</div><div class="val" style="color:var(--verde)">CHF ${chfr(risparmio)}</div>
+        <div class="sub">${T("rispetto al prezzo pieno")}</div></div>`:""}
+    </div>
+    <p style="margin:16px 0 0;font-size:14.5px;line-height:1.6">
+      ${TF("Ho scelto {0} articoli nei negozi che hai acceso, prendendo per ognuno il più conveniente fra {1}.",[righe.length, negozi.slice(0,3).join(", ")])}
+      ${veri?TF(" Di questi, <b>{0} hanno il prezzo vero</b> rilevato oggi nei negozi: sotto ogni voce del listino c'è scritto quale prodotto.",[veri]):""}
+    </p>
+    <p class="hint" style="margin-top:10px"><span class="nm">Il piano non è definitivo: metti ♡ ai piatti che vi piacciono, ✕ a quelli che non volete più vedere, e rigenera. Impara da quello che gli dici.</span></p>
+    <div class="row" style="margin-top:18px">
+      <button class="btn oro" id="rp_ok">${T("Guarda il piano")}</button>
+      <button class="btn sm" id="rp_lista">${T("Vai alla lista della spesa")}</button>
+    </div>`);
+  $("#rp_ok").onclick=()=>{ chiudiModale(); apriScheda("menu"); };
+  $("#rp_lista").onclick=()=>{ chiudiModale(); apriScheda("lista"); };
+}
 $("#setup").addEventListener("toggle",()=>{ riepilogoSetup(); aggiornaApriChiudi(); });
 function aggiornaApriChiudi(){
   const el=$("#setup") && $("#setup").querySelector(".sc .nm"); if(!el) return;
@@ -7365,6 +7672,7 @@ $("#esporta").onclick=esporta;
 $("#cerca").oninput=()=>{ S.listinoTutto=false; renderCatalogo(); };
 $("#cercaGuida").oninput=renderGuida;
 $("#cercaRic").oninput=renderRicette;
+if(!S.avvioFatto){} // il ricettario si disegna alla prima apertura
 
 function apriScheda(id){
   const g=NAV.find(x=>x.pan.some(p=>p.id===id));
@@ -7394,6 +7702,7 @@ $("#dadoEv").onclick=()=>tiraIlDado(false);
 $("#consigliaEv").onclick=()=>tiraIlDado(true);
 $("#puliciEv").onclick=()=>{ S.ev.gen=[]; S.ev.sel=null; renderEventi(); };
 $("#nuovoProd").onclick=apriNuovoProdotto;
+$("#espCorr").onclick=esportaCorrezioni;
 $("#salvaProfilo").onclick=()=>{
   const t=JSON.stringify(profiloCorrente(),null,1);
   apriModale(`<h3>Le tue impostazioni</h3><p class="hint">Persone, negozi, preferenze, prezzi corretti, promozioni, alternative e prodotti tuoi. Salvalo: da qui riparti identico anche fra un anno.</p>
@@ -7423,6 +7732,74 @@ function vaiAllaSezione(id){
   try{ window.scrollTo({top:Math.max(0,y),behavior:"smooth"}); }
   catch(e){ window.scrollTo(0,Math.max(0,y)); }
 }
+
+/* ---------- funzionamento senza rete e installazione ---------- */
+if("serviceWorker" in navigator && /^https?:/.test(location.protocol)){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("gerla-sw.js").then(()=>console.log("Gerla: pronta anche senza rete")).catch(e=>console.log("Gerla: registrazione non riuscita",e.message));
+  });
+}
+let invitoInstalla=null;
+window.addEventListener("beforeinstallprompt",e=>{
+  e.preventDefault(); invitoInstalla=e;
+  const b=$("#btnInstalla"); if(b) b.hidden=false;
+});
+window.addEventListener("appinstalled",()=>{ const b=$("#btnInstalla"); if(b) b.hidden=true; });
+
+/* stato della rete: in corsia capita spesso di non averla */
+/* Quanto sono vecchi i dati che stai guardando. Se una fonte smette di
+   rispondere, l'app non se ne accorgerebbe da sola: continuerebbe a mostrare
+   l'ultima copia come se fosse fresca. Qui invece si vede. */
+function freschezza(){
+  const oggi=new Date(oggiISO());
+  const eta=d=>{ if(!d) return null; const g=Math.round((oggi-new Date(d))/86400000); return isFinite(g)?g:null; };
+  return {
+    prezzi:{ data:S.ultimoAgg, g:eta(S.ultimoAgg) },
+    ingredienti:{ data:S.ingData, g:eta(S.ingData), n:Object.keys(S.ing||{}).length },
+    promozioni:{ data:(CAT.promo||{}).data, g:eta((CAT.promo||{}).data), n:(CAT.promo||{}).totale||0 },
+    carburanti:{ data:S.carburanti.data, g:eta(S.carburanti.data) },
+  };
+}
+function renderFreschezza(){
+  const box=$("#freschezza"); if(!box) return;
+  const f=freschezza();
+  const riga=(nome,d)=>{
+    if(!d.data) return `<div class="fr-r"><span class="nm">${nome}</span><span class="fr-v assente">${T("mai aggiornato")}</span></div>`;
+    const cl = d.g<=2 ? "ok" : d.g<=9 ? "media" : "vecchia";
+    const q = d.g===0?T("oggi"):d.g===1?T("ieri"):TF("{0} giorni fa",[d.g]);
+    return `<div class="fr-r"><span class="nm">${nome}</span>
+      <span class="fr-v ${cl}">${q}${d.n?` · ${d.n}`:""}</span></div>`;
+  };
+  const vecchi=Object.values(f).some(d=>d.g!=null && d.g>9);
+  box.innerHTML=`
+    <div class="fr-griglia">
+      ${riga(T("Prezzi del listino"),f.prezzi)}
+      ${riga(T("Prodotti veri legati"),f.ingredienti)}
+      ${riga(T("Promozioni"),f.promozioni)}
+      ${riga(T("Carburanti"),f.carburanti)}
+    </div>
+    ${vecchi?`<p class="legenda" style="margin-top:10px;color:var(--rosso)">${T("Qualcosa non si aggiorna da più di una settimana: probabilmente una fonte non risponde. Controlla il flusso automatico nel deposito.")}</p>`:""}`;
+}
+function statoRete(){
+  const el=$("#offline"); if(!el) return;
+  const giu=!navigator.onLine;
+  el.hidden=!giu;
+  if(giu) el.innerHTML=`<span class="ic">◍</span><span class="nm">Senza rete: sto usando l'ultima copia dei prezzi. Le liste e la modalità spesa funzionano lo stesso.</span>`;
+}
+window.addEventListener("online",statoRete);
+window.addEventListener("offline",statoRete);
+
+/* schermo sempre acceso mentre si fa la spesa */
+let luceSchermo=null;
+async function tieniAcceso(acceso){
+  try{
+    if(acceso && "wakeLock" in navigator){ luceSchermo=await navigator.wakeLock.request("screen"); }
+    else if(luceSchermo){ await luceSchermo.release(); luceSchermo=null; }
+  }catch(e){}
+}
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="visible" && $("#spesaMode") && !$("#spesaMode").hidden) tieniAcceso(true);
+});
 
 /* la barra di navigazione dice quanto spazio serve in fondo */
 function misuraNav(){
@@ -7474,7 +7851,7 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
   $("#hs-riv").textContent=RIV.length;
   aggiornaStagione();
   const ripreso = carica();
-  renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo(); aggiornaBudgetLabel();
+  renderPersone(); renderRiv(); renderPrefs(); renderPasti(); renderCatalogo(); aggiornaBudgetLabel(); aggiornaLinea();
   $("#setup").open = !S.avvioFatto; aggiornaApriChiudi();
   if(!ripreso){ S.ev.pers = Math.max(4,S.persone.length*2); }
   $("#evPers").value = S.ev.pers;
@@ -7484,9 +7861,12 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
     el.value = k==="km"?S.viaggio.km : k==="min"?S.viaggio.minuti : k==="cons"?S.viaggio.consumo : S.viaggio.valoreOra;
   });
   $("#autoFeed").checked=S.autoFeed;
-  renderEventiControlli(); renderEventi(); renderDispensa(); renderStorico(); renderGuida(); renderRicette();
+  renderEventiControlli(); renderEventi(); renderDispensa(); renderStorico();
   registraIndice(); renderStorico(); misuraNav(); setTimeout(misuraNav,400);
-  renderLingue(); applicaTema(); traduci();
+  renderLingue(); applicaTema(); traduci(); statoRete();
+  const bi=$("#btnInstalla");
+  if(bi) bi.onclick=async()=>{ if(!invitoInstalla) return; invitoInstalla.prompt();
+    await invitoInstalla.userChoice; invitoInstalla=null; bi.hidden=true; };
   document.querySelectorAll("[data-va]").forEach(b=>b.onclick=()=>{
     const d=b.dataset.va;
     if(d==="negozi"){ $("#setup").open=true; aggiornaApriChiudi();

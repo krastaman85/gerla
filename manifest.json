@@ -1,0 +1,17 @@
+{
+  "name": "Gerla — Gestione Efficiente di Ricette, Liste e Acquisti",
+  "short_name": "Gerla",
+  "description": "La spesa e i menu di casa, con i prezzi veri dei negozi del Ticino e della Lombardia.",
+  "start_url": "./gerla.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#060a13",
+  "theme_color": "#060a13",
+  "lang": "it",
+  "categories": ["food", "shopping", "productivity"],
+  "icons": [
+    { "src": "icona-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
