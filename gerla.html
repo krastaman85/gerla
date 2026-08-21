@@ -180,9 +180,10 @@ input[type=checkbox]{accent-color:var(--oro);width:auto}
 .tab.attenzione .pin{display:block}
 .panel{min-height:62vh}
 .panel[hidden]{display:none}
-.panel:not([hidden]){animation:entra .32s cubic-bezier(.22,.7,.3,1)}
-@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.giorno,.scontrino,.kpi>div,.propostaBtn{animation:sali .4s cubic-bezier(.22,.7,.3,1) both}
+.panel:not([hidden]){animation:entra .3s cubic-bezier(.22,.7,.3,1)}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tabs,.sottonav,.action-bar,.setup{animation:none!important}
+.giorno,.scontrino,.kpi>div,.propostaBtn,.ric{animation:sali .36s cubic-bezier(.22,.7,.3,1) both}
 @keyframes sali{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .giorni .giorno:nth-child(2){animation-delay:.04s}.giorni .giorno:nth-child(3){animation-delay:.08s}
 .giorni .giorno:nth-child(4){animation-delay:.12s}.giorni .giorno:nth-child(5){animation-delay:.16s}
@@ -535,6 +536,23 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .hs-btn:active{transform:translateY(0)}
 .stag-ic{display:block;margin:0 auto 4px;color:var(--oro)}
 .stag-ic svg{width:22px;height:22px;display:block;margin:0 auto}
+
+
+/* ---------- nucleo familiare ---------- */
+.nucleo-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--linea)}
+.conta{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--linea-2);border-radius:14px;padding:4px;
+  background:linear-gradient(180deg,rgba(26,45,82,.5),rgba(8,13,22,.4))}
+.cnt{width:34px;height:34px;border:0;border-radius:10px;background:transparent;color:var(--oro-l);
+  font-size:20px;line-height:1;cursor:pointer;transition:background .15s}
+.cnt:hover{background:rgba(224,180,90,.14)}
+.cnt-v{min-width:74px;text-align:center;line-height:1.05}
+.cnt-v b{display:block;font-family:var(--disp);font-size:27px;font-weight:400;color:var(--oro-l)}
+.cnt-v span{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--testo-3)}
+.nucleo-riep{display:flex;flex-direction:column;gap:2px;text-align:right;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.06em;color:var(--testo-3)}
+.nucleo-riep span:first-child{color:var(--oro-d)}
+@media(max-width:520px){ .nucleo-top{justify-content:center} .nucleo-riep{text-align:center} }
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
@@ -920,9 +938,17 @@ html,body{max-width:100%;overflow-x:hidden}
   <div class="grid-setup">
       <section class="card noprint">
         <h2>Chi mangia</h2>
+        <div class="nucleo-top">
+          <div class="conta">
+            <button class="cnt" id="menoP" aria-label="Togli una persona">−</button>
+            <div class="cnt-v"><b id="nPers">3</b><span class="nm">a tavola</span></div>
+            <button class="cnt" id="piuP" aria-label="Aggiungi una persona">+</button>
+          </div>
+          <div class="nucleo-riep" id="nucleoRiep"></div>
+        </div>
         <div id="persone"></div>
         <div class="row" style="margin-top:10px">
-          <button class="btn ghost sm" id="addPersona">+ Aggiungi persona</button>
+          <button class="btn ghost sm" id="addPersona" hidden>+ Aggiungi persona</button>
           <span class="hint" style="margin:0">Le porzioni si adattano a età e attività.</span>
         </div>
       </section>
@@ -1165,7 +1191,7 @@ html,body{max-width:100%;overflow-x:hidden}
           <label class="f" style="display:flex;gap:8px;align-items:center;margin-top:8px">
             <input type="checkbox" id="autoFeed" checked style="width:auto"> Aggiorna a ogni apertura
           </label>
-          <div class="hint">Metti <b>gerla-listino.json</b> e <b>gerla-aggiorna.mjs</b> in un deposito GitHub con il flusso incluso: ogni mattina lo script rilegge le fonti aperte e ripubblica il listino. Poi incolla qui l'indirizzo <b>raw</b> del file. Ogni apertura controllo se &egrave; cambiato e aggiorno prezzi, indici e promozioni. Serve un indirizzo che consenta la lettura da browser (per esempio un Gist pubblico o un file sul tuo cloud).</div>
+          <div class="hint"><span class="nm">Se l'app è pubblicata sul web, il listino accanto a lei viene letto da solo. Altrimenti incolla qui l'indirizzo raw di un file condiviso: a ogni apertura controllo se è cambiato e aggiorno prezzi, promozioni e carburanti.</span></div>
         </div>
         <div>
           <label class="f">Azioni</label>
@@ -1371,9 +1397,7 @@ const RIV = [
    kc:{Frutta:0.94,Verdura:0.94,Carne:0.96}},
   {id:"pam",      n:"Pam / Panorama", z:"IT", c:"#009640", k:0.68, url:()=>`https://www.pampanorama.it/`,
    kc:{Latticini:0.96,Dispensa:0.97}},
-  {id:"topcc",    n:"TopCC",          z:"CH", c:"#e30613", k:0.80, url:()=>`https://www.topcc.ch/`,
-   kc:{Carne:0.86,Bevande:0.85,Dispensa:0.90,Carboidrati:0.88,Frutta:0.98,Casa:0.92}},
-  {id:"md",       n:"MD",             z:"IT", c:"#e2001a", k:0.47, url:()=>`https://www.mdspa.it/`,
+    {id:"md",       n:"MD",             z:"IT", c:"#e2001a", k:0.47, url:()=>`https://www.mdspa.it/`,
    kc:{Dispensa:0.93,Casa:0.90,Carne:1.09,Pesce:1.09,Frutta:1.07}},
 ];
 
@@ -1511,6 +1535,66 @@ const RAW = [
 ["deodorante","Deodorante","Igiene",4.50,1,"pz","🧴",0,0,4,0,0,""],
 ["rasoi","Rasoi","Igiene",8.90,1,"pz","🪒",0,0,4,0,0,""],
 ["fazzoletti","Fazzoletti di carta","Igiene",2.50,1,"pz","🤧",0,0,4,0,0,""],
+["cervelas","Cervelas","Carne",4.50,400,"g","🌭",290,13,2,0,0,"maiale"],
+["schublig","Schüblig / salsiccia da bollire","Carne",6.90,400,"g","🌭",300,14,2,0,0,"maiale"],
+["carnesecca_gr","Carne secca dei Grigioni","Carne",9.90,100,"g","🥩",250,36,3,0,0,""],
+["patepate","Patè e terrine","Carne",5.50,180,"g","🥫",320,12,2,0,0,"maiale"],
+["polpetteP","Polpette pronte","Carne",7.90,400,"g","🍖",230,17,2,0,0,"glutine"],
+["hamburgerveg2","Bocconcini vegetali","Legumi",5.90,250,"g","🌱",200,18,4,0,0,"soia"],
+["tonnoolio","Tonno all'olio d'oliva","Pesce",6.90,3,"pz","🐟",190,24,4,0,0,"pesce"],
+["salmonemarinato","Salmone marinato all'aneto","Pesce",8.90,150,"g","🐟",200,21,4,0,0,"pesce"],
+["gamberettisurg","Gamberetti surgelati","Pesce",8.90,400,"g","🦐",85,18,5,0,0,"pesce,crostacei"],
+["bastoncinipesce2","Filetti impanati","Pesce",7.90,450,"g","🐟",210,13,3,0,0,"pesce,glutine"],
+["sbrinz","Sbrinz","Latticini",8.90,200,"g","🧀",400,33,4,0,0,"lattosio"],
+["appenzeller","Appenzeller","Latticini",7.50,250,"g","🧀",390,25,3,0,0,"lattosio"],
+["tomme","Tomme","Latticini",4.50,200,"g","🧀",300,17,3,0,0,"lattosio"],
+["camembert","Camembert","Latticini",4.20,250,"g","🧀",300,20,3,0,0,"lattosio"],
+["cottage","Cottage cheese","Latticini",2.90,200,"g","🥣",100,12,5,0,0,"lattosio"],
+["yogurtbianco_gr","Yogurt bianco 500 g","Latticini",2.20,500,"g","🥣",61,3.5,5,0,0,"lattosio"],
+["pannacucina","Panna da cucina 25%","Latticini",2.20,250,"ml","🥛",250,2.5,2,0,0,"lattosio"],
+["burroarachidi2","Crema di arachidi senza zucchero","Colazione",5.90,350,"g","🥜",600,26,4,0,0,"frutta a guscio"],
+["cerealiint","Cereali integrali","Colazione",4.50,500,"g","🥣",360,11,5,0,0,"glutine"],
+["pancake","Preparato per pancake","Colazione",4.20,400,"g","🥞",370,9,2,0,0,"glutine,uova"],
+["treccia","Treccia al burro","Carboidrati",3.90,400,"g","🥐",320,9,2,0,0,"glutine,lattosio,uova"],
+["panini","Panini da sandwich","Carboidrati",2.90,300,"g","🍞",280,9,3,0,0,"glutine"],
+["crackerint","Crackers integrali 250 g","Carboidrati",3.20,250,"g","🍘",420,11,3,0,0,"glutine"],
+["tortillaschips","Tortilla chips","Dispensa",3.50,200,"g","🌽",490,7,2,0,0,""],
+["popcorn","Mais per popcorn","Dispensa",2.90,500,"g","🍿",380,11,4,0,0,""],
+["olive_verdi","Olive verdi denocciolate","Dispensa",3.20,200,"g","🫒",140,1,4,0,0,""],
+["sottaceti","Sottaceti misti","Dispensa",3.50,350,"g","🥒",30,1,4,0,0,""],
+["mais_dolce2","Mais dolce 3×150 g","Verdura",3.50,450,"g","🌽",86,3,4,0,0,""],
+["legumimisti","Legumi misti in scatola","Legumi",2.20,400,"g","🫘",110,7,5,0,0,""],
+["zuppalegumi","Zuppa di legumi pronta","Dispensa",3.90,600,"g","🍲",70,4,4,0,0,""],
+["passatabio2","Polpa di pomodoro 3×400 g","Dispensa",3.90,1200,"g","🍅",25,1.3,5,0,0,""],
+["sugopesto","Sugo al pesto pronto","Dispensa",4.20,350,"g","🌿",320,6,3,0,0,"lattosio,frutta a guscio"],
+["curryPasta","Pasta di curry rosso","Dispensa",4.50,180,"g","🌶",130,3,3,0,0,""],
+["salsateriyaki","Salsa teriyaki","Dispensa",4.20,250,"ml","🍶",130,3,3,0,0,"soia,glutine"],
+["semizucca","Semi di zucca e girasole","Dispensa",4.50,250,"g","🌻",560,25,5,0,0,""],
+["cocco_rape","Cocco grattugiato","Dispensa",3.20,200,"g","🥥",650,7,3,0,0,""],
+["farinamandorle","Farina di mandorle","Carboidrati",6.90,250,"g","🌰",600,22,4,0,0,"frutta a guscio"],
+["cioccolatte","Cioccolato al latte","Dispensa",2.20,100,"g","🍫",540,7,2,0,0,"lattosio,frutta a guscio"],
+["biscottifrolla","Biscotti di frolla","Colazione",3.90,400,"g","🍪",470,6,2,0,0,"glutine,uova,lattosio"],
+["gelatoveg","Gelato vegetale","Latticini",6.90,500,"ml","🍨",180,2,3,0,0,"soia"],
+["sorbetto","Sorbetto alla frutta","Latticini",5.50,500,"ml","🍧",130,0.5,3,0,0,""],
+["tisanefrutta","Tisane alla frutta","Bevande",3.50,20,"pz","🍵",0,0,5,0,0,""],
+["energydrink","Bevanda energetica","Bevande",5.90,1500,"ml","🥤",45,0,1,0,0,""],
+["birranalc","Birra analcolica","Bevande",6.90,1980,"ml","🍺",25,0.4,3,0,0,"glutine"],
+["vinorosato2","Rosato del Ticino","Bevande",11.90,750,"ml","🍷",82,0,2,0,0,"solfiti"],
+["sciroppomenta","Sciroppo alla menta","Bevande",3.90,1000,"ml","🌿",250,0,1,0,0,""],
+["capsulebio","Capsule compostabili","Dispensa",8.90,40,"pz","☕",0,0,3,0,0,""],
+["detersivopolvere","Detersivo in polvere","Casa",13.90,1,"pz","🧺",0,0,3,0,0,""],
+["brillantante","Brillantante e sale lavastoviglie","Casa",6.90,1,"pz","🧴",0,0,3,0,0,""],
+["guanti","Guanti per pulizie","Casa",3.50,1,"pz","🧤",0,0,3,0,0,""],
+["strofinacci","Strofinacci da cucina","Casa",7.90,1,"pz","🧻",0,0,3,0,0,""],
+["saccheticongelo","Sacchetti per congelare","Casa",3.20,1,"pz","🧊",0,0,3,0,0,""],
+["deodoranteamb","Deodorante per ambienti","Casa",4.90,1,"pz","🌸",0,0,2,0,0,""],
+["saponepiatti_eco","Detersivo piatti ecologico","Casa",4.50,1,"pz","🧽",0,0,4,0,0,""],
+["salviettebimbi","Salviette per bambini","Igiene",4.50,1,"pz","🧻",0,0,4,0,0,""],
+["schiumabarba","Schiuma da barba","Igiene",4.20,1,"pz","🧴",0,0,3,0,0,""],
+["cremamani","Crema mani","Igiene",5.50,1,"pz","🧴",0,0,4,0,0,""],
+["burrocacao_l","Burrocacao","Igiene",3.20,1,"pz","💄",0,0,4,0,0,""],
+["termometro","Termometro e primo soccorso","Igiene",19.90,1,"pz","🌡",0,0,5,0,0,""],
+
 ["seppioline","Seppioline","Pesce",11.90,400,"g","🦑",80,16,5,0,0,"pesce,molluschi"],
 ["orata","Orata","Pesce",13.90,600,"g","🐟",96,18,5,0,0,"pesce"],
 ["gamberetti","Gamberetti sgusciati","Pesce",9.90,300,"g","🦐",85,20,5,0,0,"pesce,crostacei"],
@@ -2163,6 +2247,26 @@ const PIATTI = [
 {id:"fagiolisecchi_pasta",n:"Pasta e fagioli",q:"pranzo",m:80,ing:[["fagioli_secchi",65],["pasta",55],["carote",40],["sedano",25],["passata",60],["olio",9]],t:["veg","vegano","economico","tradizione","glutine"],sea:[10,4]},
 {id:"verdurgrigliate_piadina",n:"Piadina con verdure grigliate",q:"cena",m:20,ing:[["piadina",100],["verdure_grigliate",90],["mozzarella_grande",50],["rucola",20]],t:["veg","veloce","glutine","lattosio"]},
 {id:"salsicciapollo_pure",n:"Salsicce di pollo con purè",q:"cena",m:35,ing:[["salsiccia_pollo",140],["patate",220],["latte",50],["burro",10]],t:["carne_bianca","kid","veloce","lattosio"]},
+{id:"cervelassalat",n:"Insalata di cervelat e formaggio",q:"cena",m:15,ing:[["cervelas",120],["semiduro",60],["cetriolini",30],["cipolle",25],["olio",8],["pane",70]],t:["maiale","veloce","tradizione","glutine","lattosio"]},
+{id:"schublig_patate",n:"Salsiccia con patate e crauti",q:"cena",m:40,ing:[["schublig",130],["patate",200],["cappuccio",120],["cipolle",25],["burro",10]],t:["maiale","tradizione","lattosio"],sea:[10,3]},
+{id:"raclette_serata",n:"Serata raclette",q:"cena",m:35,ing:[["raclette",180],["patate",250],["cetriolini",30],["sottaceti",30],["carnesecca_gr",25]],t:["elaborato","tradizione","lattosio"],sea:[10,3]},
+{id:"fonduta_serata",n:"Fonduta con pane e patate",q:"cena",m:30,ing:[["fonduta",200],["pane",110],["patate",120],["vinobianco",25]],t:["veg","tradizione","lattosio","glutine"],sea:[10,3]},
+{id:"rostiuova",n:"Rösti con uova e speck",q:"cena",m:35,ing:[["patate",250],["uova",1.5],["speck",30],["burro",12],["cipolle",25]],t:["maiale","tradizione","uova","lattosio"]},
+{id:"zuppaorzo",n:"Zuppa d'orzo alla grigionese",q:"cena",m:70,ing:[["orzo",60],["carote",60],["sedano",30],["porri",60],["carnesecca_gr",25],["panna",25]],t:["elaborato","tradizione","salute","glutine","lattosio"],sea:[10,3]},
+{id:"cottagebowl",n:"Bowl di cottage, semi e verdure",q:"pranzo",m:15,ing:[["cottage",150],["semizucca",20],["pomodorini",90],["cetrioli",70],["paneint",60],["olio",7]],t:["veg","veloce","salute","lattosio","glutine"]},
+{id:"pastapestorosso",n:"Pasta al pesto rosso e ricotta",q:"pranzo",m:20,ing:[["pasta",100],["pestorosso",35],["ricotta",50],["pinoli",8]],t:["veg","veloce","glutine","lattosio","noci"]},
+{id:"tortillabowl",n:"Bowl messicana con tortilla chips",q:"cena",m:25,ing:[["tortillaschips",45],["fagiolineri",110],["mais_dolce2",70],["cheddar",35],["guacamole",40],["lime",15]],t:["veg","etnico","messico","veloce","lattosio"]},
+{id:"teriyakipollo",n:"Pollo teriyaki con riso",q:"pranzo",m:35,ing:[["pettopollo",145],["salsateriyaki",30],["risojasmine",80],["germogli",50],["sesamo",6]],t:["carne_bianca","etnico","giappone","soia","glutine","sesamo"]},
+{id:"currythai_rosso",n:"Curry rosso di gamberi",q:"cena",m:35,ing:[["gamberettisurg",120],["curryPasta",28],["lattecocco",120],["wok",130],["risojasmine",75]],t:["pesce","etnico","thai","crostacei"]},
+{id:"salmonemarinato_ins",n:"Insalata di salmone marinato e patate",q:"cena",m:25,ing:[["salmonemarinato",90],["patate",180],["songino",50],["pannaacida",40],["limoni",15]],t:["pesce","salute","lattosio"]},
+{id:"zuppalegumi_pane",n:"Zuppa di legumi con crostini",q:"cena",m:25,ing:[["zuppalegumi",280],["pane",60],["parmigiano",12],["olio",8]],t:["veg","veloce","economico","glutine","lattosio"]},
+{id:"polpettonepronto",n:"Polpette al forno con verdure",q:"cena",m:30,ing:[["polpetteP",150],["passatabio2",130],["zucchine",100],["parmigiano",14]],t:["carne_rossa","veloce","kid","glutine","lattosio"]},
+{id:"grigliataveg",n:"Grigliata vegetale con bocconcini",q:"cena",m:30,ing:[["hamburgerveg2",120],["peperoni",90],["zucchine",100],["olio",9],["hummus",45],["pita",80]],t:["veg","vegano","salute","glutine","sesamo","soia"]},
+{id:"pastaolive",n:"Pasta olive, capperi e pomodorini",q:"pranzo",m:20,ing:[["pasta",100],["olive_verdi",35],["capperi",8],["pomodorini",90],["aglio",4],["olio",10]],t:["veg","vegano","veloce","economico","glutine"],sea:[5,10]},
+{id:"pollopopcorn",n:"Bocconcini di pollo croccanti",q:"cena",m:30,ing:[["pettopollo",140],["panko",35],["uova",0.4],["patatinesurg",130],["ketchup",20]],t:["carne_bianca","kid","glutine","uova"]},
+{id:"tomme_insalata",n:"Insalata tiepida con tomme",q:"cena",m:20,ing:[["tomme",70],["misticanza",60],["noci",15],["pere",90],["pane",60],["balsamico",6]],t:["veg","salute","lattosio","glutine","noci"],sea:[9,12]},
+{id:"sbrinzrisotto",n:"Risotto allo Sbrinz e erbe",q:"pranzo",m:35,ing:[["carnaroli",85],["sbrinz",30],["burro",12],["cipolle",20],["prezzemolo",0.08],["vinobianco",25]],t:["veg","tradizione","lattosio"]},
+{id:"pancakedomenica",n:"Pancake della domenica",q:"cena",m:25,ing:[["pancake",90],["latte",120],["uova",1],["miele",18],["fruttibosco",60]],t:["veg","kid","glutine","uova","lattosio"]},
 {id:"focacciafarcita",n:"Focaccia farcita e insalata",q:"cena",m:15,ing:[["focaccia",120],["prosccotto",40],["mozzarella",40],["pomodorini",60],["insalata",40]],t:["veloce","maiale","kid","glutine","lattosio"]},
 ];
 
@@ -2660,7 +2764,14 @@ function qtaLabel(r){
    8. RENDER — impostazioni
    ========================================================= */
 function renderPersone(){
+  aggiornaBudgetLabel();
   const c=$("#persone"); c.innerHTML="";
+  const nb=$("#nPers"); if(nb) nb.textContent=S.persone.length;
+  const rp=$("#nucleoRiep");
+  if(rp){
+    const F=fattoreNucleo(), k=Math.round(kcalNucleo());
+    rp.innerHTML=`<span>${TF("{0} porzioni adulto",[F.toFixed(1)])}</span><span>${k} ${T("kcal al giorno")}</span>`;
+  }
   S.persone.forEach((p,i)=>{
     const d=document.createElement("div"); d.className="persona";
     d.innerHTML=`
@@ -2733,9 +2844,10 @@ function riepilogoSetup(){
   el.textContent = `${n} ${n===1?T("persona"):T("persone")} · ${S.giorni} ${S.giorni===1?T("giorno"):T("giorni")} · CHF ${chfr(S.budget)} · ${ins} ${ins===1?T("negozio"):T("negozi")}${diete?" · "+diete+" "+T("preferenze"):""}`;
 }
 function aggiornaBudgetLabel(){
-  riepilogoSetup(); aggiornaVegg();
+  riepilogoSetup();
   const g=S.giorni, n=S.persone.length||1;
   $("#budgetGiorno").innerHTML = `CHF ${chfr(S.budget/g)} <span class="nm">${T("al giorno")}</span>`;
+  aggiornaVegg();
   $("#budgetPersona").textContent = `CHF ${chfr(S.budget/g/n)} ${T("a persona al giorno")} · ${n} ${n===1?T("persona"):T("persone")} · ${T("fabbisogno del nucleo")} ${Math.round(kcalNucleo())} ${T("kcal al giorno")}`;
 }
 
@@ -4258,7 +4370,7 @@ function avvioGuidato(){
       <p class="hint" style="margin:2px 0 0"><span class="nm">Quattro domande, meno di un minuto, e la prima lista è pronta.</span></p></div>
     </div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">1.</b> <span class="nm">Quante persone mangiano di solito</span></label>
-      <div class="chips" id="ag_pers">${[1,2,3,4,5,6].map(n=>`<button class="chip" type="button" data-v="${n}" ${n===3?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
+      <div class="chips" id="ag_pers">${[1,2,3,4,5,6].map(n=>`<button class="chip" type="button" data-v="${n}" ${n===4?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">2.</b> <span class="nm">Per quanti giorni vuoi organizzarti</span></label>
       <div class="chips" id="ag_gg">${[[1,"un giorno"],[3,"3 giorni"],[7,"una settimana"],[28,"un mese"]].map(([v,n])=>`<button class="chip" type="button" data-v="${v}" ${v===7?'aria-pressed="true"':''}>${n}</button>`).join("")}</div></div>
     <div style="margin-top:16px"><label class="f"><b style="color:var(--oro)">3.</b> <span class="nm">Dove fai la spesa di solito</span></label>
@@ -4883,6 +4995,16 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"a tavola":"at the table",
+"{0} porzioni adulto":"{0} adult portions",
+"Persona":"Person",
+"Spesa di {0} giorni":"{0}-day shopping",
+"Togli una persona":"Remove a person",
+"Aggiungi una persona":"Add a person",
+
+"Se l'app è pubblicata sul web, il listino accanto a lei viene letto da solo. Altrimenti incolla qui l'indirizzo raw di un file condiviso: a ogni apertura controllo se è cambiato e aggiorno prezzi, promozioni e carburanti.":"If the app is published on the web, the price file next to it is read automatically. Otherwise paste the raw address of a shared file here: at every start I check whether it changed and update prices, promotions and fuel.",
+"{0} su {1} pranzi settimanali fuori casa: riduco le porzioni":"{0} of {1} weekly lunches eaten out: portions reduced",
+
 "prezzo reale":"real price",
 "Skrimpers (rilevazioni TCS)":"Skrimpers (TCS readings)",
 
@@ -5342,6 +5464,16 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"a tavola":"à table",
+"{0} porzioni adulto":"{0} portions adulte",
+"Persona":"Personne",
+"Spesa di {0} giorni":"Courses de {0} jours",
+"Togli una persona":"Retirer une personne",
+"Aggiungi una persona":"Ajouter une personne",
+
+"Se l'app è pubblicata sul web, il listino accanto a lei viene letto da solo. Altrimenti incolla qui l'indirizzo raw di un file condiviso: a ogni apertura controllo se è cambiato e aggiorno prezzi, promozioni e carburanti.":"Si l'application est publiée sur le web, la liste de prix à côté d'elle est lue automatiquement. Sinon collez ici l'adresse raw d'un fichier partagé : à chaque ouverture je vérifie s'il a changé et je mets à jour prix, promotions et carburants.",
+"{0} su {1} pranzi settimanali fuori casa: riduco le porzioni":"{0} déjeuners hebdomadaires sur {1} pris dehors : portions réduites",
+
 "prezzo reale":"prix réel",
 "Skrimpers (rilevazioni TCS)":"Skrimpers (relevés TCS)",
 
@@ -5801,6 +5933,16 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"a tavola":"am Tisch",
+"{0} porzioni adulto":"{0} Erwachsenenportionen",
+"Persona":"Person",
+"Spesa di {0} giorni":"Einkauf für {0} Tage",
+"Togli una persona":"Person entfernen",
+"Aggiungi una persona":"Person hinzufügen",
+
+"Se l'app è pubblicata sul web, il listino accanto a lei viene letto da solo. Altrimenti incolla qui l'indirizzo raw di un file condiviso: a ogni apertura controllo se è cambiato e aggiorno prezzi, promozioni e carburanti.":"Wenn die App im Web veröffentlicht ist, wird die Preisliste daneben automatisch gelesen. Sonst fügen Sie hier die Raw-Adresse einer geteilten Datei ein: bei jedem Start prüfe ich auf Änderungen und aktualisiere Preise, Aktionen und Treibstoff.",
+"{0} su {1} pranzi settimanali fuori casa: riduco le porzioni":"{0} von {1} Mittagessen pro Woche auswärts: Portionen reduziert",
+
 "prezzo reale":"echter Preis",
 "Skrimpers (rilevazioni TCS)":"Skrimpers (TCS-Erhebungen)",
 
@@ -6467,11 +6609,23 @@ function fitBudget(){
 }
 
 /* eventi */
-$("#addPersona").onclick=()=>{ S.persone.push({nome:"Persona "+(S.persone.length+1),eta:"adulto",att:"medio"}); renderPersone(); aggiornaBudgetLabel(); };
+function aggiungiPersona(){
+  const n=S.persone.length+1;
+  S.persone.push({nome:T("Persona")+" "+n,eta:"adulto",att:"medio"});
+  renderPersone(); aggiornaBudgetLabel(); if(S.menu) renderTutto(); salva();
+}
+function togliPersona(){
+  if(S.persone.length<=1) return;
+  S.persone.pop(); renderPersone(); aggiornaBudgetLabel(); if(S.menu) renderTutto(); salva();
+}
+$("#addPersona").onclick=aggiungiPersona;
+$("#piuP").onclick=aggiungiPersona;
+$("#menoP").onclick=togliPersona;
 $("#veggDays").oninput=e=>{ S.veggDays=+e.target.value; aggiornaVegg(); };
 function aggiornaVegg(){
   const v=$("#veggVal"); if(v) v.textContent=S.veggDays;
   const f=$("#fuoriVal"); if(f) f.textContent=S.fuoriCasa;
+  aggiornaFuori();
   const el=$("#veggLab"); if(!el) return;
   el.textContent = S.veggDays===0 ? T("nessun giorno senza carne")
     : S.veggDays+" "+(S.veggDays===1?T("giorno a settimana"):T("giorni a settimana"));
@@ -6492,10 +6646,19 @@ function renderPasti(){
     c.appendChild(b);
   });
 }
+function aggiornaFuori(){
+  const el=$("#fuoriLab"); if(!el) return;
+  const n=S.persone.length||1;
+  el.dataset.it = S.fuoriCasa===0 ? "nessuno — si mangia sempre a casa" : "";
+  el.textContent = S.fuoriCasa===0
+    ? T("nessuno — si mangia sempre a casa")
+    : TF("{0} su {1} pranzi settimanali fuori casa: riduco le porzioni",[S.fuoriCasa, 7*n]);
+}
 let fuoriTimer=null;
 $("#fuoriCasa").oninput=e=>{
   S.fuoriCasa=+e.target.value;
   $("#fuoriVal").textContent=S.fuoriCasa;
+  aggiornaFuori();
   $("#fuoriLab").textContent = S.fuoriCasa===0 ? T("nessuno — si mangia sempre a casa")
     : S.fuoriCasa+" "+T("pasti fuori casa: riduco le porzioni del pranzo");
   clearTimeout(fuoriTimer);
@@ -6553,15 +6716,15 @@ $("#seed").oninput=e=>S.seed=+e.target.value||1;
 $("#dado").onclick=()=>{ S.seed=Math.floor(Math.random()*99999); $("#seed").value=S.seed; genera(true); };
 $("#nonfood").onchange=e=>{ S.nonfood=e.target.checked; if(S.menu)renderTutto(); };
 $("#scorte").onchange=e=>{ S.scorte=e.target.checked; if(S.menu)renderTutto(); };
-$("#genera").onclick=()=>{ genera(true); $("#setup").open=false; };
+$("#genera").onclick=()=>{ genera(true); $("#setup").open=false; aggiornaApriChiudi(); apriScheda("menu"); };
 $("#setup").addEventListener("toggle",()=>{ riepilogoSetup(); aggiornaApriChiudi(); });
 function aggiornaApriChiudi(){
   const el=$("#setup") && $("#setup").querySelector(".sc .nm"); if(!el) return;
   el.dataset.it = $("#setup").open ? "chiudi" : "apri";
   el.textContent = T(el.dataset.it);
 }
-$("#rigenera").onclick=()=>{ S.seed=Math.floor(Math.random()*99999); $("#seed").value=S.seed; genera(true); };
-$("#fitBudget").onclick=fitBudget;
+$("#rigenera").onclick=()=>{ S.seed=Math.floor(Math.random()*99999); $("#seed").value=S.seed; genera(true); apriScheda("menu"); };
+$("#fitBudget").onclick=()=>{ fitBudget(); apriScheda("analisi"); };
 $("#esporta").onclick=esporta;
 $("#cerca").oninput=()=>{ S.listinoTutto=false; renderCatalogo(); };
 $("#cercaGuida").oninput=renderGuida;
@@ -6571,7 +6734,7 @@ function apriScheda(id){
   if(!g) return;
   S.nav=g.id; S.pan=id; renderNav(); mostraPannello(); vaiAllaSezione(id);
 }
-$("#vaiSpesa").onclick=()=>apriSpesa(null,"Spesa di "+S.giorni+" giorni");
+$("#vaiSpesa").onclick=()=>apriSpesa(null,TF("Spesa di {0} giorni",[S.giorni]));
 $("#addDispensa").onclick=apriAggiungiDispensa;
 $("#guidato").onclick=aggiornamentoGuidato;
 $("#riavvia").onclick=avvioGuidato;
