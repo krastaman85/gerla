@@ -1,10 +1,10 @@
 # .github/workflows/gerla-test.yml
-# Le prove girano a ogni modifica: se qualcosa si rompe, si vede subito
+# Le prove girano a ogni modifica: se qualcosa si rompe si vede subito,
 # invece di scoprirlo usando l'app in corsia.
 name: Prove di Gerla
 on:
   push:
-    paths: ["gerla.html", "gerla-*.mjs", "prove/**"]
+    paths: ["gerla.html", "gerla-*.mjs", "prove.mjs", "prove/**"]
   pull_request:
   workflow_dispatch:
 jobs:
@@ -14,7 +14,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: "24" }
+        with:
+          node-version: "24"
+
+      - name: Controlla che ci sia tutto
+        run: |
+          mancanti=""
+          for f in gerla.html; do
+            [ -f "$f" ] || mancanti="$mancanti $f"
+          done
+          if [ -n "$mancanti" ]; then
+            echo "::error::Mancano questi file nel deposito:$mancanti"
+            exit 1
+          fi
+          # il file delle prove può stare nella cartella principale o in prove/
+          if   [ -f "prove/prove.mjs" ]; then echo "PROVE=prove/prove.mjs" >> $GITHUB_ENV
+          elif [ -f "prove.mjs" ];       then echo "PROVE=prove.mjs"       >> $GITHUB_ENV
+          else
+            echo "::error::Non trovo prove.mjs, né nella cartella principale né in prove/."
+            exit 1
+          fi
+          echo "Userò $(grep PROVE $GITHUB_ENV | cut -d= -f2)"
+
       - run: npm i --no-save jsdom
-      - name: Struttura e dati
-        run: node prove/prove.mjs
+
+      - name: Esegui le prove
+        run: node "$PROVE"
