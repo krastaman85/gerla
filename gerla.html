@@ -725,6 +725,29 @@ textarea:focus-visible, summary:focus-visible, a:focus-visible{
   .segm-b:active,.hs-btn:active,.spia:active,.tab:active,.propostaBtn:active{transform:none!important}
 }
 
+
+/* ---------- pagina di benvenuto ---------- */
+.benvenuto{position:relative;text-align:center;padding:26px 10px 20px;margin:-4px -4px 14px;
+  border-bottom:1px solid var(--linea);overflow:hidden}
+.benv-luce{position:absolute;inset:-40% -20% auto;height:200px;pointer-events:none;
+  background:radial-gradient(60% 100% at 50% 0%,rgba(224,180,90,.16),transparent 70%);
+  animation:respira 5s ease-in-out infinite}
+@keyframes respira{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.benv-logo{width:60px;height:60px;display:block;margin:0 auto 12px;
+  animation:entraLogo .7s cubic-bezier(.22,.9,.3,1) both;filter:drop-shadow(0 6px 18px rgba(224,180,90,.35))}
+@keyframes entraLogo{from{opacity:0;transform:translateY(10px) scale(.9)}to{opacity:1;transform:none}}
+.benvenuto h3{font-size:clamp(24px,4vw,31px);animation:sali .5s .1s cubic-bezier(.22,.7,.3,1) both}
+.benv-sub{margin:7px auto 0;max-width:38ch;color:var(--testo-2);font-size:14px;line-height:1.5;
+  animation:sali .5s .18s cubic-bezier(.22,.7,.3,1) both}
+.benv-numeri{display:flex;justify-content:center;gap:26px;margin-top:16px;
+  animation:sali .5s .26s cubic-bezier(.22,.7,.3,1) both}
+.benv-numeri span{display:flex;flex-direction:column;gap:2px}
+.benv-numeri b{font-family:var(--disp);font-size:23px;font-weight:400;color:var(--oro-l);line-height:1}
+.benv-numeri i{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--testo-3);font-style:normal}
+#modal .chips{animation:sali .5s .32s cubic-bezier(.22,.7,.3,1) both}
+html[data-tema="giorno"] .benv-luce{background:radial-gradient(60% 100% at 50% 0%,rgba(201,162,74,.2),transparent 70%)}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -1096,7 +1119,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="statusbar">
       <span id="memoria">dati salvati nel dispositivo</span>
       <button class="spia" id="spiaCat" type="button" aria-live="polite"><span class="pallino"></span><span class="nm" id="spiaTxt">catalogo</span></button>
-      <button class="linkbtn" id="riavvia">riavvia l'avvio guidato</button>
+      <button class="linkbtn" id="riavvia">ritorna all'avvio guidato</button>
       <button class="linkbtn" id="scorda">cancella e ripristina</button>
     </div>
   </div>
@@ -2311,99 +2334,99 @@ const PIATTI = [
 {id:"platessa",n:"Platessa impanata e insalata",q:"cena",ing:[["platessa",150],["pane",30],["uova",0.3],["insalata",80],["oliosem",6.2]],t:["pesce","kid","glutine","uova"]},
 {id:"tonnofagioli",n:"Tonno fagioli e cipolla",q:"cena",ing:[["tonno",60],["fagioli",130],["cipolle",25],["olio",6.2],["pane",60]],t:["pesce","veloce","economico","glutine"]},
 {id:"frittata",n:"Frittata di patate e cipolle",q:"cena",ing:[["uova",2.5],["patate",120],["cipolle",25],["olio",6.2],["insalata",50]],t:["veg","kid","economico","uova"]},
-{id:"uovainsalatona",n:"Uova sode e insalatona",q:"cena",ing:[["uova",2],["insalata",100],["pomodori",90],["mozzarella",40],["olio",6.2],["pane",40]],t:["veg","salute","veloce","uova","lattosio","glutine"]},
-{id:"pizzacasa",n:"Pizza margherita fatta in casa",q:"cena",ing:[["farina",110],["passata",70],["mozzarella",70],["olio",5.0],["spezie",1]],t:["veg","kid","glutine","lattosio"]},
+{id:"uovainsalatona",n:"Uova sode",q:"cena",ing:[["uova",2],["insalata",100],["pomodori",90],["mozzarella",40],["olio",6.2],["pane",40]],t:["veg","salute","veloce","uova","lattosio","glutine"]},
+{id:"pizzacasa",n:"Pizza Margherita",q:"cena",ing:[["farina",110],["passata",70],["mozzarella",70],["olio",5.0],["spezie",1]],t:["veg","kid","glutine","lattosio"]},
 {id:"pizzasurgp",n:"Pizza surgelata e insalata",q:"cena",ing:[["pizzasurg",210],["insalata",60]],t:["veg","kid","veloce","glutine","lattosio"]},
-{id:"gnocchipom",n:"Gnocchi al pomodoro",q:"pranzo",ing:[["gnocchi",220],["passata",110],["grattugiato",12],["olio",3.7]],t:["veg","kid","veloce","glutine","lattosio"]},
-{id:"couscousverd",n:"Cous cous con verdure e ceci",q:"pranzo",ing:[["couscous",80],["zucchine",90],["peperoni",70],["ceci",70],["olio",6.2],["spezie",1]],t:["veg","salute","glutine"],sea:[5,9]},
-{id:"tofusalt",n:"Tofu saltato con verdure e riso",q:"cena",ing:[["tofu",110],["riso",70],["zucchine",90],["peperoni",60],["oliosem",6.2]],t:["veg","salute"]},
+{id:"gnocchipom",n:"Gnocchi al pomodoro e burrata",q:"pranzo",ing:[["gnocchi",220],["passata",110],["grattugiato",12],["olio",3.7]],t:["veg","kid","veloce","glutine","lattosio"]},
+{id:"couscousverd",n:"Cous cous estivo",q:"pranzo",ing:[["couscous",80],["zucchine",90],["peperoni",70],["ceci",70],["olio",6.2],["spezie",1]],t:["veg","salute","glutine"],sea:[5,9]},
+{id:"tofusalt",n:"Riso con tofu saltato piccante",q:"cena",ing:[["tofu",110],["riso",70],["zucchine",90],["peperoni",60],["oliosem",6.2]],t:["veg","salute"]},
 {id:"purewurstel",n:"Purè e würstel",q:"cena",ing:[["patate",250],["latte",60],["burro",12],["wurstel",100]],t:["kid","maiale","veloce","lattosio","economico"]},
-{id:"caprese",n:"Caprese, pane e olive",q:"cena",ing:[["mozzarella",100],["pomodori",130],["pane",80],["olio",6.2]],t:["veg","veloce","lattosio","glutine"],sea:[6,9]},
-{id:"fagioliniuova",n:"Fagiolini, patate e uova",q:"cena",ing:[["fagiolini",180],["patate",120],["uova",1.5],["olio",6.2]],t:["veg","salute","uova"],sea:[6,9]},
-{id:"paninofreddo",n:"Panino prosciutto e formaggio",q:"cena",ing:[["pane",110],["prosccotto",55],["semiduro",40],["insalata",30]],t:["maiale","veloce","glutine","lattosio"]},
+{id:"caprese",n:"Pane alle olive",q:"cena",ing:[["mozzarella",100],["pomodori",130],["pane",80],["olio",6.2]],t:["veg","veloce","lattosio","glutine"],sea:[6,9]},
+{id:"fagioliniuova",n:"Burger di fagiolini e patate",q:"cena",ing:[["fagiolini",180],["patate",120],["uova",1.5],["olio",6.2]],t:["veg","salute","uova"],sea:[6,9]},
+{id:"paninofreddo",n:"Omelette prosciutto e formaggio",q:"cena",ing:[["pane",110],["prosccotto",55],["semiduro",40],["insalata",30]],t:["maiale","veloce","glutine","lattosio"]},
 {id:"melanzaneparm",n:"Melanzane al forno con pomodoro",q:"pranzo",ing:[["melanzane",220],["passata",110],["mozzarella",55],["grattugiato",12],["olio",7.4]],t:["veg","salute","lattosio"],sea:[6,9]},
-{id:"finocchigratin",n:"Finocchi gratinati e uova",q:"cena",ing:[["finocchi",220],["grattugiato",15],["panna",25],["uova",1.5],["pane",30]],t:["veg","salute","lattosio","uova","glutine"],sea:[10,4]},
-{id:"spinaciricotta",n:"Spinaci, ricotta e polenta",q:"cena",ing:[["spinaci",180],["ricotta",70],["polenta",70],["burro",8]],t:["veg","salute","lattosio"]},
+{id:"finocchigratin",n:"Finocchi gratinati",q:"cena",ing:[["finocchi",220],["grattugiato",15],["panna",25],["uova",1.5],["pane",30]],t:["veg","salute","lattosio","uova","glutine"],sea:[10,4]},
+{id:"spinaciricotta",n:"Polpette di spinaci e ricotta",q:"cena",ing:[["spinaci",180],["ricotta",70],["polenta",70],["burro",8]],t:["veg","salute","lattosio"]},
 {id:"coscepatatecar",n:"Cosce di pollo con carote e cipolle",q:"pranzo",ing:[["cosciapollo",190],["carote",120],["cipolle",30],["patate",150],["olio",6.2]],t:["carne_bianca","economico","salute"]},
 {id:"risoverdure",n:"Riso con verdure saltate e ceci",q:"both",ing:[["riso",85],["zucchine",100],["carote",60],["ceci",90],["olio",6.2],["spezie",1]],t:["veg","salute","economico"]},
-{id:"lentpatate",n:"Lenticchie in umido con patate",q:"pranzo",ing:[["lenticchie",65],["patate",190],["carote",50],["cipolle",25],["passata",60],["olio",6.2]],t:["veg","salute","economico"]},
-{id:"polentafunghi",n:"Polenta con funghi trifolati",q:"cena",ing:[["polenta",85],["funghi",140],["aglio",5],["olio",7.4],["spezie",1]],t:["veg","tradizione","salute"],sea:[9,3]},
+{id:"lentpatate",n:"Lenticchie in umido",q:"pranzo",ing:[["lenticchie",65],["patate",190],["carote",50],["cipolle",25],["passata",60],["olio",6.2]],t:["veg","salute","economico"]},
+{id:"polentafunghi",n:"Funghi trifolati",q:"cena",ing:[["polenta",85],["funghi",140],["aglio",5],["olio",7.4],["spezie",1]],t:["veg","tradizione","salute"],sea:[9,3]},
 {id:"lasagneragu",n:"Lasagne al forno",q:"pranzo",m:90,ing:[["lasagne",90],["macinato",90],["passata",120],["latte",80],["farina",12],["burro",12],["parmigiano",25],["carote",25],["cipolle",20]],t:["carne_rossa","elaborato","kid","glutine","lattosio","tradizione"]},
 {id:"risozafferano",n:"Risotto allo zafferano",q:"pranzo",m:35,ing:[["carnaroli",85],["zafferano",0.25],["cipolle",20],["burro",12],["parmigiano",20],["vinobianco",25],["dado",3]],t:["veg","elaborato","lattosio","tradizione"]},
-{id:"risoporcini",n:"Risotto ai porcini",q:"pranzo",m:40,ing:[["carnaroli",85],["porcini",6],["funghi",70],["cipolle",20],["burro",10],["parmigiano",20],["vinobianco",25]],t:["veg","elaborato","lattosio"],sea:[9,2]},
+{id:"risoporcini",n:"Risotto ai porcini e zafferano",q:"pranzo",m:40,ing:[["carnaroli",85],["porcini",6],["funghi",70],["cipolle",20],["burro",10],["parmigiano",20],["vinobianco",25]],t:["veg","elaborato","lattosio"],sea:[9,2]},
 {id:"parmigiana",n:"Parmigiana di melanzane",q:"pranzo",m:80,ing:[["melanzane",230],["passata",130],["mozzarella",60],["parmigiano",20],["basilico",0.08],["oliosem",12]],t:["veg","elaborato","lattosio","salute"],sea:[6,9]},
-{id:"brasato",n:"Brasato al vino rosso con polenta",q:"pranzo",m:150,ing:[["spezzatino",160],["vinorosso",70],["carote",50],["cipolle",30],["sedano",25],["polenta",75],["olio",6]],t:["carne_rossa","elaborato","tradizione"],sea:[10,3]},
-{id:"arrostopatate",n:"Arrosto di vitello con patate",q:"pranzo",m:100,ing:[["arrostovitello",150],["patate",200],["vinobianco",30],["cipolle",25],["burro",8],["olio",6]],t:["carne_rossa","elaborato","tradizione"]},
-{id:"conigliobianco",n:"Coniglio in umido con olive",q:"pranzo",m:75,ing:[["coniglio",200],["olive",20],["pomodorini",80],["vinobianco",30],["olio",8],["patate",150]],t:["carne_bianca","elaborato","tradizione"]},
+{id:"brasato",n:"Salsiccia al vino rosso con polenta",q:"pranzo",m:150,ing:[["spezzatino",160],["vinorosso",70],["carote",50],["cipolle",30],["sedano",25],["polenta",75],["olio",6]],t:["carne_rossa","elaborato","tradizione"],sea:[10,3]},
+{id:"arrostopatate",n:"Arrosto di vitello al forno con patate",q:"pranzo",m:100,ing:[["arrostovitello",150],["patate",200],["vinobianco",30],["cipolle",25],["burro",8],["olio",6]],t:["carne_rossa","elaborato","tradizione"]},
+{id:"conigliobianco",n:"Coniglio in umido",q:"pranzo",m:75,ing:[["coniglio",200],["olive",20],["pomodorini",80],["vinobianco",30],["olio",8],["patate",150]],t:["carne_bianca","elaborato","tradizione"]},
 {id:"scoglio",n:"Spaghetti allo scoglio",q:"pranzo",m:45,ing:[["pasta",100],["cozze",150],["vongole",70],["gamberi",50],["pomodorini",80],["aglio",5],["vinobianco",25],["olio",10]],t:["pesce","elaborato","salute","glutine"]},
-{id:"branzinoforno",n:"Branzino al forno con patate e olive",q:"pranzo",m:55,ing:[["branzino",220],["patate",180],["olive",15],["limoni",25],["olio",8]],t:["pesce","elaborato","salute"]},
-{id:"calamariumido",n:"Calamari in umido con piselli",q:"cena",m:50,ing:[["calamari",160],["piselli",90],["passata",70],["aglio",4],["olio",8],["pane",50]],t:["pesce","elaborato","salute","glutine"]},
-{id:"gnocchigorgo",n:"Gnocchi al gorgonzola e noci",q:"cena",m:20,ing:[["gnocchi",220],["gorgonzola",45],["panna",25],["noci",12]],t:["veg","veloce","lattosio","noci","glutine"]},
-{id:"tagliatarucola",n:"Tagliata di manzo con rucola e grana",q:"cena",m:25,ing:[["entrecote",160],["rucola",25],["parmigiano",15],["balsamico",8],["olio",8],["patate",150]],t:["carne_rossa","elaborato","lattosio"]},
-{id:"pollolimone",n:"Pollo al limone con verdure al forno",q:"pranzo",m:50,ing:[["pettopollo",150],["limoni",30],["zucchine",100],["carote",70],["olio",8],["spezie",1]],t:["carne_bianca","salute"]},
-{id:"polpettone",n:"Polpettone farcito con patate",q:"pranzo",m:80,ing:[["macinato",130],["uova",0.4],["pane",30],["prosccotto",25],["semiduro",25],["patate",180],["olio",6]],t:["carne_rossa","elaborato","maiale","glutine","lattosio","uova"]},
-{id:"zuppacipolle",n:"Zuppa di cipolle gratinata",q:"cena",m:60,ing:[["cipolle",250],["baguette",60],["semiduro",45],["burro",12],["dado",4]],t:["veg","elaborato","lattosio","glutine"],sea:[10,3]},
-{id:"tortasalata",n:"Torta salata a verdure e formaggio",q:"cena",m:65,ing:[["farina",70],["burro",30],["uova",1],["spinaci",120],["ricotta",60],["parmigiano",15]],t:["veg","elaborato","lattosio","glutine","uova"]},
+{id:"branzinoforno",n:"Branzino al forno con patate al limone",q:"pranzo",m:55,ing:[["branzino",220],["patate",180],["olive",15],["limoni",25],["olio",8]],t:["pesce","elaborato","salute"]},
+{id:"calamariumido",n:"Calamari in umido",q:"cena",m:50,ing:[["calamari",160],["piselli",90],["passata",70],["aglio",4],["olio",8],["pane",50]],t:["pesce","elaborato","salute","glutine"]},
+{id:"gnocchigorgo",n:"Gnocchetti gorgonzola e noci",q:"cena",m:20,ing:[["gnocchi",220],["gorgonzola",45],["panna",25],["noci",12]],t:["veg","veloce","lattosio","noci","glutine"]},
+{id:"tagliatarucola",n:"Tagliata di manzo con rucola e pomodorini",q:"cena",m:25,ing:[["entrecote",160],["rucola",25],["parmigiano",15],["balsamico",8],["olio",8],["patate",150]],t:["carne_rossa","elaborato","lattosio"]},
+{id:"pollolimone",n:"Pollo al limone",q:"pranzo",m:50,ing:[["pettopollo",150],["limoni",30],["zucchine",100],["carote",70],["olio",8],["spezie",1]],t:["carne_bianca","salute"]},
+{id:"polpettone",n:"Polpettone con speck e patate",q:"pranzo",m:80,ing:[["macinato",130],["uova",0.4],["pane",30],["prosccotto",25],["semiduro",25],["patate",180],["olio",6]],t:["carne_rossa","elaborato","maiale","glutine","lattosio","uova"]},
+{id:"zuppacipolle",n:"Zuppa di cipolle",q:"cena",m:60,ing:[["cipolle",250],["baguette",60],["semiduro",45],["burro",12],["dado",4]],t:["veg","elaborato","lattosio","glutine"],sea:[10,3]},
+{id:"tortasalata",n:"Torta salata di verdure",q:"cena",m:65,ing:[["farina",70],["burro",30],["uova",1],["spinaci",120],["ricotta",60],["parmigiano",15]],t:["veg","elaborato","lattosio","glutine","uova"]},
 {id:"insgreca",n:"Insalata greca con pane e formaggio",q:"cena",m:15,ing:[["pomodori",130],["semiduro",60],["olive",20],["cipolle",20],["pane",70],["olio",10]],t:["veg","veloce","salute","lattosio","glutine"],sea:[6,9]},
-{id:"cozzevino",n:"Cozze al vino bianco con pane",q:"cena",m:30,ing:[["cozze",350],["vinobianco",40],["aglio",5],["pane",80],["olio",10]],t:["pesce","salute","glutine"],sea:[5,10]},
-{id:"gamberiavocado",n:"Insalata di gamberi e avocado",q:"cena",m:20,ing:[["gamberi",90],["avocado",0.5],["insalata",60],["limoni",20],["olio",8],["pane",50]],t:["pesce","salute","glutine"]},
-{id:"pastauovoragu",n:"Tagliatelle all'uovo al rag\u00f9",q:"pranzo",m:60,ing:[["pastauovo",95],["macinato",85],["carote",30],["cipolle",25],["vinobianco",25],["parmigiano",18],["olio",6]],t:["carne_rossa","elaborato","glutine","lattosio","uova"]},
-{id:"agnelloerbe",n:"Costolette d'agnello alle erbe",q:"pranzo",m:45,ing:[["agnello",200],["patate",180],["spezie",2],["aglio",4],["olio",8]],t:["carne_rossa","elaborato"]},
+{id:"cozzevino",n:"Cozze in salsa di vino bianco e panna",q:"cena",m:30,ing:[["cozze",350],["vinobianco",40],["aglio",5],["pane",80],["olio",10]],t:["pesce","salute","glutine"],sea:[5,10]},
+{id:"gamberiavocado",n:"Insalata con gamberoni e avocado",q:"cena",m:20,ing:[["gamberi",90],["avocado",0.5],["insalata",60],["limoni",20],["olio",8],["pane",50]],t:["pesce","salute","glutine"]},
+{id:"pastauovoragu",n:"Tagliatelle al ragù bianco",q:"pranzo",m:60,ing:[["pastauovo",95],["macinato",85],["carote",30],["cipolle",25],["vinobianco",25],["parmigiano",18],["olio",6]],t:["carne_rossa","elaborato","glutine","lattosio","uova"]},
+{id:"agnelloerbe",n:"Costolette d'agnello al forno",q:"pranzo",m:45,ing:[["agnello",200],["patate",180],["spezie",2],["aglio",4],["olio",8]],t:["carne_rossa","elaborato"]},
 {id:"anatramiele",n:"Petto d'anatra al miele e arance",q:"pranzo",m:50,ing:[["anatra",160],["miele",12],["arance",120],["patate",150],["burro",8]],t:["carne_bianca","elaborato","lattosio"],sea:[11,3]},
 {id:"crepes",n:"Cr\u00eapes salate prosciutto e formaggio",q:"cena",m:45,ing:[["farina",55],["uova",1],["latte",140],["prosccotto",40],["semiduro",40],["burro",10]],t:["elaborato","maiale","glutine","lattosio","uova","kid"]},
-{id:"carciofiuova",n:"Carciofi trifolati con uova",q:"cena",m:40,ing:[["carciofi",200],["uova",1.5],["aglio",4],["olio",10],["pane",50]],t:["veg","salute","uova","glutine"],sea:[11,4]},
-{id:"asparagiuova",n:"Asparagi con uova e parmigiano",q:"cena",m:30,ing:[["asparagi",200],["uova",1.5],["parmigiano",15],["burro",10],["pane",50]],t:["veg","salute","uova","lattosio","glutine"],sea:[4,6]},
-{id:"radicchiorisotto",n:"Risotto al radicchio e speck",q:"pranzo",m:40,ing:[["carnaroli",85],["radicchio",90],["speck",30],["cipolle",20],["parmigiano",18],["burro",10],["vinorosso",25]],t:["maiale","elaborato","lattosio"],sea:[10,3]},
+{id:"carciofiuova",n:"Carciofi trifolati",q:"cena",m:40,ing:[["carciofi",200],["uova",1.5],["aglio",4],["olio",10],["pane",50]],t:["veg","salute","uova","glutine"],sea:[11,4]},
+{id:"asparagiuova",n:"Nuvole di uova e asparagi",q:"cena",m:30,ing:[["asparagi",200],["uova",1.5],["parmigiano",15],["burro",10],["pane",50]],t:["veg","salute","uova","lattosio","glutine"],sea:[4,6]},
+{id:"radicchiorisotto",n:"Risotto con radicchio e speck",q:"pranzo",m:40,ing:[["carnaroli",85],["radicchio",90],["speck",30],["cipolle",20],["parmigiano",18],["burro",10],["vinorosso",25]],t:["maiale","elaborato","lattosio"],sea:[10,3]},
 {id:"ossobucopolenta",n:"Ossobuco con polenta",q:"pranzo",m:120,ing:[["ossobuco",230],["polenta",80],["carote",45],["cipolle",25],["vinobianco",30],["burro",10],["olio",6]],t:["carne_rossa","elaborato","tradizione","grotto"]},
-{id:"capriolosalmi",n:"Salm\u00ec di capriolo con polenta",q:"pranzo",m:140,ing:[["capriolo",170],["merlot",70],["polenta",80],["carote",40],["cipolle",30],["castagne",60]],t:["carne_rossa","elaborato","tradizione","grotto"],sea:[9,12]},
+{id:"capriolosalmi",n:"Coniglio in salmì con polenta",q:"pranzo",m:140,ing:[["capriolo",170],["merlot",70],["polenta",80],["carote",40],["cipolle",30],["castagne",60]],t:["carne_rossa","elaborato","tradizione","grotto"],sea:[9,12]},
 {id:"caprettoforno",n:"Capretto al forno con patate",q:"pranzo",m:110,ing:[["capretto",210],["patate",200],["rosmarino",0.1],["vinobianco",30],["olio",8]],t:["carne_rossa","elaborato","tradizione","grotto"],sea:[3,5]},
 {id:"vitellotonnato",n:"Vitello tonnato",q:"pranzo",m:90,ing:[["arrostovitello",120],["tonno",45],["maionese",25],["capperi",6],["uova",0.3],["limoni",12]],t:["carne_rossa","pesce","elaborato","tradizione","grotto"],sea:[5,9]},
 {id:"carpione",n:"Pesce in carpione",q:"cena",m:60,ing:[["trota",180],["aceto",28],["cipolle",45],["carote",35],["salvia",0.1],["olio",9],["pane",50]],t:["pesce","elaborato","tradizione","grotto","glutine"],sea:[5,9]},
 {id:"uccelliscappati",n:"Uccelli scappati con polenta",q:"pranzo",m:70,ing:[["lonza",150],["pancetta",30],["salvia",0.12],["polenta",78],["burro",10],["vinobianco",25]],t:["carne_rossa","maiale","elaborato","tradizione","grotto"]},
-{id:"polentamortadella",n:"Polenta, fagioli e mortadella",q:"cena",m:45,ing:[["polenta",85],["fagioli",115],["mortadella",60],["cipolle",25],["olio",6]],t:["maiale","economico","tradizione","grotto"]},
+{id:"polentamortadella",n:"Polenta e fagioli",q:"cena",m:45,ing:[["polenta",85],["fagioli",115],["mortadella",60],["cipolle",25],["olio",6]],t:["maiale","economico","tradizione","grotto"]},
 {id:"cicoriaform",n:"Cicoria con cipolle e formaggini",q:"cena",m:30,ing:[["cicoria",160],["cipolle",45],["formaggini",50],["paneseg",55],["olio",8]],t:["veg","salute","tradizione","grotto","lattosio","glutine"],sea:[9,4]},
 {id:"minestronetic",n:"Minestrone alla ticinese",q:"cena",m:70,ing:[["minestrone",210],["fagioli",60],["riso",28],["parmigiano",13],["olio",7],["paneseg",45]],t:["veg","salute","economico","tradizione","grotto","lattosio","glutine"]},
 {id:"risottomerlot",n:"Risotto al Merlot",q:"pranzo",m:45,ing:[["carnaroli",85],["merlot",65],["parmigiano",20],["burro",12],["cipolle",18],["dado",3]],t:["veg","elaborato","tradizione","grotto","lattosio"],sea:[9,3]},
-{id:"gnocchicasa",n:"Gnocchi fatti in casa al pomodoro",q:"pranzo",m:80,ing:[["patate",240],["farina",55],["uova",0.3],["passata",115],["parmigiano",15],["basilico",0.05]],t:["veg","elaborato","tradizione","kid","glutine","lattosio","uova"]},
-{id:"trippaumido",n:"Trippa in umido con fagioli",q:"pranzo",m:120,ing:[["trippa",190],["passata",85],["fagioli",70],["carote",40],["parmigiano",13],["olio",7]],t:["carne_rossa","elaborato","tradizione","grotto","lattosio"],sea:[10,3]},
-{id:"tortapane",n:"Torta di pane della nonna",q:"cena",m:90,ing:[["pane",120],["latte",180],["uova",0.8],["zucchero",45],["uvetta",25],["cacao",8],["pinoli",8]],t:["veg","elaborato","tradizione","kid","glutine","lattosio","uova"]},
+{id:"gnocchicasa",n:"Gnocchi al pomodoro e burrata",q:"pranzo",m:80,ing:[["patate",240],["farina",55],["uova",0.3],["passata",115],["parmigiano",15],["basilico",0.05]],t:["veg","elaborato","tradizione","kid","glutine","lattosio","uova"]},
+{id:"trippaumido",n:"Trippa con fagioli",q:"pranzo",m:120,ing:[["trippa",190],["passata",85],["fagioli",70],["carote",40],["parmigiano",13],["olio",7]],t:["carne_rossa","elaborato","tradizione","grotto","lattosio"],sea:[10,3]},
+{id:"tortapane",n:"Torta di pane",q:"cena",m:90,ing:[["pane",120],["latte",180],["uova",0.8],["zucchero",45],["uvetta",25],["cacao",8],["pinoli",8]],t:["veg","elaborato","tradizione","kid","glutine","lattosio","uova"]},
 {id:"ramenmiso",n:"Ramen al miso con uovo",q:"cena",m:60,ing:[["ramen",100],["miso",25],["shiitake",60],["pakchoi",80],["uova",1],["germogli",40],["salsasoia",10],["zenzero",6]],t:["elaborato","etnico","giappone","salute","glutine","uova","soia"]},
 {id:"sushibowl",n:"Sushi bowl al salmone",q:"pranzo",m:45,ing:[["risosushi",90],["salmonesashimi",90],["avocado",0.5],["cetrioli",60],["nori",4],["sesamo",6],["acetoriso",10],["salsasoia",10]],t:["pesce","etnico","giappone","salute","soia"]},
 {id:"gyozaverdure",n:"Gyoza e insalata di alghe",q:"cena",m:25,ing:[["gyoza",140],["algheinsalata",50],["salsasoia",10],["edamamesurg",70]],t:["etnico","giappone","veloce","glutine","soia"]},
-{id:"tempurasalmone",n:"Salmone in panko con riso",q:"pranzo",m:40,ing:[["salmone",130],["panko",30],["uova",0.4],["risosushi",85],["zenzerosott",15]],t:["pesce","etnico","giappone","glutine","uova"]},
+{id:"tempurasalmone",n:"Salmone croccante con panko",q:"pranzo",m:40,ing:[["salmone",130],["panko",30],["uova",0.4],["risosushi",85],["zenzerosott",15]],t:["pesce","etnico","giappone","glutine","uova"]},
 {id:"tacospollo",n:"Tacos di pollo",q:"cena",m:35,ing:[["mais_tortillas",110],["pettopollo",130],["fagiolineri",70],["salsamessicana",50],["cheddar",35],["lime",20],["coriandolo",0.08],["cumino",2]],t:["carne_bianca","etnico","messico","kid","lattosio"]},
 {id:"chilivegano",n:"Chili di fagioli neri",q:"cena",m:55,ing:[["fagiolineri",140],["mais",60],["passata",110],["cipolle",30],["peperoni",70],["cumino",2],["chipotle",3],["risointegrale",70]],t:["veg","vegano","etnico","messico","salute","economico"]},
 {id:"burritos",n:"Burritos di manzo e fagioli",q:"pranzo",m:45,ing:[["tortillas",120],["macinato",110],["fagiolineri",80],["riso",50],["cheddar",35],["salsamessicana",45],["guacamole",35]],t:["carne_rossa","etnico","messico","glutine","lattosio"]},
 {id:"nachosforno",n:"Nachos gratinati",q:"cena",m:25,ing:[["nachos",70],["cheddar",50],["fagiolineri",70],["jalapenos",20],["salsamessicana",45]],t:["veg","etnico","messico","veloce","kid","lattosio"]},
-{id:"burgercasa",n:"Burger di manzo con patate",q:"cena",m:35,ing:[["paninihamburger",95],["macinato",140],["cheddar",30],["cetriolini",20],["insalata",25],["pomodori",40],["patatinesurg",130],["salsabbq",15]],t:["carne_rossa","etnico","america","kid","glutine","lattosio"]},
+{id:"burgercasa",n:"Burger di patate",q:"cena",m:35,ing:[["paninihamburger",95],["macinato",140],["cheddar",30],["cetriolini",20],["insalata",25],["pomodori",40],["patatinesurg",130],["salsabbq",15]],t:["carne_rossa","etnico","america","kid","glutine","lattosio"]},
 {id:"burgerveggie",n:"Burger vegetale",q:"cena",m:25,ing:[["paninihamburger",95],["burgerveg",110],["formaggioveg",25],["insalata",25],["pomodori",40],["cetriolini",20],["patatinesurg",120]],t:["veg","vegano","etnico","america","glutine","soia"]},
 {id:"costinebbqp",n:"Costine barbecue e insalata di cavolo",q:"pranzo",m:150,ing:[["costinebbq",250],["salsabbq",30],["cappuccio",120],["maionese",20],["carote",50]],t:["carne_rossa","maiale","elaborato","etnico","america","uova"]},
 {id:"alettepiccanti",n:"Alette piccanti e anelli di cipolla",q:"cena",m:50,ing:[["alettepollo",220],["salsabbq",25],["sriracha",8],["cipollefritte",90]],t:["carne_bianca","etnico","america","glutine"]},
-{id:"pizzanapoli",n:"Pizza napoletana fatta in casa",q:"cena",m:120,ing:[["farina00",120],["pomodorosanmarzano",80],["fiordilatte",75],["basilico",0.06],["olio",7],["lievitomadre",4]],t:["veg","etnico","pizza","elaborato","kid","glutine","lattosio"]},
-{id:"pizzadiavola",n:"Pizza diavola",q:"cena",m:120,ing:[["farina00",120],["pomodorosanmarzano",80],["fiordilatte",70],["saltamburo",35],["nduja",15],["origanosecco",1]],t:["maiale","etnico","pizza","elaborato","glutine","lattosio"]},
-{id:"currypollo",n:"Curry di pollo con naan",q:"pranzo",m:55,ing:[["pettopollo",140],["pastacurry",30],["lattecocco",120],["cipolle",30],["basmati",75],["naan",60],["garammasala",2]],t:["carne_bianca","etnico","india","glutine","lattosio"]},
-{id:"daallenticchie",n:"Dal di lenticchie rosse",q:"cena",m:45,ing:[["lenticchierosse",80],["lattecocco",90],["cipolle",30],["curcuma",2],["cumino",2],["basmati",70],["zenzero",6]],t:["veg","vegano","etnico","india","salute","economico"]},
+{id:"pizzanapoli",n:"Pizza napoletana",q:"cena",m:120,ing:[["farina00",120],["pomodorosanmarzano",80],["fiordilatte",75],["basilico",0.06],["olio",7],["lievitomadre",4]],t:["veg","etnico","pizza","elaborato","kid","glutine","lattosio"]},
+{id:"pizzadiavola",n:"Pizza alla diavola",q:"cena",m:120,ing:[["farina00",120],["pomodorosanmarzano",80],["fiordilatte",70],["saltamburo",35],["nduja",15],["origanosecco",1]],t:["maiale","etnico","pizza","elaborato","glutine","lattosio"]},
+{id:"currypollo",n:"Straccetti di pollo al curry",q:"pranzo",m:55,ing:[["pettopollo",140],["pastacurry",30],["lattecocco",120],["cipolle",30],["basmati",75],["naan",60],["garammasala",2]],t:["carne_bianca","etnico","india","glutine","lattosio"]},
+{id:"daallenticchie",n:"Dahl di lenticchie rosse",q:"cena",m:45,ing:[["lenticchierosse",80],["lattecocco",90],["cipolle",30],["curcuma",2],["cumino",2],["basmati",70],["zenzero",6]],t:["veg","vegano","etnico","india","salute","economico"]},
 {id:"paneertikka",n:"Paneer al pomodoro e spezie",q:"cena",m:45,ing:[["paneer",110],["passata",110],["panna",25],["garammasala",3],["basmati",75],["naan",55]],t:["veg","etnico","india","lattosio","glutine"]},
 {id:"mezze",n:"Mezze: hummus, falafel e pita",q:"cena",m:35,ing:[["hummus",70],["falafel",110],["pita",90],["tzatziki",45],["pomodori",70],["harissa",6]],t:["veg","etnico","libano","salute","sesamo","glutine","lattosio"]},
 {id:"mezzevegano",n:"Mezze vegane con tahina",q:"cena",m:35,ing:[["hummusrosso",70],["falafel",110],["pita",90],["tahina",20],["insalata",50],["limoni",15],["olio",8]],t:["veg","vegano","etnico","libano","salute","sesamo","glutine"]},
 {id:"kebabpiatto",n:"Kebab in piatto con verdure",q:"pranzo",m:40,ing:[["kebabcarne",160],["pita",85],["tzatziki",45],["insalata",50],["pomodori",60],["cipolle",25]],t:["carne_rossa","etnico","libano","glutine","lattosio"]},
-{id:"noodlessaltati",n:"Noodles saltati con verdure",q:"cena",m:25,ing:[["noodles",100],["wok",150],["salsasoia",15],["hoisin",12],["germogli",50],["oliosem",10]],t:["veg","vegano","etnico","cina","veloce","glutine","soia"]},
+{id:"noodlessaltati",n:"Noodles con verdure",q:"cena",m:25,ing:[["noodles",100],["wok",150],["salsasoia",15],["hoisin",12],["germogli",50],["oliosem",10]],t:["veg","vegano","etnico","cina","veloce","glutine","soia"]},
 {id:"polloagrodolce",n:"Pollo agrodolce con riso jasmine",q:"pranzo",m:45,ing:[["pettopollo",140],["peperoni",70],["ananas",0.15],["salsaostriche",15],["risojasmine",80],["zenzero",6]],t:["carne_bianca","etnico","cina","molluschi"]},
 {id:"anatrapechino",n:"Anatra laccata con crespelle",q:"pranzo",m:70,ing:[["anatralaccata",150],["hoisin",20],["cetrioli",60],["cartariso",40],["cipolle",20]],t:["carne_bianca","elaborato","etnico","cina","glutine","soia"]},
 {id:"padthai",n:"Pad thai di gamberi",q:"cena",m:40,ing:[["noodles",95],["gamberi",90],["arachidi",20],["germogli",60],["salsapesce",12],["lime",20],["uova",0.7]],t:["pesce","etnico","thai","glutine","uova","noci"]},
-{id:"currythai",n:"Curry verde di verdure",q:"cena",m:40,ing:[["pastacurry",28],["lattecocco",130],["wok",150],["tofu",90],["citronella",0.1],["risojasmine",80]],t:["veg","vegano","etnico","thai","salute"]},
+{id:"currythai",n:"Curry verde Thai",q:"cena",m:40,ing:[["pastacurry",28],["lattecocco",130],["wok",150],["tofu",90],["citronella",0.1],["risojasmine",80]],t:["veg","vegano","etnico","thai","salute"]},
 {id:"involtiniprimavera",n:"Involtini di carta di riso",q:"cena",m:35,ing:[["cartariso",45],["gamberi",70],["germogli",50],["carote",50],["coriandolo",0.08],["arachidi",15],["salsapesce",10]],t:["pesce","etnico","thai","salute","noci"]},
-{id:"pokebowl",n:"Poke bowl di tonno",q:"pranzo",m:30,ing:[["risosushi",90],["tonnosashimi",90],["avocado",0.5],["edamamesurg",60],["mango",0.25],["salsasoia",12],["sesamo",6]],t:["pesce","etnico","giappone","salute","soia"]},
+{id:"pokebowl",n:"Poke bowl vegetariano",q:"pranzo",m:30,ing:[["risosushi",90],["tonnosashimi",90],["avocado",0.5],["edamamesurg",60],["mango",0.25],["salsasoia",12],["sesamo",6]],t:["pesce","etnico","giappone","salute","soia"]},
 {id:"buddhabowl",n:"Buddha bowl di quinoa e ceci",q:"pranzo",m:35,ing:[["quinoa",80],["ceci",90],["patatedolci",120],["songino",40],["hummus",45],["semichia",10],["olio",8]],t:["veg","vegano","salute","etnico"]},
 {id:"tempehsaltato",n:"Tempeh saltato con broccoli",q:"cena",m:30,ing:[["tempeh",110],["broccoli",150],["salsasoia",14],["risointegrale",75],["sesamo",6],["zenzero",6]],t:["veg","vegano","salute","etnico","soia"]},
 {id:"seitanfunghi",n:"Seitan ai funghi e polenta",q:"cena",m:40,ing:[["seitan",120],["funghi",120],["cipolle",25],["polenta",75],["lievitoalim",8],["olio",9]],t:["veg","vegano","glutine"]},
-{id:"lasagneveg",n:"Lasagne vegane alle verdure",q:"pranzo",m:90,ing:[["lasagne",85],["zucchine",110],["melanzane",110],["passata",120],["lattavena",90],["farina",12],["lievitoalim",10]],t:["veg","vegano","elaborato","glutine"]},
-{id:"risottozucca_veg",n:"Risotto vegano alla zucca",q:"pranzo",m:40,ing:[["carnaroli",85],["zucca",180],["cipolle",20],["lievitoalim",8],["olio",10],["vinobianco",25]],t:["veg","vegano","salute"],sea:[9,12]},
-{id:"greekbowl",n:"Insalata greca con falafel",q:"cena",m:25,ing:[["feta",55],["pomodori",120],["cetrioli",80],["olive",20],["falafel",90],["pita",70],["olio",9]],t:["veg","etnico","grecia","salute","lattosio","glutine","sesamo"]},
+{id:"lasagneveg",n:"Lasagne vegane",q:"pranzo",m:90,ing:[["lasagne",85],["zucchine",110],["melanzane",110],["passata",120],["lattavena",90],["farina",12],["lievitoalim",10]],t:["veg","vegano","elaborato","glutine"]},
+{id:"risottozucca_veg",n:"Risotto alla zucca",q:"pranzo",m:40,ing:[["carnaroli",85],["zucca",180],["cipolle",20],["lievitoalim",8],["olio",10],["vinobianco",25]],t:["veg","vegano","salute"],sea:[9,12]},
+{id:"greekbowl",n:"Insalata greca",q:"cena",m:25,ing:[["feta",55],["pomodori",120],["cetrioli",80],["olive",20],["falafel",90],["pita",70],["olio",9]],t:["veg","etnico","grecia","salute","lattosio","glutine","sesamo"]},
 {id:"moussaka",n:"Moussaka",q:"pranzo",m:100,ing:[["melanzane",200],["macinato",110],["passata",100],["latte",80],["farina",12],["semiduro",35],["cannella",1]],t:["carne_rossa","elaborato","etnico","grecia","lattosio","glutine"]},
-{id:"cuscusmarocchino",n:"Cous cous alle sette verdure",q:"pranzo",m:55,ing:[["couscous",85],["zucca",90],["carote",70],["zucchine",80],["ceci",80],["harissa",5],["cumino",2],["uvetta",15]],t:["veg","vegano","etnico","salute","glutine"]},
-{id:"zuppafarro",n:"Zuppa di farro e legumi",q:"cena",m:55,ing:[["farrospezzato",70],["fagiolicannellini",90],["carote",50],["sedano",25],["passata",60],["olio",8],["rosmarino",0.06]],t:["veg","vegano","salute","economico","glutine"],sea:[10,4]},
-{id:"pisellisecchi_zuppa",n:"Vellutata di piselli spezzati",q:"cena",m:50,ing:[["pisellisecchi",75],["patate",90],["cipolle",25],["olio",8],["pane",45]],t:["veg","vegano","economico","salute","glutine"]},
+{id:"cuscusmarocchino",n:"Cous cous estivo",q:"pranzo",m:55,ing:[["couscous",85],["zucca",90],["carote",70],["zucchine",80],["ceci",80],["harissa",5],["cumino",2],["uvetta",15]],t:["veg","vegano","etnico","salute","glutine"]},
+{id:"zuppafarro",n:"Zuppa di legumi e cereali",q:"cena",m:55,ing:[["farrospezzato",70],["fagiolicannellini",90],["carote",50],["sedano",25],["passata",60],["olio",8],["rosmarino",0.06]],t:["veg","vegano","salute","economico","glutine"],sea:[10,4]},
+{id:"pisellisecchi_zuppa",n:"Zuppa di piselli spezzati",q:"cena",m:50,ing:[["pisellisecchi",75],["patate",90],["cipolle",25],["olio",8],["pane",45]],t:["veg","vegano","economico","salute","glutine"]},
 {id:"scamorzagratin",n:"Melanzane e scamorza al forno",q:"cena",m:45,ing:[["melanzane",200],["scamorza",60],["passata",100],["origanosecco",1],["olio",9]],t:["veg","lattosio"],sea:[6,9]},
 {id:"sogliolalimone",n:"Sogliola al limone e capperi",q:"cena",m:25,ing:[["sogliola",160],["limoni",25],["capperi",8],["burro",12],["patate",160]],t:["pesce","salute","veloce","lattosio"]},
 {id:"salmerinoerbe",n:"Salmerino alle erbe con patate",q:"pranzo",m:45,ing:[["salmerino",200],["prezzemolo",0.1],["limoni",20],["patate",180],["olio",8]],t:["pesce","salute","elaborato","tradizione"]},
@@ -2431,9 +2454,9 @@ const PIATTI = [
 {id:"cecisecchi_zuppa",n:"Zuppa di ceci",q:"cena",m:70,ing:[["ceci_secchi",70],["rosmarino",0.08],["aglio",4],["passata_bio",60],["olio",10],["pane_integrale_grande",55]],t:["veg","vegano","salute","economico","glutine"]},
 {id:"fagiolisecchi_pasta",n:"Pasta e fagioli",q:"pranzo",m:80,ing:[["fagioli_secchi",65],["pasta",55],["carote",40],["sedano",25],["passata",60],["olio",9]],t:["veg","vegano","economico","tradizione","glutine"],sea:[10,4]},
 {id:"verdurgrigliate_piadina",n:"Piadina con verdure grigliate",q:"cena",m:20,ing:[["piadina",100],["verdure_grigliate",90],["mozzarella_grande",50],["rucola",20]],t:["veg","veloce","glutine","lattosio"]},
-{id:"salsicciapollo_pure",n:"Salsicce di pollo con purè",q:"cena",m:35,ing:[["salsiccia_pollo",140],["patate",220],["latte",50],["burro",10]],t:["carne_bianca","kid","veloce","lattosio"]},
+{id:"salsicciapollo_pure",n:"Pollo e purè",q:"cena",m:35,ing:[["salsiccia_pollo",140],["patate",220],["latte",50],["burro",10]],t:["carne_bianca","kid","veloce","lattosio"]},
 {id:"cervelassalat",n:"Insalata di cervelat e formaggio",q:"cena",m:15,ing:[["cervelas",120],["semiduro",60],["cetriolini",30],["cipolle",25],["olio",8],["pane",70]],t:["maiale","veloce","tradizione","glutine","lattosio"]},
-{id:"schublig_patate",n:"Salsiccia con patate e crauti",q:"cena",m:40,ing:[["schublig",130],["patate",200],["cappuccio",120],["cipolle",25],["burro",10]],t:["maiale","tradizione","lattosio"],sea:[10,3]},
+{id:"schublig_patate",n:"Salsiccia e patate al forno",q:"cena",m:40,ing:[["schublig",130],["patate",200],["cappuccio",120],["cipolle",25],["burro",10]],t:["maiale","tradizione","lattosio"],sea:[10,3]},
 {id:"raclette_serata",n:"Serata raclette",q:"cena",m:35,ing:[["raclette",180],["patate",250],["cetriolini",30],["sottaceti",30],["carnesecca_gr",25]],t:["elaborato","tradizione","lattosio"],sea:[10,3]},
 {id:"fonduta_serata",n:"Fonduta con pane e patate",q:"cena",m:30,ing:[["fonduta",200],["pane",110],["patate",120],["vinobianco",25]],t:["veg","tradizione","lattosio","glutine"],sea:[10,3]},
 {id:"rostiuova",n:"Rösti con uova e speck",q:"cena",m:35,ing:[["patate",250],["uova",1.5],["speck",30],["burro",12],["cipolle",25]],t:["maiale","tradizione","uova","lattosio"]},
@@ -2441,7 +2464,7 @@ const PIATTI = [
 {id:"cottagebowl",n:"Bowl di cottage, semi e verdure",q:"pranzo",m:15,ing:[["cottage",150],["semizucca",20],["pomodorini",90],["cetrioli",70],["paneint",60],["olio",7]],t:["veg","veloce","salute","lattosio","glutine"]},
 {id:"pastapestorosso",n:"Pasta al pesto rosso e ricotta",q:"pranzo",m:20,ing:[["pasta",100],["pestorosso",35],["ricotta",50],["pinoli",8]],t:["veg","veloce","glutine","lattosio","noci"]},
 {id:"tortillabowl",n:"Bowl messicana con tortilla chips",q:"cena",m:25,ing:[["tortillaschips",45],["fagiolineri",110],["mais_dolce2",70],["cheddar",35],["guacamole",40],["lime",15]],t:["veg","etnico","messico","veloce","lattosio"]},
-{id:"teriyakipollo",n:"Pollo teriyaki con riso",q:"pranzo",m:35,ing:[["pettopollo",145],["salsateriyaki",30],["risojasmine",80],["germogli",50],["sesamo",6]],t:["carne_bianca","etnico","giappone","soia","glutine","sesamo"]},
+{id:"teriyakipollo",n:"Pollo teriyaki",q:"pranzo",m:35,ing:[["pettopollo",145],["salsateriyaki",30],["risojasmine",80],["germogli",50],["sesamo",6]],t:["carne_bianca","etnico","giappone","soia","glutine","sesamo"]},
 {id:"currythai_rosso",n:"Curry rosso di gamberi",q:"cena",m:35,ing:[["gamberettisurg",120],["curryPasta",28],["lattecocco",120],["wok",130],["risojasmine",75]],t:["pesce","etnico","thai","crostacei"]},
 {id:"salmonemarinato_ins",n:"Insalata di salmone marinato e patate",q:"cena",m:25,ing:[["salmonemarinato",90],["patate",180],["songino",50],["pannaacida",40],["limoni",15]],t:["pesce","salute","lattosio"]},
 {id:"zuppalegumi_pane",n:"Zuppa di legumi e cereali",q:"cena",m:25,ing:[["zuppalegumi",280],["pane",60],["parmigiano",12],["olio",8]],t:["veg","veloce","economico","glutine","lattosio"]},
@@ -2450,7 +2473,7 @@ const PIATTI = [
 {id:"pastaolive",n:"Pasta olive, capperi e pomodorini",q:"pranzo",m:20,ing:[["pasta",100],["olive_verdi",35],["capperi",8],["pomodorini",90],["aglio",4],["olio",10]],t:["veg","vegano","veloce","economico","glutine"],sea:[5,10]},
 {id:"pollopopcorn",n:"Cosce di pollo croccanti",q:"cena",m:30,ing:[["pettopollo",140],["panko",35],["uova",0.4],["patatinesurg",130],["ketchup",20]],t:["carne_bianca","kid","glutine","uova"]},
 {id:"tomme_insalata",n:"Insalata tiepida con tomme",q:"cena",m:20,ing:[["tomme",70],["misticanza",60],["noci",15],["pere",90],["pane",60],["balsamico",6]],t:["veg","salute","lattosio","glutine","noci"],sea:[9,12]},
-{id:"sbrinzrisotto",n:"Risotto allo Sbrinz e erbe",q:"pranzo",m:35,ing:[["carnaroli",85],["sbrinz",30],["burro",12],["cipolle",20],["prezzemolo",0.08],["vinobianco",25]],t:["veg","tradizione","lattosio"]},
+{id:"sbrinzrisotto",n:"Risotto ai calamaretti e erbe",q:"pranzo",m:35,ing:[["carnaroli",85],["sbrinz",30],["burro",12],["cipolle",20],["prezzemolo",0.08],["vinobianco",25]],t:["veg","tradizione","lattosio"]},
 {id:"pancakedomenica",n:"Pancake della domenica",q:"cena",m:25,ing:[["pancake",90],["latte",120],["uova",1],["miele",18],["fruttibosco",60]],t:["veg","kid","glutine","uova","lattosio"]},
 {id:"cacioepepe",n:"Cacio e pepe",q:"pranzo",m:20,ing:[["pasta",100],["pecorino",45],["pepemacinato",2]],t:["veg","veloce","tradizione","glutine","lattosio"]},
 {id:"amatriciana",n:"Bucatini all'amatriciana",q:"pranzo",m:35,ing:[["pasta",100],["pancetta",50],["pelati",120],["pecorino",25],["peperoncino",1]],t:["maiale","tradizione","glutine","lattosio"]},
@@ -2462,21 +2485,21 @@ const PIATTI = [
 {id:"gnocchisorrentina",n:"Gnocchi alla sorrentina",q:"pranzo",m:35,ing:[["gnocchi",220],["passata",130],["mozzarella",70],["basilico",0.06],["parmigiano",15]],t:["veg","kid","tradizione","glutine","lattosio"]},
 {id:"parmigiana",n:"Parmigiana di melanzane",q:"pranzo",m:90,ing:[["melanzane",250],["passata",150],["mozzarella",80],["parmigiano",25],["basilico",0.06],["oliosem",15]],t:["veg","elaborato","tradizione","lattosio"],sea:[6,9]},
 {id:"caponata",n:"Caponata siciliana",q:"cena",m:50,ing:[["melanzane",200],["sedano",50],["cipolle",40],["olive",25],["capperi",10],["aceto",12],["zucchero",8],["olio",14]],t:["veg","vegano","tradizione","salute"],sea:[6,9]},
-{id:"vitellotonnato_e",n:"Vitello tonnato estivo",q:"pranzo",m:60,ing:[["arrostovitello",140],["tonnoolio",0.7],["maionese",35],["capperi",10],["limoni",15]],t:["carne_bianca","pesce","elaborato","tradizione","uova"],sea:[5,9]},
+{id:"vitellotonnato_e",n:"Vitello tonnato",q:"pranzo",m:60,ing:[["arrostovitello",140],["tonnoolio",0.7],["maionese",35],["capperi",10],["limoni",15]],t:["carne_bianca","pesce","elaborato","tradizione","uova"],sea:[5,9]},
 {id:"saltimbocca",n:"Saltimbocca alla romana",q:"cena",m:25,ing:[["fettine",130],["proscrudo",30],["salvia",0.08],["burro",12],["vinobianco",25],["spinaci",150]],t:["carne_bianca","maiale","veloce","tradizione","lattosio"]},
 {id:"pollocacciatora",n:"Pollo alla cacciatora",q:"pranzo",m:60,ing:[["cosciapollo",180],["passata",120],["olive",25],["rosmarino",0.06],["vinorosso",30],["polenta",70]],t:["carne_bianca","tradizione"]},
 {id:"peperonata",n:"Peperonata con uova",q:"cena",m:40,ing:[["peperoni",220],["cipolle",50],["passata",80],["uova",1.5],["olio",12],["pane",60]],t:["veg","tradizione","uova","glutine"],sea:[7,10]},
 {id:"panzanella",n:"Panzanella",q:"cena",m:20,ing:[["pane",90],["pomodoricuore",180],["cetrioli",80],["cipolle",30],["basilico",0.06],["aceto",10],["olio",12]],t:["veg","vegano","veloce","salute","economico","glutine"],sea:[6,9]},
 {id:"acquapazza",n:"Pesce all'acqua pazza",q:"cena",m:35,ing:[["branzino",200],["pomodorini",120],["aglio",4],["prezzemolo",0.08],["vinobianco",30],["olio",12]],t:["pesce","salute","tradizione"]},
 {id:"cozzepepe",n:"Impepata di cozze",q:"cena",m:25,ing:[["cozze",400],["aglio",5],["prezzemolo",0.1],["pepemacinato",2],["pane",70],["olio",10]],t:["pesce","veloce","tradizione","glutine","molluschi"],sea:[5,9]},
-{id:"fritturacalamari",n:"Calamari fritti e limone",q:"cena",m:30,ing:[["calamari",200],["farina",40],["oliosem",30],["limoni",20],["insalata",60]],t:["pesce","tradizione","glutine","molluschi"]},
+{id:"fritturacalamari",n:"Calamari fritti alla birra",q:"cena",m:30,ing:[["calamari",200],["farina",40],["oliosem",30],["limoni",20],["insalata",60]],t:["pesce","tradizione","glutine","molluschi"]},
 {id:"paella",n:"Paella di pesce",q:"pranzo",m:70,ing:[["riso",90],["gamberi",90],["cozze",150],["calamari",100],["peperoni",70],["piselli",60],["zafferano",0.2]],t:["pesce","elaborato","etnico","spagna","molluschi","crostacei"]},
 {id:"tortillapatatas",n:"Tortilla di patate",q:"cena",m:40,ing:[["patate",250],["uova",2.5],["cipolle",50],["oliosem",25]],t:["veg","etnico","spagna","economico","uova"]},
 {id:"gazpacho",n:"Gazpacho",q:"pranzo",m:20,ing:[["pomodoricuore",300],["cetrioli",100],["peperoni",70],["aglio",3],["pane",40],["olio",14],["aceto",8]],t:["veg","vegano","veloce","salute","etnico","spagna","glutine"],sea:[6,9]},
 {id:"patatasbravas",n:"Patatas bravas",q:"cena",m:35,ing:[["patate",250],["salsapomodoroP",70],["paprika",2],["maionese",25],["oliosem",20]],t:["veg","etnico","spagna","uova"]},
 {id:"ratatouille",n:"Ratatouille",q:"cena",m:55,ing:[["melanzane",150],["zucchine",150],["peperoni",100],["pomodori",150],["cipolle",40],["olio",14],["origano",1]],t:["veg","vegano","salute","etnico","francia"],sea:[6,9]},
-{id:"quicheverdure",n:"Quiche di verdure",q:"pranzo",m:65,ing:[["farina",90],["burro",50],["uova",2],["panna",80],["porri",120],["semiduro",50]],t:["veg","elaborato","etnico","francia","glutine","uova","lattosio"]},
-{id:"crepesprosciutto",n:"Crêpes prosciutto e formaggio",q:"cena",m:35,ing:[["farina",60],["latte",180],["uova",1.5],["prosccotto",60],["semiduro",60],["burro",12]],t:["maiale","kid","etnico","francia","glutine","uova","lattosio"]},
+{id:"quicheverdure",n:"Quiche con verdure e pancetta",q:"pranzo",m:65,ing:[["farina",90],["burro",50],["uova",2],["panna",80],["porri",120],["semiduro",50]],t:["veg","elaborato","etnico","francia","glutine","uova","lattosio"]},
+{id:"crepesprosciutto",n:"Omelette prosciutto e formaggio",q:"cena",m:35,ing:[["farina",60],["latte",180],["uova",1.5],["prosccotto",60],["semiduro",60],["burro",12]],t:["maiale","kid","etnico","francia","glutine","uova","lattosio"]},
 {id:"zuppacipolle",n:"Zuppa di cipolle gratinata",q:"cena",m:60,ing:[["cipolle",300],["brodoveg",8],["pane",70],["semiduro",60],["burro",15]],t:["veg","tradizione","etnico","francia","glutine","lattosio"],sea:[10,3]},
 {id:"nicoise",n:"Insalata nizzarda",q:"pranzo",m:25,ing:[["tonnoolio",0.7],["uova",1.5],["fagiolini",100],["patate",150],["pomodori",100],["olive",25],["olio",12]],t:["pesce","salute","etnico","francia","uova"],sea:[5,9]},
 {id:"goulash",n:"Gulasch con patate",q:"pranzo",m:110,ing:[["manzo_stufato",170],["cipolle",120],["paprika",6],["passata",90],["patate",180]],t:["carne_rossa","elaborato","etnico","ungheria"],sea:[10,3]},
@@ -2550,7 +2573,7 @@ const PIATTI = [
 {id:"pastitsio",n:"Pastitsio",q:"pranzo",m:80,ing:[["pasta",90],["macinato",120],["passata",110],["latte",100],["semiduro",50],["cannella",1]],t:["carne_rossa","elaborato","grecia","glutine","lattosio"]},
 {id:"tzatzikibowl",n:"Bowl greca con tzatziki",q:"pranzo",m:20,ing:[["riso",80],["pettopollo",120],["tzatziki",60],["pomodori",90],["cetrioli",70],["olive",20]],t:["carne_bianca","veloce","salute","grecia","lattosio"]},
 {id:"kibbeh",n:"Polpette di bulgur e carne",q:"cena",m:50,ing:[["bulgur",70],["macinato",120],["cipolle",40],["cumino",2],["yogurtnat",60],["insalata",60]],t:["carne_rossa","medioriente","glutine","lattosio"]},
-{id:"mujadara",n:"Mujadara di lenticchie e riso",q:"cena",m:45,ing:[["lenticchie",90],["riso",80],["cipolle",120],["cumino",2],["olio",14],["yogurtnat",50]],t:["veg","economico","medioriente","lattosio"]},
+{id:"mujadara",n:"Riso e lenticchie",q:"cena",m:45,ing:[["lenticchie",90],["riso",80],["cipolle",120],["cumino",2],["olio",14],["yogurtnat",50]],t:["veg","economico","medioriente","lattosio"]},
 {id:"dahlspinaci",n:"Dahl di spinaci e cocco",q:"cena",m:40,ing:[["lenticchierosse",85],["spinacifr",180],["lattecocco",120],["curcuma",2],["basmati",75]],t:["veg","vegano","salute","india"]},
 {id:"pakora",n:"Pakora di verdure",q:"cena",m:35,ing:[["cavolfiore",150],["cipolle",60],["farina",70],["curry",4],["oliosem",25],["yogurtnat",60]],t:["veg","india","glutine","lattosio"]},
 {id:"nasigoreng",n:"Nasi goreng",q:"pranzo",m:30,ing:[["riso",90],["uova",1.5],["gamberetti",90],["wok",130],["salsasoia",15],["sriracha",6]],t:["pesce","etnico","indonesia","veloce","soia","uova","crostacei"]},
@@ -2632,7 +2655,7 @@ const S = {
   giaInCasa:new Set(),
   lingua:"it", tema:"notte", cambio:0.94, primoRaccontato:false, avviata:false, nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, corr:{}, gruppo:"tutti", sezPrezzi:"catalogo",
+  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, corr:{}, ordCat:"pert", gruppo:"tutti", sezPrezzi:"catalogo",
   qCat:"", filtroCat:"tutto", repCat:"tutti", negCat:"tutti",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
@@ -3408,7 +3431,9 @@ function copertureVere(){
 function aggiornaLinea(){
   const c=copertureVere();
   const box=$("#lineaBox"); if(!box) return;
-  box.hidden = c.quota >= 50;              // con i prezzi veri la stima non serve più
+  /* con i prezzi veri la stima non serve più: la scelta sparisce del tutto
+     e resta solo la riga che dice quanti prodotti hanno il prezzo di negozio */
+  box.hidden = true;
   const nota=$("#notaVeri");
   if(nota) nota.innerHTML = c.n
     ? `<span class="nm">${TF("{0} prodotti hanno il prezzo vero dei negozi ({1}%). Per gli altri resta una stima modificabile.",[c.n,c.quota])}</span>`
@@ -5209,7 +5234,7 @@ const GUIDA=[
 {ic:"◇",t:"In tre mosse",s:[
  {h:"Il giro completo",p:["Dici chi si siede a tavola, per quanti giorni e quanto vuoi spendere. Premi <b>Crea il piano</b>. Da quel momento hai il menu di ogni giorno, la lista della spesa divisa per negozio con le quantità già calcolate, e il conto che si confronta con il budget.",
  "Tutto il resto — dispensa, occasioni, storico, prezzi — serve a rendere quel giro più preciso, ma non è obbligatorio: si può usare Gerla anche solo per quei tre passi."]},
- {h:"Se ti sei perso",p:["In alto, accanto alla scritta della memoria, c'è <b>riavvia l'avvio guidato</b>: quattro domande e riparti da una situazione pulita, senza perdere prezzi e impostazioni."]},
+ {h:"Se ti sei perso",p:["In alto, accanto alla scritta della memoria, c'è <b>ritorna all'avvio guidato</b>: quattro domande e riparti da una situazione pulita, senza perdere prezzi e impostazioni."]},
  {h:"Niente si perde",p:["Ogni modifica viene salvata sul tuo dispositivo appena la fai. Puoi chiudere la finestra in qualsiasi momento: alla riapertura trovi tutto com'era, menu compreso."]}]},
 
 {ic:"◈",t:"Chi mangia",s:[
@@ -5433,6 +5458,16 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"Nutri A e B":"Nutri A and B",
+"Più pertinenti":"Most relevant",
+"Prezzo più basso":"Lowest price",
+"Meno caro al chilo":"Cheapest per kilo",
+"Nome":"Name",
+"prodotti":"products",
+"ricette":"recipes",
+"negozi":"shops",
+"ritorna all'avvio guidato":"back to the guided setup",
+
 "Aggiorna":"Update",
 "C'è una versione nuova":"A new version is available",
 
@@ -5602,7 +5637,7 @@ en:{
 "estate":"summer",
 "autunno":"autumn",
 "dati salvati nel dispositivo":"data saved on this device",
-"riavvia l'avvio guidato":"restart the setup",
+"ritorna all'avvio guidato":"restart the setup",
 "cancella e ripristina":"erase and reset",
 "Ideata da DD, costruita con Claude":"Conceived by DD, built with Claude",
 "Prodotti di stagione in inverno":"Seasonal produce in winter",
@@ -5987,7 +6022,7 @@ en:{
 "Seme del caso (stesso numero = stesso menu)":"Random seed (same number = same menu)",
 "prodotti a listino":"products in the list","ricette e portate":"recipes and courses","menu combinabili":"possible menus",
 "negozi":"shops","stagione":"season","listino":"price list","salvato":"saved",
-"riavvia l'avvio guidato":"run the setup again","cancella e ripristina":"delete saved data",
+"ritorna all'avvio guidato":"run the setup again","cancella e ripristina":"delete saved data",
 "Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Who eats, what you spend, where you buy. I work out the rest.",
 "Vegetariano":"Vegetarian","Vegano":"Vegan","Niente maiale":"No pork","Niente pesce":"No fish",
 "Senza glutine":"Gluten free","Senza lattosio":"Lactose free","Niente uova":"No eggs",
@@ -6008,6 +6043,16 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Nutri A e B":"Nutri A et B",
+"Più pertinenti":"Les plus pertinents",
+"Prezzo più basso":"Prix le plus bas",
+"Meno caro al chilo":"Moins cher au kilo",
+"Nome":"Nom",
+"prodotti":"produits",
+"ricette":"recettes",
+"negozi":"magasins",
+"ritorna all'avvio guidato":"revenir à la configuration",
+
 "Aggiorna":"Mettre à jour",
 "C'è una versione nuova":"Une nouvelle version est disponible",
 
@@ -6177,7 +6222,7 @@ fr:{
 "estate":"été",
 "autunno":"automne",
 "dati salvati nel dispositivo":"données enregistrées sur cet appareil",
-"riavvia l'avvio guidato":"relancer la configuration",
+"ritorna all'avvio guidato":"relancer la configuration",
 "cancella e ripristina":"effacer et réinitialiser",
 "Ideata da DD, costruita con Claude":"Conçue par DD, construite avec Claude",
 "Prodotti di stagione in inverno":"Produits de saison en hiver",
@@ -6562,7 +6607,7 @@ fr:{
 "Seme del caso (stesso numero = stesso menu)":"Graine du hasard (même nombre = même menu)",
 "prodotti a listino":"produits répertoriés","ricette e portate":"recettes et plats","menu combinabili":"menus possibles",
 "negozi":"magasins","stagione":"saison","listino":"liste de prix","salvato":"enregistré",
-"riavvia l'avvio guidato":"refaire la configuration","cancella e ripristina":"effacer les données",
+"ritorna all'avvio guidato":"refaire la configuration","cancella e ripristina":"effacer les données",
 "Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Qui mange, combien vous dépensez, où vous achetez. Je calcule le reste.",
 "Vegetariano":"Végétarien","Vegano":"Végétalien","Niente maiale":"Sans porc","Niente pesce":"Sans poisson",
 "Senza glutine":"Sans gluten","Senza lattosio":"Sans lactose","Niente uova":"Sans œufs",
@@ -6583,6 +6628,16 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Nutri A e B":"Nutri A und B",
+"Più pertinenti":"Am passendsten",
+"Prezzo più basso":"Tiefster Preis",
+"Meno caro al chilo":"Günstigster pro Kilo",
+"Nome":"Name",
+"prodotti":"Produkte",
+"ricette":"Rezepte",
+"negozi":"Läden",
+"ritorna all'avvio guidato":"zurück zur Einrichtung",
+
 "Aggiorna":"Aktualisieren",
 "C'è una versione nuova":"Eine neue Version ist verfügbar",
 
@@ -6752,7 +6807,7 @@ de:{
 "estate":"Sommer",
 "autunno":"Herbst",
 "dati salvati nel dispositivo":"Daten auf diesem Gerät gespeichert",
-"riavvia l'avvio guidato":"Einrichtung neu starten",
+"ritorna all'avvio guidato":"Einrichtung neu starten",
 "cancella e ripristina":"löschen und zurücksetzen",
 "Ideata da DD, costruita con Claude":"Erdacht von DD, gebaut mit Claude",
 "Prodotti di stagione in inverno":"Saisonale Produkte im Winter",
@@ -7137,7 +7192,7 @@ de:{
 "Seme del caso (stesso numero = stesso menu)":"Zufallszahl (gleiche Zahl = gleiches Menü)",
 "prodotti a listino":"Produkte im Sortiment","ricette e portate":"Rezepte und Gänge","menu combinabili":"mögliche Menüs",
 "negozi":"Läden","stagione":"Saison","listino":"Preisliste","salvato":"gespeichert",
-"riavvia l'avvio guidato":"Einrichtung neu starten","cancella e ripristina":"gespeicherte Daten löschen",
+"ritorna all'avvio guidato":"Einrichtung neu starten","cancella e ripristina":"gespeicherte Daten löschen",
 "Chi mangia, quanto spendi, dove compri. Il resto lo calcolo io.":"Wer isst, was Sie ausgeben, wo Sie kaufen. Den Rest rechne ich aus.",
 "Vegetariano":"Vegetarisch","Vegano":"Vegan","Niente maiale":"Ohne Schweinefleisch","Niente pesce":"Ohne Fisch",
 "Senza glutine":"Glutenfrei","Senza lattosio":"Laktosefrei","Niente uova":"Ohne Eier",
@@ -7208,7 +7263,7 @@ function mostraPannello(){
    corrisponde a una ricetta pubblicata, il collegamento ci porta dritto.
    Per gli altri costruisco una ricerca corta con le parole che contano:
    "Lenticchie in umido con patate" cerca "lenticchie umido", che trova. */
-const GZ_TITOLI = {"aglioolio": "Spaghetti aglio olio e peperoncino", "pastaragu": "Pasta con ragù di coniglio e cavolfiore", "pastaforno": "Pasta al forno", "pastabroc": "Pasta con sarde e broccoli", "pastaceci": "Pasta ceci e zucchine", "risozucca": "Risotto alla zucca", "risofunghi": "Risotto ai funghi", "risopiselli": "Riso e piselli", "insriso": "Insalata di riso", "polentalug": "Polenta taragna", "polentaspez": "Spezzatino di cinghiale con polenta taragna", "minestrone": "Minestrone di verdure", "zuppalent": "Zuppa di lenticchie", "vellzucca": "Vellutata di zucca e patate", "zuppaverza": "Vellutata di verza e patate", "polloforno": "Pollo al forno con patate e cipolle", "polloins": "Petto di pollo alla griglia", "pollocurry": "Straccetti di pollo al curry", "cotoletta": "One-pot di pollo e verdure", "polpette": "Polpette al sugo", "hamburger": "Hamburger all'italiana", "scaloppine": "Bocconcini di vitello al limone", "salmoneriso": "Salmone al forno", "merluzzopat": "Merluzzo al forno con patate", "bastoncini": "Bastoncini di pesce", "tonnofagioli": "Tonno fagioli e cipolla", "frittata": "Frittata di patate e cipolle", "carnesaladarucola": "Carpaccio di manzo con rucola e grana", "porchettapatate": "Patate al forno", "soiabolognese": "Pasta frolla integrale", "lupinihummus": "Insalata di lenticchie con pancetta e verdure", "astice_pasta": "Pasta con gamberoni", "tacchinoripienofesta": "Galletto ripieno delle feste", "oratacartoccio": "Orata al cartoccio", "seppiolinepiselli": "Paccheri con seppioline e piselli", "risogamberetti": "Riso Venere con gamberetti e zucchine", "pollointeroforno": "Pollo arrosto con verdure tornite", "fesalimone": "Fesa di tacchino con speck", "stufatoverdure": "Spaghettini con manzo marinato e verdure", "cimerapa_pasta": "Orecchiette con le cime di rapa", "romanescogratin": "Broccolo romanesco in padella", "funghitrifolati_pasta": "Pasta con i funghi", "patatenovelle_uova": "Pasta patate e uova", "ricottaspinaci_pasta": "Pasta al forno con spinaci e ricotta", "cecisecchi_zuppa": "Zuppa di ceci", "zuppalegumi_pane": "Zuppa di legumi e cereali", "polpettonepronto": "Polpette di patate al forno", "grigliataveg": "Bocconcini di pollo alla mediterranea", "pastaolive": "Spaghetti ai peperoni olive e capperi", "pollopopcorn": "Cosce di pollo croccanti", "tomme_insalata": "Insalata tiepida di polpo e patate", "pancakedomenica": "Pancake", "focacciafarcita": "Focaccia farcita con cipolle e pomodorini"};
+const GZ_TITOLI = {"aglioolio": "Spaghetti aglio olio e peperoncino", "pastaragu": "Pasta con ragù di coniglio e cavolfiore", "pastaforno": "Pasta al forno", "pastabroc": "Pasta con sarde e broccoli", "pastaceci": "Pasta ceci e zucchine", "risozucca": "Risotto alla zucca", "risofunghi": "Risotto ai funghi", "risopiselli": "Riso e piselli", "insriso": "Insalata di riso", "polentalug": "Polenta taragna", "polentaspez": "Spezzatino di cinghiale con polenta taragna", "minestrone": "Minestrone di verdure", "zuppalent": "Zuppa di lenticchie", "vellzucca": "Vellutata di zucca e patate", "zuppaverza": "Vellutata di verza e patate", "polloforno": "Pollo al forno con patate e cipolle", "polloins": "Petto di pollo alla griglia", "pollocurry": "Straccetti di pollo al curry", "cotoletta": "One-pot di pollo e verdure", "polpette": "Polpette al sugo", "hamburger": "Hamburger all'italiana", "scaloppine": "Bocconcini di vitello al limone", "salmoneriso": "Salmone al forno", "merluzzopat": "Merluzzo al forno con patate", "bastoncini": "Bastoncini di pesce", "tonnofagioli": "Tonno fagioli e cipolla", "frittata": "Frittata di patate e cipolle", "carnesaladarucola": "Carpaccio di manzo con rucola e grana", "porchettapatate": "Patate al forno", "soiabolognese": "Pasta frolla integrale", "lupinihummus": "Insalata di lenticchie con pancetta e verdure", "astice_pasta": "Pasta con gamberoni", "tacchinoripienofesta": "Galletto ripieno delle feste", "oratacartoccio": "Orata al cartoccio", "seppiolinepiselli": "Paccheri con seppioline e piselli", "risogamberetti": "Riso Venere con gamberetti e zucchine", "pollointeroforno": "Pollo arrosto con verdure tornite", "fesalimone": "Fesa di tacchino con speck", "stufatoverdure": "Spaghettini con manzo marinato e verdure", "cimerapa_pasta": "Orecchiette con le cime di rapa", "romanescogratin": "Broccolo romanesco in padella", "funghitrifolati_pasta": "Pasta con i funghi", "patatenovelle_uova": "Pasta patate e uova", "ricottaspinaci_pasta": "Pasta al forno con spinaci e ricotta", "cecisecchi_zuppa": "Zuppa di ceci", "zuppalegumi_pane": "Zuppa di legumi e cereali", "polpettonepronto": "Polpette di patate al forno", "grigliataveg": "Bocconcini di pollo alla mediterranea", "pastaolive": "Spaghetti ai peperoni olive e capperi", "pollopopcorn": "Cosce di pollo croccanti", "tomme_insalata": "Insalata tiepida di polpo e patate", "pancakedomenica": "Pancake", "focacciafarcita": "Focaccia farcita con cipolle e pomodorini", "uovainsalatona": "Uova sode", "pizzacasa": "Pizza Margherita", "purewurstel": "Purè di patate", "gnocchipom": "Gnocchi al pomodoro e burrata", "tofusalt": "Riso con tofu saltato piccante", "couscousverd": "Cous cous estivo", "caprese": "Pane alle olive", "fagioliniuova": "Burger di fagiolini e patate", "paninofreddo": "Omelette prosciutto e formaggio", "melanzaneparm": "Melanzane al forno", "lentpatate": "Lenticchie in umido", "spinaciricotta": "Polpette di spinaci e ricotta", "finocchigratin": "Finocchi gratinati", "coscepatatecar": "Cosce di pollo in padella", "lasagneragu": "Lasagne al forno", "polentafunghi": "Funghi trifolati", "risoporcini": "Risotto ai porcini e zafferano", "risozafferano": "Risotto allo zafferano", "parmigiana": "Parmigiana di melanzane", "conigliobianco": "Coniglio in umido", "arrostopatate": "Arrosto di vitello al forno con patate", "brasato": "Salsiccia al vino rosso con polenta", "gnocchigorgo": "Gnocchetti gorgonzola e noci", "calamariumido": "Calamari in umido", "branzinoforno": "Branzino al forno con patate al limone", "scoglio": "Spaghetti allo scoglio", "tagliatarucola": "Tagliata di manzo con rucola e pomodorini", "polpettone": "Polpettone con speck e patate", "zuppacipolle": "Zuppa di cipolle", "pollolimone": "Pollo al limone", "gamberiavocado": "Insalata con gamberoni e avocado", "cozzevino": "Cozze in salsa di vino bianco e panna", "tortasalata": "Torta salata di verdure", "insgreca": "Insalata greca", "agnelloerbe": "Costolette d'agnello al forno", "pastauovoragu": "Tagliatelle al ragù bianco", "anatramiele": "Petto d'anatra laccato all'arancia", "crepes": "Torta salata prosciutto e formaggio", "radicchiorisotto": "Risotto con radicchio e speck", "asparagiuova": "Nuvole di uova e asparagi", "ossobucopolenta": "Ossobuco alla milanese", "carciofiuova": "Carciofi trifolati", "carpione": "Polpette di pesce", "vitellotonnato": "Vitello tonnato", "capriolosalmi": "Coniglio in salmì con polenta", "caprettoforno": "Capretto al forno con patate", "polentamortadella": "Polenta e fagioli", "minestronetic": "Minestrone di verdure", "tortapane": "Torta di pane", "risottomerlot": "Risotto allo zafferano", "trippaumido": "Trippa con fagioli", "gnocchicasa": "Gnocchi al pomodoro e burrata", "sushibowl": "Poke bowl di salmone e frutta", "tempurasalmone": "Salmone croccante con panko", "nachosforno": "Nachos", "tacospollo": "Tacos veloci", "chilivegano": "Zuppa di fagioli neri messicana", "costinebbqp": "Insalata di cavolo e carote (coleslaw)", "burgercasa": "Burger di patate", "alettepiccanti": "Anelli di cipolla in pastella", "burgerveggie": "Veggie burger", "pizzadiavola": "Pizza alla diavola", "currypollo": "Straccetti di pollo al curry", "daallenticchie": "Dahl di lenticchie rosse", "pizzanapoli": "Pizza napoletana", "mezze": "Pita con hummus di pomodori secchi", "noodlessaltati": "Noodles con verdure", "polloagrodolce": "Zuppa di pollo con riso basmati", "padthai": "Pad thai", "pokebowl": "Poke bowl vegetariano", "involtiniprimavera": "Involtini di verza ripieni di riso e zucca", "currythai": "Curry verde Thai", "lasagneveg": "Lasagne vegane", "seitanfunghi": "Rotolo di polenta con salsiccia e funghi", "risottozucca_veg": "Risotto alla zucca", "moussaka": "Moussaka", "cuscusmarocchino": "Cous cous estivo", "greekbowl": "Insalata greca", "zuppafarro": "Zuppa di legumi e cereali", "salmerinoerbe": "Braciole alle erbe con zucca e patate", "pisellisecchi_zuppa": "Zuppa di piselli spezzati", "scamorzagratin": "Polpettine di melanzane con cuore di scamorza", "quagliepolenta": "Risotto con le quaglie", "fagiolisecchi_pasta": "Pasta e fagioli", "salsicciapollo_pure": "Pollo e purè", "schublig_patate": "Salsiccia e patate al forno", "teriyakipollo": "Pollo teriyaki", "sbrinzrisotto": "Risotto ai calamaretti e erbe", "pastapatate": "Pasta e patate", "vitellotonnato_e": "Vitello tonnato", "panzanella": "Panzanella", "peperonata": "Peperonata", "fritturacalamari": "Calamari fritti alla birra", "paella": "Paella de marisco", "gazpacho": "Gazpacho verde", "quicheverdure": "Quiche con verdure e pancetta", "nicoise": "Insalata nizzarda", "crepesprosciutto": "Omelette prosciutto e formaggio", "kaesespaetzle": "Crescia al formaggio", "biryani": "Verdure al forno", "mujadara": "Riso e lenticchie", "posole": "Zuppa di fagioli neri messicana"};
 const GZ_SALTA = ["della","delle","degli","alla","alle","allo","con","del","dei","per","fatta","casa",
   "misti","misto","stagione","fresco","fresca","nostrano","tiepida","croccanti","piatto","tavola"];
 function linkRicetta(p){
@@ -7546,6 +7601,18 @@ const TRAD_CERCA = {
   sapone:"seife", savon:"seife", soap:"seife", carta:"papier", papier:"papier", paper:"papier",
   dentifricio:"zahnpasta", shampoo:"shampoo", pannolini:"windeln", couches:"windeln", diapers:"windeln",
   // parole utili
+  merluzzo:"kabeljau", cabillaud:"kabeljau", trota:"forelle", branzino:"wolfsbarsch",
+  vongole:"venusmuscheln", calamari:"calamari", seppie:"tintenfisch", acciughe:"sardellen",
+  agnello:"lamm", lamb:"lamm", coniglio:"kaninchen", anatra:"ente", macinato:"hackfleisch",
+  bresaola:"bundnerfleisch", pancetta:"speck", finocchio:"fenchel", fenouil:"fenchel",
+  sedano:"sellerie", porro:"lauch", poireau:"lauch", ravanelli:"radieschen", bietole:"mangold",
+  cavolfiore:"blumenkohl", verza:"wirz", asparagi:"spargeln", carciofi:"artischocken",
+  cetriolo:"gurken", pesche:"pfirsiche", albicocche:"aprikosen", ciliegie:"kirschen",
+  prugne:"zwetschgen", melone:"melone", anguria:"wassermelone", mirtilli:"heidelbeeren",
+  lamponi:"himbeeren", mandorle:"mandeln", farro:"dinkel", orzo:"gerste", avena:"hafer",
+  lievito:"hefe", zafferano:"safran", cannella:"zimt", curcuma:"kurkuma", pepe:"pfeffer",
+  pelati:"tomaten", capperi:"kapern", mascarpone:"mascarpone", gorgonzola:"gorgonzola",
+  surgelato:"tiefkuhl", scatola:"konserve", bottiglia:"flasche",
   bio:"bio", biologico:"bio", integrale:"vollkorn", complet:"vollkorn", wholegrain:"vollkorn",
   fresco:"frisch", frais:"frisch", fresh:"frisch", surgelato:"tiefkühl", congelé:"tiefkühl", frozen:"tiefkühl",
   vegano:"vegan", végane:"vegan", senza:"ohne", sans:"ohne", without:"ohne",
@@ -7572,6 +7639,13 @@ const FILTRI_CAT = [
   {id:"mio",     n:"Ingredienti", ic:"🥄"},
   {id:"negozi",  n:"Prodotti",    ic:"🛒"},
   {id:"azione",  n:"In azione",   ic:"%"},
+  {id:"sano",    n:"Nutri A e B", ic:"Ⓐ"},
+];
+const ORDINI_CAT = [
+  {id:"pert",   n:"Più pertinenti"},
+  {id:"prezzo", n:"Prezzo più basso"},
+  {id:"unita",  n:"Meno caro al chilo"},
+  {id:"nome",   n:"Nome"},
 ];
 let catTimer=null;
 
@@ -7591,6 +7665,7 @@ async function renderCatalogoUnico(){
           placeholder="Cerca un prodotto" value="${(S.qCat||"").replace(/"/g,"&quot;")}">
         <select id="repCat" style="max-width:190px"></select>
         <select id="negCat" style="max-width:190px"></select>
+        <select id="ordCat" style="max-width:190px"></select>
       </div>
       <div class="chips" id="filtriCat" style="margin:12px 0"></div>
       <div id="risCat"></div>`;
@@ -7604,6 +7679,10 @@ async function renderCatalogoUnico(){
     box.querySelector("#negCat").innerHTML=negozi.map(n=>`<option value="${n}">${n==="tutti"?"Tutti i negozi":nomeNegozio(n)}</option>`).join("");
     box.querySelector("#negCat").value=S.negCat||"tutti";
     box.querySelector("#negCat").onchange=e=>{ S.negCat=e.target.value; disegnaRisultati(totNegozi); };
+    const so=box.querySelector("#ordCat");
+    so.innerHTML=ORDINI_CAT.map(o=>`<option value="${o.id}">${T(o.n)}</option>`).join("");
+    so.value=S.ordCat||"pert";
+    so.onchange=e=>{ S.ordCat=e.target.value; disegnaRisultati(totNegozi); };
   }
   const fb=box.querySelector("#filtriCat");
   fb.innerHTML=FILTRI_CAT.map(f=>`<button class="chip" type="button" data-fc="${f.id}" aria-pressed="${S.filtroCat===f.id}">${f.ic} <span class="nm">${f.n}</span></button>`).join("");
@@ -7625,6 +7704,7 @@ async function disegnaRisultati(totNegozi){
       .filter(p=>rep==="tutti"||p.cat===rep)
       .filter(p=>combacia((p.n+" "+p.cat).toLowerCase()))
       .filter(p=>f!=="azione"||promoViva(p.id))
+      .filter(p=>f!=="sano"||["a","b"].includes(((nutriDi(p.id)||{}).g)||""))
       .map(p=>{ const mr=migliorRiv(p.id);
         const d=prodottoVero(p.id, mr.riv.id);
         return {mio:true, id:p.id, n:p.n, ic:p.ic, m:"", f:p.pu+" "+p.um, cat:p.cat,
@@ -7644,6 +7724,7 @@ async function disegnaRisultati(totNegozi){
         for(const [id,v] of Object.entries(dati.voci||{})){
           if(!combacia(((v[0]||"")+" "+(v[1]||"")).toLowerCase())) continue;
           if(f==="azione" && !v[8]) continue;
+          if(f==="sano" && !["a","b"].includes(v[6])) continue;
           const cat=repartoDi("",v[7]);
           if(rep!=="tutti" && cat!==rep) continue;
           daNegozi.push({mio:false, id, n:v[0], m:v[1], f:v[2], cat, p:v[3], pu:v[4], u:v[5], nu:v[6], az:v[8], neg:n});
@@ -7652,8 +7733,12 @@ async function disegnaRisultati(totNegozi){
       }
     }
   }
-  miei.sort((a,b)=>(b.az-a.az)||((a.p??999)-(b.p??999)));
-  daNegozi.sort((a,b)=>(b.az-a.az)||((a.p??999)-(b.p??999)));
+  const ord=S.ordCat||"pert";
+  const cmp = ord==="prezzo" ? (a,b)=>(a.p??999)-(b.p??999)
+    : ord==="unita" ? (a,b)=>((a.pu??a.p??999)-(b.pu??b.p??999))
+    : ord==="nome" ? (a,b)=>a.n.localeCompare(b.n,"it")
+    : (a,b)=>(b.az-a.az)||((a.p??999)-(b.p??999));
+  miei.sort(cmp); daNegozi.sort(cmp);
   const tutti=[...miei,...daNegozi];
   const mostraMiei=miei.slice(0,30), mostraNeg=daNegozi.slice(0,70);
   const mostra=[...mostraMiei,...mostraNeg];
