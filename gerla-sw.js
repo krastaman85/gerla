@@ -3,7 +3,10 @@
    la modalità spesa è la funzione che serve di più proprio dove la rete manca.
    Qui l'app e i suoi dati vengono tenuti da parte, e se la rete non c'è si usa
    l'ultima copia buona invece di mostrare una pagina vuota. */
-const VERSIONE = "gerla-v1";
+/* La versione va cambiata a ogni pubblicazione: è ciò che dice al telefono
+   "questa copia è vecchia, buttala". Senza, l'app installata resta ferma
+   a quella scaricata la prima volta. */
+const VERSIONE = "gerla-2026-08-22";
 const ESSENZIALI = ["./", "./gerla.html", "./manifest.json"];
 const DATI = ["gerla-listino.json", "gerla-ingredienti.json", "gerla-promozioni.json"];
 
@@ -14,6 +17,9 @@ self.addEventListener("activate", e => {
   e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== VERSIONE).map(x => caches.delete(x))))
     .then(() => self.clients.claim()));
 });
+/* l'app può chiedere di passare subito alla versione nuova */
+self.addEventListener("message", e => { if (e.data === "aggiorna") self.skipWaiting(); });
+
 self.addEventListener("fetch", e => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
@@ -31,7 +37,8 @@ self.addEventListener("fetch", e => {
     );
     return;
   }
-  /* l'applicazione: prima la copia, così si apre subito anche in corsia */
+  /* l'applicazione: mostro subito la copia (così si apre anche in corsia)
+     ma intanto scarico la versione nuova per la volta successiva */
   e.respondWith(
     caches.match(e.request).then(c => {
       const rete = fetch(e.request).then(r => {
