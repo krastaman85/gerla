@@ -88,34 +88,59 @@ async function promozioni() {
 /* ---------------------------------------------------------
    2. INDICE DEI PRODOTTI — pesante, cambia poco
    --------------------------------------------------------- */
+/* le categorie di primo livello: la scorsa per negozio si ferma a poche
+   migliaia di articoli, ma ripassando categoria per categoria ne escono
+   molti di più. Chi non compare in nessuna delle due vie non esiste. */
+const CATEGORIE_L1 = ["dairy_eggs","bread_bakery","pantry","frozen","snacks_sweets","household",
+  "meat_fish","fruits_vegetables","drinks","beverages","fresh","baby","beauty","pets","world"];
+
 async function indiceNegozio(neg, max) {
   const visti = new Map();
   let cursore = null, pagine = 0;
   const t0 = Date.now();
+  const raccogli = prodotti => {
+    for (const p of prodotti) {
+      if (visti.has(p.product_id)) continue;
+      visti.set(p.product_id, [
+        p.product_name || "", p.brand || "", p.package_size || "",
+        p.current_best_price ?? null, p.price_per_unit ?? null,
+        (p.price_per_unit_label || "").replace("CHF/", ""),
+        p.nutriscore_grade || "", p.category_l2 || "", p.is_on_promotion ? 1 : 0,
+      ]);
+    }
+  };
   while (visti.size < max) {
     const u = `${BASE}/products?store=${neg}&limit=200` + (cursore ? `&cursor=${encodeURIComponent(cursore)}` : "");
     let j;
     try { j = await chiedi(u); } catch (e) { console.log(`  ${neg}: interrotto a ${visti.size} (${e.message})`); break; }
     const prodotti = j.products || [];
     if (!prodotti.length) break;
-    for (const p of prodotti) {
-      if (visti.has(p.product_id)) continue;
-      visti.set(p.product_id, [
-        p.product_name || "",                       // 0 nome
-        p.brand || "",                              // 1 marca
-        p.package_size || "",                       // 2 formato
-        p.current_best_price ?? null,               // 3 prezzo
-        p.price_per_unit ?? null,                   // 4 prezzo per unità
-        (p.price_per_unit_label || "").replace("CHF/", ""), // 5 unità
-        p.nutriscore_grade || "",                   // 6 nutri
-        p.category_l2 || "",                        // 7 categoria
-        p.is_on_promotion ? 1 : 0,                  // 8 in azione
-      ]);
-    }
+    raccogli(prodotti);
     pagine++;
     if (!j.has_more || !j.next_cursor || j.next_cursor === cursore) break;
     cursore = j.next_cursor;
     await pausa(180);
+  }
+  /* seconda passata: categoria per categoria, per prendere ciò che la
+     scorsa lineare non raggiunge */
+  for (const c of CATEGORIE_L1) {
+    if (visti.size >= max) break;
+    let cur = null, giri = 0;
+    while (giri < 40 && visti.size < max) {
+      const u = `${BASE}/products?store=${neg}&category=${c}&limit=500` + (cur ? `&cursor=${encodeURIComponent(cur)}` : "");
+      let j;
+      try { j = await chiedi(u); } catch (e) { break; }
+      const pr = j.products || [];
+      if (!pr.length) break;
+      const prima = visti.size;
+      raccogli(pr);
+      pagine++; giri++;
+      if (!j.has_more || !j.next_cursor || j.next_cursor === cur) break;
+      if (visti.size === prima && giri > 2) break;      // non sta più aggiungendo nulla
+      cur = j.next_cursor;
+      await pausa(160);
+    }
+    await pausa(200);
   }
   const secondi = ((Date.now() - t0) / 1000).toFixed(0);
   console.log(`  ${neg.padEnd(9)} ${visti.size} prodotti in ${pagine} pagine, ${secondi}s`);
