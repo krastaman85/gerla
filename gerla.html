@@ -748,6 +748,16 @@ textarea:focus-visible, summary:focus-visible, a:focus-visible{
 #modal .chips{animation:sali .5s .32s cubic-bezier(.22,.7,.3,1) both}
 html[data-tema="giorno"] .benv-luce{background:radial-gradient(60% 100% at 50% 0%,rgba(201,162,74,.2),transparent 70%)}
 
+
+.fonte-madre{border:1px solid var(--oro-d);border-radius:14px;padding:15px 16px;margin:0 0 16px;
+  background:linear-gradient(180deg,rgba(224,180,90,.09),rgba(8,13,22,.5))}
+.fm-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.fm-b{font-family:var(--disp);font-size:21px;color:var(--oro-l)}
+.fm-t{margin:0;font-size:13.5px;line-height:1.55;color:var(--testo-2)}
+.fm-l{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--oro-d)}
+.listino-spia{margin-bottom:14px}
+html[data-tema="giorno"] .fonte-madre{background:linear-gradient(180deg,#fdf4e0,#fff)}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -1366,12 +1376,19 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="sottomenu" id="sottoPrezzi"></div>
     <div id="bannerAgg"></div>
     <div class="card">
-      <h2 data-sez="offerte">Volantini della settimana</h2>
+      <h2 data-sez="offerte">Volantini dei negozi</h2>
+      <details class="avanzate" style="margin-top:10px"><summary><span class="nm">Apri i volantini originali</span></summary>
       <p class="hint" style="margin-top:0">Le promozioni cambiano ogni gioved&igrave; in Svizzera e ogni luned&igrave; in Italia. Apri il volantino, poi correggi qui sotto i prezzi che ti interessano: bastano i dieci articoli che pesano di pi&ugrave; sul totale.</p>
       <div class="flyer" id="flyerBox"></div>
+      </details>
     </div>
     <div class="card">
       <h2 data-sez="fonti">Da dove arrivano i prezzi</h2>
+      <div class="fonte-madre">
+        <div class="fm-h"><span class="fm-b">Skrimpers</span><span class="tagpill oro">fonte principale</span></div>
+        <p class="fm-t"><span class="nm">Prezzi reali negozio per negozio, promozioni con la scadenza vera, Nutri-Score e carburanti alla pompa. Quasi tutto quello che vedi poggia su questa fonte: senza, i prezzi tornerebbero stime.</span></p>
+        <a class="fm-l" href="https://skrimpers.com" target="_blank" rel="noopener">skrimpers.com</a>
+      </div>
       <p class="hint" style="margin-top:0">Le pagine dei volantini non si lasciano leggere da un programma: bloccano le richieste o disegnano i prezzi con JavaScript. Le fonti qui sotto invece sono aperte e leggibili, ed &egrave; da queste che lo script di aggiornamento pesca i prezzi veri.</p>
       <div id="freschezza" style="margin:0 0 14px"></div>
       <p class="hint" id="cambioOggi" style="margin:0 0 12px"></p>
@@ -3616,16 +3633,22 @@ function renderFlyer(){
       <span class="pastiglia" style="background:${col}"></span>
       <span><b>${f.t}</b><small>${f.n}</small></span></a>`;
   }).join("");
+  /* era una fascia larga tutta la pagina per dire una cosa sola: quanti
+     giorni ha il listino. Ora è una pastiglia, come la spia dei negozi. */
   const g=giorniDa(S.ultimoAgg);
-  const b=$("#bannerAgg");
+  const bb=$("#bannerAgg");
   const tab=document.querySelector('.tab[data-g="prezzi"]');
-  if(!tab){ b.innerHTML=""; return; }
-  if(g>=7){
-    b.innerHTML=`<div class="banner"><span class="ic">◆</span><span>${TF("<b>Il listino ha {0} giorni.</b> Le promozioni di questa settimana sono già cambiate: apri due o tre volantini qui sotto e correggi i prezzi degli articoli che compri sempre. Bastano cinque minuti e il conto torna preciso.",[g])}</span></div>`;
-    tab.classList.add("attenzione");
-  } else {
-    b.innerHTML=`<div class="banner ok"><span class="ic">◇</span><span>${TF("Listino aggiornato {0}. Ti riavviso dopo una settimana.",[g===0?T("oggi"):T("da")+" "+g+" "+(g===1?T("giorno"):T("giorni"))])}</span></div>`;
-    tab.classList.remove("attenzione");
+  const vecchio = g>=7;
+  if(tab) tab.classList.toggle("attenzione", vecchio);
+  if(bb){
+    bb.innerHTML=`<button class="spia listino-spia" data-stato="${g<=2?"ok":vecchio?"assente":"parziale"}" id="spiaListino">
+        <span class="pallino"></span><span class="nm">${g===0?T("listino di oggi"):g===1?T("listino di ieri"):TF("listino di {0} giorni fa",[g])}</span>
+      </button>`;
+    bb.querySelector("#spiaListino").onclick=()=>apriModale(`<h3>${T("Il listino")}</h3>
+      <p class="hint" style="margin-top:4px"><span class="nm">${vecchio
+        ? T("Il listino ha più di una settimana: le offerte sono cambiate. Con il flusso automatico attivo si rinnova ogni mattina.")
+        : T("I prezzi sono aggiornati. Il flusso automatico li rinnova ogni mattina insieme alle offerte.")}</span></p>
+      <div class="row" style="margin-top:14px"><button class="btn sm" onclick="chiudiModale()">${T("Chiudi")}</button></div>`);
   }
   $("#statoFeed").textContent = S.feedUrl ? "Collegato a "+S.feedUrl : "Nessun listino collegato.";
 }
@@ -5458,6 +5481,17 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"listino di oggi":"price list from today",
+"listino di ieri":"price list from yesterday",
+"listino di {0} giorni fa":"price list from {0} days ago",
+"Il listino":"The price list",
+"Il listino ha più di una settimana: le offerte sono cambiate. Con il flusso automatico attivo si rinnova ogni mattina.":"The price list is over a week old: offers have changed. With the automatic workflow on it refreshes every morning.",
+"I prezzi sono aggiornati. Il flusso automatico li rinnova ogni mattina insieme alle offerte.":"Prices are up to date. The automatic workflow refreshes them every morning with the offers.",
+"Volantini dei negozi":"Shop flyers",
+"Apri i volantini originali":"Open the original flyers",
+"fonte principale":"main source",
+"Prezzi reali negozio per negozio, promozioni con la scadenza vera, Nutri-Score e carburanti alla pompa. Quasi tutto quello che vedi poggia su questa fonte: senza, i prezzi tornerebbero stime.":"Real prices shop by shop, promotions with true expiry, Nutri-Score and fuel at the pump. Almost everything you see rests on this source: without it, prices would go back to estimates.",
+
 "Nutri A e B":"Nutri A and B",
 "Più pertinenti":"Most relevant",
 "Prezzo più basso":"Lowest price",
@@ -6043,6 +6077,17 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"listino di oggi":"liste d'aujourd'hui",
+"listino di ieri":"liste d'hier",
+"listino di {0} giorni fa":"liste d'il y a {0} jours",
+"Il listino":"La liste des prix",
+"Il listino ha più di una settimana: le offerte sono cambiate. Con il flusso automatico attivo si rinnova ogni mattina.":"La liste a plus d'une semaine : les offres ont changé. Avec le flux automatique elle se renouvelle chaque matin.",
+"I prezzi sono aggiornati. Il flusso automatico li rinnova ogni mattina insieme alle offerte.":"Les prix sont à jour. Le flux automatique les renouvelle chaque matin avec les offres.",
+"Volantini dei negozi":"Prospectus des magasins",
+"Apri i volantini originali":"Ouvrir les prospectus originaux",
+"fonte principale":"source principale",
+"Prezzi reali negozio per negozio, promozioni con la scadenza vera, Nutri-Score e carburanti alla pompa. Quasi tutto quello che vedi poggia su questa fonte: senza, i prezzi tornerebbero stime.":"Prix réels magasin par magasin, promotions avec vraie échéance, Nutri-Score et carburants. Presque tout repose sur cette source : sans elle, les prix redeviendraient des estimations.",
+
 "Nutri A e B":"Nutri A et B",
 "Più pertinenti":"Les plus pertinents",
 "Prezzo più basso":"Prix le plus bas",
@@ -6628,6 +6673,17 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"listino di oggi":"Preisliste von heute",
+"listino di ieri":"Preisliste von gestern",
+"listino di {0} giorni fa":"Preisliste von vor {0} Tagen",
+"Il listino":"Die Preisliste",
+"Il listino ha più di una settimana: le offerte sono cambiate. Con il flusso automatico attivo si rinnova ogni mattina.":"Die Preisliste ist über eine Woche alt: die Aktionen haben gewechselt. Mit aktivem Ablauf erneuert sie sich jeden Morgen.",
+"I prezzi sono aggiornati. Il flusso automatico li rinnova ogni mattina insieme alle offerte.":"Die Preise sind aktuell. Der Ablauf erneuert sie jeden Morgen mit den Angeboten.",
+"Volantini dei negozi":"Prospekte der Läden",
+"Apri i volantini originali":"Originalprospekte öffnen",
+"fonte principale":"Hauptquelle",
+"Prezzi reali negozio per negozio, promozioni con la scadenza vera, Nutri-Score e carburanti alla pompa. Quasi tutto quello che vedi poggia su questa fonte: senza, i prezzi tornerebbero stime.":"Echte Preise Laden für Laden, Aktionen mit echtem Ablauf, Nutri-Score und Treibstoff. Fast alles beruht auf dieser Quelle: ohne sie wären die Preise wieder Schätzungen.",
+
 "Nutri A e B":"Nutri A und B",
 "Più pertinenti":"Am passendsten",
 "Prezzo più basso":"Tiefster Preis",
