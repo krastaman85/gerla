@@ -7,11 +7,20 @@
    "questa copia è vecchia, buttala". Senza, l'app installata resta ferma
    a quella scaricata la prima volta. */
 const VERSIONE = "gerla-2026-08-22";
-const ESSENZIALI = ["./", "./gerla.html", "./manifest.json"];
+/* Attenzione: addAll fallisce in blocco se anche un solo indirizzo non risponde,
+   e l'installazione salta senza dire niente. La cartella "./" non esiste come
+   pagina (l'app è gerla.html), quindi la chiedevamo invano e il service worker
+   non veniva installato mai. Qui ogni file si mette da parte per conto suo. */
+const ESSENZIALI = ["./gerla.html", "./manifest.json", "./icona-192.png", "./icona-512.png"];
 const DATI = ["gerla-listino.json", "gerla-ingredienti.json", "gerla-promozioni.json"];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSIONE).then(c => c.addAll(ESSENZIALI)).then(() => self.skipWaiting()));
+  e.waitUntil((async () => {
+    const c = await caches.open(VERSIONE);
+    await Promise.all(ESSENZIALI.map(u =>
+      c.add(u).catch(err => console.log("Gerla: non ho potuto mettere da parte " + u, err))));
+    await self.skipWaiting();
+  })());
 });
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== VERSIONE).map(x => caches.delete(x))))

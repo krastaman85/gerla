@@ -8538,7 +8538,7 @@ if("serviceWorker" in navigator && /^https?:/.test(location.protocol)){
       });
       setInterval(()=>reg.update().catch(()=>{}), 3600000);   // un controllo ogni ora
       if(reg.waiting) mostraAggiornamento(reg);
-    }).catch(()=>{});
+    }).catch(e=>console.log("Gerla: il funzionamento senza rete non si è attivato —", e.message));
   });
 }
 function mostraAggiornamento(reg){
@@ -8618,8 +8618,13 @@ function statoRete(){
       <button class="btn sm" onclick="chiudiModale();S.sezPrezzi='fonti';apriScheda('catalogo');renderCatalogo()">${T("Vedi le fonti")}</button>
     </div>`);
 }
-window.addEventListener("online",statoRete);
+window.addEventListener("online",()=>{statoRete();renderFreschezza&&renderFreschezza();});
 window.addEventListener("offline",statoRete);
+/* alcuni browser non lanciano l'evento se la rete cade mentre l'app è chiusa
+   in tasca: un controllo ogni mezzo minuto costa nulla e non lascia la spia
+   a dire "collegato" quando non lo è */
+setInterval(statoRete, 30000);
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") statoRete(); });
 
 /* schermo sempre acceso mentre si fa la spesa */
 let luceSchermo=null;
