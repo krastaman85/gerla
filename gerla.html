@@ -762,6 +762,15 @@ html[data-tema="giorno"] .fonte-madre{background:linear-gradient(180deg,#fdf4e0,
 
 .promo-c.mia{border-color:var(--oro-d);background:linear-gradient(180deg,rgba(224,180,90,.1),rgba(8,13,22,.6))}
 
+
+.avanzate.spiega summary,.avanzate.viaggio summary{font-family:var(--body);font-size:13.5px;
+  letter-spacing:.01em;text-transform:none;color:var(--testo-2);display:flex;align-items:center;gap:10px}
+.avanzate.viaggio{border-color:var(--linea-2)}
+.verdetto{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;padding:3px 9px;border-radius:999px;font-weight:500}
+.verdetto.si{background:rgba(30,143,82,.2);color:#7fe0a8}
+.verdetto.no{background:rgba(200,80,50,.16);color:#e8917a}
+.avanzate.spiega summary::after,.avanzate.viaggio summary::after{margin-left:auto}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -1360,7 +1369,8 @@ html,body{max-width:100%;overflow-x:hidden}
 
   <section class="panel" id="p-analisi" hidden>
     <div class="card noprint" style="max-width:780px;margin:0 auto 18px">
-        <h2>Conviene andare in Italia?</h2>
+      <details class="avanzate viaggio" id="boxViaggio">
+        <summary><span class="nm">Conviene andare in Italia?</span> <b id="verdettoViaggio"></b></summary>
         <div class="due">
           <div><label class="f" for="vg_km">Chilometri all'andata</label><input type="number" id="vg_km" value="18"></div>
           <div><label class="f" for="vg_min">Minuti totali, coda compresa</label><input type="number" id="vg_min" value="70"></div>
@@ -1372,6 +1382,7 @@ html,body{max-width:100%;overflow-x:hidden}
           <div><label class="f" for="vg_ora">Quanto vale un'ora del tuo tempo</label><input type="number" id="vg_ora" value="20"></div>
         </div>
         <div id="viaggioBox" style="margin-top:16px"></div>
+      </details>
       </div>
     <div id="analisi"><div class="empty"><b>Ancora niente da analizzare</b>Crea il piano per vedere costi, nutrienti e risparmio.</div></div>
   </section>
@@ -1473,9 +1484,13 @@ html,body{max-width:100%;overflow-x:hidden}
       </details>
     </div>
     <div class="card">
-      <h2 data-sez="fonti">Indice prezzi per negozio</h2>
+      <h2 data-sez="fonti">Indici e taratura</h2>
+      <details class="avanzate spiega"><summary><span class="nm">Come stimo i prezzi dove i negozi non arrivano</span></summary>
+      <div style="padding:0 14px 14px">
       <p class="hint" style="margin-top:0">Moltiplicatore sul prezzo di riferimento, con correzioni per reparto. I confronti indipendenti (K-Tipp, RTS) collocano Lidl e Aldi sui prezzi pi&ugrave; bassi per i prodotti base, mentre Denner vince sulle scorte di caff&egrave;, cioccolato e bevande: gli indici seguono questo schema. Regolali sul tuo negozio.</p>
       <div class="tblwrap"><table id="tblRiv"><thead><tr><th>Negozio</th><th>Zona</th><th class="num">Indice</th><th>Esempio: 1 kg pasta</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      </details>
     </div>
   </section>
 
@@ -3414,8 +3429,9 @@ function renderAnalisi(){
     </div>
 
     <div class="card">
-      <h2>Come leggere questi numeri</h2>
-      <p class="legenda">L'<b>indice salute</b> pesa densità nutritiva e grado di lavorazione: sopra 4.0 il carrello è prevalentemente fresco. Le <b>kcal</b> sono la media del nucleo riportata a persona standard: bambini e adulti hanno porzioni diverse, già calcolate nelle quantità. La <b>stagionalità</b> conta quanti prodotti freschi sono nel loro mese naturale — più è alta, più il prezzo è basso e il sapore migliore. ${NOMIMESI[MESE].charAt(0).toUpperCase()+NOMIMESI[MESE].slice(1)}: privilegia ${FRUTTA_STAG.filter(id=>inStagione(PROD[id].sea,MESE)).slice(0,5).map(id=>PROD[id].n.toLowerCase()).join(", ")}.</p>
+      <details class="avanzate spiega"><summary><span class="nm">Come leggere questi numeri</span></summary>
+      <p class="legenda" style="padding:0 14px 14px">L'<b>indice salute</b> pesa densità nutritiva e grado di lavorazione: sopra 4.0 il carrello è prevalentemente fresco. Le <b>kcal</b> sono la media del nucleo riportata a persona standard: bambini e adulti hanno porzioni diverse, già calcolate nelle quantità. La <b>stagionalità</b> conta quanti prodotti freschi sono nel loro mese naturale — più è alta, più il prezzo è basso e il sapore migliore. ${NOMIMESI[MESE].charAt(0).toUpperCase()+NOMIMESI[MESE].slice(1)}: privilegia ${FRUTTA_STAG.filter(id=>inStagione(PROD[id].sea,MESE)).slice(0,5).map(id=>PROD[id].n.toLowerCase()).join(", ")}.</p>
+      </details>
     </div>`;
 }
 
@@ -5088,6 +5104,13 @@ function calcolaViaggio(){
   const tempo=(v.minuti/60)*v.valoreOra;
   const risparmio=ch-it;
   const netto=risparmio-carburante-tempo-v.pedaggi;
+
+  /* il verdetto sta nel titolo: si sa se conviene senza aprire la scheda */
+  const vd=$("#verdettoViaggio");
+  if(vd){
+    vd.className = netto>0 ? "verdetto si" : "verdetto no";
+    vd.textContent = netto>0 ? TF("sì, +CHF {0}",[chfr(netto)]) : T("no, non questa volta");
+  }
   const franchigia=150*S.persone.length;
   box.innerHTML=`
     <div class="kpi" style="margin-bottom:14px">
@@ -5350,6 +5373,13 @@ const GUIDA=[
  "Gerla guarda i negozi che hai acceso e ti dice in quale giorno il maggior numero di essi rinnova le offerte. Andare quel giorno significa avere la settimana intera di sconti invece degli avanzi."]},
  {h:"Le scadenze",p:["Se hai promozioni che finiscono entro tre giorni te lo dice lì, con i nomi dei prodotti: sono quelle da prendere subito."]}]},
 
+{ic:"✎",t:"Correggere gli abbinamenti",s:[
+ {h:"Perché serve",p:["Ogni ingrediente delle ricette è legato in automatico a un prodotto vero in ogni negozio. L'abbinamento riesce nella maggior parte dei casi, ma non sempre: cercando <i>Milch</i> escono anche cioccolato al latte e dessert. Correggerlo è questione di un clic."]},
+ {h:"Come si fa",p:["Nel listino, sotto il miglior prezzo, c'è scritto il prodotto scelto con una matita a fianco. Toccalo: si apre l'elenco delle alternative già scaricate, con prezzo, formato e Nutri-Score. Scegli quella giusta e il prezzo cambia subito nel piano e nella lista.",
+ "Se nessuna va bene, c'è <b>Nessuno di questi va bene</b>: quel negozio viene escluso per quell'ingrediente e il prezzo torna a essere quello di riferimento."]},
+ {h:"Renderle permanenti",p:["Le correzioni restano sul tuo dispositivo. Per farle valere anche dopo un aggiornamento del catalogo, premi <b>Esporta le correzioni</b> nella scheda Prezzi e carica il file <i>gerla-correzioni.json</i> nel deposito: da quel momento il legatore le rispetta a ogni giro settimanale.",
+ "È così che la copertura cresce: parte dal 65% e sale con l'uso, perché tu vedi gli errori che nessun algoritmo può vedere."]}]},
+
 {ic:"◈",t:"Lingua",s:[
  {h:"Cosa è tradotto",p:["Tutta l'interfaccia: comandi, titoli, schede, etichette, opzioni, frasi calcolate come <i>Piano di 28 giorni per 3 persone</i>, mesi e giorni della settimana. Restano in italiano i nomi dei prodotti e dei piatti — <i>zincarlin</i>, <i>luganighetta</i>, <i>ossobuco</i> non si traducono — e il testo di questa guida."]},
  {h:"Giorno e notte",p:["Accanto alle lingue c'\u00e8 il pulsante <b>\u263e Notte / \u2600 Giorno</b>: il primo \u00e8 pensato per la sera e per il telefono, il secondo per la luce piena e per la stampa. La scelta resta salvata."]},
@@ -5448,6 +5478,9 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"sì, +CHF {0}":"yes, +CHF {0}",
+"no, non questa volta":"no, not this time",
+
 "Cerca un'offerta":"Search an offer",
 "Qualsiasi sconto":"Any discount",
 "o più":"or more",
@@ -6078,6 +6111,9 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"sì, +CHF {0}":"oui, +CHF {0}",
+"no, non questa volta":"non, pas cette fois",
+
 "Cerca un'offerta":"Chercher une offre",
 "Qualsiasi sconto":"N'importe quelle remise",
 "o più":"ou plus",
@@ -6708,6 +6744,9 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"sì, +CHF {0}":"ja, +CHF {0}",
+"no, non questa volta":"nein, diesmal nicht",
+
 "Cerca un'offerta":"Angebot suchen",
 "Qualsiasi sconto":"Beliebiger Rabatt",
 "o più":"oder mehr",
@@ -7969,6 +8008,9 @@ function prodottoVero(idIng, negNostro){
   if(!scelto) return null;
   const c = S.corr && S.corr[idIng] && S.corr[idIng][neg];
   if(c){
+    /* "nessuno di questi va bene": il negozio non ha un prodotto adatto,
+       e il prezzo torna a essere quello di riferimento */
+    if(!c.sku) return null;
     if(c.sku === scelto.sku) return scelto;
     const alt = (scelto.alt||[]).find(a=>a.sku===c.sku);
     if(alt) return {...alt, m:"", u:scelto.u, az:0, alt:scelto.alt, corretto:true};
@@ -8041,12 +8083,16 @@ function apriCorrezione(idIng, negNostro){
 
 /* esportazione delle correzioni, per farle diventare permanenti */
 function esportaCorrezioni(){
+  /* due significati diversi, e vanno tenuti distinti:
+     - hai scelto un altro prodotto  → il legatore userà quello
+     - nessuno di questi va bene     → in quel negozio non c'è nulla di adatto,
+                                        e il legatore non deve proporne un altro */
   const voci = {};
   for(const [ing,negozi] of Object.entries(S.corr||{})){
     for(const [neg,c] of Object.entries(negozi)){
       if(c.sku){ (voci[ing]=voci[ing]||{})[neg]=c.sku; }
-      else { const sc=voci.__scartati__=voci.__scartati__||{};
-             (sc[ing]=sc[ing]||[]).push(c.scartato); }
+      else { const es=voci.__esclusi__=voci.__esclusi__||{};
+             (es[ing]=es[ing]||[]).push(neg); }
     }
   }
   scarica("gerla-correzioni.json", JSON.stringify({versione:1, data:oggiISO(), voci}, null, 1));

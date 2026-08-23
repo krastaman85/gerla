@@ -150,12 +150,31 @@ function lega(ingredienti, negozi) {
       const soglia = lista[0].punti + 2;
       const buoni = lista.filter(c => c.punti <= soglia).sort((a, b) => a.v - b.v);
       if (!buoni.length) continue;
-      const scelto = buoni[Math.floor(buoni.length * 0.35)] || buoni[0];   // verso il basso, ma non l'estremo
+      let scelto = buoni[Math.floor(buoni.length * 0.35)] || buoni[0];   // verso il basso, ma non l'estremo
+      const corr = CORREZIONI[ing.id] && CORREZIONI[ing.id][neg];
+      if (corr) {                                    // se una persona ha corretto, comanda la persona
+        const forzato = candidati.find(c => c.x.id === corr) || lista.find(c => c.x.id === corr);
+        if (forzato) scelto = forzato;
+      }
+      /* "in questo negozio non c'è nulla di adatto": non ne propongo un altro,
+         il prezzo torna a essere quello di riferimento */
+      const negoziEsclusi = CORREZIONI["__esclusi__"] || {};
+      if ((negoziEsclusi[ing.id] || []).includes(neg)) continue;
+      const scartati = CORREZIONI["__scartati__"] || {};
+      if ((scartati[ing.id] || []).includes(scelto.x.id)) {
+        const pulito = buoni.find(c => !(scartati[ing.id] || []).includes(c.x.id));
+        if (pulito) scelto = pulito; else continue;
+      }
       scelte[neg] = {
         sku: scelto.x.id, n: scelto.x.n, m: scelto.x.m || "", f: scelto.x.f || "",
         p: Math.round(scelto.v * 20) / 20,
         pcf: scelto.x.p, pu: scelto.x.pu || null, u: scelto.x.u || "",
-        nu: scelto.x.nu || "", az: scelto.x.az ? 1 : 0, alt: buoni.length,
+        nu: scelto.x.nu || "", az: scelto.x.az ? 1 : 0,
+        /* le altre corrispondenze plausibili: servono a correggere l'abbinamento
+           con un clic, senza dover interrogare di nuovo i negozi */
+        alt: buoni.slice(0, 6).filter(c => c.x.id !== scelto.x.id).map(c => ({
+          sku: c.x.id, n: c.x.n, f: c.x.f || "", p: Math.round(c.v * 20) / 20, pcf: c.x.p, nu: c.x.nu || "",
+        })),
       };
       rapporto.perNegozio[neg] = (rapporto.perNegozio[neg] || 0) + 1;
     }
@@ -177,6 +196,11 @@ function lega(ingredienti, negozi) {
 }
 
 /* --------------------------------------------------------- */
+/* correzioni scritte a mano dall'app: ingrediente -> sku scelto dall'utente */
+let CORREZIONI = {};
+try { CORREZIONI = JSON.parse(fs.readFileSync("gerla-correzioni.json", "utf8")).voci || {}; } catch (e) {}
+if (Object.keys(CORREZIONI).length) console.log(`Correzioni manuali applicate: ${Object.keys(CORREZIONI).length}`);
+
 const ingredienti = leggiIngredienti();
 const negozi = leggiCatalogo();
 console.log(`Ingredienti: ${ingredienti.length} · negozi: ${Object.keys(negozi).length} · prodotti veri: ${Object.values(negozi).reduce((a, x) => a + x.length, 0)}`);
