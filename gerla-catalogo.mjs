@@ -56,8 +56,12 @@ async function chiedi(url, tentativi = 3) {
    1. PROMOZIONI — leggere, preziose, cambiano ogni settimana
    --------------------------------------------------------- */
 async function promozioni() {
+  /* stessa regola per le offerte: se un negozio non risponde, tengo le sue
+     ultime offerte valide invece di lasciare la scheda vuota */
+  let vecchie = {};
+  try { vecchie = JSON.parse(fs.readFileSync("gerla-promozioni.json", "utf8")).negozi || {}; } catch (e) {}
   const out = {};
-  let totale = 0;
+  let totale = 0, ripresi = 0;
   for (const neg of NEGOZI) {
     try {
       const j = await chiedi(`${BASE}/promotions?store=${neg}&limit=1000`);
@@ -74,14 +78,21 @@ async function promozioni() {
       totale += out[neg].length;
       console.log(`  ${neg.padEnd(9)} ${out[neg].length} promozioni`);
     } catch (e) {
-      console.log(`  ${neg.padEnd(9)} non disponibile (${e.message})`);
-      out[neg] = [];
+      const oggi2 = new Date().toISOString().slice(0, 10);
+      const salvate = (vecchie[neg] || []).filter(p => !p.a || p.a >= oggi2);
+      out[neg] = salvate;
+      ripresi += salvate.length;
+      console.log(`  ${neg.padEnd(9)} non risponde (${e.message}) — tengo ${salvate.length} offerte ancora valide`);
     }
     await pausa(400);
   }
+  /* il totale è quello che c'è davvero nel file, comprese le offerte riprese:
+     contare solo quelle appena scaricate faceva dire "0 offerte" a un file
+     che ne conteneva più di duemila */
+  totale = Object.values(out).reduce((a, v) => a + v.length, 0);
   const scade = {};
   Object.values(out).flat().forEach(p => { if (p.a) scade[p.a] = (scade[p.a] || 0) + 1; });
-  console.log(`Promozioni raccolte: ${totale}`);
+  console.log(`Promozioni raccolte: ${totale}${ripresi ? `, di cui ${ripresi} riprese dal giro precedente` : ""}`);
   return { versione: 1, data: oggi, generato: new Date().toISOString(), totale, scadenze: scade, negozi: out };
 }
 

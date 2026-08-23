@@ -428,6 +428,10 @@ async function carburanti(cambi) {
    6. ESECUZIONE
    ========================================================= */
 async function main() {
+  /* il listino del giro precedente serve come rete di sicurezza:
+     va letto prima di tutto il resto */
+  let vecchio = {};
+  try { vecchio = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) {}
   /* Modalità leggera per il giro quotidiano.
      Misurato: interrogare 400 prodotti costa ~12 minuti, mentre promozioni,
      carburanti e cambio insieme stanno sotto il minuto. I prezzi di listino
@@ -441,6 +445,10 @@ async function main() {
 
   const cambi = await cambioEuro();
   const c = cambi;
+  if (!cambi.ok && vecchio.cambioEUR > 0) {
+    CAMBIO = vecchio.cambioEUR;
+    console.log(`Cambio BCE non raggiungibile: tengo ${CAMBIO} del giro precedente.`);
+  }
   rapporto.cambioEUR = CAMBIO;
   rapporto.cambioUSDCHF = cambi.USDCHF;
   console.log(`Cambio EUR→CHF: ${CAMBIO}${c.ok ? " (BCE " + c.data + ")" : " (valore prudenziale)"}`);
@@ -475,8 +483,6 @@ async function main() {
   else console.log("Indici osservati: dati ancora insufficienti per un confronto tra insegne");
   console.log(`Incrocio: ${Object.keys(trovati).length} prodotti con prezzo reale`);
 
-  let vecchio = {};
-  try { vecchio = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) {}
   const iN = process.argv.indexOf("--nutri");
   const limiteNutri = leggero ? 0 : (process.argv.includes("--nutri-tutto") ? -1 : (iN > 0 ? +process.argv[iN + 1] : 120));
   /* Skrimpers: prezzi reali per negozio, promozioni e carburanti alla pompa.
@@ -496,6 +502,20 @@ async function main() {
   }
 
   const carb = await carburanti(cambi);
+
+  /* Se una fonte non risponde, il dato buono di ieri vale più di un valore di
+     ripiego datato oggi: chi guarda l'app vedrebbe un prezzo sbagliato credendolo
+     fresco. Qui ogni pezzo mancante viene ripreso dall'ultimo giro riuscito,
+     con la sua data vera, così la scheda della freschezza dice il vero. */
+  const vecchiCarb = vecchio.carburanti || {};
+  if (!(carb.ch.fonte_benzina) && vecchiCarb.ch?.benzina95) {
+    carb.ch = { ...vecchiCarb.ch };
+    console.log(`Carburanti CH non raggiungibili: tengo il dato del ${vecchiCarb.ch.data || "giro precedente"}.`);
+  }
+  if (!(carb.it.benzina > 0) && vecchiCarb.it?.benzina > 0) {
+    carb.it = { ...vecchiCarb.it };
+    console.log(`Carburanti IT non raggiungibili: tengo il dato del ${vecchiCarb.it.data || "giro precedente"}.`);
+  }
   if (skCarb && skCarb.benzina95) {
     carb.ch.benzina95 = skCarb.benzina95;
     carb.ch.fonte_benzina = skCarb.fonte;
