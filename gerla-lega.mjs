@@ -76,9 +76,17 @@ function terminiPer(p) {
 /* ---------- lettura del catalogo dei negozi ---------- */
 function leggiCatalogo() {
   const negozi = {};
+  if (!fs.existsSync(CART)) {
+    console.log(`La cartella ${CART}/ non c'è: senza catalogo non posso legare niente.`);
+    return negozi;
+  }
   for (const f of fs.readdirSync(CART)) {
     if (!f.endsWith(".json") || f === "indice.json") continue;
-    const j = JSON.parse(fs.readFileSync(path.join(CART, f), "utf8"));
+    let j;
+    /* un file rovinato non deve far cadere tutto il giro: lo salto e lo dico */
+    try { j = JSON.parse(fs.readFileSync(path.join(CART, f), "utf8")); }
+    catch (e) { console.log(`  ${f}: illeggibile (${e.message.slice(0, 40)}), lo salto`); continue; }
+    if (!j || !j.negozio || !j.voci) { console.log(`  ${f}: formato inatteso, lo salto`); continue; }
     negozi[j.negozio] = Object.entries(j.voci).map(([id, v]) => ({
       id, n: v[0], m: v[1], f: v[2], p: v[3], pu: v[4], u: (v[5] || "").toLowerCase(),
       nu: v[6], c: v[7], az: v[8], nn: normalizza(v[0] + " " + v[1]),
@@ -206,6 +214,29 @@ const negozi = leggiCatalogo();
 console.log(`Ingredienti: ${ingredienti.length} · negozi: ${Object.keys(negozi).length} · prodotti veri: ${Object.values(negozi).reduce((a, x) => a + x.length, 0)}`);
 
 const { out, rapporto } = lega(ingredienti, negozi);
+
+/* Rete di sicurezza: se il giro nuovo lega molto meno di quello vecchio,
+   qualcosa è andato storto (catalogo a metà, negozi che non rispondono).
+   Pubblicare un file più povero cancellerebbe i prezzi veri già raccolti. */
+let precedente = null;
+try { precedente = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) {}
+const negoziOra = Object.keys(negozi).length;
+const negoziPrima = precedente ? (precedente.negozi || Object.keys(precedente.perNegozio || {}).length) : 0;
+if (precedente && precedente.legati > 0) {
+  /* due segnali di allarme, e basta uno solo:
+     - mancano negozi rispetto al giro buono (file rovinato o non scaricato)
+     - si legano molti meno ingredienti (catalogo a metà) */
+  if (negoziPrima && negoziOra < negoziPrima) {
+    console.log(`Trovati ${negoziOra} negozi invece di ${negoziPrima}: manca qualcosa, `
+      + `tengo il file buono e non scrivo nulla.`);
+    process.exit(0);
+  }
+  if (rapporto.legati < precedente.legati * 0.9) {
+    console.log(`Il giro nuovo lega ${rapporto.legati} ingredienti contro i ${precedente.legati} del file esistente: `
+      + `troppo pochi, tengo il file buono e non scrivo nulla.`);
+    process.exit(0);
+  }
+}
 const copertura = Math.round(rapporto.legati / ingredienti.length * 100);
 console.log(`Legati a prodotti veri: ${rapporto.legati} su ${ingredienti.length} (${copertura}%)`);
 console.log("Per negozio:", Object.entries(rapporto.perNegozio).sort((a, b) => b[1] - a[1]).map(([n, v]) => `${n} ${v}`).join(", "));
@@ -214,6 +245,7 @@ if (rapporto.senza.length) console.log(`Senza corrispondenza (${rapporto.senza.l
 fs.writeFileSync(OUT, JSON.stringify({
   versione: 1, data: new Date().toISOString().slice(0, 10),
   ingredienti: ingredienti.length, legati: rapporto.legati, copertura,
+  negozi: Object.keys(negozi).length,
   senza: rapporto.senza, voci: out,
 }));
 console.log(`Scritto ${OUT}: ${(fs.statSync(OUT).size / 1024).toFixed(0)} kB`);
