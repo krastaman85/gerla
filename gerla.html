@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#060a13">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="icona-192.png">
+<link rel="apple-touch-icon" href="icona-apple.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3Cpath d='M13 25h38' stroke='%23e0b45a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M23 25c0-7 4-11 9-11s9 4 9 11' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8701,6 +8701,15 @@ if(window.visualViewport) window.visualViewport.addEventListener("resize",misura
   renderEventiControlli(); renderEventi(); renderDispensa(); renderStorico();
   registraIndice(); renderStorico(); misuraNav(); setTimeout(misuraNav,400);
   renderLingue(); applicaTema(); traduci();
+  /* scorciatoie dell'app installata: tenendo premuta l'icona sul telefono
+     si arriva dritti alla lista, alla modalità spesa o alle offerte */
+  const vai=new URLSearchParams(location.search).get("vai");
+  if(vai) setTimeout(()=>{
+    if(vai==="lista"){ if(!S.menu) genera(true); apriScheda("lista"); }
+    else if(vai==="spesa"){ if(!S.menu) genera(true); apriSpesa(null,T("Spesa")); }
+    else if(vai==="offerte"){ S.sezPrezzi="offerte"; apriScheda("catalogo"); renderCatalogo(); }
+    else if(vai==="menu"){ if(!S.menu) genera(true); apriScheda("menu"); }
+  },600);
   setTimeout(()=>{ S.avviata=true; statoRete(); }, 1200);
   const bi=$("#btnInstalla");
   if(bi) bi.onclick=async()=>{ if(!invitoInstalla) return; invitoInstalla.prompt();

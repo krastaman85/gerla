@@ -11,7 +11,7 @@ const VERSIONE = "gerla-2026-08-23-08d77da8";
    e l'installazione salta senza dire niente. La cartella "./" non esiste come
    pagina (l'app è gerla.html), quindi la chiedevamo invano e il service worker
    non veniva installato mai. Qui ogni file si mette da parte per conto suo. */
-const ESSENZIALI = ["./gerla.html", "./manifest.json", "./icona-192.png", "./icona-512.png"];
+const ESSENZIALI = ["./gerla.html", "./manifest.json", "./icona-192.png", "./icona-512.png", "./icona-apple.png", "./icona-maskable.png"];
 const DATI = ["gerla-listino.json", "gerla-ingredienti.json", "gerla-promozioni.json"];
 
 self.addEventListener("install", e => {

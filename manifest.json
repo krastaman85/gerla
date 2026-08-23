@@ -1,17 +1,47 @@
 {
-  "name": "Gerla — Gestione Efficiente di Ricette, Liste e Acquisti",
+  "id": "/gerla/",
+  "name": "Gerla — la spesa e i menu di casa",
   "short_name": "Gerla",
-  "description": "La spesa e i menu di casa, con i prezzi veri dei negozi del Ticino e della Lombardia.",
+  "description": "Decide cosa cucinare, calcola quanto costa davvero nei negozi che frequenti, e ti dice se conviene attraversare il confine. Prezzi veri di nove catene svizzere e dei supermercati lombardi, promozioni con la scadenza reale, e la lista che funziona anche in corsia senza rete.",
+  "lang": "it",
+  "dir": "ltr",
   "start_url": "./gerla.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
   "background_color": "#060a13",
   "theme_color": "#060a13",
-  "lang": "it",
-  "categories": ["food", "shopping", "productivity"],
+  "categories": ["food", "shopping", "lifestyle", "productivity", "finance"],
+  "prefer_related_applications": false,
   "icons": [
     { "src": "icona-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icona-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icona-apple.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ],
+  "screenshots": [
+    { "src": "vetrina-menu.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow",
+      "label": "Il menu della settimana, con calorie e costo di ogni giornata" },
+    { "src": "vetrina-lista.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow",
+      "label": "La lista divisa per negozio, con il prezzo vero di ogni prodotto" },
+    { "src": "vetrina-offerte.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow",
+      "label": "Le offerte in corso nei tuoi negozi, con sconto e scadenza reali" },
+    { "src": "vetrina-analisi.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow",
+      "label": "Budget, dove vanno i soldi e se conviene andare in Italia" }
+  ],
+  "shortcuts": [
+    { "name": "Lista della spesa", "short_name": "Lista",
+      "description": "Apre la lista pronta, divisa per negozio",
+      "url": "./gerla.html?vai=lista",
+      "icons": [{ "src": "icona-192.png", "sizes": "192x192" }] },
+    { "name": "Modalità spesa", "short_name": "In corsia",
+      "description": "Schermo grande, spunte col dito, funziona senza rete",
+      "url": "./gerla.html?vai=spesa",
+      "icons": [{ "src": "icona-192.png", "sizes": "192x192" }] },
+    { "name": "Offerte della settimana", "short_name": "Offerte",
+      "description": "Le promozioni in corso nei negozi che segui",
+      "url": "./gerla.html?vai=offerte",
+      "icons": [{ "src": "icona-192.png", "sizes": "192x192" }] }
   ]
 }
