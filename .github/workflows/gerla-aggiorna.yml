@@ -1,30 +1,56 @@
 # .github/workflows/gerla-aggiorna.yml
-# Aggiorna il listino ogni mattina e lo pubblica: l'app lo legge a ogni apertura.
+# Giro quotidiano, leggero: promozioni, carburanti e cambio.
+# Dura una quindicina di secondi perché non rifà quello che non cambia:
+# i prezzi di listino e il Nutri-Score si aggiornano nel giro settimanale.
 name: Aggiorna listino Gerla
 on:
   schedule:
-    - cron: "15 5 * * *"      # tutti i giorni alle 05:15 UTC (07:15 in Ticino d'estate)
-  workflow_dispatch:           # e ogni volta che premi tu
+    # 05:15 UTC = 07:15 in Ticino d'estate, 06:15 d'inverno.
+    # Le offerte svizzere escono il martedì e il giovedì, quelle italiane il
+    # lunedì: alle sette del mattino sono già tutte pubblicate.
+    - cron: "15 5 * * *"
+  workflow_dispatch:
+    inputs:
+      completo:
+        description: "Giro completo (prezzi e Nutri-Score, ~12 minuti)"
+        type: boolean
+        default: false
 permissions:
   contents: write
-concurrency:                   # una sola esecuzione per volta, niente sovrapposizioni
+concurrency:
   group: listino
   cancel-in-progress: false
 jobs:
   listino:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "24"   # i runner GitHub non eseguono più Node 20
-      - name: Estrai i prezzi dalle fonti aperte
-        run: node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json --skrimpers 400 --nutri 60
-      - name: Raccogli le promozioni in corso
+          node-version: "24"
+
+      - name: Prezzi, carburanti e cambio
+        run: |
+          if [ "${{ inputs.completo }}" = "true" ]; then
+            echo "Giro completo richiesto a mano."
+            node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json --skrimpers 400 --nutri 60
+          else
+            node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json --leggero
+          fi
+
+      - name: Offerte in corso
         run: node gerla-catalogo.mjs --promozioni
+
       - name: Lega gli ingredienti ai prodotti veri
-        run: node gerla-lega.mjs --html gerla.html --catalogo catalogo --out gerla-ingredienti.json
-      - name: Pubblica il listino aggiornato
+        run: |
+          if [ -d catalogo ]; then
+            node gerla-lega.mjs --html gerla.html --catalogo catalogo --out gerla-ingredienti.json
+          else
+            echo "::warning::Manca la cartella catalogo/: la legatura viene saltata."
+          fi
+
+      - name: Pubblica
         run: |
           git config user.name "Gerla"
           git config user.email "gerla@users.noreply.github.com"
@@ -33,19 +59,11 @@ jobs:
             echo "Nessuna variazione: niente da pubblicare."
             exit 0
           fi
-          git commit -m "Listino e promozioni del $(date +%F)"
-
-          # Il deposito può essere andato avanti mentre lo script lavorava
-          # (per esempio un caricamento fatto a mano dalla pagina web):
-          # prima di insistere riallineo e riprovo, fino a tre volte.
+          git commit -m "Listino e offerte del $(date +%F)"
           for tentativo in 1 2 3; do
-            if git push; then
-              echo "Pubblicato al tentativo $tentativo."
-              exit 0
-            fi
+            if git push; then echo "Pubblicato al tentativo $tentativo."; exit 0; fi
             echo "Il deposito è cambiato nel frattempo: mi riallineo e riprovo."
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || {
-              echo "Riallineamento non riuscito: tengo la mia versione del listino."
               git checkout --ours gerla-listino.json gerla-promozioni.json gerla-ingredienti.json || true
               git add gerla-listino.json gerla-promozioni.json gerla-ingredienti.json
               git rebase --continue || git rebase --abort

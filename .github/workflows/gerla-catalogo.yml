@@ -1,10 +1,13 @@
 # .github/workflows/gerla-catalogo.yml
-# Il catalogo dei negozi cambia poco: si rigenera una volta a settimana.
-# Le promozioni invece cambiano ogni settimana: le rigenera il flusso giornaliero.
+# Giro settimanale, completo. Qui sta il lavoro pesante:
+#   - il catalogo dei nove negozi (~42'000 prodotti, 5 minuti)
+#   - i prezzi prodotto per prodotto e il Nutri-Score (~12 minuti)
+#   - la rilegatura degli ingredienti sul catalogo nuovo
+# Gira il martedì presto, quando i volantini svizzeri della settimana sono usciti.
 name: Catalogo esteso Gerla
 on:
   schedule:
-    - cron: "40 4 * * 1"       # ogni lunedì alle 04:40 UTC (06:40 in Ticino d'estate)
+    - cron: "40 3 * * 2"       # martedì 03:40 UTC (05:40 in Ticino d'estate)
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,32 +17,37 @@ concurrency:
 jobs:
   catalogo:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Scarica il catalogo dei nove negozi
+
+      - name: Catalogo dei nove negozi
         run: node gerla-catalogo.mjs --indice --max 40000
+
+      - name: Prezzi per negozio e Nutri-Score
+        run: node gerla-aggiorna.mjs --html gerla.html --out gerla-listino.json --skrimpers 400 --nutri 60
+
       - name: Rilega gli ingredienti sul catalogo nuovo
         run: node gerla-lega.mjs --html gerla.html --catalogo catalogo --out gerla-ingredienti.json
-      - name: Pubblica il catalogo aggiornato
+
+      - name: Pubblica
         run: |
           git config user.name "Gerla"
           git config user.email "gerla@users.noreply.github.com"
-          git add catalogo gerla-ingredienti.json
+          git add catalogo gerla-ingredienti.json gerla-listino.json
           if git diff --staged --quiet; then
             echo "Catalogo invariato: niente da pubblicare."
             exit 0
           fi
-          git commit -m "Catalogo dei negozi del $(date +%F)"
+          git commit -m "Catalogo e prezzi del $(date +%F)"
           for tentativo in 1 2 3; do
             if git push; then echo "Pubblicato al tentativo $tentativo."; exit 0; fi
-            echo "Il deposito è cambiato nel frattempo: mi riallineo e riprovo."
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || {
-              git checkout --ours catalogo || true
-              git add catalogo gerla-ingredienti.json
+              git checkout --ours catalogo gerla-ingredienti.json gerla-listino.json || true
+              git add catalogo gerla-ingredienti.json gerla-listino.json
               git rebase --continue || git rebase --abort
             }
             sleep 5

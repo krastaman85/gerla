@@ -1,14 +1,20 @@
 # .github/workflows/gerla-test.yml
-# Le prove girano a ogni modifica: se qualcosa si rompe si vede subito,
-# invece di scoprirlo usando l'app in corsia.
+# Due batterie di prove, con scopi diversi.
+#  1. prove.mjs          — i conti: dati, generatore, diete, prezzi. Veloce, senza browser.
+#  2. prove-browser.mjs  — l'uso vero: apre l'app e verifica che ogni ricerca e ogni
+#                          filtro cambino davvero il risultato. Più lenta, ma trova
+#                          i difetti che la prima non può vedere (un pulsante che
+#                          non apre niente, un filtro che non filtra).
 name: Prove di Gerla
 on:
   push:
     paths: ["gerla.html", "gerla-*.mjs", "prove.mjs", "prove/**"]
   pull_request:
   workflow_dispatch:
+
 jobs:
-  prove:
+  conti:
+    name: Prove dei conti
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -19,24 +25,36 @@ jobs:
 
       - name: Controlla che ci sia tutto
         run: |
-          mancanti=""
-          for f in gerla.html; do
-            [ -f "$f" ] || mancanti="$mancanti $f"
-          done
-          if [ -n "$mancanti" ]; then
-            echo "::error::Mancano questi file nel deposito:$mancanti"
-            exit 1
-          fi
-          # il file delle prove può stare nella cartella principale o in prove/
+          [ -f gerla.html ] || { echo "::error::Manca gerla.html nel deposito."; exit 1; }
           if   [ -f "prove/prove.mjs" ]; then echo "PROVE=prove/prove.mjs" >> $GITHUB_ENV
           elif [ -f "prove.mjs" ];       then echo "PROVE=prove.mjs"       >> $GITHUB_ENV
-          else
-            echo "::error::Non trovo prove.mjs, né nella cartella principale né in prove/."
-            exit 1
-          fi
-          echo "Userò $(grep PROVE $GITHUB_ENV | cut -d= -f2)"
+          else echo "::error::Non trovo prove.mjs, né nella cartella principale né in prove/."; exit 1; fi
 
       - run: npm i --no-save jsdom
-
-      - name: Esegui le prove
+      - name: Esegui le prove dei conti
         run: node "$PROVE"
+
+  browser:
+    name: Prove nel browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Trova le prove nel browser
+        id: trova
+        run: |
+          if   [ -f "prove/prove-browser.mjs" ]; then echo "file=prove/prove-browser.mjs" >> $GITHUB_OUTPUT
+          elif [ -f "prove-browser.mjs" ];       then echo "file=prove-browser.mjs"       >> $GITHUB_OUTPUT
+          else echo "file=" >> $GITHUB_OUTPUT; echo "::warning::prove-browser.mjs non trovato: salto questa batteria."; fi
+
+      - name: Installa il browser
+        if: steps.trova.outputs.file != ''
+        run: npm i --no-save puppeteer
+
+      - name: Esegui le prove nel browser
+        if: steps.trova.outputs.file != ''
+        run: node "${{ steps.trova.outputs.file }}"
