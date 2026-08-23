@@ -2692,7 +2692,7 @@ const S = {
   margine:1.08,
   cottura:"normale",
   giaInCasa:new Set(),
-  lingua:"it", tema:"notte", cambio:0.94, primoRaccontato:false, avviata:false, nav:"piano", pan:"menu",
+  lingua:"it", tema:"notte", cambio:0.94, primoRaccontato:false, avviata:false, condNeg:[], nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
   sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, corr:{}, ordCat:"pert",
   filtroOff:{q:"",neg:"tutti",sconto:0,quando:"tutte",chi:"tutte",ord:"sconto"}, filtroOff:"tutte", negOff:"tutti", gruppo:"tutti", sezPrezzi:"catalogo",
@@ -4960,22 +4960,63 @@ function chiudiSpesa(){
   S.spesaAttiva=null;
 }
 function condividiLista(){
-  const righe=(S.spesaAttiva?S.spesaAttiva.righe:costruisciLista()).filter(r=>!r.off);
-  const compatta={t:S.spesaAttiva?S.spesaAttiva.titolo:"Spesa",r:righe.map(r=>[r.id,r.conf||0,+r.qta,+r.costo.toFixed(2),r.riv.id])};
+  const tutte=(S.spesaAttiva?S.spesaAttiva.righe:costruisciLista()).filter(r=>!r.off);
+  const titolo=S.spesaAttiva?S.spesaAttiva.titolo:T("Spesa");
+  const negozi=[...new Set(tutte.map(r=>r.riv.id))];
+  if(!S.condNeg || !S.condNeg.length || S.condNeg.some(n=>!negozi.includes(n))) S.condNeg=[...negozi];
+  disegnaCondivisione(tutte,titolo,negozi);
+}
+function disegnaCondivisione(tutte,titolo,negozi){
+  const scelte=S.condNeg;
+  const righe=tutte.filter(r=>scelte.includes(r.riv.id));
+  const tot=righe.reduce((a,r)=>a+r.costo,0);
+
+  /* il link porta con sé la lista: chi lo apre entra in modalità spesa
+     senza dover installare o configurare nulla */
+  const compatta={t:titolo,r:righe.map(r=>[r.id,r.conf||0,+r.qta,+r.costo.toFixed(2),r.riv.id])};
   let link="";
   try{ link=location.href.split("#")[0]+"#lista="+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(compatta))))); }catch(e){}
-  let t=`LISTA DELLA SPESA — ${compatta.t}\n\n`;
+
+  let testo=`${titolo.toUpperCase()}\n\n`;
   const per={}; righe.forEach(r=>(per[r.riv.n]=per[r.riv.n]||[]).push(r));
-  Object.entries(per).forEach(([n,rr])=>{ t+=`-- ${n} --\n`; rr.forEach(r=>t+=`[ ] ${r.pr.n} · ${qtaLabel(r)}\n`); t+="\n"; });
-  apriModale(`<h3>Manda la lista</h3>
-    <p class="hint">Copia il testo e mandalo su WhatsApp a chi va a fare la spesa. Se avete lo stesso file, il collegamento qui sotto apre direttamente la lista spuntabile.</p>
-    <div class="row" style="margin:10px 0"><button class="btn sm" id="cpl">Copia il testo</button>
-      ${link?'<button class="btn sm" id="cpll">Copia il collegamento</button>':""}
-      <button class="btn sm" onclick="chiudiModale()">Chiudi</button></div>
-    <textarea id="txt" readonly>${t.replace(/</g,"&lt;")}</textarea>
-    ${link?`<textarea id="txtl" readonly style="height:70px;margin-top:8px">${link}</textarea>`:""}`);
-  $("#cpl").onclick=()=>{ $("#txt").select(); try{document.execCommand("copy");$("#cpl").textContent="Copiato";}catch(e){} };
-  if(link) $("#cpll").onclick=()=>{ $("#txtl").select(); try{document.execCommand("copy");$("#cpll").textContent="Copiato";}catch(e){} };
+  Object.entries(per).forEach(([n,rr])=>{ testo+=`-- ${n} --\n`; rr.forEach(r=>testo+=`[ ] ${r.pr.n} · ${qtaLabel(r)}\n`); testo+="\n"; });
+  testo+=TF("{0} articoli · circa CHF {1}",[righe.length,chfr(tot)]);
+
+  apriModale(`<h3>${T("Manda la lista")}</h3>
+    <p class="hint" style="margin-top:2px"><span class="nm">Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.</span></p>
+    <div class="chips" id="condNeg" style="margin:14px 0 10px">
+      ${negozi.map(id=>{const r=RIV.find(x=>x.id===id)||{n:id,c:"#888"};
+        const n=tutte.filter(x=>x.riv.id===id).length;
+        return `<button class="chip" type="button" data-cn="${id}" aria-pressed="${scelte.includes(id)}">
+          <span class="dot" style="background:${r.c}"></span>${r.n} <span class="zona">${n}</span></button>`;}).join("")}
+    </div>
+    <div class="row" style="margin-bottom:12px">
+      <button class="btn sm" id="cnTutti">${T("Tutti")}</button>
+      <span class="hint" style="margin:0">${TF("{0} articoli su {1} · circa CHF {2}",[righe.length,tutte.length,chfr(tot)])}</span>
+    </div>
+    <div class="row" style="margin:10px 0">
+      <button class="btn oro sm" id="cpWa">${T("Manda su WhatsApp")}</button>
+      <button class="btn sm" id="cpl">${T("Copia il testo")}</button>
+      ${link?`<button class="btn sm" id="cpll">${T("Copia il collegamento")}</button>`:""}
+      <button class="btn sm" onclick="chiudiModale()">${T("Chiudi")}</button>
+    </div>
+    <textarea id="txt" readonly>${testo.replace(/</g,"&lt;")}</textarea>
+    ${link?`<textarea id="txtl" readonly style="height:64px;margin-top:8px">${link}</textarea>`:""}`);
+
+  $("#condNeg").querySelectorAll("[data-cn]").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.cn;
+    S.condNeg = scelte.includes(id) ? scelte.filter(x=>x!==id) : [...scelte,id];
+    if(!S.condNeg.length) S.condNeg=[id];          // almeno un negozio, altrimenti non c'è lista
+    disegnaCondivisione(tutte,titolo,negozi);
+  });
+  $("#cnTutti").onclick=()=>{ S.condNeg=[...negozi]; disegnaCondivisione(tutte,titolo,negozi); };
+  const copia=(sel,btn)=>{ $(sel).select(); try{document.execCommand("copy"); $(btn).textContent=T("Copiato");}catch(e){} };
+  $("#cpl").onclick=()=>copia("#txt","#cpl");
+  if(link) $("#cpll").onclick=()=>copia("#txtl","#cpll");
+  $("#cpWa").onclick=()=>{
+    const messaggio = testo + (link ? "\n\n" + link : "");
+    window.open("https://wa.me/?text="+encodeURIComponent(messaggio),"_blank","noopener");
+  };
 }
 function listaDaLink(){
   try{
@@ -5478,6 +5519,14 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.":"If there are two of you, split the shops: each gets only their part, with their own total. The link opens the list ready to tick, with nothing to install.",
+"Tutti":"All",
+"Manda su WhatsApp":"Send on WhatsApp",
+"Copiato":"Copied",
+"{0} articoli · circa CHF {1}":"{0} items · about CHF {1}",
+"{0} articoli su {1} · circa CHF {2}":"{0} of {1} items · about CHF {2}",
+"Spesa":"Shopping",
+
 "sì, +CHF {0}":"yes, +CHF {0}",
 "no, non questa volta":"no, not this time",
 
@@ -6111,6 +6160,14 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.":"Si vous êtes deux, répartissez-vous les magasins : chacun reçoit sa part avec son total. Le lien ouvre la liste prête à cocher, sans rien installer.",
+"Tutti":"Tous",
+"Manda su WhatsApp":"Envoyer sur WhatsApp",
+"Copiato":"Copié",
+"{0} articoli · circa CHF {1}":"{0} articles · environ CHF {1}",
+"{0} articoli su {1} · circa CHF {2}":"{0} articles sur {1} · environ CHF {2}",
+"Spesa":"Courses",
+
 "sì, +CHF {0}":"oui, +CHF {0}",
 "no, non questa volta":"non, pas cette fois",
 
@@ -6744,6 +6801,14 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.":"Wenn Sie zu zweit sind, teilen Sie die Läden auf: jeder bekommt nur seinen Teil mit eigenem Total. Der Link öffnet die Liste zum Abhaken, ohne Installation.",
+"Tutti":"Alle",
+"Manda su WhatsApp":"Per WhatsApp senden",
+"Copiato":"Kopiert",
+"{0} articoli · circa CHF {1}":"{0} Artikel · rund CHF {1}",
+"{0} articoli su {1} · circa CHF {2}":"{0} von {1} Artikeln · rund CHF {2}",
+"Spesa":"Einkauf",
+
 "sì, +CHF {0}":"ja, +CHF {0}",
 "no, non questa volta":"nein, diesmal nicht",
 
