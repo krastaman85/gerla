@@ -564,6 +564,7 @@ html[data-tema="giorno"] footer{background:linear-gradient(180deg,rgba(255,255,2
 .promo-c{border:1px solid var(--linea);border-radius:14px;padding:13px 14px;
   background:linear-gradient(180deg,rgba(22,41,78,.5),rgba(8,13,22,.65));display:flex;flex-direction:column;gap:6px}
 .promo-c:hover{border-color:var(--oro-d)}
+.promo-c.mia{border-color:var(--oro-d);background:linear-gradient(180deg,rgba(224,180,90,.12),rgba(8,13,22,.6))}
 .promo-h{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
   letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .promo-h .dot{width:8px;height:8px;border-radius:50%}
@@ -757,6 +758,9 @@ html[data-tema="giorno"] .benv-luce{background:radial-gradient(60% 100% at 50% 0
 .fm-l{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--oro-d)}
 .listino-spia{margin-bottom:14px}
 html[data-tema="giorno"] .fonte-madre{background:linear-gradient(180deg,#fdf4e0,#fff)}
+
+
+.promo-c.mia{border-color:var(--oro-d);background:linear-gradient(180deg,rgba(224,180,90,.1),rgba(8,13,22,.6))}
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
@@ -1442,7 +1446,7 @@ html,body{max-width:100%;overflow-x:hidden}
       </div>
     </div>
     <div class="card" id="cardGiorni"></div>
-    <div class="card" id="cardPromo"></div>
+    
     <div class="card">
       <h2 data-sez="catalogo">Catalogo &mdash; il tuo listino e i negozi</h2>
       <div id="catUnico"></div>
@@ -1461,9 +1465,12 @@ html,body{max-width:100%;overflow-x:hidden}
     
     </div>
     <div class="card">
-      <h2 data-sez="offerte">Offerte vere della settimana</h2>
-      <p class="hint" style="margin-top:0"><span class="nm">Le promozioni in corso nei negozi che hai acceso, con lo sconto reale e la data di scadenza vera presa dai volantini.</span></p>
+      <h2 data-sez="offerte">Offerte della settimana</h2>
+      <p class="hint" style="margin-top:0"><span class="nm">Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.</span></p>
       <div id="promoVere" style="margin-top:12px"></div>
+      <details class="avanzate" style="margin-top:16px"><summary><span class="nm">Le promozioni che hai scritto tu</span></summary>
+        <div id="cardPromo" style="padding:0 14px 14px"></div>
+      </details>
     </div>
     <div class="card">
       <h2 data-sez="fonti">Indice prezzi per negozio</h2>
@@ -2672,7 +2679,8 @@ const S = {
   giaInCasa:new Set(),
   lingua:"it", tema:"notte", cambio:0.94, primoRaccontato:false, avviata:false, nav:"piano", pan:"menu",
   ev:{occ:"cena",liv:"medio",pers:6,sel:null,gen:[],seed:11},
-  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, corr:{}, ordCat:"pert", gruppo:"tutti", sezPrezzi:"catalogo",
+  sost:{}, qualita:{}, prezziRiv:{}, nutri:{}, ing:{}, corr:{}, ordCat:"pert",
+  filtroOff:{q:"",neg:"tutti",sconto:0,quando:"tutte",chi:"tutte",ord:"sconto"}, filtroOff:"tutte", negOff:"tutti", gruppo:"tutti", sezPrezzi:"catalogo",
   qCat:"", filtroCat:"tutto", repCat:"tutti", negCat:"tutti",   // prodotto -> alternativa scelta / provenienza del prezzo
   dispensa:{}, voti:{}, storico:[], prezziStorico:[], spesaAttiva:null,
   avvioFatto:false, autoFeed:true,
@@ -3439,7 +3447,7 @@ function renderSottomenu(){
   });
   const b=$("#bannerAgg"); if(b) b.hidden = !["catalogo","fonti","offerte"].includes(S.sezPrezzi);
   if(S.sezPrezzi==="catalogo") renderCatalogoUnico();
-  if(S.sezPrezzi==="offerte") renderPromoVere();
+  if(S.sezPrezzi==="offerte"){ renderPromoVere(); renderGiorniSpesa(); }
 }
 function copertureVere(){
   const n=Object.keys(S.prezziRiv||{}).length;
@@ -3584,34 +3592,6 @@ function renderGiorniSpesa(){
     </tbody></table></div>
     ${promoInScadenza.length?`<p class="legenda" style="margin-top:12px"><b>Attenzione alle scadenze:</b> ${promoInScadenza.map(([id,p])=>PROD[id].n+" ("+(giorniA(p.fino)<=0?"oggi":giorniA(p.fino)+" gg")+")").join(", ")}.</p>`:""}`;
 }
-function renderPromo(){
-  const box=$("#cardPromo"); if(!box) return;
-  const vive=Object.entries(S.promo).filter(([id])=>PROD[id]&&promoViva(id));
-  const scadute=Object.entries(S.promo).filter(([id])=>PROD[id]&&!promoViva(id));
-  box.innerHTML=`<h2 data-sez="offerte">Promozioni attive</h2>
-    <p class="hint" style="margin-top:0">Quelle marcate <i>dal listino</i> arrivano dal file condiviso e si rinnovano da sole a ogni aggiornamento; le altre le hai scritte tu. Alla data di scadenza spariscono e il prezzo torna pieno, senza che tu debba ricordartene.</p>
-    ${vive.length? `<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Prodotto</th><th>Negozio</th><th class="num">In azione</th><th class="num">Invece di</th><th>Fino al</th><th>Origine</th><th></th></tr></thead><tbody>
-      ${vive.map(([id,p])=>{const pieno=prezzoRif(id)*(p.riv?fattoreRiv(RIV.find(r=>r.id===p.riv)||RIV[0],PROD[id].cat):1);
-        const gg=p.fino?giorniA(p.fino):null;
-        return `<tr><td>${PROD[id].ic} ${PROD[id].n}</td>
-        <td>${p.riv?(RIV.find(r=>r.id===p.riv)||{n:p.riv}).n:"ovunque"}</td>
-        <td class="num" style="color:var(--oro-l);font-family:var(--mono)">CHF ${chfr(p.p)}</td>
-        <td class="num" style="font-family:var(--mono);color:var(--testo-3)">CHF ${chfr(pieno)}</td>
-        <td>${p.fino?p.fino.split("-").reverse().join(".")+(gg!==null?` <span class="q" style="color:${gg<=1?"var(--rosso)":"var(--testo-3)"}">(${gg<=0?"oggi":gg+" gg"})</span>`:""):"senza scadenza"}</td>
-        <td><span class="tagpill ${p.da==="listino"?"oro":""}">${p.da==="listino"?"dal listino":"scritta da te"}</span></td>
-        <td><button class="del" data-rm="${id}" style="width:32px">✕</button></td></tr>`}).join("")}
-    </tbody></table></div>` : '<p class="legenda" style="margin-top:12px">Nessuna promozione in corso. Le trovi nei volantini: scrivile nel listino qui sotto, oppure lascia che arrivino dal file condiviso.</p>'}
-    ${scadute.length?`<p class="hint">${scadute.length} promozioni scadute sono state tolte in automatico.</p>`:""}`;
-  box.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{ delete S.promo[b.dataset.rm]; renderCatalogo(); renderTutto(); salva(); });
-}
-function statoAggiornamento(){
-  const box=$("#statoAgg"); if(!box) return;
-  const g=giorniDa(S.ultimoAgg);
-  const auto=!!S.feedUrl;
-  box.innerHTML=`<span class="ic">${auto?"◆":"◇"}</span><span>${
-    auto ? TF("Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.",[S.ultimoAgg.split("-").reverse().join("."), g===0?T("oggi"):g+" "+T("gg fa")])
-         : T("Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.")}</span>`;
-}
 function renderFonti(){
   statoAggiornamento(); renderFreschezza();
   const box=$("#fontiBox"); if(!box) return;
@@ -3623,7 +3603,7 @@ function renderFonti(){
     <p>${f.d}</p><small>${f.z==="—"?T("internazionale"):f.z==="CH"?T("Svizzera"):T("Italia")} · ${f.u.replace(/^https?:\/\//,"").split("/")[0]}</small></a>`).join("");
 }
 function renderFlyer(){
-  renderFonti(); renderGiorniSpesa(); renderPromo();
+  renderFonti(); renderGiorniSpesa();
   const box=$("#flyerBox"); if(!box) return;
   box.innerHTML = FLYER.map(f=>{
     const r=RIV.find(x=>x.id===f.id);
@@ -4657,20 +4637,7 @@ function tiraIlDado(consigliato){
 /* =========================================================
    ALTERNATIVE DI PRODOTTO
    ========================================================= */
-function alternative(id){
-  const p=PROD[id];
-  const rif=migliorRiv(eff(id)).prezzo/PROD[eff(id)].pu*p.pu;
-  return Object.values(PROD)
-    .filter(x=>x.id!==id && x.cat===p.cat)
-    .map(x=>({p:x,prezzo:migliorRiv(x.id).prezzo/x.pu*p.pu}))
-    .map(x=>{
-      const rad=p.n.toLowerCase().slice(0,5);
-      const simile = x.p.n.toLowerCase().includes(rad) || p.n.toLowerCase().includes(x.p.n.toLowerCase().slice(0,5));
-      const stessaMisura = x.p.um===p.um;
-      return {...x, d: Math.abs(x.prezzo-rif) - (x.prezzo<rif?rif*0.12:0) - (simile?rif*0.9:0) - (stessaMisura?rif*0.05:0)};
-    })
-    .sort((a,b)=>a.d-b.d).slice(0,14);
-}
+
 let altStato={id:null,q:"",ord:"pert",rep:"tutti"};
 function apriAlternative(id){ altStato={id,q:"",ord:"pert",rep:PROD[id].cat}; disegnaAlternative(); }
 function disegnaAlternative(){
@@ -5481,6 +5448,40 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"Cerca un'offerta":"Search an offer",
+"Qualsiasi sconto":"Any discount",
+"o più":"or more",
+"Qualsiasi scadenza":"Any expiry",
+"Scadono oggi o domani":"Expiring today or tomorrow",
+"Entro una settimana":"Within a week",
+"Sconto più alto":"Highest discount",
+"Scadono prima":"Expiring soonest",
+"Tutte":"All",
+"Scritte da te":"Written by you",
+"{0} offerte · ne mostro {1}":"{0} offers · showing {1}",
+"Nessuna offerta con questi filtri.":"No offer with these filters.",
+"ovunque":"everywhere",
+"tua":"yours",
+"domani":"tomorrow",
+"dopodomani":"the day after",
+"senza scadenza":"no expiry",
+"Le promozioni che hai scritto tu":"The promotions you wrote",
+"Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.":"Offers running in your shops and those on your own products, together: real discount, true expiry, filters by shop and by value.",
+
+"Tutte":"All",
+"Sui miei prodotti":"On my products",
+"Sconto oltre 30%":"Over 30% off",
+"Scadono presto":"Ending soon",
+"Cerca fra le offerte…":"Search the offers…",
+"{0} offerte · {1} sui tuoi prodotti, {2} dai negozi":"{0} offers · {1} on your products, {2} from the shops",
+"Nessuna offerta":"No offer",
+"Prova a togliere un filtro, o accendi altri negozi nelle impostazioni.":"Try removing a filter, or switch on more shops in the settings.",
+"tua":"yours",
+"ovunque":"everywhere",
+"senza scadenza":"no expiry",
+"Offerte della settimana":"This week's offers",
+"Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.":"The offers running in your active shops and those on your own products, together: real discount, true expiry, filters by shop and by value.",
+
 "listino di oggi":"price list from today",
 "listino di ieri":"price list from yesterday",
 "listino di {0} giorni fa":"price list from {0} days ago",
@@ -6077,6 +6078,40 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Cerca un'offerta":"Chercher une offre",
+"Qualsiasi sconto":"N'importe quelle remise",
+"o più":"ou plus",
+"Qualsiasi scadenza":"N'importe quelle échéance",
+"Scadono oggi o domani":"Expirent aujourd'hui ou demain",
+"Entro una settimana":"Dans la semaine",
+"Sconto più alto":"Remise la plus forte",
+"Scadono prima":"Expirent en premier",
+"Tutte":"Toutes",
+"Scritte da te":"Écrites par vous",
+"{0} offerte · ne mostro {1}":"{0} offres · j'en montre {1}",
+"Nessuna offerta con questi filtri.":"Aucune offre avec ces filtres.",
+"ovunque":"partout",
+"tua":"la vôtre",
+"domani":"demain",
+"dopodomani":"après-demain",
+"senza scadenza":"sans échéance",
+"Le promozioni che hai scritto tu":"Les promotions que vous avez écrites",
+"Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.":"Les offres en cours dans vos magasins et les vôtres, ensemble : remise réelle, vraie échéance, filtres par magasin et par intérêt.",
+
+"Tutte":"Toutes",
+"Sui miei prodotti":"Sur mes produits",
+"Sconto oltre 30%":"Plus de 30% de remise",
+"Scadono presto":"Bientôt terminées",
+"Cerca fra le offerte…":"Chercher dans les offres…",
+"{0} offerte · {1} sui tuoi prodotti, {2} dai negozi":"{0} offres · {1} sur vos produits, {2} des magasins",
+"Nessuna offerta":"Aucune offre",
+"Prova a togliere un filtro, o accendi altri negozi nelle impostazioni.":"Essayez d'enlever un filtre, ou activez d'autres magasins.",
+"tua":"la vôtre",
+"ovunque":"partout",
+"senza scadenza":"sans échéance",
+"Offerte della settimana":"Les offres de la semaine",
+"Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.":"Les offres en cours dans vos magasins et celles sur vos produits, ensemble : remise réelle, vraie échéance, filtres par magasin.",
+
 "listino di oggi":"liste d'aujourd'hui",
 "listino di ieri":"liste d'hier",
 "listino di {0} giorni fa":"liste d'il y a {0} jours",
@@ -6673,6 +6708,40 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Cerca un'offerta":"Angebot suchen",
+"Qualsiasi sconto":"Beliebiger Rabatt",
+"o più":"oder mehr",
+"Qualsiasi scadenza":"Beliebiges Ablaufdatum",
+"Scadono oggi o domani":"Laufen heute oder morgen ab",
+"Entro una settimana":"Innerhalb einer Woche",
+"Sconto più alto":"Höchster Rabatt",
+"Scadono prima":"Laufen zuerst ab",
+"Tutte":"Alle",
+"Scritte da te":"Von Ihnen erfasst",
+"{0} offerte · ne mostro {1}":"{0} Angebote · {1} gezeigt",
+"Nessuna offerta con questi filtri.":"Kein Angebot mit diesen Filtern.",
+"ovunque":"überall",
+"tua":"Ihre",
+"domani":"morgen",
+"dopodomani":"übermorgen",
+"senza scadenza":"ohne Ablauf",
+"Le promozioni che hai scritto tu":"Ihre selbst erfassten Aktionen",
+"Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.":"Laufende Angebote Ihrer Läden und Ihre eigenen, zusammen: echter Rabatt, echtes Ablaufdatum, Filter nach Laden und Nutzen.",
+
+"Tutte":"Alle",
+"Sui miei prodotti":"Auf meinen Produkten",
+"Sconto oltre 30%":"Über 30% Rabatt",
+"Scadono presto":"Laufen bald aus",
+"Cerca fra le offerte…":"Angebote durchsuchen…",
+"{0} offerte · {1} sui tuoi prodotti, {2} dai negozi":"{0} Angebote · {1} auf Ihren Produkten, {2} aus den Läden",
+"Nessuna offerta":"Kein Angebot",
+"Prova a togliere un filtro, o accendi altri negozi nelle impostazioni.":"Entfernen Sie einen Filter oder aktivieren Sie weitere Läden.",
+"tua":"Ihre",
+"ovunque":"überall",
+"senza scadenza":"ohne Ablauf",
+"Offerte della settimana":"Angebote der Woche",
+"Le offerte in corso nei negozi accesi e quelle sui tuoi prodotti, insieme: sconto reale, scadenza vera, filtri per negozio e per convenienza.":"Die Aktionen Ihrer aktiven Läden und die auf Ihren Produkten, zusammen: echter Rabatt, echtes Ablaufdatum, Filter nach Laden.",
+
 "listino di oggi":"Preisliste von heute",
 "listino di ieri":"Preisliste von gestern",
 "listino di {0} giorni fa":"Preisliste von vor {0} Tagen",
@@ -7465,61 +7534,7 @@ const repartoDi = (c1,c2) => REPARTO_DA[c2] || REPARTO_DA[c1] || "Dispensa";
 
 /* ---------- ricerca ---------- */
 let ricercaTimer=null;
-async function cercaEsteso(){
-  const q = ($("#cercaEsteso")||{}).value||"";
-  const box = $("#risultatiEsteso"); if(!box) return;
-  if(q.trim().length < 2){
-    const idx = await caricaIndiceCatalogo();
-    const tot = Object.values(idx.negozi||{}).reduce((a,x)=>a+(x.prodotti||0),0);
-    box.innerHTML = tot
-      ? `<div class="empty"><b>${TF("{0} prodotti dei negozi svizzeri",[tot.toLocaleString("it-CH")])}</b>
-          <span class="nm">Scrivi almeno due lettere: cerco nel catalogo vero di ${Object.keys(idx.negozi||{}).length} negozi e ti mostro dove costa meno.</span></div>`
-      : `<div class="empty"><b>${T("Catalogo esteso non disponibile")}</b>
-          <span class="nm">Manca la cartella catalogo/ accanto all'app. Si genera con gerla-catalogo.mjs.</span></div>`;
-    return;
-  }
-  const idx = await caricaIndiceCatalogo();
-  const negozi = Object.keys(idx.negozi||{});
-  if(!negozi.length){ return; }
-  box.innerHTML = `<p class="hint" style="text-align:center" id="statoRicerca">${T("Cerco…")}</p>`;
-  const stato = t => { const e=$("#statoRicerca"); if(e) e.textContent=t; };
 
-  const termine = q.toLowerCase().trim();
-  const risultati = [];
-  for(const neg of negozi){
-    const dati = await caricaNegozio(neg, stato);
-    for(const [id,v] of Object.entries(dati.voci||{})){
-      const nome = (v[0]||"")+" "+(v[1]||"");
-      if(!nome.toLowerCase().includes(termine)) continue;
-      risultati.push({id, neg, n:v[0], m:v[1], f:v[2], p:v[3], pu:v[4], u:v[5], nu:v[6], c:v[7], az:v[8]});
-      if(risultati.length>4000) break;
-    }
-  }
-  risultati.sort((a,b)=> (b.az-a.az) || ((a.p??999)-(b.p??999)));
-  const mostra = risultati.slice(0,80);
-  if(!mostra.length){
-    box.innerHTML = `<div class="empty"><b>${T("Nessun prodotto")}</b><span class="nm">${T("Prova con una parola diversa: i nomi dei negozi svizzeri sono spesso in tedesco.")}</span></div>`;
-    return;
-  }
-  box.innerHTML = `
-    <p class="hint" style="text-align:center">${TF("{0} risultati, mostro i primi {1}",[risultati.length,mostra.length])}</p>
-    <div class="tblwrap"><table><thead><tr>
-      <th>${T("Prodotto")}</th><th>${T("Negozio")}</th><th>${T("Formato")}</th>
-      <th class="num">${T("Prezzo")}</th><th class="num">${T("Al chilo o al litro")}</th><th>Nutri</th><th></th>
-    </tr></thead><tbody>
-    ${mostra.map((r,i)=>`<tr>
-      <td>${r.n}${r.m&&!r.n.includes(r.m)?` <span class="q">${r.m}</span>`:""}
-        ${r.az?` <span class="tagpill oro">${T("in azione")}</span>`:""}</td>
-      <td><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${(RIV.find(x=>x.id===idNostro(r.neg))||{c:"#888"}).c};margin-right:6px"></span>${nomeNegozio(r.neg)}</td>
-      <td style="font-family:var(--mono);font-size:12px;color:var(--testo-3)">${r.f||"—"}</td>
-      <td class="num" style="font-family:var(--mono);color:var(--testo)">${r.p!=null?"CHF "+chfr(r.p):"—"}</td>
-      <td class="num" style="font-family:var(--mono);font-size:12px;color:var(--testo-3)">${r.pu?chfr(r.pu)+" "+(r.u||""):"—"}</td>
-      <td>${r.nu?badgeLettera(r.nu):""}</td>
-      <td><button class="btn sm" data-imp="${i}">+ ${T("come ingrediente")}</button></td>
-    </tr>`).join("")}
-    </tbody></table></div>`;
-  box.querySelectorAll("[data-imp]").forEach(b=>b.onclick=()=>importaDalCatalogo(mostra[+b.dataset.imp]));
-}
 function badgeLettera(g){
   const i="abcde".indexOf(g); if(i<0) return "";
   const col=["#1e8f4e","#8bc34a","#f4c430","#ef7d1a","#e1442a"];
@@ -7554,47 +7569,141 @@ function importaDalCatalogo(r){
 }
 
 /* ---------- promozioni reali dei negozi ---------- */
+/* ---------------------------------------------------------
+   OFFERTE — una scheda sola
+   Prima erano due elenchi separati: le promozioni scritte da te o
+   arrivate col listino, e le offerte dei negozi. Sono la stessa cosa
+   vista da due lati, e chi cerca un prezzo non vuole guardare in due
+   posti. Qui si mescolano, con i filtri che servono davvero.
+   --------------------------------------------------------- */
+function statoAggiornamento(){
+  const box=$("#statoAgg"); if(!box) return;
+  const g=giorniDa(S.ultimoAgg);
+  const auto=!!S.feedUrl;
+  box.innerHTML=`<span class="ic">${auto?"◆":"◇"}</span><span>${
+    auto ? TF("Aggiornamento automatico attivo. Ultimo listino del {0}, {1}.",[S.ultimoAgg.split("-").reverse().join("."), g===0?T("oggi"):g+" "+T("gg fa")])
+         : T("Nessun listino collegato: i prezzi sono quelli incorporati nell'app. Puoi correggerli a mano oppure collegare un listino condiviso qui sotto.")}</span>`;
+}
+function renderPromo(){
+  const box=$("#cardPromo"); if(!box) return;
+  const vive=Object.entries(S.promo).filter(([id])=>PROD[id]&&promoViva(id));
+  const scadute=Object.entries(S.promo).filter(([id])=>PROD[id]&&!promoViva(id));
+  box.innerHTML=`<h2 data-sez="offerte">Promozioni attive</h2>
+    <p class="hint" style="margin-top:0">Quelle marcate <i>dal listino</i> arrivano dal file condiviso e si rinnovano da sole a ogni aggiornamento; le altre le hai scritte tu. Alla data di scadenza spariscono e il prezzo torna pieno, senza che tu debba ricordartene.</p>
+    ${vive.length? `<div class="tblwrap" style="margin-top:12px"><table><thead><tr><th>Prodotto</th><th>Negozio</th><th class="num">In azione</th><th class="num">Invece di</th><th>Fino al</th><th>Origine</th><th></th></tr></thead><tbody>
+      ${vive.map(([id,p])=>{const pieno=prezzoRif(id)*(p.riv?fattoreRiv(RIV.find(r=>r.id===p.riv)||RIV[0],PROD[id].cat):1);
+        const gg=p.fino?giorniA(p.fino):null;
+        return `<tr><td>${PROD[id].ic} ${PROD[id].n}</td>
+        <td>${p.riv?(RIV.find(r=>r.id===p.riv)||{n:p.riv}).n:"ovunque"}</td>
+        <td class="num" style="color:var(--oro-l);font-family:var(--mono)">CHF ${chfr(p.p)}</td>
+        <td class="num" style="font-family:var(--mono);color:var(--testo-3)">CHF ${chfr(pieno)}</td>
+        <td>${p.fino?p.fino.split("-").reverse().join(".")+(gg!==null?` <span class="q" style="color:${gg<=1?"var(--rosso)":"var(--testo-3)"}">(${gg<=0?"oggi":gg+" gg"})</span>`:""):"senza scadenza"}</td>
+        <td><span class="tagpill ${p.da==="listino"?"oro":""}">${p.da==="listino"?"dal listino":"scritta da te"}</span></td>
+        <td><button class="del" data-rm="${id}" style="width:32px">✕</button></td></tr>`}).join("")}
+    </tbody></table></div>` : '<p class="legenda" style="margin-top:12px">Nessuna promozione in corso. Le trovi nei volantini: scrivile nel listino qui sotto, oppure lascia che arrivino dal file condiviso.</p>'}
+    ${scadute.length?`<p class="hint">${scadute.length} promozioni scadute sono state tolte in automatico.</p>`:""}`;
+  box.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{ delete S.promo[b.dataset.rm]; renderCatalogo(); renderTutto(); salva(); });
+}
+
 async function renderPromoVere(soloGriglia){
   const box = $("#promoVere"); if(!box) return;
   const p = await caricaPromozioni();
-  const negozi = Object.keys(p.negozi||{}).filter(n=>S.riv.has(idNostro(n)));
-  const tutte = negozi.flatMap(n => (p.negozi[n]||[]).map(x=>({...x, neg:n})))
-    .filter(x=>x.a >= oggiISO() && Number(x.p) > 0)
-    .sort((a,b)=> (b.sc||0)-(a.sc||0));
-  if(!tutte.length && !box.querySelector("#cercaPromo")){
-    box.innerHTML = `<p class="legenda">${T("Nessuna promozione caricata: manca il file gerla-promozioni.json accanto all'app, oppure i negozi accesi non ne hanno in corso.")}</p>`;
-    return;
+
+  /* Un unico elenco: le offerte dei negozi e quelle che hai scritto tu,
+     mescolate e filtrabili insieme. Prima erano due liste separate e
+     nessuna delle due si poteva davvero cercare. */
+  const daiNegozi = Object.keys(p.negozi||{})
+    .filter(n=>S.riv.has(idNostro(n)))
+    .flatMap(n => (p.negozi[n]||[]).map(x=>({...x, neg:n, mia:false})))
+    .filter(x=> x.a >= oggiISO() && Number(x.p) > 0);
+  const mie = Object.entries(S.promo)
+    .filter(([id])=>PROD[id] && promoViva(id))
+    .map(([id,v])=>{
+      const pieno = prezzoRif(id)*(v.riv?fattoreRiv(RIV.find(r=>r.id===v.riv)||RIV[0],PROD[id].cat):1);
+      return { id, n:PROD[id].n, m:"", f:PROD[id].pu+" "+PROD[id].um, p:+v.p, pieno,
+        sc: pieno>v.p ? Math.round((1-v.p/pieno)*100) : null,
+        a: v.fino||"", neg: v.riv||"", mia:true, da:v.da };
+    });
+  const tutte = [...daiNegozi, ...mie];
+
+  /* nelle versioni precedenti questo filtro era una semplice stringa: chi ha
+     usato l'app prima se la ritrova salvata nel browser, e senza questo
+     controllo la scheda risulterebbe vuota. */
+  const vuoto = {q:"", neg:"tutti", sconto:0, quando:"tutte", chi:"tutte", ord:"sconto"};
+  if(typeof S.filtroOff !== "object" || !S.filtroOff) S.filtroOff = {...vuoto};
+  else S.filtroOff = {...vuoto, ...S.filtroOff};
+  const f = S.filtroOff;
+  const scad = x => x.a ? giorniA(x.a) : 999;
+  let lista = tutte.filter(x=>{
+    if(f.chi==="negozi" && x.mia) return false;
+    if(f.chi==="mie" && !x.mia) return false;
+    if(f.neg!=="tutti" && idNostro(x.neg)!==f.neg) return false;
+    if(f.sconto && (x.sc||0) < f.sconto) return false;
+    if(f.quando==="oggi" && scad(x)>1) return false;
+    if(f.quando==="settimana" && scad(x)>7) return false;
+    if(f.q){ const q=f.q.toLowerCase();
+      const termini = typeof terminiRicerca==="function" ? terminiRicerca(q) : [q];
+      const testo=((x.n||"")+" "+(x.m||"")).toLowerCase();
+      if(!termini.some(t=>testo.includes(t))) return false; }
+    return true;
+  });
+  const ord = f.ord || "sconto";
+  lista.sort(ord==="prezzo" ? (a,b)=>a.p-b.p
+    : ord==="scadenza" ? (a,b)=>scad(a)-scad(b)
+    : (a,b)=>(b.sc||0)-(a.sc||0));
+  const mostra = lista.slice(0,60);
+
+  if(!box.querySelector("#cercaPromo")){
+    const negozi = [...new Set(tutte.map(x=>idNostro(x.neg)).filter(Boolean))];
+    box.innerHTML = `
+      <div class="cat-barra" style="margin-bottom:10px">
+        <input type="text" id="cercaPromo" class="searchbox cerca-cat" style="margin:0"
+          placeholder="${T("Cerca un'offerta")}" value="${(f.q||"").replace(/"/g,"&quot;")}">
+        <select id="offNeg" style="max-width:180px"></select>
+        <select id="offSconto" style="max-width:170px"></select>
+        <select id="offQuando" style="max-width:170px"></select>
+        <select id="offOrd" style="max-width:180px"></select>
+      </div>
+      <div class="chips" id="offChi" style="margin-bottom:12px"></div>
+      <p class="hint" id="contaPromo" style="text-align:center;margin:0 0 12px"></p>
+      <div id="grigliaPromo"></div>`;
+    const sel=(id,voci,val,fn)=>{ const e=box.querySelector(id);
+      e.innerHTML=voci.map(([v,n])=>`<option value="${v}">${n}</option>`).join("");
+      e.value=val; e.onchange=ev=>{ fn(ev.target.value); renderPromoVere(true); }; };
+    sel("#offNeg",[["tutti",T("Tutti i negozi")],...negozi.map(n=>[n,nomeNegozio(n)])],f.neg,v=>S.filtroOff={...f,neg:v});
+    sel("#offSconto",[[0,T("Qualsiasi sconto")],[20,"−20% "+T("o più")],[30,"−30% "+T("o più")],[50,"−50% "+T("o più")]],f.sconto,v=>S.filtroOff={...f,sconto:+v});
+    sel("#offQuando",[["tutte",T("Qualsiasi scadenza")],["oggi",T("Scadono oggi o domani")],["settimana",T("Entro una settimana")]],f.quando,v=>S.filtroOff={...f,quando:v});
+    sel("#offOrd",[["sconto",T("Sconto più alto")],["prezzo",T("Prezzo più basso")],["scadenza",T("Scadono prima")]],ord,v=>S.filtroOff={...f,ord:v});
+    const c=box.querySelector("#cercaPromo");
+    c.oninput=()=>{ S.filtroOff={...(S.filtroOff||f),q:c.value}; clearTimeout(ricercaTimer);
+      ricercaTimer=setTimeout(()=>renderPromoVere(true),240); };
   }
-  const filtro = (S.filtroPromo||"").toLowerCase();
-  const lista = (filtro ? tutte.filter(x=>(x.n+" "+x.m).toLowerCase().includes(filtro)) : tutte).slice(0,60);
-  const griglia = `<div class="promo-griglia">
-      ${lista.map(x=>`<div class="promo-c">
-        <div class="promo-h"><span class="dot" style="background:${(RIV.find(r=>r.id===idNostro(x.neg))||{c:"#888"}).c}"></span>
-          ${nomeNegozio(x.neg)}${x.carta?` <span class="q">${T("con carta fedeltà")}</span>`:""}</div>
+  const chi=box.querySelector("#offChi");
+  if(chi){
+    chi.innerHTML=[["tutte",T("Tutte"),tutte.length],["negozi",T("Dai negozi"),daiNegozi.length],["mie",T("Scritte da te"),mie.length]]
+      .map(([id,n,c])=>`<button class="chip" type="button" data-chi="${id}" aria-pressed="${(S.filtroOff||f).chi===id}">
+        <span class="nm">${n}</span> <span class="zona">${c}</span></button>`).join("");
+    chi.querySelectorAll("[data-chi]").forEach(b2=>b2.onclick=()=>{ S.filtroOff={...(S.filtroOff||f),chi:b2.dataset.chi}; renderPromoVere(true); });
+  }
+  renderPromo();                       // il pannello "le promozioni che hai scritto tu"
+  const cp=box.querySelector("#contaPromo");
+  if(cp) cp.textContent = lista.length
+    ? TF("{0} offerte · ne mostro {1}",[lista.length,mostra.length])
+    : T("Nessuna offerta con questi filtri.");
+  box.querySelector("#grigliaPromo").innerHTML = `<div class="promo-griglia">
+    ${mostra.map(x=>{
+      const gg=x.a?giorniA(x.a):null;
+      return `<div class="promo-c${x.mia?" mia":""}">
+        <div class="promo-h">${x.neg?`<span class="dot" style="background:${(RIV.find(r=>r.id===idNostro(x.neg))||{c:"#888"}).c}"></span>${nomeNegozio(x.neg)}`:`<span class="dot" style="background:var(--oro)"></span>${T("ovunque")}`}
+          ${x.mia?`<span class="q">${T("tua")}</span>`:x.carta?`<span class="q">${T("con carta fedeltà")}</span>`:""}</div>
         <b>${x.n}</b>
         <div class="promo-p"><span class="ora">CHF ${chfr(x.p)}</span>
           ${x.pieno&&x.pieno>x.p?`<span class="prima">CHF ${chfr(x.pieno)}</span>`:""}
           ${x.sc?`<span class="sconto">−${x.sc}%</span>`:""}</div>
         <div class="promo-f">${x.f||""}${x.pu?" · "+chfr(x.pu)+" "+(x.pul||"").replace("CHF/",""):""}</div>
-        <div class="promo-s">${x.a?TF("fino al {0}",[x.a.split("-").reverse().join(".")]):""}</div>
-      </div>`).join("")}
-    </div>`;
-  /* il campo di ricerca si disegna una sola volta: ridisegnandolo a ogni lettera
-     il cursore saltava fuori e si riusciva a scrivere un carattere per volta */
-  if(!box.querySelector("#cercaPromo")){
-    box.innerHTML = `
-      <div class="row" style="margin-bottom:12px">
-        <input type="text" id="cercaPromo" class="searchbox" style="flex:1;margin:0;min-width:200px"
-          placeholder="${T("Filtra le promozioni…")}" value="${(S.filtroPromo||"").replace(/"/g,"&quot;")}">
-        <span class="hint" style="margin:0" id="contaPromo"></span>
-      </div>
-      <div id="grigliaPromo"></div>`;
-    const c=box.querySelector("#cercaPromo");
-    c.oninput=()=>{ S.filtroPromo=c.value; clearTimeout(ricercaTimer); ricercaTimer=setTimeout(()=>renderPromoVere(true),240); };
-  }
-  const cp=box.querySelector("#contaPromo");
-  if(cp) cp.textContent=TF("{0} offerte in corso nei tuoi negozi",[tutte.length]);
-  box.querySelector("#grigliaPromo").innerHTML = griglia;
+        <div class="promo-s">${x.a?TF("fino al {0}",[x.a.split("-").reverse().join(".")])+(gg!==null&&gg<=2?` · <b style="color:var(--rosso)">${gg<=0?T("oggi"):gg===1?T("domani"):T("dopodomani")}</b>`:""):T("senza scadenza")}</div>
+      </div>`}).join("")}</div>`;
+  setTimeout(traduci,0);
 }
 
 /* =========================================================
@@ -7685,9 +7794,6 @@ function terminiRicerca(q){
   }
   return [...varianti];
 }
-
-function tabellaListino(){ return ""; }
-function agganciaListino(){}
 
 /* ---------- ricerca unificata ---------- */
 const FILTRI_CAT = [
@@ -7802,8 +7908,7 @@ async function disegnaRisultati(totNegozi){
   if(!q || q.length<2){
     zona.innerHTML=`<div class="empty"><b>${TF("{0} prodotti a portata di mano",[(Object.keys(PROD).length+totNegozi).toLocaleString("it-CH")])}</b>
       <span class="nm">Scrivi almeno due lettere. Cerco nel tuo listino e nel catalogo dei negozi svizzeri: puoi scrivere in italiano anche se i nomi nei negozi sono in tedesco.</span></div>
-      ${f==="mio"?tabellaListino():""}`;
-    if(f==="mio") agganciaListino();
+`;
     return;
   }
   if(!mostra.length){
