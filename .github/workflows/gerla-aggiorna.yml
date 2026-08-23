@@ -50,11 +50,28 @@ jobs:
             echo "::warning::Manca la cartella catalogo/: la legatura viene saltata."
           fi
 
+      - name: Allinea la versione dell'app installata
+        run: |
+          # Il browser si accorge di una versione nuova solo se gerla-sw.js cambia
+          # byte per byte. Senza questo passo, dimenticare di aggiornare la riga a
+          # mano significa che chi ha installato l'app non riceve mai le modifiche.
+          if [ -f gerla.html ] && [ -f gerla-sw.js ]; then
+            IMPRONTA=$(md5sum gerla.html | cut -c1-8)
+            ATTUALE=$(grep -o 'const VERSIONE = "[^"]*"' gerla-sw.js | sed 's/.*"\(.*\)"/\1/')
+            NUOVA="gerla-$(date +%Y-%m-%d)-$IMPRONTA"
+            if [ "$ATTUALE" != "$NUOVA" ]; then
+              sed -i "s|const VERSIONE = \"[^\"]*\"|const VERSIONE = \"$NUOVA\"|" gerla-sw.js
+              echo "Versione dell'app: $ATTUALE -> $NUOVA"
+            else
+              echo "Versione dell'app già allineata: $ATTUALE"
+            fi
+          fi
+
       - name: Pubblica
         run: |
           git config user.name "Gerla"
           git config user.email "gerla@users.noreply.github.com"
-          git add gerla-listino.json gerla-promozioni.json gerla-ingredienti.json
+          git add gerla-listino.json gerla-promozioni.json gerla-ingredienti.json gerla-sw.js
           if git diff --staged --quiet; then
             echo "Nessuna variazione: niente da pubblicare."
             exit 0
@@ -64,8 +81,8 @@ jobs:
             if git push; then echo "Pubblicato al tentativo $tentativo."; exit 0; fi
             echo "Il deposito è cambiato nel frattempo: mi riallineo e riprovo."
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || {
-              git checkout --ours gerla-listino.json gerla-promozioni.json gerla-ingredienti.json || true
-              git add gerla-listino.json gerla-promozioni.json gerla-ingredienti.json
+              git checkout --ours gerla-listino.json gerla-promozioni.json gerla-ingredienti.json gerla-sw.js || true
+              git add gerla-listino.json gerla-promozioni.json gerla-ingredienti.json gerla-sw.js
               git rebase --continue || git rebase --abort
             }
             sleep 5
