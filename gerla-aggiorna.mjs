@@ -428,6 +428,13 @@ async function carburanti(cambi) {
    6. ESECUZIONE
    ========================================================= */
 async function main() {
+  /* Modalità leggera per il giro quotidiano.
+     Misurato: interrogare 400 prodotti costa ~12 minuti, mentre promozioni,
+     carburanti e cambio insieme stanno sotto il minuto. I prezzi di listino
+     cambiano di settimana in settimana, le offerte ogni giorno: non ha senso
+     rifare tutto ogni mattina, né chiedere tanto a una fonte che ci ospita. */
+  const leggero = process.argv.includes("--leggero");
+  if (leggero) console.log("Giro leggero: promozioni, carburanti e cambio. Prezzi e Nutri-Score restano quelli dell'ultimo giro completo.");
   const rapporto = { data: oggi, fonti: [] };
   const catalogo = leggiCatalogo(HTML);
   console.log(`Catalogo: ${catalogo.length} prodotti letti da ${HTML}`);
@@ -439,7 +446,7 @@ async function main() {
   console.log(`Cambio EUR→CHF: ${CAMBIO}${c.ok ? " (BCE " + c.data + ")" : " (valore prudenziale)"}`);
 
   let osservazioni = [];
-  for (const [id, valuta, pagine] of [["off-prices-ch", "CHF", 20], ["off-prices-it", "EUR", 45]]) {
+  for (const [id, valuta, pagine] of (leggero ? [] : [["off-prices-ch", "CHF", 20], ["off-prices-it", "EUR", 45]])) {
     try {
       const o = await offPrices(valuta, pagine);
       osservazioni = osservazioni.concat(o);
@@ -471,7 +478,7 @@ async function main() {
   let vecchio = {};
   try { vecchio = JSON.parse(fs.readFileSync(OUT, "utf8")); } catch (e) {}
   const iN = process.argv.indexOf("--nutri");
-  const limiteNutri = process.argv.includes("--nutri-tutto") ? -1 : (iN > 0 ? +process.argv[iN + 1] : 120);
+  const limiteNutri = leggero ? 0 : (process.argv.includes("--nutri-tutto") ? -1 : (iN > 0 ? +process.argv[iN + 1] : 120));
   /* Skrimpers: prezzi reali per negozio, promozioni e carburanti alla pompa.
      È la fonte migliore che abbiamo; se non risponde, le altre restano al loro posto. */
   const usaSk = !process.argv.includes("--no-skrimpers");
@@ -482,7 +489,7 @@ async function main() {
     const iPlz = process.argv.indexOf("--plz");
     const plz = iPlz > 0 ? (+process.argv[iPlz + 1] || 6900) : 6900;
     skCarb = await skCarburanti(UA, plz, console.log);
-    try { sk = await skPrezzi(catalogo, UA, limiteSk, console.log); }
+    try { if (!leggero) sk = await skPrezzi(catalogo, UA, limiteSk, console.log); }
     catch (e) { console.log("Skrimpers prodotti non disponibili: " + e.message); }
     if (sk) rapporto.fonti.push({ id: "skrimpers", stato: "ok", prodotti: Object.keys(sk.prezziRiv).length,
       promozioni: Object.keys(sk.promo).length, nutri: Object.keys(sk.nutri).length });

@@ -8320,6 +8320,9 @@ $("#cercaRic").oninput=renderRicette;
 if(!S.avvioFatto){} // il ricettario si disegna alla prima apertura
 
 function apriScheda(id){
+  /* la guida non sta dentro NAV: è il pulsante a sé in fondo alla barra,
+     e senza questo caso apriScheda("guida") non faceva nulla */
+  if(id==="guida"){ S.nav="guida"; S.pan="guida"; renderNav(); mostraPannello(); vaiAllaSezione("guida"); return; }
   const g=NAV.find(x=>x.pan.some(p=>p.id===id));
   if(!g) return;
   S.nav=g.id; S.pan=id; renderNav(); mostraPannello(); vaiAllaSezione(id);
