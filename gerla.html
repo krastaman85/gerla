@@ -771,6 +771,38 @@ html[data-tema="giorno"] .fonte-madre{background:linear-gradient(180deg,#fdf4e0,
 .verdetto.no{background:rgba(200,80,50,.16);color:#e8917a}
 .avanzate.spiega summary::after,.avanzate.viaggio summary::after{margin-left:auto}
 
+
+/* =========================================================
+   BERSAGLI DA TOCCARE
+   Col dito servono almeno 32 px, meglio 44. Misurati sul telefono,
+   diversi comandi stavano sotto: le lingue a 26, la spia a 21, i
+   collegamenti a 14, le caselle di spunta a 13. Qui vengono allargati
+   senza cambiare l'aspetto: cresce l'area sensibile, non il disegno.
+   ========================================================= */
+@media(max-width:760px){
+  .lng{min-height:36px;padding:8px 12px}
+  .spia{min-height:32px;padding:6px 12px 6px 10px}
+  .linkbtn{min-height:34px;display:inline-flex;align-items:center;padding:4px 2px}
+  /* le caselle di spunta restano piccole come disegno, ma l'area sensibile
+     si allarga tutt'attorno: si toccano senza sbagliare, e la lista non si allunga */
+  input[type=checkbox]{width:22px;height:22px;position:relative}
+  input[type=checkbox]::before{content:"";position:absolute;inset:-11px;border-radius:8px}
+  .sc-r label,.sc-r .box{display:inline-flex;align-items:center;justify-content:center;
+    min-width:38px;min-height:38px;margin:-8px 0}
+  input:not([type=checkbox]),select,textarea{min-height:40px}
+  .mi,.swap{min-width:36px;min-height:34px}
+  .lockbtn{min-width:34px;min-height:34px}
+  .sc-r a,.sm-r a{min-height:30px;display:inline-flex;align-items:center}
+  /* i piccoli comandi di riga guadagnano area senza cambiare aspetto */
+  .del,.alt,.piu,.meno{position:relative}
+  .del::before,.alt::before,.piu::before,.meno::before{content:"";position:absolute;inset:-9px}
+  .cnt{width:38px;height:38px}
+  .chip{min-height:34px}
+  .alt{min-height:32px;min-width:32px}
+  /* il tocco non deve selezionare il testo per sbaglio */
+  .sm-r,.chip,.mi,.swap,.tab,.segm-b{-webkit-tap-highlight-color:rgba(224,180,90,.18)}
+}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
