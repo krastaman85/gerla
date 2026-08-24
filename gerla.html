@@ -342,9 +342,12 @@ html[data-tema="giorno"]{
   --nero:#f6f4ee; --nero-2:#efece3;
   --blu-p:#e7e9ef; --blu:#dde2ec;
   --linea:#d5d8dd; --linea-2:#b9c0cc;
-  --oro:#9a7526; --oro-l:#7c5d18; --oro-d:#c9a24a;
-  --azzurro:#1e5fbf;
-  --testo:#171c25; --testo-2:#4a5566; --testo-3:#6d7889;
+  /* Misurati su nove schede: il testo tenue stava a 4.06 dove ne servono 4.5,
+     e l'oro chiaro usato per i numeri piccoli scendeva a 2.18. Su fondo scuro
+     l'oro brilla, su fondo chiaro sparisce: qui serve una tonalità più fonda. */
+  --oro:#7a5a12; --oro-l:#5e480d; --oro-d:#7a5a12;
+  --azzurro:#154fa3;
+  --testo:#171c25; --testo-2:#414c5c; --testo-3:#5b6675;
   --rosso:#b03a22; --verde:#1e7a52;
   --ombra:0 1px 0 rgba(255,255,255,.5) inset, 0 12px 26px -20px #5a6070;
 }
@@ -403,9 +406,9 @@ html[data-tema="giorno"] .giorno-f,html[data-tema="giorno"] .sc-note,html[data-t
 html[data-tema="giorno"] .kpi .sub,html[data-tema="giorno"] .pie-note{color:#5d6878}
 html[data-tema="giorno"] .giorno-h b,html[data-tema="giorno"] .kpi .val,html[data-tema="giorno"] .bigval,
 html[data-tema="giorno"] .hero-stats b,html[data-tema="giorno"] .modal h3,html[data-tema="giorno"] .cap summary,
-html[data-tema="giorno"] .empty b,html[data-tema="giorno"] .pie-frase{color:#7a5c15}
-html[data-tema="giorno"] .card>h2,html[data-tema="giorno"] .sc-cat,html[data-tema="giorno"] tr.sep td,
-html[data-tema="giorno"] .tabs .tab[aria-selected=true]{color:#8a681a}
+html[data-tema="giorno"] .empty b,html[data-tema="giorno"] .pie-frase{color:#6b5010}
+html[data-tema="giorno"] .card>h2,html[data-tema="giorno"] .sc-cat,html[data-tema="giorno"] tr.sep td,html[data-tema="giorno"] h2,
+html[data-tema="giorno"] .tabs .tab[aria-selected=true]{color:#6b5010}
 html[data-tema="giorno"] .chip{color:#3d4757;border-color:#d3d8e0}
 html[data-tema="giorno"] .chip[aria-pressed=true]{color:#4a3505}
 html[data-tema="giorno"] .tagpill{background:#e8edf6;color:#2c4d8f}
@@ -842,6 +845,107 @@ html[data-tema="giorno"] .fonte-madre{background:linear-gradient(180deg,#fdf4e0,
    si legge come due numeri diversi */
 .kpi .val, .sc-tot, .bigval, .promo-p .ora{ white-space: nowrap; }
 .kpi .val{ font-size: clamp(21px, 2.4vw, 29px); }
+
+
+/* ---------- modalità giorno: leggibilità dei testi minori ---------- */
+html[data-tema="giorno"] .ric-meta,
+html[data-tema="giorno"] .kcal,
+html[data-tema="giorno"] .pnum,
+html[data-tema="giorno"] .ci,
+html[data-tema="giorno"] .cn,
+html[data-tema="giorno"] .fm-l,
+html[data-tema="giorno"] .cat-t,
+html[data-tema="giorno"] .promo-s{ color:#7a5c15; }
+html[data-tema="giorno"] .giorno-h b{ color:#5f4710; }
+html[data-tema="giorno"] .et,
+html[data-tema="giorno"] .lab,
+html[data-tema="giorno"] .meta,
+html[data-tema="giorno"] .zona,
+html[data-tema="giorno"] .q,
+html[data-tema="giorno"] .formato,
+html[data-tema="giorno"] .cn,
+html[data-tema="giorno"] .sm-sub{ color:#525d6d; }
+html[data-tema="giorno"] .ric-ing,
+html[data-tema="giorno"] .ping,
+html[data-tema="giorno"] .giorno-f{ color:#3d4757; }
+html[data-tema="giorno"] .verdetto.si{ background:#dcf0e4; color:#12643c; }
+html[data-tema="giorno"] .verdetto.no{ background:#f8e3dd; color:#993venti; }
+html[data-tema="giorno"] .verdetto.no{ background:#f8e3dd; color:#96331c; }
+/* la tabella dei giorni migliori era testo chiaro su fondo chiaro: illeggibile */
+html[data-tema="giorno"] table{ color:var(--testo); }
+html[data-tema="giorno"] th{ color:#5b6675; }
+html[data-tema="giorno"] td{ color:var(--testo); border-color:#e2e5ea; }
+html[data-tema="giorno"] tr.sep td{ color:#7a5c15; }
+
+
+/* Restavano quattro punti fuori norma, tutti per lo stesso motivo: il colore
+   veniva da una variabile pensata per il fondo scuro. Qui si assegnano
+   esplicitamente, con il contrasto misurato sul fondo che hanno davvero. */
+html[data-tema="giorno"] .giorno-h .kcal,
+html[data-tema="giorno"] .giorno-h .SPAN,
+html[data-tema="giorno"] .giorno-h span{ color:#5a5040; }
+html[data-tema="giorno"] .giorno-f,
+html[data-tema="giorno"] .giorno-f span,
+html[data-tema="giorno"] .giorno-f b{ color:#3f4854; }
+html[data-tema="giorno"] .tabella-giorni,
+html[data-tema="giorno"] .tabella-giorni td,
+html[data-tema="giorno"] .tabella-giorni th{ color:#232a36; }
+html[data-tema="giorno"] .sconto{ background:#8a6717; color:#fff; }
+html[data-tema="giorno"] .promo-c .prima{ color:#6b7686; }
+html[data-tema="giorno"] .tappa-q,
+html[data-tema="giorno"] .piano-lavoro h2,
+html[data-tema="giorno"] .piano-lavoro .H2{ color:#4a5464; }
+
+
+/* Due sfondi erano rimasti quelli del tema notte: il piede della giornata e
+   il contenitore delle tabelle restavano scuri anche di giorno, e sopra ci
+   finiva testo scuro. Non era un problema di colore del testo — era lo sfondo. */
+html[data-tema="giorno"] .giorno-f{ background:#f2f0e9; }
+html[data-tema="giorno"] .tblwrap{ background:#fff; border-color:#e2e5ea; }
+html[data-tema="giorno"] .tblwrap table{ background:transparent; }
+html[data-tema="giorno"] .giorno-h .kcal{ color:#4f4staff; }
+html[data-tema="giorno"] .giorno-h .kcal{ color:#4a4438; }
+
+
+/* ultimi tre: il numero del giorno accanto al nome, l'energia della giornata
+   e le etichette del piano di lavoro. Erano oro chiaro su fondo chiaro. */
+html[data-tema="giorno"] .giorno-h b span,
+html[data-tema="giorno"] .giorno-h b small,
+html[data-tema="giorno"] .gid{ color:#5f5540; }
+html[data-tema="giorno"] .giorno-h .kcal{ color:#3d382c; }
+html[data-tema="giorno"] .tappa-q{ color:#6b5010; }
+html[data-tema="giorno"] .piano-lavoro h2,
+html[data-tema="giorno"] .card h2{ color:#6b5010; }
+
+
+/* la sigla del giorno (g1, g2…) accanto al nome, e l'energia della giornata */
+html[data-tema="giorno"] .giorno-h b > *{ color:#585040; }
+
+
+/* Le schede nate dopo l'ultima revisione del tema chiaro avevano ancora il
+   fondo scuro: ricette, promozioni, blocchi del catalogo, righe della lista.
+   Il testo si vedeva — era stato corretto — ma la scheda restava nera in una
+   pagina chiara, e nel mezzo di un elenco chiaro non si legge comunque bene. */
+html[data-tema="giorno"] .ric{
+  background:linear-gradient(180deg,#ffffff,#faf8f3); border-color:#e3e0d7;
+}
+html[data-tema="giorno"] .ric h4{ color:#2a2f3a; }
+html[data-tema="giorno"] .ric-ing{ color:#4a5464; }
+html[data-tema="giorno"] .ric footer{ border-top-color:#eae7de; }
+html[data-tema="giorno"] .ric.esclusa{ opacity:.55; }
+html[data-tema="giorno"] .promo-c{
+  background:linear-gradient(180deg,#ffffff,#faf8f3); border-color:#e3e0d7;
+}
+html[data-tema="giorno"] .promo-c b{ color:#2a2f3a; }
+html[data-tema="giorno"] .promo-c.mia{ background:linear-gradient(180deg,#fdf6e6,#fffdf8); }
+html[data-tema="giorno"] .cat-blocco tbody tr{
+  background:linear-gradient(180deg,#ffffff,#faf8f3); border-color:#e3e0d7;
+}
+html[data-tema="giorno"] .segm{ background:#fff; }
+html[data-tema="giorno"] .conta{ background:#fff; }
+html[data-tema="giorno"] .avanzate[open]{ background:#fff; }
+html[data-tema="giorno"] .swaplist button{ background:#fff; border-color:#e3e0d7; color:#2a2f3a; }
+html[data-tema="giorno"] .sm-r{ background:#fff; }
 
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
