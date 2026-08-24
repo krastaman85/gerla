@@ -947,6 +947,9 @@ html[data-tema="giorno"] .avanzate[open]{ background:#fff; }
 html[data-tema="giorno"] .swaplist button{ background:#fff; border-color:#e3e0d7; color:#2a2f3a; }
 html[data-tema="giorno"] .sm-r{ background:#fff; }
 
+
+.stampa-testa{display:none}
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -1212,13 +1215,75 @@ html,body{max-width:100%;overflow-x:hidden}
 }
 
 @media print{
-  header.top,.action-bar,.tabs,.card.noprint,footer,.swap,.lockbtn,.btn,.weekbar{display:none!important}
-  .panel[hidden]{display:block!important}
-  body{background:#fff;color:#000}
-  .scontrino,.giorno,.card{background:#fff!important;border:1px solid #999;color:#000;box-shadow:none;break-inside:avoid}
-  .sc-h .logo,.giorno-h b,.sc-cat,.sc-tot,.kpi .val{color:#000!important}
-  .sc-r,.pasto .nm,.giorno-f{color:#000!important}
+  /* Si stampa quello che stai guardando, non tutta l'applicazione.
+     La regola di prima rendeva visibili anche le schede nascoste: chiedere
+     la lista della spesa faceva uscire dieci pagine con guida e ricettario. */
+  .panel[hidden]{ display:none !important; }
+  header.top, .action-bar, .tabs, .sottonav, .card.noprint, footer,
+  .swap, .lockbtn, .btn, .weekbar, .segm, .searchbox, select, .chips,
+  #setup, .spia, .lng, .avanzate, .mi, .alt, .del, .prod-vero{ display:none !important; }
+
+  @page{ size:A4; margin:14mm 12mm; }
+  html, body{ background:#fff !important; color:#111 !important; }
+  body{ font-size:10.5pt; }
+  .wrap{ max-width:none; padding:0; }
+  main{ padding:0; }
+
+  /* l'intestazione di pagina: chi, quanti giorni, quando. Su un foglio
+     staccato dallo schermo servono, perché non c'è nient'altro a dirlo */
+  .stampa-testa{ display:block !important; border-bottom:1.5pt solid #111;
+    padding-bottom:4mm; margin-bottom:5mm; }
+  .stampa-testa .st-t{ font-family:var(--disp); font-size:20pt; margin:0; }
+  .stampa-testa .st-s{ font-size:9pt; color:#444; margin-top:1.5mm; }
+
+  .card, .giorno, .scontrino, .cat-blocco{
+    background:#fff !important; border:.6pt solid #999 !important;
+    color:#111 !important; box-shadow:none !important;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:4mm;
+  }
+  h2, .sc-cat, .giorno-h b, .cat-t{ color:#111 !important; }
+  .sc-cat{ border-bottom:.5pt solid #bbb; padding-bottom:1mm; margin-top:4mm; }
+
+  /* le caselle da spuntare: sulla carta devono essere quadrati veri,
+     non pallini grigi che non si vedono */
+  .sc-r input[type=checkbox]{
+    -webkit-appearance:none; appearance:none; display:inline-block;
+    width:3.6mm; height:3.6mm; border:.6pt solid #111; border-radius:.6mm;
+    background:#fff !important; vertical-align:-.4mm;
+  }
+  .sc-r{ break-inside:avoid; page-break-inside:avoid; color:#111 !important; }
+  .sc-r .q, .sc-r .formato{ color:#555 !important; }
+  /* i prezzi erano grigio chiarissimo: su carta sparivano del tutto */
+  .sc-r .p, .sc-r b, .sc-r .num{ color:#111 !important; font-weight:600; }
+  /* i nomi dei prodotti sono collegamenti: sullo schermo il tratteggio aiuta,
+     sulla carta è solo sporcizia */
+  .sc-r a, .sc-r a:hover{ border-bottom:0 !important; text-decoration:none !important; color:#111 !important; }
+  .sc-r{ padding:1.1mm 0 !important; }
+  .sc-h .meta{ color:#444 !important; }
+
+  /* due colonne: la lista della spesa passa da cinque pagine a due, e resta
+     leggibile perché ogni riga è corta di suo */
+  .scontrino{ column-count:2; column-gap:8mm; }
+  .scontrino .sc-cat{ break-after:avoid; }
+  .sc-tot{ column-span:all; border-top:1pt solid #111; padding-top:2mm; margin-top:3mm; }
+
+  .pasto, .giorno-f, .kpi > div, .promo-c, .ric{
+    color:#111 !important; background:#fff !important; break-inside:avoid;
+  }
+  .kpi .val, .sc-tot, .bigval{ color:#111 !important; }
+  .barlist .barra i{ background:#666 !important; }
+  .tagpill{ border:.4pt solid #999; color:#333 !important; background:#fff !important; }
+  .nutri svg rect{ opacity:1 !important; }
+
+  /* niente collegamenti sottolineati con l'indirizzo appresso, e nessuna
+     giornata spezzata a metà fra due fogli */
+  a{ color:#111 !important; text-decoration:none !important; }
+  .giorno, .promo-c, .ric{ break-inside:avoid; }
+  tr, td, th{ color:#111 !important; }
+  .tblwrap{ overflow:visible !important; border:0 !important; background:none !important; }
+  table{ min-width:0 !important; font-size:9pt; }
 }
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 </style>
@@ -1281,6 +1346,8 @@ html,body{max-width:100%;overflow-x:hidden}
 
 <header class="top">
   <div class="wrap">
+    <div class="stampa-testa" id="stampaTesta" hidden></div>
+    <div class="stampa-testa" id="stampaTesta" hidden></div>
     <div class="brand">
       <!-- il marchio è uno solo, definito una volta in cima al file:
            qui e altrove si richiama, non si ridisegna -->
@@ -5057,6 +5124,25 @@ function avvioGuidato(){
 /* =========================================================
    MODALITÀ SPESA — schermo grande, pollice, totale che scende
    ========================================================= */
+/* riempie l'intestazione che compare solo sulla carta */
+function preparaStampa(){
+  const t=$("#stampaTesta"); if(!t) return;
+  const oggi=new Date().toLocaleDateString("it-CH",{day:"2-digit",month:"long",year:"numeric"});
+  const nomi={menu:T("Menu della settimana"),lista:T("Lista della spesa"),analisi:T("Analisi e budget"),
+    eventi:T("Menu per l'occasione"),ricette:T("Ricettario"),dispensa:T("Dispensa"),storico:T("Storico delle spese")};
+  const righe = S.menu ? costruisciLista().filter(r=>!r.off) : [];
+  const tot = righe.length ? totale(righe) : 0;
+  const dettaglio = S.pan==="lista" && righe.length
+    ? TF("{0} articoli · circa CHF {1} · {2}",[righe.length,chfr(tot),[...new Set(righe.map(r=>r.riv.n))].join(", ")])
+    : TF("{0} persone · {1} giorni",[S.persone.length,S.giorni]);
+  t.innerHTML=`<div class="st-t">${nomi[S.pan]||"Gerla"}</div>
+    <div class="st-s">${dettaglio} · ${oggi} · Gerla</div>`;
+  t.hidden=false;
+}
+window.addEventListener("beforeprint",preparaStampa);
+window.matchMedia && window.matchMedia("print").addEventListener &&
+  window.matchMedia("print").addEventListener("change",e=>{ if(e.matches) preparaStampa(); });
+
 function apriSpesa(righeExt,titolo){
   const righe=(righeExt||costruisciLista()).filter(r=>!r.off);
   if(!righe.length) return;
@@ -5596,6 +5682,15 @@ const LINGUE=[{id:"it",n:"Italiano",b:"IT",fl:"it"},{id:"en",n:"English",b:"EN",
               {id:"fr",n:"Français",b:"FR",fl:"fr"},{id:"de",n:"Deutsch",b:"DE",fl:"de"}];
 const DIZ={
 en:{
+"Menu della settimana":"Weekly menu",
+"Lista della spesa":"Shopping list",
+"Analisi e budget":"Analysis and budget",
+"Menu per l'occasione":"Menu for the occasion",
+"Ricettario":"Recipe book",
+"Storico delle spese":"Shopping history",
+"{0} articoli · circa CHF {1} · {2}":"{0} items · about CHF {1} · {2}",
+"{0} persone · {1} giorni":"{0} people · {1} days",
+
 "Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.":"If there are two of you, split the shops: each gets only their part, with their own total. The link opens the list ready to tick, with nothing to install.",
 "Tutti":"All",
 "Manda su WhatsApp":"Send on WhatsApp",
@@ -6237,6 +6332,15 @@ en:{
 "Bentornato a tavola":"Welcome back to the table","Lingua":"Language",
 },
 fr:{
+"Menu della settimana":"Menu de la semaine",
+"Lista della spesa":"Liste de courses",
+"Analisi e budget":"Analyse et budget",
+"Menu per l'occasione":"Menu pour l'occasion",
+"Ricettario":"Livre de recettes",
+"Storico delle spese":"Historique des courses",
+"{0} articoli · circa CHF {1} · {2}":"{0} articles · environ CHF {1} · {2}",
+"{0} persone · {1} giorni":"{0} personnes · {1} jours",
+
 "Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.":"Si vous êtes deux, répartissez-vous les magasins : chacun reçoit sa part avec son total. Le lien ouvre la liste prête à cocher, sans rien installer.",
 "Tutti":"Tous",
 "Manda su WhatsApp":"Envoyer sur WhatsApp",
@@ -6878,6 +6982,15 @@ fr:{
 "Bentornato a tavola":"Bienvenue à table","Lingua":"Langue",
 },
 de:{
+"Menu della settimana":"Wochenmenü",
+"Lista della spesa":"Einkaufsliste",
+"Analisi e budget":"Analyse und Budget",
+"Menu per l'occasione":"Menü für den Anlass",
+"Ricettario":"Rezeptbuch",
+"Storico delle spese":"Einkaufsverlauf",
+"{0} articoli · circa CHF {1} · {2}":"{0} Artikel · rund CHF {1} · {2}",
+"{0} persone · {1} giorni":"{0} Personen · {1} Tage",
+
 "Se siete in due, dividetevi i negozi: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile, senza installare niente.":"Wenn Sie zu zweit sind, teilen Sie die Läden auf: jeder bekommt nur seinen Teil mit eigenem Total. Der Link öffnet die Liste zum Abhaken, ohne Installation.",
 "Tutti":"Alle",
 "Manda su WhatsApp":"Per WhatsApp senden",
@@ -7557,6 +7670,7 @@ function renderNav(){
    non all'avvio. Da 16.700 nodi iniziali a poco più di seimila. */
 const DISEGNATI={};
 function mostraPannello(){
+  setTimeout(()=>{ try{ preparaStampa(); }catch(e){} },0);   // l'intestazione di stampa resta sempre pronta
   $$(".panel").forEach(p=>p.hidden = p.id!=="p-"+S.pan);
   if(!DISEGNATI[S.pan]){
     DISEGNATI[S.pan]=true;
