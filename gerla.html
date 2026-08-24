@@ -803,6 +803,46 @@ html[data-tema="giorno"] .fonte-madre{background:linear-gradient(180deg,#fdf4e0,
   .sm-r,.chip,.mi,.swap,.tab,.segm-b{-webkit-tap-highlight-color:rgba(224,180,90,.18)}
 }
 
+
+/* =========================================================
+   MISURA DELLE RIGHE
+   Misurato alle nove larghezze: fra 600 e 1024 px le righe di testo
+   arrivavano a 130 caratteri, quasi il doppio di quanto l'occhio segue
+   senza perdere il segno. Qui ogni testo lungo prende una misura sua,
+   in caratteri e non in pixel, così vale a qualunque dimensione.
+   ========================================================= */
+.hint, .legenda, .fm-t, .cat-blocco p, .ric-ing, .promo-c b{ max-width: 68ch; }
+.hint, .legenda{ line-height: 1.6; }
+/* i testi centrati sotto un titolo restano centrati mentre si accorciano */
+.empty .nm, .benv-sub, .pie-note{ max-width: 56ch; margin-left: auto; margin-right: auto; }
+.claim{ max-width: 34ch; }
+/* nelle schede a colonna sola il testo non deve stirarsi da bordo a bordo */
+.card > .hint, .card > .legenda, .card > p{ max-width: 68ch; }
+
+/* la fascia intermedia — tablet e finestre strette — aveva il contenuto
+   a tutta larghezza: qui prende un respiro laterale che cresce con lo schermo */
+@media(min-width:761px) and (max-width:1099px){
+  .wrap{ padding: 0 clamp(24px, 5vw, 56px); }
+  main{ padding-top: 22px; }
+}
+
+
+/* le tessere dei numeri: a colonne libere lasciavano un orfano sull'ultima
+   riga (cinque sopra, una sotto). Con tre colonne fisse nella fascia
+   intermedia le sei tessere formano due righe piene. */
+/* sei tessere: a colonne libere ne restava una orfana sull'ultima riga.
+   Tre colonne fanno due righe piene, due colonne su schermo stretto. */
+@media(min-width:761px){
+  #p-analisi .kpi{ grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media(min-width:521px) and (max-width:760px){
+  #p-analisi .kpi{ grid-template-columns: repeat(2, 1fr) !important; }
+}
+/* gli importi non vanno mai a capo: "CHF 218.48" spezzato su due righe
+   si legge come due numeri diversi */
+.kpi .val, .sc-tot, .bigval, .promo-p .ora{ white-space: nowrap; }
+.kpi .val{ font-size: clamp(21px, 2.4vw, 29px); }
+
 /* ---------- barra di stato ---------- */
 .statusbar{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--testo-3)}
 .linkbtn{background:none;border:0;color:var(--testo-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-bottom:1px dotted var(--linea-2);padding:0}
@@ -1531,7 +1571,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <div class="card noprint">
       <h2>Manuale d'uso</h2>
       <p class="hint" style="margin-top:0">Tutte le funzioni, una per una. Apri il capitolo che ti serve o cerca una parola: la ricerca guarda dentro il testo di ogni voce.</p>
-      <input type="text" class="searchbox" id="cercaGuida" placeholder="Cerca nella guida: dispensa, budget, dado, scadenze&hellip;" style="margin:12px 0 0">
+      <input type="text" class="searchbox" id="cercaGuida" placeholder="Cerca nella guida: offerte, senza rete, dispensa, budget&hellip;" style="margin:12px 0 0">
     </div>
     <div id="guidaBox"></div>
   </section>
@@ -5303,160 +5343,70 @@ function passoGuida(){
    GUIDA — manuale d'uso integrato
    ========================================================= */
 const GUIDA=[
-{ic:"◇",t:"Come è organizzata",s:[
- {h:"Quattro sezioni",p:["<b>Piano</b> è il lavoro di tutti i giorni: il menu, la lista della spesa che ne nasce e l'analisi dei costi. <b>Occasioni</b> è per gli ospiti. <b>Casa</b> tiene dispensa e storico delle spese. <b>Prezzi</b> è la manutenzione: listino, promozioni, volantini e aggiornamento.",
- "Dentro Piano e Casa, una seconda fila di pastiglie porta alle singole schede. La <b>guida</b> è il libro aperto in fondo alla barra."]},
- {h:"Da dove si comincia",p:["Dalle impostazioni in cima, che si chiudono da sole appena premi <b>Crea il piano</b> e lasciano lo schermo al menu. Il riepilogo in una riga ti ricorda sempre com'è configurato."]}]},
+{ic:"◆",t:"In tre mosse",s:[
+ {h:"1. Di' chi sei",p:["Al primo avvio quattro domande: quante persone, per quanti giorni, in quali negozi, quanto vuoi spendere. Un minuto e la prima lista è pronta. Si può cambiare tutto dopo, e il piano si rifà da solo."]},
+ {h:"2. Crea il piano",p:["Il pulsante dorato genera menu, lista e analisi insieme. Se il totale sfora, <b>Fai stare nel budget</b> sposta la scelta verso piatti più economici e negozi più convenienti."]},
+ {h:"3. Vai a fare la spesa",p:["<b>Modalità spesa</b> apre la lista a schermo pieno, divisa per negozio, con le voci grandi da spuntare col dito. Alla fine <b>Ho finito la spesa</b> registra tutto: la dispensa si riempie e la spesa entra nello storico."]}]},
 
-{ic:"◇",t:"In tre mosse",s:[
- {h:"Il giro completo",p:["Dici chi si siede a tavola, per quanti giorni e quanto vuoi spendere. Premi <b>Crea il piano</b>. Da quel momento hai il menu di ogni giorno, la lista della spesa divisa per negozio con le quantità già calcolate, e il conto che si confronta con il budget.",
- "Tutto il resto — dispensa, occasioni, storico, prezzi — serve a rendere quel giro più preciso, ma non è obbligatorio: si può usare Gerla anche solo per quei tre passi."]},
- {h:"Se ti sei perso",p:["In alto, accanto alla scritta della memoria, c'è <b>ritorna all'avvio guidato</b>: quattro domande e riparti da una situazione pulita, senza perdere prezzi e impostazioni."]},
- {h:"Niente si perde",p:["Ogni modifica viene salvata sul tuo dispositivo appena la fai. Puoi chiudere la finestra in qualsiasi momento: alla riapertura trovi tutto com'era, menu compreso."]}]},
+{ic:"◈",t:"Le impostazioni",s:[
+ {h:"Chi mangia",p:["Il contatore in alto aggiunge o toglie persone. Per ognuna scegli età e attività: le porzioni si adattano da sole, e accanto vedi le porzioni adulto equivalenti e il fabbisogno del nucleo."]},
+ {h:"Dove fai la spesa",p:["I negozi sono divisi per paese, in ordine alfabetico. Accendi quelli che frequenti davvero: per ogni prodotto Gerla sceglie il più conveniente fra quelli accesi.",
+ "<b>Quanti negozi vuoi girare</b> limita il giro: con \"al massimo due\" cerca la coppia che costa meno in totale, non il minimo prodotto per prodotto."]},
+ {h:"Come vuoi mangiare",p:["Vegetariano e vegano si escludono a vicenda e si calcolano sugli ingredienti veri, non su un'etichetta. Le altre esclusioni tolgono ciò che non volete: maiale, pesce, glutine, lattosio, uova, frutta a guscio, carne rossa.",
+ "<b>Giorni senza carne né pesce</b> mette da sé dei giorni leggeri anche senza scegliere una dieta."]},
+ {h:"Budget e ritmo",p:["Periodo da un giorno a un mese, budget totale, margine di scorta per non restare a secco, tempo per cucinare. <b>Cucina una volta, mangia due</b> fa riprendere a pranzo la cena della sera prima."]}]},
 
-{ic:"◈",t:"Chi mangia",s:[
- {h:"Le persone",p:["Ogni riga è una persona: nome, fascia d'età, quanto è attiva. Non è un dettaglio estetico: da qui nascono tutte le quantità.",
- "Le fasce valgono così: bambino 1-5 anni conta mezza porzione, bambino 6-11 poco più di tre quarti, ragazzo 12-17 conta più di un adulto (1,15), adulto è la porzione di riferimento, over 65 conta 0,85. L'attività corregge ancora: poco attivo −8%, molto attivo +14%."]},
- {h:"Come si legge il risultato",p:["Sotto il budget compare il <b>fabbisogno del nucleo</b> in calorie al giorno. È la somma delle persone e serve da metro: nella scheda Analisi trovi le calorie che il menu produce davvero, e le due cifre dovrebbero somigliarsi.",
- "Se una persona mangia molto poco o moltissimo, invece di inventare fasce sbagliate usa l'attività per correggere."]},
- {h:"Aggiungere e togliere",p:["<b>+ Aggiungi persona</b> per gli ospiti fissi. Per una cena occasionale non toccare qui: usa la scheda <b>Occasioni</b>, che ragiona a numero di commensali senza scombinare il piano di famiglia."]}]},
+{ic:"▤",t:"Il piano della settimana",s:[
+ {h:"Menu",p:["Ogni giornata mostra i pasti con calorie, proteine e costo. Le icone sotto ogni piatto: <b>♡</b> se piace (tornerà più spesso), <b>✕</b> se non volete più vederlo, <b>⇄</b> per scambiarlo con un altro, e l'ultima apre la ricetta su GialloZafferano.",
+ "Il lucchetto blocca una giornata: rigenerando il piano, quella resta com'è."]},
+ {h:"Lista della spesa",p:["Divisa per negozio e per reparto, con quantità arrotondate alle confezioni vere. Sotto ogni prezzo, quando c'è, il nome del prodotto reale scelto in quel negozio.",
+ "Quello che hai già in dispensa resta in elenco ma segnato <i>già in casa</i>, e non pesa sul totale: così sai perché non devi comprarlo."]},
+ {h:"Analisi e budget",p:["Totale del periodo, costo al giorno e a persona, energia media, proteine, quota di frutta e verdura di stagione, indice salute del carrello. Sotto: dove vanno i soldi per reparto e quanto stai risparmiando rispetto al prezzo pieno.",
+ "In cima, <b>Conviene andare in Italia?</b> dà il verdetto già nel titolo: confronta lo stesso carrello nelle due zone e sottrae carburante, tempo e pedaggi."]}]},
 
-{ic:"◉",t:"Dove fai la spesa",s:[
- {h:"I negozi",p:["Accendi le negozi dove vai davvero. Ognuna ha un indice di prezzo e correzioni per reparto: Aldi e Lidl costano meno sui prodotti base, Denner vince su caffè, cioccolato e bevande, Coop è più forte su carne e pesce, Manor e Migrolino sono i più cari, Prodega e Aligro sono all'ingrosso.",
- "Per ogni singolo prodotto Gerla sceglie il più conveniente tra quelli accesi. Non serve che tu lo faccia a mano."]},
- {h:"Quanti negozi vuoi girare",p:["Nella scheda Budget. È la regolazione più sottovalutata: <b>Uno solo</b> ti dà la comodità, <b>Tutti quelli selezionati</b> il prezzo minimo teorico ma con sei tappe.",
- "Con <b>Al massimo due</b> o <b>tre</b> Gerla calcola quale combinazione di negozi costa meno in assoluto: prova tutte le combinazioni possibili, non sceglie i primi due che capitano."]},
- {h:"I negozi italiani",p:["I prezzi italiani sono convertiti in franchi. Se ne accendi almeno una, nella scheda Analisi compare il calcolo <b>Conviene andare in Italia?</b> e nella lista il controllo della franchigia doganale."]}]},
+{ic:"◧",t:"In corsia",s:[
+ {h:"Modalità spesa",p:["Schermo pieno, caratteri grandi, spunte larghe da toccare anche con le mani occupate. In alto restano il negozio e il totale di quello che hai già preso. Lo schermo non si spegne mentre spunti."]},
+ {h:"Funziona senza rete",p:["I magazzini sono spesso interrati e il telefono non prende. Gerla si apre lo stesso, con piano, lista e prezzi dell'ultima volta. La spia accanto a <i>dati salvati nel dispositivo</i> diventa azzurra e dice <b>copia locale</b>.",
+ "Perché funzioni, l'app va aperta almeno una volta con la rete: è in quel momento che mette da parte quello che le serve."]},
+ {h:"Installala sul telefono",p:["Il pulsante <b>Installa</b> in alto la mette fra le tue app, con la sua icona e senza le barre del browser. Tenendo premuta l'icona compaiono le scorciatoie: lista, modalità spesa, offerte.",
+ "Quando esce una versione nuova compare un pulsante verde <b>Aggiorna</b>: un tocco e ci sei."]},
+ {h:"Dividete la spesa in due",p:["<b>Manda la lista</b> permette di scegliere quali negozi mandare: ognuno riceve solo la sua parte, con il totale che gli spetta. Il collegamento apre la lista già spuntabile sull'altro telefono, senza installare niente.",
+ "Le spunte non si sincronizzano fra i due telefoni: proprio per questo conviene dividersi i negozi invece della stessa lista."]}]},
 
-{ic:"✳",t:"Come vuoi mangiare",s:[
- {h:"Le restrizioni",p:["Le pastiglie in alto tolgono di mezzo interi gruppi: niente maiale, niente pesce, senza glutine, senza lattosio, niente uova, niente frutta a guscio, niente carne rossa.",
- "Valgono ovunque: menu settimanale, dado delle occasioni, proposte della dispensa. Se ne accendi molte insieme le proposte si riducono, ma il catalogo contiene abbastanza alternative da comporre comunque menu completi."]},
- {h:"Giorni senza carne né pesce",p:["Il cursore fissa quanti giorni a settimana. È un numero vincolante: negli altri giorni il pranzo avrà sempre carne o pesce. Nei giorni senza, Gerla privilegia piatti con legumi, uova o formaggio, per non lasciare la giornata scoperta di proteine."]},
- {h:"Priorità",p:["<b>Equilibrio</b> bilancia costo, salute, stagione e gradimento. <b>Spesa minima</b> spinge sui piatti economici. <b>Più salute e verdura</b> premia freschi e poco lavorati. <b>Massima stagionalità</b> segue il mese corrente. <b>Gusti dei bambini</b> pesca tra i piatti graditi ai più piccoli.",
- "Il pesce compare comunque almeno due volte a settimana, qualunque priorità tu scelga."]}]},
+{ic:"◫",t:"Prezzi veri",s:[
+ {h:"Da dove vengono",p:["I prezzi non sono stime: ogni ingrediente delle ricette è legato in automatico a un prodotto vero in ogni negozio, con il suo nome e il suo formato. Il latte intero costa diverso da Denner e da Migros, e il piano ne tiene conto.",
+ "La fonte principale è Skrimpers, che raccoglie i prezzi delle catene svizzere. Per i prodotti che i negozi non coprono — casa e igiene — resta un prezzo di riferimento, e l'app lo dichiara."]},
+ {h:"Catalogo",p:["Una ricerca sola per due mondi: i tuoi ingredienti e i quarantamila prodotti reali dei negozi. Scrivi in italiano anche se i nomi sono in tedesco: <i>mele</i> trova <i>Äpfel</i>.",
+ "Filtri per reparto, negozio, Nutri-Score e ordinamenti per prezzo o per prezzo al chilo. Da un prodotto dei negozi, <b>+ come ingrediente</b> lo porta nel tuo catalogo."]},
+ {h:"Offerte",p:["Le promozioni in corso nei negozi accesi, con lo sconto reale e la scadenza vera presa dai volantini. Si filtrano per negozio, sconto minimo e scadenza, e si cercano per nome.",
+ "Quelle che scadono entro domani sono segnate in rosso."]},
+ {h:"Correggere un abbinamento",p:["Nessun accostamento automatico è perfetto: cercando <i>Milch</i> escono anche il cioccolato al latte. Sotto il prezzo, tocca il nome del prodotto: si apre l'elenco delle alternative già scaricate. Scegli quella giusta, oppure <b>Nessuno di questi va bene</b>.",
+ "Il prezzo cambia subito. Con <b>Esporta le correzioni</b> le rendi permanenti anche dopo un aggiornamento del catalogo."]},
+ {h:"Aggiornamento",p:["Se l'app è pubblicata sul web, i prezzi si rinnovano da soli ogni mattina. Il riquadro della freschezza dice quanti giorni ha ogni dato: verde se fresco, rosso se una fonte non risponde da più di una settimana.",
+ "Un prezzo si può sempre correggere a mano, e la correzione vince su tutto."]}]},
 
-{ic:"☘",t:"Pasti e ritmo",s:[
- {h:"Pasti da pianificare",p:["Spegni quelli che non ti servono. Se i figli fanno colazione a scuola, spegni Colazione: sparisce dal menu e dalla lista, e il conto scende di conseguenza. Almeno un pasto deve restare acceso."]},
- {h:"Pasti fuori casa a settimana",p:["Quanti pasti, sommando tutte le persone, si consumano fuori. Riduce in proporzione le quantità del pranzo, senza toglierlo dal menu: continui a vedere cosa si mangia, ma compri meno."]},
- {h:"Linea di prodotto",p:["Sposta tutto il listino: linea economica −22%, marca propria è il riferimento, marche note +28%, biologico +45%. Su casa e igiene la correzione è più contenuta, perché lì la differenza reale è minore."]},
- {h:"Margine di scorta",p:["<b>Esatto</b> compra il minimo indispensabile e non lascia avanzi. <b>Piccolo margine</b> (+8%) è il valore consigliato: copre l'imprevisto senza sprechi. <b>Dispensa piena</b> (+20%) serve quando non hai voglia di tornare al negozio."]},
- {h:"Tempo per cucinare",p:["<b>Poco</b> tiene solo piatti rapidi. <b>Rapidi in settimana, elaborati nel weekend</b> è il compromesso di chi lavora: dal lunedì al venerdì cose svelte, sabato e domenica lasagne, brasati, risotti."]},
- {h:"Cucina una volta, mangia due",p:["Il pranzo del giorno dopo riprende la cena della sera prima. La spesa non cambia (le porzioni vanno comunque comprate), ma si cucina la metà delle volte. Nel menu quei pranzi sono in corsivo, marcati <i>avanzi di ieri</i>."]}]},
+{ic:"◨",t:"Casa",s:[
+ {h:"Dispensa",p:["Quello che hai già, con la data di scadenza se la metti. Si riempie da sola quando chiudi una spesa. La lista successiva scala quello che c'è, e la scheda avvisa quando qualcosa sta per scadere."]},
+ {h:"Storico",p:["Ogni spesa registrata con data, totale, articoli e negozi. Serve a vedere l'andamento vero della spesa nel tempo, non quello previsto."]}]},
 
-{ic:"◆",t:"Budget e periodo",s:[
- {h:"Periodo",p:["Da un giorno a due mesi, più <b>Giorni a scelta</b> per qualsiasi numero da 1 a 60. Sui periodi corti Gerla non ti mette in lista detersivi e scorte: entrano solo quando la quantità che ti servirebbe supera mezza confezione, cioè quando è davvero ora di ricomprarli."]},
- {h:"Budget",p:["È l'importo per tutto il periodo, non al mese. Sotto compare quanto fa al giorno e a persona. Nella scheda Analisi la barra si colora di rosso se sfori, con l'importo esatto."]},
- {h:"Seme del caso",p:["Lo stesso numero produce sempre lo stesso menu. Serve a ritrovare una settimana che ti era piaciuta: segnati il numero e lo riottieni identico. <b>Caso nuovo</b> ne pesca un altro."]},
- {h:"Casa e igiene, scorte di dispensa",p:["Le due caselle includono o escludono detersivi, carta, cura della persona e le scorte fisse (olio, sale, caffè, acqua). Tienile accese per sapere quanto spendi davvero; spegnile se vuoi confrontare solo il cibo."]}]},
+{ic:"✎",t:"Ricette e occasioni",s:[
+ {h:"Il ricettario",p:["288 ricette di tredici cucine. Si cerca per nome o per ingrediente — <i>zucchine</i> trova tutto quello che le usa — e si filtra per rapide, elaborate, vegetariane, vegane, di pesce, per i bambini, di stagione.",
+ "Ogni scheda ha tempo, costo per il tuo nucleo, calorie, proteine e il collegamento alla ricetta. <b>Mettila in tavola</b> la inserisce nel piano di oggi."]},
+ {h:"Occasioni",p:["Per quando vengono ospiti. Scegli il momento — cena, aperitivo, serata a tema — e il livello, da budget a indimenticabile. Il dado propone tre menu completi: toccane uno e scendi al dettaglio, con portate, ingredienti, tempi e spesa.",
+ "Tredici cucine, dall'Italia di casa al Giappone. Il menu scelto si aggiunge alla lista come una spesa a parte."]}]},
 
-{ic:"✦",t:"La barra delle azioni",s:[
- {h:"Crea il piano",p:["Genera menu e lista con le impostazioni correnti. I giorni bloccati col lucchetto restano intatti."]},
- {h:"Rimescola",p:["Cambia seme e rifà tutto. Se un menu non ti convince, questo è il pulsante da premere."]},
- {h:"Fai stare nel budget",p:["Prova fino a ventisei combinazioni diverse, spostandosi verso piatti più economici, e tiene la migliore. Se il budget è irraggiungibile te lo dice con l'importo minimo possibile invece di fingere: a quel punto o alzi il budget, o accendi un discount, o riduci il margine di scorta."]},
- {h:"Modalità spesa",p:["Apre la lista a schermo intero per il negozio. È descritta più sotto: è la funzione che userai di più."]},
- {h:"Esporta / stampa",p:["Testo completo di menu e lista da copiare o stampare. La stampa mostra tutte le schede insieme, anche quelle non aperte."]}]},
+{ic:"◑",t:"Memoria, lingua, privacy",s:[
+ {h:"I dati restano tuoi",p:["Tutto è salvato nella memoria del browser sul tuo dispositivo. Non esiste nessun server, nessun account, nessuna pubblicità. Non c'è niente da registrare e niente che parta da qui.",
+ "Il rovescio: cancellando i dati del browser si cancella anche Gerla. Prima di operazioni delicate usa <b>Salva le impostazioni</b>, che scarica tutto in un file."]},
+ {h:"Quattro lingue",p:["Italiano, inglese, francese, tedesco: si cambia dai pulsanti in alto e l'app si ridisegna. Restano in italiano i nomi dei prodotti, quelli dei piatti e questa guida."]},
+ {h:"Ricominciare",p:["<b>Ritorna all'avvio guidato</b> rifà le quattro domande tenendo tutto il resto. <b>Cancella e ripristina</b> azzera davvero: usalo solo se vuoi ripartire da zero."]}]},
 
-{ic:"❋",t:"Scheda Menu",s:[
- {h:"Le schede dei giorni",p:["Una per giorno, con i pasti attivi. In alto le calorie a persona, in basso le proteine e il costo di quella giornata per tutto il nucleo.",
- "Se il periodo supera la settimana, in alto compaiono le linguette Settimana 1, 2, 3… e <b>Tutto il periodo</b> per vedere tutto insieme."]},
- {h:"Il lucchetto",p:["Blocca la giornata: alle generazioni successive resta com'è. Serve quando hai già deciso il menu di domenica e vuoi rimescolare solo il resto."]},
- {h:"I tre pulsanti sotto ogni piatto",p:["<b>♡</b> ti piace: quel piatto tornerà più spesso. <b>✕</b> non ti piace: sparisce dalle generazioni future. <b>↻</b> cambia solo quel pasto, aprendo l'elenco delle alternative con prezzo e calorie di ciascuna.",
- "I gradimenti restano salvati e valgono per sempre: dopo qualche settimana il generatore conosce i gusti di casa. Per ripensarci, ripremi lo stesso pulsante."]},
- {h:"Le etichette",p:["<i>bimbi</i> segnala i piatti graditi ai più piccoli, <i>salute</i> quelli particolarmente equilibrati, <i>rapido</i> quelli sotto la mezz'ora."]}]},
-
-{ic:"◧",t:"Scheda Lista della spesa",s:[
- {h:"Uno scontrino per negozio",p:["Ogni negozio ha il suo, con gli articoli ordinati come li incontri: verdura, frutta, carne, pesce, latticini, dispensa, e in fondo casa e igiene.",
- "Le quantità sono reali: chili e grammi per lo sfuso, numero di confezioni per il resto, con il formato indicato tra parentesi."]},
- {h:"La casella a sinistra",p:["Spunta ciò che hai già in casa: l'articolo esce dal totale. È una scorciatoia veloce; per tenerne conto in modo stabile usa la Dispensa."]},
- {h:"Il pulsante ⇄",p:["Cerca un'alternativa allo stesso prodotto: stesso reparto, prezzi confrontati a parità di quantità, con la differenza in franchi e una nota sull'indice salute. La sostituzione vale ovunque, anche nelle occasioni, finché non la annulli scegliendo di nuovo il prodotto originale."]},
- {h:"Il nome del prodotto",p:["È un collegamento: apre la ricerca di quel prodotto sul sito del negozio più conveniente, per controllare il prezzo del giorno."]},
- {h:"Controllo dogana",p:["Se compri in Italia, in cima compare il conto della franchigia: CHF 150 a persona al giorno e 1 kg di carne a testa. Se sfori te lo dice, e suggerisce di dividere la spesa in due uscite o di dichiarare l'IVA con QuickZoll."]}]},
-
-{ic:"🛒",t:"Modalità spesa",s:[
- {h:"A cosa serve",p:["È la lista pensata per il negozio, non per la scrivania: schermo intero, righe alte da toccare col pollice, niente altro sullo schermo. Si apre dalla barra delle azioni o dal dettaglio di un'occasione."]},
- {h:"Mentre fai la spesa",p:["Tocchi la riga e l'articolo si barra. In alto a destra sale il valore di quello che hai nel carrello, sotto scende il <b>resta CHF</b>: sai in ogni momento a che punto sei rispetto al budget, prima della cassa."]},
- {h:"Manda la lista",p:["Genera il testo pronto per WhatsApp, per chi va a fare la spesa al posto tuo, più un collegamento che sull'altro dispositivo apre direttamente la lista spuntabile."]},
- {h:"Ho finito la spesa",p:["Due cose insieme: registra l'importo nello Storico, e <b>mette in Dispensa</b> tutto quello che hai spuntato. Da lì in avanti la lista successiva ne terrà conto da sola."]}]},
-
-{ic:"🥂",t:"Scheda Occasioni",s:[
- {h:"Come si usa",p:["Scegli il momento — colazione, pranzo, merenda, aperitivo e serata, cena — poi il livello, poi quante persone. Le proposte si ricalcolano subito, da una persona a sessanta."]},
- {h:"I tre livelli",p:["<b>Budget</b>: spesa contenuta, niente di superfluo. <b>Medio</b>: come una domenica in famiglia. <b>Lusso</b>: per le occasioni che contano, con antipasti, vini in abbinamento e dolce fatto in casa."]},
- {h:"Proposte della casa e dado",p:["Le proposte della casa sono menu scritti e provati, comprese le stagionali ispirate ai grotti: rassegna d'autunno, tavolata di primavera, sera d'estate in terrazza, cena di fine anno.",
- "<b>🎲 Tira il dado</b> ne compone tre nuove pescando dalla libreria delle portate: le combinazioni possibili sono milioni, e ogni pressione dà qualcosa che non hai mai visto. <b>✦ Proposta consigliata</b> fa lo stesso ma pescando tra le migliori per stagione, equilibrio e prezzo. <b>Solo le proposte della casa</b> ripulisce."]},
- {h:"Il dettaglio",p:["Portata per portata, con gli ingredienti già moltiplicati per i commensali. Sotto, quattro numeri: <b>spesa da fare</b> (confezioni intere, quello che paghi in cassa) e <b>valore consumato</b> (quello che finisce davvero nei piatti — la differenza resta in dispensa), il tempo in cucina e le calorie a persona."]},
- {h:"Piano di lavoro",p:["Il riquadro dorato dice <i>quando</i> fare le cose: il giorno prima il tiramisù e i brasati, la mattina le lasagne, tre ore prima le lievitazioni, un'ora prima i secondi, all'ultimo gli antipasti freddi e il brindisi. È la differenza tra un menu e una cena riuscita."]}]},
-
-{ic:"◫",t:"Scheda Dispensa",s:[
- {h:"Cosa fa",p:["Quello che è in dispensa viene tolto dalla lista della spesa, confezione per confezione. Se hai cinque pacchi di pasta, la pasta non ricompare finché non finiscono."]},
- {h:"Come si riempie",p:["Da sola, ogni volta che chiudi una spesa in modalità corsia. Oppure a mano con <b>+ Metti qualcosa in dispensa</b>, indicando quante confezioni e, se vuoi, la scadenza."]},
- {h:"Le scadenze",p:["In cima compaiono gli avvisi: cosa è scaduto e cosa scade entro quattro giorni. Non è pignoleria, è la voce di spesa che si butta più spesso senza accorgersene."]},
- {h:"Cosa cucino con quello che c'è",p:["I piatti che copri meglio con la dispensa, ordinati mettendo davanti quelli che usano ciò che sta per scadere. Per ognuno vedi cosa hai già e cosa manca. È la risposta al mercoledì sera."]}]},
-
-{ic:"◐",t:"Scheda Storico",s:[
- {h:"Le spese registrate",p:["Ogni volta che chiudi una spesa in modalità corsia, l'importo finisce qui con data, negozi e numero di articoli. Sopra: totale speso, media al mese, e il grafico mese per mese."]},
- {h:"L'indice del tuo paniere",p:["Segue i venti prodotti che pesano di più sulla tua spesa e mostra di quanto sono cambiati dai primi prezzi registrati. Serve a rispondere alla domanda vera: sto spendendo di più perché compro di più, o perché i prezzi sono saliti?"]}]},
-
-{ic:"◑",t:"Scheda Analisi e budget",s:[
- {h:"I sei numeri in alto",p:["Totale del periodo, costo al giorno e a persona, energia media a persona con l'obiettivo accanto, proteine, percentuale di frutta e verdura di stagione, indice salute del carrello da 1 a 5. Sopra 4,0 il carrello è prevalentemente fresco."]},
- {h:"Dove vanno i soldi",p:["I reparti in ordine di spesa, con importo e percentuale. È il modo più rapido per capire dove intervenire: di solito latticini, carne e dispensa fanno da soli metà del conto."]},
- {h:"Quanto stai risparmiando",p:["Confronta il tuo mix di negozi con la spesa fatta tutta al prezzo pieno, e proietta la differenza su un anno."]},
- {h:"Conviene andare in Italia?",p:["Metti chilometri all'andata, minuti totali coda compresa, alimentazione e consumo, e quanto vale un'ora del tuo tempo. Gerla confronta lo stesso identico carrello nelle due zone e sottrae carburante, tempo e pedaggi.",
- "Se il conto è negativo ti dice sotto quale importo di spesa non vale la pena partire. I prezzi dei carburanti sono quelli correnti e vengono aggiornati insieme al listino."]}]},
-
-{ic:"◎",t:"Scheda Prezzi e volantini",s:[
- {h:"L'avviso in cima",p:["Dopo sette giorni diventa dorato e la linguetta si segna con un puntino: è il promemoria che le promozioni sono cambiate."]},
- {h:"Aggiorna i 20 che contano",p:["Il modo più efficiente di tenere il conto preciso. Ti porta un prodotto alla volta, partendo da quello che pesa di più sul tuo carrello, con il campo del prezzo, quello dell'azione e il collegamento al volantino di quella catena. Puoi fermarti quando vuoi: <b>Basta così</b> salva quello che hai fatto."]},
- {h:"Volantini della settimana",p:["Collegamenti diretti al volantino di ogni negozio, più gli archivi e il confronto prezzi. I negozi spente sono in grigio."]},
- {h:"Il listino",p:["Ogni riga: prezzo di riferimento modificabile, prezzo in azione con l'negozio e la data di scadenza, il miglior prezzo calcolato, l'alternativa scelta, la stagione.",
- "L'azione vale finché non scade, poi il prezzo torna da solo a quello pieno. I prezzi con il marchio dorato <b>✓ dal web</b> vengono da rilevazioni reali: passandoci sopra vedi in quali negozi e quando."]},
- {h:"Aggiungi un prodotto",p:["Nome, reparto, prezzo, formato, icona. Entra nel listino come tutti gli altri e compare nelle alternative. Resta nelle tue impostazioni."]},
- {h:"Aggiornamento automatico",p:["Se hai un indirizzo di listino condiviso, incollalo qui e lascia spuntato <b>Aggiorna a ogni apertura</b>: prezzi, indici, promozioni e carburanti si allineano da soli a ogni avvio. Senza indirizzo, l'app funziona esattamente come prima."]},
- {h:"Adegua tutto il listino",p:["Una percentuale su tutti i prezzi insieme, per i rincari generalizzati. <b>Torna ai prezzi di riferimento</b> annulla ogni correzione manuale."]},
- {h:"Indici per negozio",p:["Il moltiplicatore di ogni catena. Se il tuo Denner è più caro della media, alza il suo indice: tutto il resto si ricalcola."]}]},
-
-{ic:"◇",t:"Memoria, impostazioni, privacy",s:[
- {h:"Dove finiscono i tuoi dati",p:["Restano nel browser, sul dispositivo che stai usando. Non c'è nessun invio, nessun account, nessun server. In testata la scritta <i>salvato</i> conferma ogni salvataggio."]},
- {h:"Salva e carica le impostazioni",p:["Nella scheda Prezzi. Esporta un unico file con persone, negozi, preferenze, prezzi corretti, promozioni, sostituzioni e prodotti tuoi. Serve per passare a un altro dispositivo, per fare una copia di sicurezza, o per ripartire identico fra un anno."]},
- {h:"Cancella i dati salvati",p:["In testata. Toglie tutto da questo dispositivo e riparte da zero. È definitivo: se ci tieni, prima esporta le impostazioni."]},
- {h:"Sul telefono",p:["Se apri Gerla da un indirizzo web, aggiungila alla schermata Home: si comporta come un'applicazione, a tutto schermo, ed è così che la modalità spesa dà il meglio. La memoria è legata all'indirizzo da cui apri: usane sempre uno solo, o porta con te il file delle impostazioni."]}]},
-
-{ic:"🌱",t:"Vegetariano e vegano",s:[
- {h:"Come si attivano",p:["Sono le prime due pastiglie in <b>Come vuoi mangiare</b>. Si escludono a vicenda: scegliendo vegano, vegetariano si spegne da solo.",
- "<b>Vegetariano</b> toglie carne, pesce, molluschi e crostacei, e anche gli ingredienti nascosti come salsa di pesce, acciughe e brodo di carne. <b>Vegano</b> toglie in più latticini, uova, miele, burro, panna e tutto ciò che ne deriva."]},
- {h:"Cosa cambia nel menu",p:["Il vincolo del pranzo con carne o pesce viene sospeso, e al suo posto il generatore spinge sui piatti sopra i 16 g di proteine: legumi, tofu, tempeh, seitan, quinoa. Un menu vegano di due settimane resta intorno alle 1800 kcal e 60 g di proteine a persona."]},
- {h:"Vale ovunque",p:["Anche il dado delle occasioni, le proposte della dispensa e i menu a tema si adeguano: con la dieta vegana attiva il dado compone comunque serate complete, pescando dalle portate compatibili."]}]},
-
-{ic:"🎏",t:"Serate a tema",s:[
- {h:"Le otto cucine",p:["Giappone, Tex-Mex, Pizzeria, Burger e barbecue, India, Thai e Cina, Grecia e Libano, Vegano d'autore. Ogni portata è etichettata con la sua cucina, così il dado non mescola mai il sushi con la moussaka."]},
- {h:"Le proposte della casa",p:["Serata sushi, Omakase in casa, Tex-Mex per tutti, Pizza party, Burger night, Sera indiana, Notte thai, Mezze greco-libanesi, Tavola vegana d'autore, Il grande tavolo. Scritte e bilanciate, con il piano di lavoro già pronto."]},
- {h:"Il dado a tema",p:["Sceglie prima una cucina, poi compone la serata dentro quella cucina: stuzzichini, antipasto, secondo, contorno, dolce e bevande coerenti tra loro."]},
- {h:"Il livello Indimenticabile",p:["Il quarto livello. Non aggiunge solo portate: il dado pesca nella metà più importante di ogni ruolo, quindi escono sashimi, filetto, tartufo, vini in abbinamento. In casa trovi <i>Cena indimenticabile</i>, <i>Il grande tavolo</i> e <i>Pranzo delle cento candeline</i>: dalle sette alle otto portate, intorno ai 26-32 franchi a persona, tutto compreso."]}]},
-
-{ic:"◔",t:"Quando fare la spesa",s:[
- {h:"Il giorno migliore",p:["Nella scheda Prezzi trovi <b>Quando conviene fare la spesa</b>: i volantini non escono tutti lo stesso giorno. Migros, Coop, Denner e Manor rinnovano il martedì; Aldi, Lidl, Otto's, Landi e i supermercati lombardi il giovedì; Lidl Italia, Eurospin e MD il lunedì.",
- "Gerla guarda i negozi che hai acceso e ti dice in quale giorno il maggior numero di essi rinnova le offerte. Andare quel giorno significa avere la settimana intera di sconti invece degli avanzi."]},
- {h:"Le scadenze",p:["Se hai promozioni che finiscono entro tre giorni te lo dice lì, con i nomi dei prodotti: sono quelle da prendere subito."]}]},
-
-{ic:"✎",t:"Correggere gli abbinamenti",s:[
- {h:"Perché serve",p:["Ogni ingrediente delle ricette è legato in automatico a un prodotto vero in ogni negozio. L'abbinamento riesce nella maggior parte dei casi, ma non sempre: cercando <i>Milch</i> escono anche cioccolato al latte e dessert. Correggerlo è questione di un clic."]},
- {h:"Come si fa",p:["Nel listino, sotto il miglior prezzo, c'è scritto il prodotto scelto con una matita a fianco. Toccalo: si apre l'elenco delle alternative già scaricate, con prezzo, formato e Nutri-Score. Scegli quella giusta e il prezzo cambia subito nel piano e nella lista.",
- "Se nessuna va bene, c'è <b>Nessuno di questi va bene</b>: quel negozio viene escluso per quell'ingrediente e il prezzo torna a essere quello di riferimento."]},
- {h:"Renderle permanenti",p:["Le correzioni restano sul tuo dispositivo. Per farle valere anche dopo un aggiornamento del catalogo, premi <b>Esporta le correzioni</b> nella scheda Prezzi e carica il file <i>gerla-correzioni.json</i> nel deposito: da quel momento il legatore le rispetta a ogni giro settimanale.",
- "È così che la copertura cresce: parte dal 65% e sale con l'uso, perché tu vedi gli errori che nessun algoritmo può vedere."]}]},
-
-{ic:"◈",t:"Lingua",s:[
- {h:"Cosa è tradotto",p:["Tutta l'interfaccia: comandi, titoli, schede, etichette, opzioni, frasi calcolate come <i>Piano di 28 giorni per 3 persone</i>, mesi e giorni della settimana. Restano in italiano i nomi dei prodotti e dei piatti — <i>zincarlin</i>, <i>luganighetta</i>, <i>ossobuco</i> non si traducono — e il testo di questa guida."]},
- {h:"Giorno e notte",p:["Accanto alle lingue c'\u00e8 il pulsante <b>\u263e Notte / \u2600 Giorno</b>: il primo \u00e8 pensato per la sera e per il telefono, il secondo per la luce piena e per la stampa. La scelta resta salvata."]},
- {h:"Quattro lingue",p:["In testata, sotto le statistiche, ci sono i quattro pulsanti <b>IT · EN · FR · DE</b>. La scelta resta salvata insieme alle altre impostazioni.",
- "Sono tradotti comandi, titoli, schede, etichette, opzioni dei menu a tendina e testi dei campi. Restano in italiano i nomi dei prodotti e dei piatti, questa guida e i testi lunghi di spiegazione: <i>zincarlin</i>, <i>luganighetta</i> o <i>ossobuco</i> si chiamano così anche in tedesco."]}]},
-
-{ic:"✧",t:"Domande rapide",s:[
- {h:"Le quantità mi sembrano tante",p:["Controlla tre cose in quest'ordine: le fasce d'età delle persone, il margine di scorta (metti <i>Esatto</i>), e i pasti fuori casa a settimana."]},
- {h:"Un piatto non lo vuole nessuno",p:["Premi ✕ sotto il suo nome. Non tornerà più."]},
- {h:"Voglio la stessa settimana dell'altra volta",p:["Rimetti lo stesso seme del caso e premi Crea il piano."]},
- {h:"Il totale non torna con quello che pago",p:["Correggi i prezzi dei venti articoli che contano: è mezz'ora una tantum e cambia tutto. Poi controlla la linea di prodotto: se compri marche note e hai lasciato <i>marca propria</i>, sottostimi del 25%."]},
- {h:"Ho ospiti sabato",p:["Non toccare il nucleo: vai in Occasioni, scegli cena, il livello e il numero di persone. Il piano della settimana resta com'è."]},
- {h:"Voglio solo la lista, senza menu",p:["Spegni i pasti che non ti interessano, tieni acceso il minimo, e usa la Dispensa per escludere ciò che hai. Oppure lavora direttamente in modalità spesa."]}]},
+{ic:"?",t:"Domande rapide",s:[
+ {h:"Perché lo stesso piatto torna spesso?",p:["Perché gli hai messo il cuore, o perché con le esclusioni scelte restano pochi piatti possibili. Togli qualche esclusione o dai la croce a quello che non volete più vedere."]},
+ {h:"Perché un prodotto costa così?",p:["Tocca il nome del prodotto vero sotto il prezzo: vedi da quale articolo viene, in quale negozio, e puoi cambiarlo. Se non c'è nessun nome, quel prezzo è una stima."]},
+ {h:"Il totale non torna con lo scontrino",p:["Normale: le promozioni cambiano di giorno in giorno e i formati non sempre coincidono. Correggi il prezzo a mano nel listino, e da lì in poi resta il tuo."]},
+ {h:"Ho aperto il file dal computer e non funziona",p:["Serve un sito: il browser vieta a una pagina aperta dal disco di leggere gli altri file. Apri l'indirizzo web, non il file scaricato."]},
+ {h:"Come ricomincio la settimana?",p:["Premi <b>Crea il piano</b>: genera un piano nuovo tenendo gradimenti, dispensa e impostazioni. <b>Rimescola</b> cambia solo l'ordine dei piatti."]}]},
 ];
 
 /* ---------- ricettario ---------- */
@@ -5996,7 +5946,7 @@ en:{
 "Lista vuota":"Empty list",
 "Ancora niente da analizzare":"Nothing to analyse yet",
 "Niente per questa combinazione":"Nothing for this combination",
-"Cerca nella guida: dispensa, budget, dado, scadenze…":"Search the guide: pantry, budget, dice, expiry…",
+"Cerca nella guida: offerte, senza rete, dispensa, budget…":"Search the guide: pantry, budget, dice, expiry…",
 "Cerca un prodotto o un reparto…":"Search a product or department…",
 "Quanti negozi vuoi girare":"How many shops to visit",
 "Seconda scelta":"Second choice",
@@ -6637,7 +6587,7 @@ fr:{
 "Lista vuota":"Liste vide",
 "Ancora niente da analizzare":"Rien à analyser pour l'instant",
 "Niente per questa combinazione":"Rien pour cette combinaison",
-"Cerca nella guida: dispensa, budget, dado, scadenze…":"Chercher dans le guide : garde-manger, budget, dé, péremption…",
+"Cerca nella guida: offerte, senza rete, dispensa, budget…":"Chercher dans le guide : garde-manger, budget, dé, péremption…",
 "Cerca un prodotto o un reparto…":"Chercher un produit ou un rayon…",
 "Quanti negozi vuoi girare":"Combien de magasins visiter",
 "Seconda scelta":"Deuxième choix",
@@ -7278,7 +7228,7 @@ de:{
 "Lista vuota":"Leere Liste",
 "Ancora niente da analizzare":"Noch nichts auszuwerten",
 "Niente per questa combinazione":"Nichts für diese Kombination",
-"Cerca nella guida: dispensa, budget, dado, scadenze…":"In der Anleitung suchen: Vorrat, Budget, Würfel, Ablauf…",
+"Cerca nella guida: offerte, senza rete, dispensa, budget…":"In der Anleitung suchen: Vorrat, Budget, Würfel, Ablauf…",
 "Cerca un prodotto o un reparto…":"Produkt oder Abteilung suchen…",
 "Quanti negozi vuoi girare":"Wie viele Läden besuchen",
 "Seconda scelta":"Zweite Wahl",
