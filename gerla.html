@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="icona-apple.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3Cpath d='M13 25h38' stroke='%23e0b45a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M23 25c0-7 4-11 9-11s9 4 9 11' fill='none' stroke='%23e0b45a' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23060a13'/><g fill='none' stroke='%23e0b45a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M24.5 24c-.8-4.2.3-6.8 3.3-7 2.6-.2 3.9 1.7 3.9 5.7'/><path d='M39.5 24c.8-4.2-.3-6.8-3.3-7-2.6-.2-3.9 1.7-3.9 5.7'/><path d='M17 24h30l-3.6 24.2A4.6 4.6 0 0 1 38.8 52H25.2a4.6 4.6 0 0 1-4.6-3.8Z'/><path d='M14.5 24h35'/></g><g stroke='%23e0b45a' stroke-width='1.4' opacity='.5'><path d='M19 33h26M20 41h24'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1138,30 +1138,11 @@ html,body{max-width:100%;overflow-x:hidden}
 <header class="top">
   <div class="wrap">
     <div class="brand">
+      <!-- il marchio è uno solo, definito una volta in cima al file:
+           qui e altrove si richiama, non si ridisegna -->
       <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Gerla">
-        <defs>
-          <linearGradient id="oro" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#fbe9bb"/><stop offset=".45" stop-color="#e0b45a"/><stop offset="1" stop-color="#8f6d22"/>
-          </linearGradient>
-          <linearGradient id="oro2" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0" stop-color="#8f6d22"/><stop offset="1" stop-color="#f7dda0"/>
-          </linearGradient>
-          <clipPath id="cesta"><path d="M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z"/></clipPath>
-        </defs>
-        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#oro2)" stroke-width="1" opacity=".45"/>
-        <g clip-path="url(#cesta)">
-          <rect x="14" y="24" width="36" height="30" fill="url(#oro)" opacity=".14"/>
-          <g stroke="url(#oro)" stroke-width="1.1" opacity=".85">
-            <path d="M14 30h36M14 36h36M14 42h36M14 48h36"/>
-            <path d="M21 24v30M27 24v30M32 24v30M37 24v30M43 24v30" opacity=".5"/>
-          </g>
-        </g>
-        <path d="M17 25h30l-3.6 24.5A4 4 0 0 1 39.4 53H24.6a4 4 0 0 1-4-3.5Z" fill="none" stroke="url(#oro)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M13.5 25h37" stroke="url(#oro)" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M23 25c0-7.4 4-11.5 9-11.5s9 4.1 9 11.5" fill="none" stroke="url(#oro)" stroke-width="1.7" stroke-linecap="round"/>
-        <path d="M32 13.5V7" stroke="url(#oro)" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M32 7c-2.6-.4-4.4.8-5.2 3.2 2.6.6 4.4-.4 5.2-3.2Zm0 0c2.6-.4 4.4.8 5.2 3.2-2.6.6-4.4-.4-5.2-3.2Z" fill="url(#oro)" opacity=".9"/>
-        <path d="M24 20.5c1.6-2 4.6-3 8-3s6.4 1 8 3" fill="none" stroke="url(#oro)" stroke-width=".9" opacity=".55"/>
+        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#oro)" stroke-width="1" opacity=".4"/>
+        <use href="#logo-gerla"/>
       </svg>
       <h1>Gerla</h1>
     </div>
