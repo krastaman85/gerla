@@ -34,6 +34,14 @@ jobs:
       - name: Esegui le prove dei conti
         run: node "$PROVE"
 
+      - name: Verifica di coerenza fra dati
+        run: |
+          # controlla che ciò che si tiene insieme torni: ingredienti esistenti,
+          # quantità sensate, allergeni dichiarati, diete coerenti, nomi non doppi
+          if   [ -f "prove/coerenza.mjs" ]; then node prove/coerenza.mjs
+          elif [ -f "coerenza.mjs" ];       then node coerenza.mjs
+          else echo "::warning::coerenza.mjs non trovato: salto la verifica."; fi
+
   browser:
     name: Prove nel browser
     runs-on: ubuntu-latest
