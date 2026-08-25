@@ -6,7 +6,7 @@
 /* La versione va cambiata a ogni pubblicazione: è ciò che dice al telefono
    "questa copia è vecchia, buttala". Senza, l'app installata resta ferma
    a quella scaricata la prima volta. */
-const VERSIONE = "gerla-2026-08-24-4dec03ae";
+const VERSIONE = "gerla-2026-08-25-bc8d25f2";
 /* Attenzione: addAll fallisce in blocco se anche un solo indirizzo non risponde,
    e l'installazione salta senza dire niente. La cartella "./" non esiste come
    pagina (l'app è gerla.html), quindi la chiedevamo invano e il service worker
