@@ -7,7 +7,7 @@ Gerla decide cosa cucinare per la settimana, calcola quanto costa davvero nei ne
 che frequenti, e ti dice se conviene attraversare il confine. Vive in Ticino, dove la
 spesa transfrontaliera è normale e nessuno ha mai scritto software per quella normalità.
 
-**Sito**: https://krastaman85.github.io/gerla/gerla.html
+**Sito**: https://gerla.diasio.ch/gerla.html
 
 ---
 
