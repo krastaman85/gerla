@@ -16,9 +16,9 @@ spesa transfrontaliera è normale e nessuno ha mai scritto software per quella n
 | | |
 |---|---|
 | Ingredienti nel catalogo di casa | **619** |
-| Legati a prodotti veri dei negozi | **406** (66%) |
-| Prodotti reali dei negozi svizzeri | **41'913** su 9 catene |
-| Offerte in corso, con scadenza vera | **~3'500** |
+| Legati a prodotti veri dei negozi | **552** (89%) |
+| Prodotti reali dei negozi svizzeri | **46'889** su 9 catene |
+| Offerte in corso, con scadenza vera | **~3'660** |
 | Ricette | **288** di 13 cucine |
 | Portate per le occasioni | **262** in 43 menu |
 | Lingue | italiano, inglese, francese, tedesco |

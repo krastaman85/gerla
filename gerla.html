@@ -869,7 +869,6 @@ html[data-tema="giorno"] .ric-ing,
 html[data-tema="giorno"] .ping,
 html[data-tema="giorno"] .giorno-f{ color:#3d4757; }
 html[data-tema="giorno"] .verdetto.si{ background:#dcf0e4; color:#12643c; }
-html[data-tema="giorno"] .verdetto.no{ background:#f8e3dd; color:#993venti; }
 html[data-tema="giorno"] .verdetto.no{ background:#f8e3dd; color:#96331c; }
 /* la tabella dei giorni migliori era testo chiaro su fondo chiaro: illeggibile */
 html[data-tema="giorno"] table{ color:var(--testo); }
@@ -903,7 +902,6 @@ html[data-tema="giorno"] .piano-lavoro .H2{ color:#4a5464; }
 html[data-tema="giorno"] .giorno-f{ background:#f2f0e9; }
 html[data-tema="giorno"] .tblwrap{ background:#fff; border-color:#e2e5ea; }
 html[data-tema="giorno"] .tblwrap table{ background:transparent; }
-html[data-tema="giorno"] .giorno-h .kcal{ color:#4f4staff; }
 html[data-tema="giorno"] .giorno-h .kcal{ color:#4a4438; }
 
 
@@ -1346,7 +1344,6 @@ html,body{max-width:100%;overflow-x:hidden}
 
 <header class="top">
   <div class="wrap">
-    <div class="stampa-testa" id="stampaTesta" hidden></div>
     <div class="stampa-testa" id="stampaTesta" hidden></div>
     <div class="brand">
       <!-- il marchio è uno solo, definito una volta in cima al file:
@@ -5608,6 +5605,19 @@ const FILTRI_RIC=[
   {id:"tradizione",n:"Tradizione"},{id:"etnico",n:"Dal mondo"},{id:"kid",n:"Per i bambini"},
   {id:"stagione",n:"Di stagione"},
 ];
+/* le schede delle ricette mostrano anche i tag che non sono filtri (la
+   cucina, il taglio di carne...): senza questa mappa uscivano gli id grezzi
+   ("carne_bianca", "sudamerica") invece di un'etichetta leggibile */
+const ETICHETTA_TAG=Object.assign(
+  Object.fromEntries(FILTRI_RIC.filter(f=>f.id!=="tutte").map(f=>[f.id,f.n])),
+  {economico:"Economico", maiale:"Maiale", crostacei:"Crostacei", molluschi:"Molluschi",
+   pizza:"Pizza", grotto:"Grotto ticinese", salute:"Salutare",
+   america:"America", sudamerica:"Sud America", cina:"Cina", corea:"Corea", giappone:"Giappone",
+   thai:"Thailandia", vietnam:"Vietnam", indonesia:"Indonesia", malesia:"Malesia", india:"India",
+   medioriente:"Medio Oriente", libano:"Libano", turchia:"Turchia", marocco:"Marocco",
+   francia:"Francia", spagna:"Spagna", germania:"Germania", austria:"Austria",
+   inghilterra:"Inghilterra", grecia:"Grecia", ungheria:"Ungheria", messico:"Messico",
+   est:"Europa dell'Est", brasile:"Brasile"});
 function renderFiltriRic(){
   const box=$("#filtriRic"); if(!box) return;
   box.innerHTML=FILTRI_RIC.map(f=>`<button class="chip" type="button" data-f="${f.id}" aria-pressed="${(S.filtroRic||"tutte")===f.id}"><span class="nm">${f.n}</span></button>`).join("");
@@ -5639,7 +5649,7 @@ function renderRicette(){
           <div class="ric-meta">${min(p)}′ · CHF ${chfr(c)} · ${Math.round(k)} kcal · ${Math.round(pr)} g ${T("proteine")}</div>
         </header>
         <div class="ric-ing">${p.ing.map(([i,g])=>`<span>${PROD[i]?PROD[i].ic+" "+nomeBreve(PROD[i]):i}</span>`).join("")}</div>
-        <div class="ric-tag">${p.t.filter(t=>!["glutine","lattosio","uova","noci","soia","sesamo"].includes(t)).slice(0,4).map(t=>`<span class="tagpill">${T(t)}</span>`).join("")}
+        <div class="ric-tag">${p.t.filter(t=>!["glutine","lattosio","uova","noci","soia","sesamo"].includes(t)).slice(0,4).map(t=>`<span class="tagpill">${T(ETICHETTA_TAG[t]||t)}</span>`).join("")}
           ${p.sea?`<span class="tagpill ${inStagione(p.sea,MESE)?"oro":""}">${inStagione(p.sea,MESE)?T("di stagione"):NOMIMESI[p.sea[0]].slice(0,3)+"–"+NOMIMESI[p.sea[1]].slice(0,3)}</span>`:""}
           ${ok?"":`<span class="tagpill" style="color:var(--rosso)">${T("esclusa dalle tue preferenze")}</span>`}</div>
         <footer>
