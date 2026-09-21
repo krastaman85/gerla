@@ -26,23 +26,34 @@ const HTML = arg("--html", "gerla.html");
 const CART = arg("--catalogo", "catalogo");
 const OUT = arg("--out", "gerla-ingredienti.json");
 
-/* ---------- categorie ammesse per ogni reparto ---------- */
+/* ---------- categorie ammesse per ogni reparto ----------
+   Verificate contro le categorie DAVVERO presenti nei file di catalogo
+   (non contro un elenco immaginato): "herbs_and_spices" non esiste da
+   nessuna parte — le erbe finiscono sotto "baking_and_spices" — e
+   "paper_and_disposables" nel catalogo è singolare, "paper_and_disposable".
+   Le categorie di Casa e Igiene diverse dalla carta (pulizia, bucato,
+   cura della persona, animali) non esistono affatto nei nove cataloghi:
+   sono negozi di alimentari, non drogherie. Per quei prodotti non c'è
+   corrispondenza reale possibile con i dati attuali: restano "riferimento". */
 const CATEGORIE = {
-  Verdura:    ["fresh_vegetables","salad_greens","frozen_fruit_and_veg","herbs_and_spices","fresh_pasta_and_soup"],
-  Frutta:     ["fresh_fruit","frozen_fruit_and_veg","nuts_and_dried_fruit"],
-  Carne:      ["poultry","beef","pork","deli_and_charcuterie","meat_other","frozen_meat_and_seafood","par_and_raw"],
-  Pesce:      ["seafood_and_fish","frozen_meat_and_seafood","canned_and_jarred"],
+  Verdura:    ["fresh_vegetables","salad_greens","frozen_fruit_and_veg","baking_and_spices","fresh_pasta_and_soup",
+               "mushrooms","world_foods","prepared_produce"],
+  Frutta:     ["fresh_fruit","frozen_fruit_and_veg","nuts_and_dried_fruit","dried_and_preserved"],
+  Carne:      ["poultry","beef","pork","deli_and_charcuterie","frozen_meat_and_seafood","par_and_raw",
+               "lamb_veal","game_and_specialty","ready_meals"],
+  Pesce:      ["seafood_and_fish","frozen_meat_and_seafood","canned_and_jarred","sushi_and_appetizers"],
   Proteine:   ["eggs_category","plant_based","dairy_alternatives"],
-  Legumi:     ["canned_and_jarred","plant_based","grains_pasta_and_rice","world_foods"],
-  Latticini:  ["milk","cheese","yogurt_and_dessert","cream_and_butter","dairy_alternatives"],
-  Carboidrati:["grains_pasta_and_rice","bread_and_loaves","baked_goods","fresh_pasta_and_soup","baking_and_spices"],
-  Colazione:  ["cereals_and_breakfast","spreads_and_preserves","baked_goods","chocolate","snack_bars","candy_and_gummies"],
+  Legumi:     ["canned_and_jarred","plant_based","grains_pasta_and_rice","world_foods","dried_and_preserved","soups_and_stock"],
+  Latticini:  ["milk","cheese","yogurt_and_dessert","cream_and_butter","dairy_alternatives","frozen_desserts","sushi_and_appetizers"],
+  Carboidrati:["grains_pasta_and_rice","bread_and_loaves","baked_goods","fresh_pasta_and_soup","baking_and_spices",
+               "frozen_bakery","pastries","chilled_bakery","world_foods","salty_snacks"],
+  Colazione:  ["cereals_and_breakfast","spreads_and_preserves","baked_goods","chocolate","snack_bars","candy_and_gummies","powder_drinks"],
   Dispensa:   ["sauces_oils_and_vinegars","baking_and_spices","canned_and_jarred","soups_and_stock","world_foods",
-               "salty_snacks","chocolate","coffee","tea","spreads_and_preserves","grains_pasta_and_rice","herbs_and_spices"],
+               "salty_snacks","chocolate","coffee","tea","spreads_and_preserves","grains_pasta_and_rice","dried_and_preserved"],
   Bevande:    ["soft_drinks","water","juice_and_smoothies","beer_and_cider","wine","spirits",
-               "champagne_and_sparkling","aperitifs_and_liqueurs","coffee","tea"],
-  Casa:       ["cleaning_and_household","paper_and_disposables","laundry","kitchen_and_home","pet"],
-  Igiene:     ["personal_care","health_and_wellness","baby_and_kids","beauty"],
+               "champagne_and_sparkling","aperitifs_and_liqueurs","coffee","tea","powder_drinks","ice_and_cooling"],
+  Casa:       ["paper_and_disposable"],
+  Igiene:     [],
 };
 
 /* alcune parole tradiscono un prodotto diverso da quello cercato:
@@ -65,11 +76,15 @@ const normalizza = t => (t || "").toLowerCase()
   .replace(/[àèéìòù]/g,c=>({"à":"a","è":"e","é":"e","ì":"i","ò":"o","ù":"u"}[c]))
   .replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
 
+/* parole di collegamento italiane: da sole non identificano nessun prodotto
+   ("alla nocciola" prende qualunque cosa "alla" qualcosa) */
+const FERMATE_IT = new Set(["alla","allo","agli","alle","dello","della","degli","delle",
+  "come","con","per","del","dei","nel","nei","una","uno"]);
 function terminiPer(p) {
   const t = new Set();
   const de = SK_TERMINI[p.id];
-  if (de) de.split(/\s+/).forEach(w => { if (w.length > 3) t.add(normalizza(w)); });
-  normalizza(p.nome).split(" ").forEach(w => { if (w.length > 4) t.add(w); });
+  if (de) de.split(/\s+/).forEach(w => { if (w.length > 2) t.add(normalizza(w)); });
+  normalizza(p.nome).split(" ").forEach(w => { if (w.length > 3 && !FERMATE_IT.has(w)) t.add(w); });
   return [...t];
 }
 
@@ -104,19 +119,73 @@ function leggiIngredienti() {
 }
 
 /* ---------- prezzo del prodotto riportato al formato dell'ingrediente ---------- */
+/* alcuni prodotti (circa 1 su 25) non hanno il codice unità (u vuoto) ma
+   il formato lo dice comunque, per esempio "4 x 110 g" o "ca. 1 kg": qui
+   si ricava il peso o il volume totale dal testo del formato e si calcola
+   il prezzo dal prezzo reale del prodotto (x.p) — non da un prezzo
+   unitario che in questi casi può essere assente o inattendibile. */
+function grammiOMlDalFormato(f, unitaAttese) {
+  if (!f) return null;
+  const multi = f.match(/(\d+)\s*x\s*([\d.,]+)\s*(kg|g|cl|l|ml)\b/i);
+  const m = multi || f.match(/(?:ca\.?\s*)?([\d.,]+)\s*(kg|g|cl|l|ml)\b/i);
+  if (!m) return null;
+  const conta = multi ? +m[1] : 1;
+  const valore = parseFloat((multi ? m[2] : m[1]).replace(",", "."));
+  const unita = (multi ? m[3] : m[2]).toLowerCase();
+  if (!(valore > 0) || !unitaAttese.includes(unita)) return null;
+  const perUno = unita === "kg" || unita === "l" ? valore * 1000 : unita === "cl" ? valore * 10 : valore;
+  return perUno * conta;
+}
 function prezzoPerFormato(x, ing) {
   if (!(x.p > 0)) return null;
   const u = x.u;
+  /* prima il caso normale: il negozio dichiara un'unità che riconosciamo */
   if (ing.um === "g"  && /kg/.test(u))    return x.pu * ing.pu / 1000;
   if (ing.um === "g"  && /100\s*g/.test(u)) return x.pu * 10 * ing.pu / 1000;
   if (ing.um === "ml" && /^l$|\/l|liter/.test(u)) return x.pu * ing.pu / 1000;
   if (ing.um === "ml" && /100\s*ml/.test(u)) return x.pu * 10 * ing.pu / 1000;
+  if (ing.um === "ml" && /^cl$|100\s*cl/.test(u)) return x.pu * (/^cl$/.test(u) ? 100 : 1) * ing.pu / 1000;
   if (ing.um === "pz") {
     const q = (x.f || "").match(/(\d+)\s*(stk|stück|pz|x)/i);
     const n = q ? +q[1] : 1;
     return n > 0 ? x.p / n * ing.pu : x.p * ing.pu;
   }
+  /* altrimenti: l'unità dichiarata è assente o è qualcosa che non capiamo
+     ("1 ds", "1 st", un codice interno del negozio) — proviamo a leggere
+     il peso o il volume vero dal testo del formato ("4 x 110 g", "ca. 1 kg",
+     "25 cl") e calcoliamo dal prezzo reale del prodotto, non da un prezzo
+     unitario che in questi casi può essere assente o fuorviante. */
+  if (ing.um === "g" || ing.um === "ml") {
+    const base = grammiOMlDalFormato(x.f, ing.um === "g" ? ["kg","g"] : ["l","ml","cl"]);
+    if (base > 0) return x.p / base * ing.pu;
+  }
   return null;
+}
+
+/* Quanto il nome di un prodotto è pertinente ai termini cercati.
+   Punteggio più basso = più pertinente. Una parola intera conta più di un
+   suffisso, che conta più di un prefisso, che conta più di una comparsa
+   in mezzo alla parola. Il tedesco compone le parole mettendo il concetto
+   principale alla fine ("Vollmilch" è latte, "Milchschokolade" è
+   cioccolato): un suffisso ("...milch") deve quindi contare più di un
+   prefisso ("milch..."), altrimenti il cioccolato al latte batterebbe
+   il latte in ogni ricerca o legatura che coinvolga quel termine. */
+function puntiPertinenza(parole, termini) {
+  let migliore = 99;
+  for (const t of termini) {
+    for (let i = 0; i < parole.length; i++) {
+      const w = parole[i];
+      let livello;
+      if (w === t) livello = 0;
+      else if (w.endsWith(t)) livello = 4;
+      else if (w.startsWith(t)) livello = 8;
+      else if (w.includes(t)) livello = 12;
+      else continue;
+      const punti = livello + Math.min(i, 8) * 0.5;
+      if (punti < migliore) migliore = punti;
+    }
+  }
+  return migliore + parole.length * 0.25;
 }
 
 /* ---------- il cuore: per ogni ingrediente, i prodotti veri ---------- */
@@ -148,12 +217,7 @@ function lega(ingredienti, negozi) {
       const esclusi = ESCLUDI[ing.id] || [];
       const pertinenti = candidati.filter(c => !esclusi.some(e => c.x.nn.includes(e)));
       const lista = pertinenti.length ? pertinenti : candidati;
-      lista.forEach(c => {
-        const parole = c.x.nn.split(" ");
-        const pos = Math.min(...termini.map(t => { const i = parole.findIndex(w => w.startsWith(t)); return i < 0 ? 99 : i; }));
-        const esatta = termini.some(t => parole.includes(t));
-        c.punti = (esatta ? 0 : 6) + Math.min(pos, 8) + parole.length * 0.25;
-      });
+      lista.forEach(c => { c.punti = puntiPertinenza(c.x.nn.split(" "), termini); });
       lista.sort((a, b) => a.punti - b.punti);
       const soglia = lista[0].punti + 2;
       const buoni = lista.filter(c => c.punti <= soglia).sort((a, b) => a.v - b.v);

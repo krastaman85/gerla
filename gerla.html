@@ -4016,8 +4016,9 @@ async function aggiornaDaFeed(silenzioso){
     const n=applicaListino(await r.json());
     $("#statoFeed").textContent=`Aggiornati ${n} prezzi il ${new Date().toLocaleDateString("it-CH")}.`;
   }catch(e){
-    const suggerito = /github\.com/.test(S.feedUrl) ? " Prova con "+indirizzoListino(S.feedUrl) : "";
-    $("#statoFeed").innerHTML="Non sono riuscito a leggere il listino: "+e.message+"."+suggerito+
+    const escHtml=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const suggerito = /github\.com/.test(S.feedUrl) ? " Prova con "+escHtml(indirizzoListino(S.feedUrl)) : "";
+    $("#statoFeed").innerHTML="Non sono riuscito a leggere il listino: "+escHtml(e.message)+"."+suggerito+
       " Serve l\u2019indirizzo <b>raw</b> del file; in alternativa usa \u201cIncolla un listino\u201d.";
   }
 }
@@ -7909,7 +7910,7 @@ async function renderPromoVere(soloGriglia){
      nessuna delle due si poteva davvero cercare. */
   const daiNegozi = Object.keys(p.negozi||{})
     .filter(n=>S.riv.has(idNostro(n)))
-    .flatMap(n => (p.negozi[n]||[]).map(x=>({...x, neg:n, mia:false})))
+    .flatMap(n => (p.negozi[n]||[]).map(x=>({...x, neg:n, mia:false, cat:repartoDi(x.c1||"",x.c2||"")})))
     .filter(x=> x.a >= oggiISO() && Number(x.p) > 0);
   const mie = Object.entries(S.promo)
     .filter(([id])=>PROD[id] && promoViva(id))
@@ -7917,14 +7918,14 @@ async function renderPromoVere(soloGriglia){
       const pieno = prezzoRif(id)*(v.riv?fattoreRiv(RIV.find(r=>r.id===v.riv)||RIV[0],PROD[id].cat):1);
       return { id, n:PROD[id].n, m:"", f:PROD[id].pu+" "+PROD[id].um, p:+v.p, pieno,
         sc: pieno>v.p ? Math.round((1-v.p/pieno)*100) : null,
-        a: v.fino||"", neg: v.riv||"", mia:true, da:v.da };
+        a: v.fino||"", neg: v.riv||"", mia:true, da:v.da, cat:PROD[id].cat };
     });
   const tutte = [...daiNegozi, ...mie];
 
   /* nelle versioni precedenti questo filtro era una semplice stringa: chi ha
      usato l'app prima se la ritrova salvata nel browser, e senza questo
      controllo la scheda risulterebbe vuota. */
-  const vuoto = {q:"", neg:"tutti", sconto:0, quando:"tutte", chi:"tutte", ord:"sconto"};
+  const vuoto = {q:"", neg:"tutti", sconto:0, quando:"tutte", chi:"tutte", ord:"sconto", rep:"tutti"};
   if(typeof S.filtroOff !== "object" || !S.filtroOff) S.filtroOff = {...vuoto};
   else S.filtroOff = {...vuoto, ...S.filtroOff};
   const f = S.filtroOff;
@@ -7933,6 +7934,7 @@ async function renderPromoVere(soloGriglia){
     if(f.chi==="negozi" && x.mia) return false;
     if(f.chi==="mie" && !x.mia) return false;
     if(f.neg!=="tutti" && idNostro(x.neg)!==f.neg) return false;
+    if(f.rep!=="tutti" && x.cat!==f.rep) return false;
     if(f.sconto && (x.sc||0) < f.sconto) return false;
     if(f.quando==="oggi" && scad(x)>1) return false;
     if(f.quando==="settimana" && scad(x)>7) return false;
@@ -7954,6 +7956,7 @@ async function renderPromoVere(soloGriglia){
       <div class="cat-barra" style="margin-bottom:10px">
         <input type="text" id="cercaPromo" class="searchbox cerca-cat" style="margin:0"
           placeholder="${T("Cerca un'offerta")}" value="${(f.q||"").replace(/"/g,"&quot;")}">
+        <select id="offRep" style="max-width:170px"></select>
         <select id="offNeg" style="max-width:180px"></select>
         <select id="offSconto" style="max-width:170px"></select>
         <select id="offQuando" style="max-width:170px"></select>
@@ -7965,6 +7968,7 @@ async function renderPromoVere(soloGriglia){
     const sel=(id,voci,val,fn)=>{ const e=box.querySelector(id);
       e.innerHTML=voci.map(([v,n])=>`<option value="${v}">${n}</option>`).join("");
       e.value=val; e.onchange=ev=>{ fn(ev.target.value); renderPromoVere(true); }; };
+    sel("#offRep",[["tutti",T("Tutti i reparti")],...CATORD.map(c=>[c,c])],f.rep,v=>S.filtroOff={...f,rep:v});
     sel("#offNeg",[["tutti",T("Tutti i negozi")],...negozi.map(n=>[n,nomeNegozio(n)])],f.neg,v=>S.filtroOff={...f,neg:v});
     sel("#offSconto",[[0,T("Qualsiasi sconto")],[20,"−20% "+T("o più")],[30,"−30% "+T("o più")],[50,"−50% "+T("o più")]],f.sconto,v=>S.filtroOff={...f,sconto:+v});
     sel("#offQuando",[["tutte",T("Qualsiasi scadenza")],["oggi",T("Scadono oggi o domani")],["settimana",T("Entro una settimana")]],f.quando,v=>S.filtroOff={...f,quando:v});
@@ -8089,6 +8093,33 @@ function terminiRicerca(q){
   }
   return [...varianti];
 }
+/* Quanto il nome di un prodotto è pertinente ai termini cercati.
+   Punteggio più basso = più pertinente. Una parola intera conta più di un
+   suffisso, che conta più di un prefisso, che conta più di una comparsa in
+   mezzo alla parola — altrimenti "latte" troverebbe prima il cioccolato al
+   latte (che nei negozi tedeschi si chiama "Milchschokolade", con "milch"
+   in testa) del latte vero (che si chiama "Vollmilch", con "milch" in
+   fondo: nel tedesco composto il concetto principale sta alla fine). */
+function puntiPertinenza(testo, termini){
+  if(!termini) return 0;
+  const parole=testo.split(/\s+/);
+  let migliore=99;
+  for(const t of termini){
+    if(!t) continue;
+    for(let i=0;i<parole.length;i++){
+      const w=parole[i];
+      let livello;
+      if(w===t) livello=0;
+      else if(w.endsWith(t)) livello=4;
+      else if(w.startsWith(t)) livello=8;
+      else if(w.includes(t)) livello=12;
+      else continue;
+      const punti=livello+Math.min(i,8)*0.5;
+      if(punti<migliore) migliore=punti;
+    }
+  }
+  return migliore+parole.length*0.25;
+}
 
 /* ---------- ricerca unificata ---------- */
 const FILTRI_CAT = [
@@ -8166,7 +8197,8 @@ async function disegnaRisultati(totNegozi){
         const d=prodottoVero(p.id, mr.riv.id);
         return {mio:true, id:p.id, n:p.n, ic:p.ic, m:"", f:p.pu+" "+p.um, cat:p.cat,
                 vero:d?d.n+(d.f?" · "+d.f:""):null,
-                p:mr.prezzo, neg:mr.riv.id, nu:(nutriDi(p.id)||{}).g, az:promoViva(p.id)?1:0}; })
+                p:mr.prezzo, neg:mr.riv.id, nu:(nutriDi(p.id)||{}).g, az:promoViva(p.id)?1:0,
+                punti:puntiPertinenza(p.n.toLowerCase(),termini)}; })
       .filter(x=>neg==="tutti"||idNostro(neg)===x.neg);
   }
   /* 2. i prodotti dei negozi */
@@ -8184,7 +8216,8 @@ async function disegnaRisultati(totNegozi){
           if(f==="sano" && !["a","b"].includes(v[6])) continue;
           const cat=repartoDi("",v[7]);
           if(rep!=="tutti" && cat!==rep) continue;
-          daNegozi.push({mio:false, id, n:v[0], m:v[1], f:v[2], cat, p:v[3], pu:v[4], u:v[5], nu:v[6], az:v[8], neg:n});
+          daNegozi.push({mio:false, id, n:v[0], m:v[1], f:v[2], cat, p:v[3], pu:v[4], u:v[5], nu:v[6], az:v[8], neg:n,
+            punti:puntiPertinenza(((v[0]||"")+" "+(v[1]||"")).toLowerCase(),termini)});
           if(daNegozi.length>6000) break;
         }
       }
@@ -8194,6 +8227,10 @@ async function disegnaRisultati(totNegozi){
   const cmp = ord==="prezzo" ? (a,b)=>(a.p??999)-(b.p??999)
     : ord==="unita" ? (a,b)=>((a.pu??a.p??999)-(b.pu??b.p??999))
     : ord==="nome" ? (a,b)=>a.n.localeCompare(b.n,"it")
+    /* pertinenza: prima chi corrisponde meglio al testo cercato, poi fra
+       chi si equivale in azione e prezzo — non l'inverso, altrimenti un
+       prodotto solo lontanamente in tema ma scontato scavalca quello giusto */
+    : termini ? (a,b)=>(a.punti-b.punti)||(b.az-a.az)||((a.p??999)-(b.p??999))
     : (a,b)=>(b.az-a.az)||((a.p??999)-(b.p??999));
   miei.sort(cmp); daNegozi.sort(cmp);
   const tutti=[...miei,...daNegozi];

@@ -31,8 +31,8 @@ export const SK_TERMINI = {
   paneseg:"Roggenbrot", baguette:"Baguette", panecarre:"Toastbrot", pangrattato:"Paniermehl",
   gnocchi:"Gnocchi", couscous:"Couscous", quinoa:"Quinoa", farro:"Dinkel", orzo:"Gerste",
   latte:"Vollmilch", lattesenzalatt:"laktosefreie Milch", lattavena:"Hafermilch",
-  lattemandorla:"Mandelmilch", latteveg:"Sojadrink", panna:"Rahm", pannamontare:"Vollrahm",
-  burro:"Butter", burroghee:"Butterschmalz", yogurtnat:"Naturjoghurt", yogurtfru:"Fruchtjoghurt",
+  lattemandorla:"Mandeldrink", latteveg:"Sojadrink", panna:"Rahm", pannamontare:"Vollrahm",
+  burro:"Butter", burroghee:"Ghee", yogurtnat:"Naturjoghurt", yogurtfru:"Fruchtjoghurt",
   yogurtgreco:"griechischer Joghurt", skyr:"Skyr", quark:"Quark", kefir:"Kefir",
   mozzarella:"Mozzarella", bufala:"Büffelmozzarella", ricotta:"Ricotta", mascarpone:"Mascarpone",
   parmigiano:"Parmesan", grattugiato:"geriebener Käse", semiduro:"Halbhartkäse",
@@ -83,6 +83,66 @@ export const SK_TERMINI = {
   saponemani:"Handseife", shampoo:"Shampoo", bagnoschiuma:"Duschmittel",
   dentifricio:"Zahnpasta", spazzolino:"Zahnbürste", deodorante:"Deo", rasoi:"Rasierer",
   fazzoletti:"Taschentücher", pannolini:"Windeln", solare:"Sonnencreme",
+
+  /* aggiunti per portare la legatura degli ingredienti verso il 100%:
+     verdura, frutta, carne, pesce, legumi, carboidrati, dispensa, bevande, latticini
+     — dove manca un termine tedesco, il prodotto italiano quasi certamente
+     non esiste nei cataloghi svizzeri e resta "di riferimento" a ragione. */
+  coste:"Mangold", bietole:"Mangold", insalata_iceberg:"Eisbergsalat",
+  pomodoro_ramo:"Rispentomaten", zucchine_gialle:"gelbe Zucchetti",
+  cime_rapa:"Stängelkohl", nori:"Nori", pakchoi:"Pak Choi",
+  germogli:"Sojasprossen", cavolonero:"Schwarzkohl", puntarelle:"Puntarelle",
+  finferli:"Pfifferlinge", tartufonero:"schwarzer Trüffel", barbabietola:"Randen",
+  indivia:"Chicorée", pomodoricuore:"Ochsenherztomaten", salvia:"Salbei",
+  cavolini:"Rosenkohl", ravanelli:"Radieschen", songino:"Nüsslisalat",
+  sedanorapa:"Knollensellerie", mais:"Zuckermais", mais_dolce2:"Zuckermais",
+  pomodorisecchi:"getrocknete Tomaten", wok:"Wokgemüse", zenzero:"Ingwer",
+  prezzemolo:"Petersilie", scalogno:"Schalotten", carciofi:"Artischocken", rosmarino:"Rosmarin",
+
+  susine:"Zwetschgen", mele_bio:"Bio Äpfel", arance_succo:"Saftorangen",
+  lamponi:"Himbeeren", nespole:"Mispeln", ciliegie:"Kirschen", fichi:"Feigen",
+  cachi:"Kaki", melagrana:"Granatapfel", datteri:"Datteln",
+  prugnesecche:"Trockenpflaumen", albicoccheS:"getrocknete Aprikosen",
+
+  carnesecca_gr:"Bündnerfleisch", fesa_tacchino:"Trutenbrust", quaglie:"Wachteln",
+  faraona:"Perlhuhn", tacchinoripieno:"gefüllte Truten", stinco:"Stelze",
+  galletto:"Güggeli", tacchinofette:"Trutenschnitzel", bollito:"Siedfleisch",
+  salamella:"Salsiz", capriolo:"Reh", trippa:"Kutteln", coniglio:"Kaninchen",
+  anatralaccata:"Ente", cervo:"Hirsch", agnello:"Lamm", lonza:"Schweinsnierstück",
+
+  salmonemarinato:"marinierter Lachs", gamberettisurg:"Crevetten tiefgekühlt",
+  orata:"Dorade", gamberetti:"Crevetten", salmerino:"Saibling",
+  capesante:"Jakobsmuscheln", astice:"Hummer", salmonesashimi:"Lachs Sashimi",
+  sgombro:"Makrele", frittomisto:"Meeresfrüchte Mix", salmonebio:"Bio Lachs",
+  baccala:"Stockfisch", caviale:"Kaviar", gamberoni:"Riesencrevetten",
+
+  hamburgerveg2:"Vegi Burger", legumimisti:"Hülsenfrüchte Mischung",
+  pisellisecchi:"Spalterbsen", lupini:"Lupinen", soiagranulare:"Sojagranulat",
+  maisscatola:"Mais Konserve", wurstelveg:"Vegi Wienerli", proteinepiselli:"Erbsenprotein",
+
+  treccia:"Butterzopf", grissinigf:"glutenfreie Grissini", cusgf:"Maiscouscous",
+  naan:"Naan", pita:"Pita", cartariso:"Reispapier", pancarre:"Toastbrot",
+  panegf:"glutenfreies Brot", piadina:"Piadina", fiocchipatate:"Kartoffelflocken",
+
+  burroarachidi:"Erdnussbutter", cioccolatapolv:"Trinkschokolade",
+
+  sottaceti:"Mixed Pickles", cocco_rape:"geriebene Kokosnuss",
+  capsulebio:"Kaffeekapseln kompostierbar", pepemacinato:"gemahlener Pfeffer",
+  gelatina:"Gelatine", zenzerosott:"eingelegter Ingwer", sesamo:"Sesam",
+  miso:"Miso", cumino:"Kreuzkümmel", lattecocco:"Kokosmilch",
+  marmellata_bio:"Bio Konfitüre", olio_extra_bio:"Bio Olivenöl",
+  brodo_veg_bio:"Bio Gemüsebouillon", sciroppoacero:"Ahornsirup",
+  senapedijon:"Dijon Senf", oliolino:"Leinöl", frutasecmix:"Studentenfutter",
+  nachos:"Tortilla Chips", patatine:"Chips", salatini:"Salzgebäck",
+  lievito:"Hefe", lievitoalim:"Hefeflocken", semichia:"Chiasamen",
+  lievitomadre:"Sauerteig", arachidi:"Erdnüsse",
+
+  tisane:"Kräutertee", succo_ace:"Multivitaminsaft", energydrink:"Energy Drink",
+  sciroppomenta:"Pfefferminz", vinoanalcolico:"alkoholfreier Wein",
+  vinodolce:"Dessertwein", sidro:"Cidre", ghiaccio:"Eiswürfel", tefreddo:"Eistee",
+
+  gelatoveg:"veganes Eis", sorbetto:"Sorbet", tzatziki:"Tzatziki",
+  formaggioveg:"veganer Käse", sciroppo:"Sirup",
 };
 
 const pausaSk = ms => new Promise(r => setTimeout(r, ms));
