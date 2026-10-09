@@ -1,9 +1,9 @@
 {
  "versione": 3,
- "data": "2026-10-08",
- "generato": "2026-10-08T12:00:44.594Z",
+ "data": "2026-10-09",
+ "generato": "2026-10-09T11:52:35.840Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
- "cambioEUR": 0.9309,
+ "cambioEUR": 0.9326,
  "prezzi": {
   "patate": 4.4,
   "carote": 2.1,
@@ -5284,7 +5284,7 @@
    "diesel": 2.43,
    "elettrico_kwh": 0.35,
    "fonte": "Skrimpers (rilevazioni TCS)",
-   "data": "2026-10-08",
+   "data": "2026-10-09",
    "fonte_benzina": "Skrimpers (rilevazioni TCS)",
    "mese": "2026-09",
    "fonte_diesel": "Skrimpers (rilevazioni TCS)",
@@ -5295,9 +5295,9 @@
    "benzina": 1.999,
    "diesel": 2.259,
    "fonte": "MIMIT",
-   "data": "2026-10-08",
+   "data": "2026-10-09",
    "zona": "Como, Varese, Lecco, Sondrio",
-   "campione": 1116,
+   "campione": 1120,
    "confronto": {
     "lombardia": {
      "benzina": 1.999,
@@ -5315,7 +5315,7 @@
      "usd": 2.6,
      "mese": "2026-09",
      "valuta": "USD",
-     "chf": 2.166
+     "chf": 2.168
     }
    },
    "it": {
@@ -5323,7 +5323,7 @@
      "usd": 2.52,
      "mese": "2026-09",
      "valuta": "USD",
-     "eur": 2.255
+     "eur": 2.253
     }
    }
   }
@@ -6957,10 +6957,10 @@
   }
  ],
  "rapporto": {
-  "data": "2026-10-08",
+  "data": "2026-10-09",
   "fonti": [],
-  "cambioEUR": 0.9309,
-  "cambioUSDCHF": 0.8329,
+  "cambioEUR": 0.9326,
+  "cambioUSDCHF": 0.8337,
   "copertura": {}
  }
 }
