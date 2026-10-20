@@ -1,32 +1,32 @@
 {
  "versione": 3,
- "data": "2026-10-19",
- "generato": "2026-10-19T10:43:30.284Z",
+ "data": "2026-10-20",
+ "generato": "2026-10-20T09:14:11.020Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
- "cambioEUR": 0.9272,
+ "cambioEUR": 0.9261,
  "prezzi": {
   "patate": 4.4,
   "carote": 2.1,
   "cipolle": 2,
   "aglio": 1.15,
-  "zucchine": 4,
-  "melanzane": 4.8,
+  "zucchine": 2.5,
+  "melanzane": 4.4,
   "pomodori": 2.6,
   "peperoni": 3.3,
   "insalata": 3,
-  "spinaci": 4.2,
+  "spinaci": 3.95,
   "broccoli": 2.4,
   "cavolfiore": 3.15,
-  "verza": 2.5,
+  "verza": 3.55,
   "zucca": 1.95,
   "finocchi": 2.7,
   "porri": 5,
   "sedano": 2.9,
   "coste": 3.2,
   "funghi": 2,
-  "fagiolini": 2.95,
-  "piselli": 3.55,
-  "minestrone": 6.45,
+  "fagiolini": 2.8,
+  "piselli": 3.15,
+  "minestrone": 5,
   "pelati": 1.4,
   "passata": 1.7,
   "mele": 1.95,
@@ -34,16 +34,16 @@
   "arance": 2.8,
   "mandarini": 1.7,
   "pere": 3,
-  "pesche": 4,
+  "pesche": 4.3,
   "albicocche": 1.85,
-  "fragole": 2.85,
+  "fragole": 3.2,
   "uva": 1.3,
-  "kiwi": 6,
+  "kiwi": 3.95,
   "melone": 1.95,
-  "susine": 2.5,
+  "susine": 1.95,
   "limoni": 1.1,
-  "pettopollo": 14.8,
-  "cosciapollo": 5.9,
+  "pettopollo": 15.4,
+  "cosciapollo": 8.5,
   "macinato": 6.75,
   "spezzatino": 9.95,
   "fettine": 16.9,
@@ -53,8 +53,8 @@
   "proscrudo": 2.45,
   "salame": 1.4,
   "tonno": 3.7,
-  "salmone": 5.3,
-  "merluzzo": 7.55,
+  "salmone": 4.5,
+  "merluzzo": 6.8,
   "bastoncini": 3.65,
   "platessa": 9.5,
   "lenticchie": 1.15,
@@ -71,17 +71,17 @@
   "burro": 2.6,
   "panna": 1.3,
   "formaggino": 1.65,
-  "uova": 4.95,
+  "uova": 4.85,
   "pasta": 1.2,
   "riso": 2.9,
-  "pane": 2.75,
+  "pane": 2.5,
   "paneint": 1.8,
-  "farina": 1.5,
+  "farina": 1.75,
   "polenta": 1.55,
   "couscous": 1.45,
-  "gnocchi": 1.4,
-  "pizzasurg": 4.55,
-  "gallette": 2.25,
+  "gnocchi": 1.05,
+  "pizzasurg": 4.5,
+  "gallette": 1.2,
   "latteveg": 1.95,
   "avena": 1.1,
   "cornflakes": 1.35,
@@ -91,20 +91,20 @@
   "oliosem": 4,
   "aceto": 1.4,
   "sale": 0.9,
-  "zucchero": 3,
+  "zucchero": 3.1,
   "spezie": 1.05,
-  "dado": 1,
-  "pesto": 1.9,
-  "marmellata": 1.65,
+  "dado": 0.9,
+  "pesto": 1.55,
+  "marmellata": 1.9,
   "miele": 3.5,
   "cremacacao": 4.5,
   "maionese": 1.9,
   "caffe": 8.4,
   "te": 1.25,
-  "cioccolato": 0.9,
+  "cioccolato": 0.65,
   "noci": 2,
   "mandorle": 2.85,
-  "acqua": 3.35,
+  "acqua": 1.35,
   "succo": 2,
   "sciroppo": 2.25,
   "detbucato": 9.9,
@@ -121,15 +121,15 @@
   "shampoo": 4.5,
   "bagnoschiuma": 4.9,
   "dentifricio": 3.5,
-  "spazzolino": 1.2,
+  "spazzolino": 1.95,
   "deodorante": 4.5,
   "rasoi": 3.95,
   "fazzoletti": 2.5,
   "seppioline": 11.9,
-  "orata": 7.2,
+  "orata": 7.15,
   "gamberetti": 4.4,
   "salmone_surg": 11.9,
-  "pollo_intero": 13.8,
+  "pollo_intero": 11.05,
   "fesa_tacchino": 3.75,
   "salsiccia_pollo": 6.9,
   "manzo_stufato": 14.9,
@@ -141,7 +141,7 @@
   "grana_grattugiato": 6.5,
   "insalata_iceberg": 2,
   "misticanza": 1.2,
-  "pomodoro_ramo": 8.25,
+  "pomodoro_ramo": 6.25,
   "zucchine_gialle": 4.2,
   "broccolo_romanesco": 4.2,
   "cime_rapa": 4.5,
@@ -269,7 +269,7 @@
   "curcuma": 2.5,
   "hummus": 1.75,
   "tahina": 5.5,
-  "pita": 1.8,
+  "pita": 1.65,
   "falafel": 4.5,
   "harissa": 3.9,
   "tzatziki": 4.95,
@@ -284,9 +284,9 @@
   "arachidi": 1.15,
   "germogli": 2.9,
   "risojasmine": 4.9,
-  "anatralaccata": 7.9,
+  "anatralaccata": 7,
   "tempeh": 4,
-  "seitan": 2.2,
+  "seitan": 3,
   "formaggioveg": 5.5,
   "lattavena": 2.2,
   "yogurtsoia": 2.9,
@@ -305,7 +305,7 @@
   "pomodorosanmarzano": 2.9,
   "origanosecco": 0.8,
   "burroghee": 13.8,
-  "pancarre": 1.35,
+  "pancarre": 1.2,
   "wurstelveg": 4.5,
   "insalatapronta": 3.2,
   "zuppapronta": 3.9,
@@ -324,7 +324,7 @@
   "topinambur": 4.9,
   "indivia": 2,
   "pomodoricuore": 6.9,
-  "mirtilli": 2.55,
+  "mirtilli": 2.65,
   "lamponi": 2.65,
   "nespole": 5.9,
   "clementine": 3.9,
@@ -332,10 +332,10 @@
   "frutasecmix": 2.2,
   "stinco": 13.9,
   "guancia": 15.9,
-  "galletto": 25.45,
+  "galletto": 27.55,
   "tacchinofette": 7.8,
   "bollito": 21.9,
-  "salamella": 8,
+  "salamella": 5.85,
   "prosciuttocrudo24": 8.9,
   "lucioperca": 19.9,
   "gamberoni": 6.45,
@@ -363,7 +363,7 @@
   "brodocarne": 3.2,
   "vinodolce": 14.9,
   "grappa": 24,
-  "sidro": 4.1,
+  "sidro": 4.2,
   "kombucha": 4.5,
   "succomirtillo": 4.5,
   "caffeorzo": 4.5,
@@ -378,7 +378,7 @@
   "cibocane": 12.9,
   "ossobuco": 35.5,
   "capretto": 29,
-  "capriolo": 14.2,
+  "capriolo": 12.25,
   "trippa": 5.75,
   "farinabona": 8.9,
   "zincarlin": 9.9,
@@ -390,15 +390,15 @@
   "mieleticino": 12.9,
   "paneseg": 2.7,
   "salvia": 2.2,
-  "cetrioli": 2.6,
-  "cavolini": 3,
+  "cetrioli": 4,
+  "cavolini": 3.5,
   "cappuccio": 2.9,
-  "ravanelli": 4.8,
+  "ravanelli": 2.95,
   "songino": 3.75,
   "spinacifr": 3.5,
   "patatedolci": 4.5,
   "sedanorapa": 2.95,
-  "mais": 1.65,
+  "mais": 1.5,
   "pomodorisecchi": 2.65,
   "wok": 3.9,
   "edamame": 2.95,
@@ -407,17 +407,17 @@
   "rosmarino": 2.2,
   "peperoncino": 1.9,
   "scalogno": 1.1,
-  "ciliegie": 3.95,
-  "fichi": 4.35,
+  "ciliegie": 3.3,
+  "fichi": 3.55,
   "cachi": 2.5,
-  "melagrana": 1.5,
+  "melagrana": 2.95,
   "mango": 3.5,
   "datteri": 2.9,
   "uvetta": 1,
   "prugnesecche": 3.9,
   "albicoccheS": 4.5,
   "fruttasecca": 5.9,
-  "tacchino": 15,
+  "tacchino": 14.9,
   "macinatopollo": 9.5,
   "costine": 13.9,
   "lonza": 7,
@@ -427,7 +427,7 @@
   "polloarrosto": 13.9,
   "pancetta": 1.8,
   "carnesecca": 7.9,
-  "cervo": 10,
+  "cervo": 12.5,
   "wurstelpollo": 3.9,
   "trota": 5.55,
   "persico": 14.9,
@@ -443,10 +443,10 @@
   "robiola": 3.5,
   "quark": 1.2,
   "skyr": 2.55,
-  "kefir": 2.95,
+  "kefir": 2.75,
   "lattesenzalatt": 2.1,
   "emmental": 4.6,
-  "raclette": 5.6,
+  "raclette": 7.45,
   "fonduta": 10,
   "bufala": 2.25,
   "pannaacida": 2.2,
@@ -457,13 +457,13 @@
   "quinoa": 4.45,
   "bulgur": 3.2,
   "orzo": 1.95,
-  "farro": 3,
+  "farro": 3.1,
   "noodles": 2.9,
   "tortellini": 4.5,
   "ravioli": 4.9,
   "panegf": 4.9,
   "tortillas": 3.2,
-  "piadina": 3.15,
+  "piadina": 3.7,
   "pangrattato": 1,
   "farinaint": 2,
   "patatinesurg": 3.5,
@@ -473,12 +473,12 @@
   "lattemandorla": 1.6,
   "cerealicioc": 4.2,
   "biscottiint": 3.5,
-  "succomela": 0.8,
+  "succomela": 1.2,
   "curry": 0.7,
   "paprika": 0.65,
-  "cannella": 0.8,
+  "cannella": 0.65,
   "origano": 1.9,
-  "ketchup": 2.3,
+  "ketchup": 2.15,
   "salsasoia": 3.2,
   "brodoveg": 3,
   "pestorosso": 3.9,
@@ -503,8 +503,8 @@
   "candele": 4.5,
   "sacchiumido": 3.2,
   "filettomanzo": 18,
-  "entrecote": 19.95,
-  "arrostovitello": 51,
+  "entrecote": 17.95,
+  "arrostovitello": 40.8,
   "coniglio": 21.15,
   "anatra": 11.9,
   "agnello": 12.75,
@@ -515,28 +515,28 @@
   "salmoneaff": 4.95,
   "gamberi": 5.85,
   "branzino": 8.95,
-  "cozze": 11.1,
+  "cozze": 10.6,
   "vongole": 9.9,
   "calamari": 9.9,
   "parmigiano": 2.1,
-  "gorgonzola": 1.95,
+  "gorgonzola": 2.65,
   "brie": 1.8,
   "burrata": 1.85,
   "mascarpone": 1.35,
   "pannamontare": 1.35,
   "yogurtgreco": 4,
   "gelato": 5.5,
-  "carnaroli": 2.8,
+  "carnaroli": 2.4,
   "lasagne": 3.2,
   "pastauovo": 3.5,
   "focaccia": 3.9,
   "grissini": 2.5,
   "crackers": 2.2,
-  "baguette": 1.5,
+  "baguette": 1.45,
   "brioche": 3.5,
   "savoiardi": 3.2,
   "lievito": 0.7,
-  "pomodorini": 6.6,
+  "pomodorini": 5.9,
   "rucola": 2.5,
   "basilico": 3.5,
   "asparagi": 5.7,
@@ -546,11 +546,11 @@
   "avocado": 1.3,
   "fruttibosco": 2.45,
   "ananas": 2.3,
-  "anguria": 2,
+  "anguria": 2.3,
   "olive": 4.4,
   "capperi": 2.5,
   "senape": 1.7,
-  "patatine": 1.3,
+  "patatine": 1.95,
   "salatini": 2.9,
   "balsamico": 1.5,
   "pinoli": 3.9,
@@ -560,7 +560,7 @@
   "tartufo": 8.9,
   "vinobianco": 6.95,
   "vinorosso": 6.95,
-  "prosecco": 4.95,
+  "prosecco": 4.45,
   "birra": 2.4,
   "bitter": 12.9,
   "bibite": 6.9,
@@ -588,15 +588,15 @@
   "treccia": 2.9,
   "panini": 4.55,
   "crackerint": 3.2,
-  "tortillaschips": 4.4,
+  "tortillaschips": 3.3,
   "popcorn": 4.5,
-  "olive_verdi": 1.8,
-  "sottaceti": 4.5,
+  "olive_verdi": 3.5,
+  "sottaceti": 5.25,
   "mais_dolce2": 2.7,
   "legumimisti": 2.2,
   "zuppalegumi": 3.9,
   "passatabio2": 3.9,
-  "sugopesto": 3.1,
+  "sugopesto": 2.65,
   "curryPasta": 4.5,
   "salsateriyaki": 4.2,
   "semizucca": 4.5,
@@ -629,21 +629,21 @@
   "patate": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
-    "lidlch",
+    "migros",
     "prodega",
     "topcc",
     "denner",
-    "migros"
+    "lidlch"
    ]
   },
   "carote": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -658,13 +658,13 @@
   "cipolle": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "topcc",
-    "denner",
     "migros",
+    "denner",
     "lidlch",
     "prodega"
    ]
@@ -672,11 +672,11 @@
   "aglio": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "aldi",
     "lidlch",
+    "aldi",
     "ottos",
     "denner",
     "coop",
@@ -687,34 +687,34 @@
   "zucchine": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
-    "lidlch",
-    "prodega",
     "topcc",
-    "denner",
-    "migros"
+    "prodega",
+    "migros",
+    "lidlch",
+    "denner"
    ]
   },
   "melanzane": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "lidlch",
     "topcc",
     "coop",
     "prodega",
-    "migros",
-    "lidlch"
+    "migros"
    ]
   },
   "pomodori": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -729,7 +729,7 @@
   "peperoni": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -745,20 +745,20 @@
   "insalata": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "lidlch",
     "migros",
-    "denner",
+    "lidlch",
     "coop",
+    "denner",
     "topcc"
    ]
   },
   "spinaci": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -772,7 +772,7 @@
   "broccoli": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -786,7 +786,7 @@
   "cavolfiore": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -799,35 +799,35 @@
   "verza": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
     "lidlch",
+    "coop",
     "topcc",
-    "migros",
-    "prodega"
+    "prodega",
+    "migros"
    ]
   },
   "zucca": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
     "topcc",
-    "denner",
-    "migros",
-    "aldi",
     "lidlch",
+    "migros",
+    "denner",
+    "aldi",
     "coop"
    ]
   },
   "finocchi": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -840,22 +840,21 @@
   },
   "porri": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 5,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "prodega",
     "aldi",
     "coop",
-    "denner",
-    "topcc"
+    "denner"
    ]
   },
   "sedano": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -872,21 +871,21 @@
   "funghi": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
     "aldi",
     "migros",
     "denner",
-    "lidlch",
-    "topcc"
+    "topcc",
+    "coop",
+    "lidlch"
    ]
   },
   "fagiolini": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -901,7 +900,7 @@
   "piselli": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -915,7 +914,7 @@
   "minestrone": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -929,7 +928,7 @@
   "pelati": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -939,7 +938,7 @@
   "passata": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -952,12 +951,13 @@
   },
   "mele": {
    "q": "negozio",
-   "n": 5,
-   "data": "2026-10-13",
+   "n": 6,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "lidlch",
+    "aldi",
     "migros",
     "topcc",
     "denner"
@@ -966,7 +966,7 @@
   "banane": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -979,35 +979,36 @@
   },
   "arance": {
    "q": "negozio",
-   "n": 5,
-   "data": "2026-10-13",
+   "n": 6,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
     "coop",
     "prodega",
     "topcc",
-    "lidlch"
+    "lidlch",
+    "migros"
    ]
   },
   "mandarini": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "lidlch",
     "topcc",
-    "migros",
     "denner",
+    "migros",
     "prodega"
    ]
   },
   "pere": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1020,22 +1021,19 @@
   },
   "pesche": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 3,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
-    "aldi",
     "denner",
-    "prodega",
-    "migros",
     "topcc"
    ]
   },
   "albicocche": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1051,7 +1049,7 @@
   "fragole": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1067,34 +1065,34 @@
   "uva": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "lidlch",
-    "migros",
     "denner",
     "topcc",
     "ottos",
     "aldi",
+    "migros",
     "prodega"
    ]
   },
   "kiwi": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "migros",
     "lidlch",
+    "migros",
     "coop"
    ]
   },
   "melone": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aligro",
@@ -1108,12 +1106,12 @@
   "susine": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
-    "coop",
     "denner",
+    "coop",
     "topcc",
     "lidlch"
    ]
@@ -1121,42 +1119,41 @@
   "limoni": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "denner",
     "coop",
     "aldi",
+    "topcc",
     "lidlch",
-    "prodega",
-    "topcc"
+    "prodega"
    ]
   },
   "pettopollo": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "denner",
     "lidlch",
     "coop",
     "migros",
     "aldi",
-    "denner",
     "prodega",
     "topcc"
    ]
   },
   "cosciapollo": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 5,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "coop",
-    "denner",
     "aldi",
     "prodega",
     "topcc"
@@ -1165,7 +1162,7 @@
   "macinato": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1180,7 +1177,7 @@
   "spezzatino": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -1195,28 +1192,28 @@
   "luganighetta": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "prodega",
-    "topcc",
     "denner",
+    "topcc",
     "coop"
    ]
   },
   "wurstel": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
     "lidlch",
+    "migros",
     "coop",
     "topcc",
-    "denner",
-    "migros"
+    "denner"
    ]
   },
   "prosccotto": {
@@ -1225,7 +1222,7 @@
   "proscrudo": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -1240,7 +1237,7 @@
   "salame": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1255,22 +1252,22 @@
   "tonno": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "coop",
     "aldi",
-    "denner",
     "migros",
-    "topcc",
-    "ottos"
+    "ottos",
+    "denner",
+    "topcc"
    ]
   },
   "salmone": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1285,7 +1282,7 @@
   "merluzzo": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
@@ -1295,7 +1292,7 @@
   "bastoncini": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -1309,7 +1306,7 @@
   "platessa": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1320,8 +1317,8 @@
   },
   "lenticchie": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 7,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1329,13 +1326,14 @@
     "migros",
     "topcc",
     "denner",
-    "aldi"
+    "aldi",
+    "ottos"
    ]
   },
   "ceci": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1352,23 +1350,23 @@
   "tofu": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "prodega",
     "ottos",
+    "lidlch",
     "denner",
     "coop",
-    "lidlch",
-    "topcc",
-    "aldi"
+    "aldi",
+    "topcc"
    ]
   },
   "latte": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1382,7 +1380,7 @@
   "yogurtnat": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1392,7 +1390,7 @@
   "yogurtfru": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1406,7 +1404,7 @@
   "mozzarella": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -1420,7 +1418,7 @@
   "semiduro": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1434,21 +1432,21 @@
   "ricotta": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "aldi",
     "lidlch",
     "coop",
+    "migros",
     "topcc",
-    "aldi",
-    "denner",
-    "migros"
+    "denner"
    ]
   },
   "burro": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1463,11 +1461,12 @@
   },
   "panna": {
    "q": "negozio",
-   "n": 3,
-   "data": "2026-10-13",
+   "n": 4,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
+    "coop",
     "lidlch",
     "aldi"
    ]
@@ -1475,7 +1474,7 @@
   "formaggino": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -1489,16 +1488,17 @@
   },
   "uova": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 7,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
-    "lidlch",
     "prodega",
+    "lidlch",
     "topcc",
+    "migros",
     "aldi",
-    "migros"
+    "aligro"
    ]
   },
   "pasta": {
@@ -1514,7 +1514,7 @@
   "riso": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1522,29 +1522,29 @@
     "denner",
     "coop",
     "topcc",
-    "migros",
-    "ottos"
+    "ottos",
+    "migros"
    ]
   },
   "pane": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "denner",
     "topcc",
-    "ottos",
     "coop",
     "aldi",
-    "lidlch"
+    "lidlch",
+    "ottos"
    ]
   },
   "paneint": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -1557,54 +1557,53 @@
   "farina": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
     "topcc",
     "denner",
     "coop",
-    "lidlch",
     "aldi",
+    "lidlch",
     "migros"
    ]
   },
   "polenta": {
    "q": "negozio",
-   "n": 4,
-   "data": "2026-10-13",
+   "n": 3,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "topcc",
-    "migros",
-    "lidlch"
+    "migros"
    ]
   },
   "couscous": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
-   "fonte": "skrimpers",
-   "negozi": [
-    "lidlch",
-    "coop",
-    "aldi",
-    "denner",
-    "topcc",
-    "migros"
-   ]
-  },
-  "gnocchi": {
-   "q": "negozio",
-   "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "coop",
     "migros",
+    "aldi",
+    "denner",
+    "topcc"
+   ]
+  },
+  "gnocchi": {
+   "q": "negozio",
+   "n": 7,
+   "data": "2026-10-20",
+   "fonte": "skrimpers",
+   "negozi": [
+    "lidlch",
     "topcc",
+    "coop",
+    "migros",
     "ottos",
     "aldi",
     "denner"
@@ -1612,31 +1611,31 @@
   },
   "pizzasurg": {
    "q": "verificato",
-   "n": 3,
-   "data": "2026-10-05",
+   "n": 4,
+   "data": "2026-10-19",
    "fonte": "off-prices",
    "negozi": [
+    "Métropole Centre",
     "La Maladière centre",
     "Coop"
    ]
   },
   "gallette": {
    "q": "negozio",
-   "n": 5,
-   "data": "2026-10-13",
+   "n": 4,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
     "aldi",
     "coop",
-    "topcc",
     "migros"
    ]
   },
   "latteveg": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -1649,8 +1648,8 @@
   },
   "avena": {
    "q": "negozio",
-   "n": 7,
-   "data": "2026-10-13",
+   "n": 6,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1658,26 +1657,26 @@
     "denner",
     "topcc",
     "aldi",
-    "coop",
-    "prodega"
+    "coop"
    ]
   },
   "cornflakes": {
    "q": "negozio",
-   "n": 4,
-   "data": "2026-10-13",
+   "n": 5,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "coop",
     "aldi",
+    "lidlch",
     "topcc"
    ]
   },
   "fettebis": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -1689,21 +1688,21 @@
   "biscotti": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
-    "coop",
     "lidlch",
     "migros",
     "denner",
-    "topcc"
+    "topcc",
+    "coop"
    ]
   },
   "olio": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -1716,7 +1715,7 @@
   "oliosem": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -1729,12 +1728,11 @@
   },
   "aceto": {
    "q": "negozio",
-   "n": 4,
-   "data": "2026-10-13",
+   "n": 3,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
-    "aldi",
     "denner",
     "migros"
    ]
@@ -1745,38 +1743,39 @@
   "zucchero": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "topcc",
     "lidlch",
-    "coop",
     "aldi",
+    "coop",
     "denner"
    ]
   },
   "spezie": {
    "q": "negozio",
-   "n": 3,
-   "data": "2026-10-13",
+   "n": 4,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "migros",
+    "aldi",
     "topcc"
    ]
   },
   "dado": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
     "lidlch",
-    "coop",
     "migros",
+    "coop",
     "ottos",
     "topcc",
     "denner"
@@ -1785,22 +1784,22 @@
   "pesto": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "lidlch",
     "denner",
-    "ottos",
     "topcc",
-    "aldi",
-    "coop"
+    "ottos",
+    "coop",
+    "aldi"
    ]
   },
   "marmellata": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1813,7 +1812,7 @@
   "miele": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -1831,12 +1830,12 @@
   "maionese": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "migros",
     "aldi",
     "lidlch",
+    "migros",
     "coop",
     "topcc",
     "ottos",
@@ -1846,7 +1845,7 @@
   "caffe": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1856,11 +1855,12 @@
   },
   "te": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 7,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
+    "prodega",
     "aligro",
     "migros",
     "denner",
@@ -1870,11 +1870,12 @@
   },
   "cioccolato": {
    "q": "negozio",
-   "n": 3,
-   "data": "2026-10-13",
+   "n": 4,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
+    "topcc",
     "aldi",
     "ottos"
    ]
@@ -1882,7 +1883,7 @@
   "noci": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -1894,7 +1895,7 @@
   "mandorle": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -1909,21 +1910,21 @@
   "acqua": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
-    "denner",
     "lidlch",
-    "coop",
+    "denner",
+    "migros",
     "topcc",
-    "migros"
+    "coop"
    ]
   },
   "succo": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1937,7 +1938,7 @@
   "sciroppo": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1968,7 +1969,7 @@
   "cartacucina": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -1987,7 +1988,7 @@
   "saponemani": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
@@ -2006,14 +2007,14 @@
   "spazzolino": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
     "denner",
     "coop",
-    "ottos",
     "prodega",
+    "ottos",
     "migros",
     "aligro"
    ]
@@ -2024,7 +2025,7 @@
   "rasoi": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -2042,7 +2043,7 @@
   "orata": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2056,7 +2057,7 @@
   "gamberetti": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -2064,8 +2065,8 @@
     "migros",
     "aldi",
     "denner",
-    "topcc",
-    "prodega"
+    "prodega",
+    "topcc"
    ]
   },
   "salmone_surg": {
@@ -2074,7 +2075,7 @@
   "pollo_intero": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2084,7 +2085,7 @@
   "fesa_tacchino": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2104,7 +2105,7 @@
   "uova_bio": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2130,12 +2131,12 @@
   "insalata_iceberg": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "lidlch",
     "ottos",
     "coop",
-    "lidlch",
     "denner",
     "topcc",
     "prodega",
@@ -2145,7 +2146,7 @@
   "misticanza": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2157,14 +2158,14 @@
   "pomodoro_ramo": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "denner",
     "lidlch",
+    "denner",
     "migros",
-    "coop",
-    "topcc"
+    "topcc",
+    "coop"
    ]
   },
   "zucchine_gialle": {
@@ -2188,7 +2189,7 @@
   "mele_bio": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -2198,7 +2199,7 @@
   "arance_succo": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -2210,7 +2211,7 @@
   },
   "frutta_secca_snack": {
    "q": "verificato",
-   "n": 7,
+   "n": 6,
    "data": "2026-03-05",
    "fonte": "off-prices",
    "negozi": [
@@ -2240,7 +2241,7 @@
   "marmellata_bio": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -2251,14 +2252,14 @@
   "olio_extra_bio": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "topcc",
+    "coop",
     "lidlch",
-    "aldi",
-    "coop"
+    "aldi"
    ]
   },
   "passata_bio": {
@@ -2273,7 +2274,7 @@
   "brodo_veg_bio": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2283,7 +2284,7 @@
   "tisane": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -2300,7 +2301,7 @@
   "succo_ace": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2361,7 +2362,7 @@
   "lupini": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2395,7 +2396,7 @@
   "salmerino": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2408,7 +2409,7 @@
   "astice": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2454,7 +2455,7 @@
   "gelatina": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -2525,7 +2526,7 @@
   "nori": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2551,7 +2552,7 @@
   "sesamo": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -2565,7 +2566,7 @@
   "miso": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -2606,21 +2607,21 @@
   "nachos": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
+    "coop",
     "lidlch",
     "aldi",
-    "coop",
-    "topcc",
-    "migros"
+    "migros",
+    "topcc"
    ]
   },
   "fagiolineri": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2639,7 +2640,7 @@
   "lime": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
@@ -2662,7 +2663,7 @@
   "cumino": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2702,7 +2703,7 @@
   "lattecocco": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -2718,7 +2719,7 @@
   "naan": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2731,7 +2732,7 @@
   "lenticchierosse": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -2747,7 +2748,7 @@
   "hummus": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -2764,16 +2765,16 @@
   "pita": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "topcc",
-    "ottos",
     "denner",
     "migros",
     "lidlch",
-    "aldi"
+    "aldi",
+    "ottos"
    ]
   },
   "falafel": {
@@ -2785,7 +2786,7 @@
   "tzatziki": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -2819,7 +2820,7 @@
   "arachidi": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -2839,21 +2840,22 @@
   },
   "anatralaccata": {
    "q": "negozio",
-   "n": 5,
-   "data": "2026-10-13",
+   "n": 6,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "ottos",
     "coop",
     "lidlch",
-    "denner"
+    "denner",
+    "aldi"
    ]
   },
   "tempeh": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2864,15 +2866,15 @@
   "seitan": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
     "coop",
     "prodega",
-    "lidlch",
+    "migros",
     "topcc",
-    "migros"
+    "lidlch"
    ]
   },
   "formaggioveg": {
@@ -2910,12 +2912,12 @@
   "semichia": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
-    "denner",
     "migros",
+    "denner",
     "aldi",
     "lidlch",
     "topcc"
@@ -2933,21 +2935,21 @@
   "farina00": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
+    "topcc",
     "aldi",
     "migros",
     "coop",
-    "denner",
-    "topcc"
+    "denner"
    ]
   },
   "lievitomadre": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -2969,7 +2971,7 @@
   "origanosecco": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -2982,17 +2984,17 @@
   "burroghee": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
-    "migros"
+    "migros",
+    "coop"
    ]
   },
   "pancarre": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3017,7 +3019,7 @@
   "ghiaccio": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3051,14 +3053,14 @@
   "barbabietola": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
     "lidlch",
     "denner",
-    "migros",
     "coop",
+    "migros",
     "topcc",
     "prodega"
    ]
@@ -3069,13 +3071,13 @@
   "indivia": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
     "lidlch",
-    "migros",
     "denner",
+    "migros",
+    "coop",
     "prodega"
    ]
   },
@@ -3085,7 +3087,7 @@
   "mirtilli": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3100,7 +3102,7 @@
   "lamponi": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -3123,11 +3125,11 @@
   "frutasecmix": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "aldi",
     "lidlch",
+    "aldi",
     "topcc",
     "migros",
     "coop",
@@ -3143,11 +3145,10 @@
   },
   "galletto": {
    "q": "negozio",
-   "n": 3,
-   "data": "2026-10-13",
+   "n": 2,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "migros",
     "coop",
     "topcc"
    ]
@@ -3155,7 +3156,7 @@
   "tacchinofette": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3167,7 +3168,7 @@
   "bollito": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3180,7 +3181,7 @@
   "salamella": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -3201,7 +3202,7 @@
   "gamberoni": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -3214,13 +3215,13 @@
   "salmonebio": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "prodega",
-    "lidlch",
-    "aldi"
+    "aldi",
+    "lidlch"
    ]
   },
   "baccala": {
@@ -3277,7 +3278,7 @@
   "senapedijon": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3294,7 +3295,7 @@
   "oliolino": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3317,7 +3318,7 @@
   "sidro": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3365,7 +3366,7 @@
   "ossobuco": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3378,7 +3379,7 @@
   "capriolo": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -3393,7 +3394,7 @@
   "trippa": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3413,7 +3414,7 @@
   "cicoria": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3428,7 +3429,7 @@
   "castagne": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3457,7 +3458,7 @@
   "paneseg": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -3471,29 +3472,29 @@
   "cetrioli": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
     "migros",
+    "prodega",
     "ottos",
     "aldi",
     "lidlch",
     "denner",
-    "prodega",
+    "coop",
     "topcc"
    ]
   },
   "cavolini": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "migros",
-    "denner",
     "lidlch",
+    "denner",
     "topcc",
     "prodega"
    ]
@@ -3504,24 +3505,24 @@
   "ravanelli": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
-    "migros"
+    "migros",
+    "coop"
    ]
   },
   "songino": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "migros",
+    "coop",
     "denner",
     "topcc",
-    "coop",
     "prodega"
    ]
   },
@@ -3534,7 +3535,7 @@
   "sedanorapa": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3546,21 +3547,21 @@
   "mais": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "lidlch",
     "ottos",
     "coop",
-    "lidlch",
-    "migros",
     "topcc",
-    "prodega"
+    "prodega",
+    "migros"
    ]
   },
   "pomodorisecchi": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -3575,7 +3576,7 @@
   "edamame": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3589,13 +3590,13 @@
   "zenzero": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "migros",
     "lidlch",
     "coop",
     "ottos",
-    "migros",
     "topcc",
     "aldi"
    ]
@@ -3603,7 +3604,7 @@
   "prezzemolo": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3619,20 +3620,20 @@
   "scalogno": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
     "denner",
-    "lidlch",
     "migros",
+    "lidlch",
     "prodega"
    ]
   },
   "ciliegie": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -3645,7 +3646,7 @@
   "fichi": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -3659,23 +3660,22 @@
   "cachi": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "migros",
     "lidlch",
-    "denner",
-    "migros"
+    "denner"
    ]
   },
   "melagrana": {
    "q": "negozio",
-   "n": 3,
-   "data": "2026-10-13",
+   "n": 2,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
-    "denner",
-    "migros"
+    "migros",
+    "coop"
    ]
   },
   "mango": {
@@ -3684,22 +3684,22 @@
   "datteri": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "topcc",
-    "denner",
     "lidlch",
-    "coop",
+    "denner",
     "migros",
+    "coop",
     "aldi",
+    "topcc",
     "prodega"
    ]
   },
   "uvetta": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3721,7 +3721,7 @@
   "tacchino": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
@@ -3736,7 +3736,7 @@
   "macinatopollo": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3749,7 +3749,7 @@
   "lonza": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3780,7 +3780,7 @@
   "pancetta": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3797,13 +3797,13 @@
   "cervo": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
+    "migros",
     "denner",
     "lidlch",
-    "migros",
     "aldi",
     "prodega"
    ]
@@ -3814,7 +3814,7 @@
   "trota": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3834,7 +3834,7 @@
   "sgombro": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3845,19 +3845,19 @@
   "sardine": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
     "migros",
     "topcc",
+    "coop",
     "aldi"
    ]
   },
   "acciughe": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
@@ -3883,8 +3883,8 @@
   },
   "feta": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 7,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -3892,6 +3892,7 @@
     "denner",
     "migros",
     "topcc",
+    "aldi",
     "prodega"
    ]
   },
@@ -3901,13 +3902,13 @@
   "quark": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
-    "lidlch",
     "coop",
     "topcc",
+    "lidlch",
     "aldi",
     "denner"
    ]
@@ -3915,7 +3916,7 @@
   "skyr": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -3927,12 +3928,13 @@
   },
   "kefir": {
    "q": "negozio",
-   "n": 3,
-   "data": "2026-10-13",
+   "n": 4,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "migros",
     "topcc",
+    "lidlch",
+    "migros",
     "coop"
    ]
   },
@@ -3942,7 +3944,7 @@
   "emmental": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -3957,10 +3959,10 @@
   "raclette": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "lidlch",
+    "migros",
     "coop",
     "denner"
    ]
@@ -3968,7 +3970,7 @@
   "fonduta": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -3983,7 +3985,7 @@
   "bufala": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4004,7 +4006,7 @@
   "basmati": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4018,7 +4020,7 @@
   "risointegrale": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4029,13 +4031,13 @@
   "quinoa": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
-    "lidlch",
     "migros",
     "topcc",
+    "lidlch",
     "denner",
     "coop"
    ]
@@ -4046,7 +4048,7 @@
   "orzo": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4058,14 +4060,14 @@
   "farro": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
     "coop",
+    "migros",
     "lidlch",
     "topcc",
-    "migros",
     "prodega"
    ]
   },
@@ -4087,20 +4089,20 @@
   "piadina": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
     "coop",
     "migros",
-    "lidlch",
-    "aldi"
+    "aldi",
+    "lidlch"
    ]
   },
   "pangrattato": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4113,7 +4115,7 @@
   "farinaint": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4128,8 +4130,8 @@
   },
   "muesli": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 7,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4137,6 +4139,7 @@
     "coop",
     "lidlch",
     "denner",
+    "ottos",
     "topcc"
    ]
   },
@@ -4153,7 +4156,7 @@
   "burroarachidi": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -4166,13 +4169,13 @@
   "lattemandorla": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "coop",
-    "ottos",
     "denner",
+    "ottos",
     "migros",
     "topcc",
     "aldi"
@@ -4186,12 +4189,11 @@
   },
   "succomela": {
    "q": "negozio",
-   "n": 5,
-   "data": "2026-10-13",
+   "n": 4,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
-    "topcc",
     "lidlch",
     "coop",
     "aldi"
@@ -4200,41 +4202,41 @@
   "curry": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "coop",
-    "ottos",
+    "topcc",
     "denner",
     "lidlch",
-    "topcc",
+    "coop",
+    "ottos",
     "migros"
    ]
   },
   "paprika": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
-    "migros",
     "topcc",
     "coop",
-    "lidlch",
+    "migros",
     "aldi",
-    "denner"
+    "denner",
+    "lidlch"
    ]
   },
   "cannella": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "lidlch",
     "ottos",
     "coop",
+    "lidlch",
     "denner"
    ]
   },
@@ -4244,7 +4246,7 @@
   "ketchup": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -4260,7 +4262,7 @@
   "brodoveg": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4286,7 +4288,7 @@
   "zuccherocanna": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4301,11 +4303,11 @@
   "tefreddo": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "aldi",
     "migros",
+    "aldi",
     "lidlch",
     "topcc",
     "coop"
@@ -4326,7 +4328,7 @@
   "capsule": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -4368,22 +4370,22 @@
   "filettomanzo": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
     "coop",
     "denner",
     "lidlch",
-    "prodega",
     "topcc",
+    "prodega",
     "migros"
    ]
   },
   "entrecote": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4398,7 +4400,7 @@
   "arrostovitello": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4408,7 +4410,7 @@
   "coniglio": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -4423,7 +4425,7 @@
   "agnello": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4439,7 +4441,7 @@
   "bresaola": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
@@ -4453,7 +4455,7 @@
   "mortadella": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -4466,14 +4468,15 @@
   },
   "speck": {
    "q": "negozio",
-   "n": 6,
-   "data": "2026-10-13",
+   "n": 7,
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
     "prodega",
     "denner",
     "coop",
+    "topcc",
     "aldi",
     "lidlch"
    ]
@@ -4481,33 +4484,33 @@
   "salsicciagr": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
-    "topcc",
+    "coop",
     "lidlch",
     "aldi",
-    "coop",
+    "topcc",
     "denner"
    ]
   },
   "salmoneaff": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "aldi",
     "lidlch",
     "denner",
-    "aldi",
     "migros"
    ]
   },
   "gamberi": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4515,14 +4518,14 @@
     "coop",
     "aldi",
     "denner",
-    "topcc",
-    "prodega"
+    "prodega",
+    "topcc"
    ]
   },
   "branzino": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4535,7 +4538,7 @@
   "cozze": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4554,7 +4557,7 @@
   "parmigiano": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -4566,7 +4569,7 @@
   "gorgonzola": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4579,13 +4582,13 @@
   "brie": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
     "coop",
-    "topcc",
     "migros",
+    "topcc",
     "prodega"
    ]
   },
@@ -4602,11 +4605,11 @@
   "mascarpone": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "lidlch",
     "migros",
+    "lidlch",
     "coop",
     "topcc",
     "aldi"
@@ -4615,13 +4618,13 @@
   "pannamontare": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
-    "migros",
-    "coop",
     "lidlch",
+    "coop",
+    "migros",
     "denner"
    ]
   },
@@ -4647,15 +4650,15 @@
   "carnaroli": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
+    "lidlch",
     "coop",
     "aldi",
     "denner",
     "ottos",
     "migros",
-    "lidlch",
     "topcc"
    ]
   },
@@ -4677,7 +4680,7 @@
   "baguette": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
@@ -4697,7 +4700,7 @@
   "lievito": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4709,7 +4712,7 @@
   "pomodorini": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4727,7 +4730,7 @@
   "asparagi": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4751,7 +4754,7 @@
   "carciofi": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -4762,26 +4765,26 @@
   "avocado": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
-    "migros",
+    "denner",
     "coop",
     "aligro",
-    "denner",
+    "migros",
     "topcc"
    ]
   },
   "fruttibosco": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
-    "aldi",
     "topcc",
+    "aldi",
     "lidlch",
     "ottos",
     "coop",
@@ -4791,22 +4794,22 @@
   "ananas": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "denner",
     "prodega",
     "topcc",
-    "aldi",
-    "migros",
     "aligro",
-    "lidlch"
+    "aldi",
+    "lidlch",
+    "migros"
    ]
   },
   "anguria": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aligro",
@@ -4826,7 +4829,7 @@
   "senape": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4841,7 +4844,7 @@
   "patatine": {
    "q": "negozio",
    "n": 7,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4859,7 +4862,7 @@
   "balsamico": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4873,11 +4876,11 @@
   "pinoli": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "aldi",
     "lidlch",
+    "aldi",
     "migros",
     "coop",
     "topcc"
@@ -4889,7 +4892,7 @@
   "cacao": {
    "q": "negozio",
    "n": 8,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -4905,7 +4908,7 @@
   "fondente": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4919,7 +4922,7 @@
   "vinobianco": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "topcc",
@@ -4932,7 +4935,7 @@
   "vinorosso": {
    "q": "negozio",
    "n": 4,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "lidlch",
@@ -4944,7 +4947,7 @@
   "prosecco": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -4957,7 +4960,7 @@
   "birra": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -4976,7 +4979,7 @@
   "acquagas": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "aldi",
@@ -4993,7 +4996,7 @@
   "carnesecca_gr": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "prodega",
@@ -5045,13 +5048,13 @@
   },
   "cottage": {
    "q": "verificato",
-   "n": 4,
-   "data": "2026-07-31",
+   "n": 3,
+   "data": "2026-03-25",
    "fonte": "off-prices",
    "negozi": [
-    "Métropole Centre",
     "Coop",
-    "Migros"
+    "Migros",
+    "Lidl"
    ]
   },
   "yogurtbianco_gr": {
@@ -5080,7 +5083,7 @@
   "treccia": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -5106,7 +5109,7 @@
   },
   "tortillaschips": {
    "q": "verificato",
-   "n": 10,
+   "n": 9,
    "data": "2026-09-14",
    "fonte": "off-prices",
    "negozi": [
@@ -5127,19 +5130,18 @@
   },
   "olive_verdi": {
    "q": "verificato",
-   "n": 5,
-   "data": "2026-09-28",
+   "n": 3,
+   "data": "2025-09-17",
    "fonte": "off-prices",
    "negozi": [
     "Coop",
-    "Denner",
-    "Lidl"
+    "Denner"
    ]
   },
   "sottaceti": {
    "q": "negozio",
    "n": 2,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "coop",
@@ -5149,14 +5151,14 @@
   "mais_dolce2": {
    "q": "negozio",
    "n": 6,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "ottos",
     "coop",
+    "migros",
     "lidlch",
     "topcc",
-    "migros",
     "prodega"
    ]
   },
@@ -5171,7 +5173,7 @@
   },
   "sugopesto": {
    "q": "verificato",
-   "n": 3,
+   "n": 5,
    "data": "2025-05-15",
    "fonte": "off-prices",
    "negozi": [
@@ -5212,7 +5214,7 @@
   "sorbetto": {
    "q": "negozio",
    "n": 3,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
     "migros",
@@ -5226,11 +5228,11 @@
   "energydrink": {
    "q": "negozio",
    "n": 5,
-   "data": "2026-10-13",
+   "data": "2026-10-20",
    "fonte": "skrimpers",
    "negozi": [
-    "lidlch",
     "aldi",
+    "lidlch",
     "migros",
     "topcc",
     "denner"
@@ -5285,17 +5287,2899 @@
    "q": "riferimento"
   }
  },
- "prezziRiv": {},
+ "prezziRiv": {
+  "mele": {
+   "coop": 3.3,
+   "lidlch": 2.8,
+   "aldi": 6.2,
+   "migros": 2.8,
+   "topcc": 2.85,
+   "denner": 1.95
+  },
+  "farina": {
+   "ottos": 3,
+   "topcc": 1.75,
+   "denner": 8.75,
+   "coop": 2,
+   "aldi": 2,
+   "lidlch": 1.9,
+   "migros": 2.6
+  },
+  "tortillaschips": {
+   "migros": 4.8
+  },
+  "latte": {
+   "migros": 2.15,
+   "coop": 1.65,
+   "topcc": 1.55,
+   "lidlch": 1.5,
+   "denner": 1.45,
+   "aldi": 1.5
+  },
+  "yogurtnat": {
+   "lidlch": 1.6,
+   "aldi": 1.3
+  },
+  "pettopollo": {
+   "denner": 15.9,
+   "lidlch": 18.6,
+   "coop": 32,
+   "migros": 24.6,
+   "aldi": 20,
+   "prodega": 23.7,
+   "topcc": 15.4
+  },
+  "tomme": {
+   "migros": 7.5
+  },
+  "biscotti": {
+   "aldi": 11.95,
+   "lidlch": 12.65,
+   "migros": 10.2,
+   "denner": 8.4,
+   "topcc": 10.55,
+   "coop": 10.4
+  },
+  "tonno": {
+   "lidlch": 4.5,
+   "coop": 7.6,
+   "aldi": 3.75,
+   "migros": 5.5,
+   "ottos": 18.8,
+   "denner": 3.7,
+   "topcc": 10.75
+  },
+  "olio": {
+   "aldi": 5.3,
+   "coop": 17,
+   "denner": 13.25,
+   "migros": 27.8,
+   "ottos": 9.95
+  },
+  "pane": {
+   "migros": 4.05,
+   "denner": 3.9,
+   "topcc": 8.25,
+   "coop": 4.45,
+   "aldi": 2.75,
+   "lidlch": 2.5,
+   "ottos": 4.65
+  },
+  "cottage": {
+   "migros": 1.35
+  },
+  "frutta_secca_snack": {
+   "migros": 9.1
+  },
+  "pomodori": {
+   "migros": 2.6,
+   "coop": 3.8,
+   "aldi": 4,
+   "topcc": 3.95,
+   "denner": 5.3,
+   "ottos": 3.65,
+   "lidlch": 5
+  },
+  "tofu": {
+   "migros": 4.5,
+   "prodega": 4.2,
+   "ottos": 2.5,
+   "lidlch": 5,
+   "denner": 3.5,
+   "coop": 6.25,
+   "aldi": 1.1,
+   "topcc": 6.95
+  },
+  "baguette": {
+   "denner": 1.95,
+   "migros": 1.9,
+   "topcc": 4.35,
+   "coop": 3.15,
+   "aldi": 1.45,
+   "lidlch": 1.6
+  },
+  "burrata": {
+   "migros": 4.1
+  },
+  "olive_verdi": {
+   "coop": 3.75
+  },
+  "muesli": {
+   "migros": 4,
+   "aldi": 3.65,
+   "coop": 4.4,
+   "lidlch": 5.25,
+   "denner": 9.45,
+   "ottos": 5.5,
+   "topcc": 5.15
+  },
+  "avocado": {
+   "lidlch": 1.3,
+   "denner": 1.45,
+   "coop": 2.95,
+   "aligro": 1.3,
+   "migros": 1.75,
+   "topcc": 2
+  },
+  "mozzarella": {
+   "aldi": 1.5,
+   "coop": 1.15,
+   "migros": 1.5,
+   "denner": 1.6,
+   "lidlch": 1.5,
+   "prodega": 1.55
+  },
+  "burro": {
+   "migros": 7,
+   "coop": 7.9,
+   "aldi": 2.6,
+   "denner": 4.4,
+   "lidlch": 3.15,
+   "ottos": 6.25,
+   "topcc": 3.4,
+   "prodega": 4.1
+  },
+  "caffe": {
+   "migros": 10.8,
+   "coop": 15.9,
+   "lidlch": 8.4
+  },
+  "gelato": {
+   "migros": 5.5
+  },
+  "burgerveg": {
+   "migros": 4.9
+  },
+  "pesto": {
+   "migros": 3.55,
+   "lidlch": 1.9,
+   "denner": 3,
+   "topcc": 3.2,
+   "ottos": 3.7,
+   "coop": 3.95,
+   "aldi": 1.55
+  },
+  "cioccolato": {
+   "lidlch": 1,
+   "topcc": 1.35,
+   "aldi": 1.4,
+   "ottos": 0.65
+  },
+  "schublig": {
+   "denner": 9.45
+  },
+  "camembert": {
+   "lidlch": 1.9
+  },
+  "latteveg": {
+   "coop": 1.95,
+   "topcc": 2.95,
+   "denner": 2.8,
+   "migros": 2.95,
+   "lidlch": 2,
+   "ottos": 2.75
+  },
+  "patate": {
+   "coop": 4.5,
+   "migros": 4.5,
+   "prodega": 11.3,
+   "topcc": 5,
+   "denner": 4.4,
+   "lidlch": 4.5
+  },
+  "carote": {
+   "coop": 2.1,
+   "migros": 6.15,
+   "denner": 4.7,
+   "aldi": 4.2,
+   "lidlch": 3.85,
+   "prodega": 5.8,
+   "topcc": 2.3
+  },
+  "cipolle": {
+   "coop": 2.5,
+   "topcc": 2.15,
+   "migros": 2.25,
+   "denner": 2.4,
+   "lidlch": 2,
+   "prodega": 5.15
+  },
+  "aglio": {
+   "lidlch": 1.25,
+   "aldi": 1.25,
+   "ottos": 1.8,
+   "denner": 1.15,
+   "coop": 1.3,
+   "topcc": 3.15,
+   "migros": 2.7
+  },
+  "zucchine": {
+   "coop": 3,
+   "topcc": 5.95,
+   "prodega": 8.85,
+   "migros": 2.5,
+   "lidlch": 4,
+   "denner": 7.1
+  },
+  "melanzane": {
+   "lidlch": 5,
+   "topcc": 8.8,
+   "coop": 4.4,
+   "prodega": 9.25,
+   "migros": 7.6
+  },
+  "peperoni": {
+   "coop": 4.5,
+   "migros": 10,
+   "aldi": 12.6,
+   "denner": 3.3,
+   "lidlch": 3.6,
+   "topcc": 6.75,
+   "prodega": 5,
+   "ottos": 6.5
+  },
+  "insalata": {
+   "migros": 3,
+   "lidlch": 3.35,
+   "coop": 3.55,
+   "denner": 3,
+   "topcc": 5.7
+  },
+  "spinaci": {
+   "lidlch": 3.95,
+   "denner": 4.2,
+   "aldi": 5.3,
+   "migros": 4.2,
+   "coop": 4.55,
+   "topcc": 4.05
+  },
+  "broccoli": {
+   "aldi": 3.35,
+   "lidlch": 2.4,
+   "coop": 3.3,
+   "topcc": 3.05,
+   "migros": 3.95,
+   "prodega": 5.1
+  },
+  "cavolfiore": {
+   "migros": 4.6,
+   "coop": 5.3,
+   "lidlch": 3.15,
+   "prodega": 5.8,
+   "topcc": 6.7
+  },
+  "verza": {
+   "lidlch": 4.5,
+   "coop": 3.55,
+   "topcc": 7.1,
+   "prodega": 7.1,
+   "migros": 5
+  },
+  "zucca": {
+   "prodega": 8.3,
+   "topcc": 1.95,
+   "lidlch": 2.85,
+   "migros": 2.7,
+   "denner": 2.95,
+   "aldi": 7.85,
+   "coop": 8.8
+  },
+  "finocchi": {
+   "denner": 2.7,
+   "lidlch": 7,
+   "topcc": 8.6,
+   "prodega": 5.4,
+   "coop": 4.3,
+   "migros": 7.5
+  },
+  "porri": {
+   "lidlch": 8.45,
+   "prodega": 8.1,
+   "aldi": 8.4,
+   "coop": 5,
+   "denner": 5.85
+  },
+  "sedano": {
+   "migros": 4,
+   "coop": 2.95,
+   "denner": 4.9,
+   "topcc": 3.05,
+   "lidlch": 2.9,
+   "prodega": 4.2
+  },
+  "funghi": {
+   "aldi": 2.75,
+   "migros": 2,
+   "denner": 2.45,
+   "topcc": 3,
+   "coop": 2.4,
+   "lidlch": 2.15
+  },
+  "fagiolini": {
+   "aldi": 5,
+   "lidlch": 2.8,
+   "migros": 2.95,
+   "denner": 3.6,
+   "ottos": 7,
+   "topcc": 3.05,
+   "coop": 4.3
+  },
+  "piselli": {
+   "coop": 3.7,
+   "topcc": 6.2,
+   "aldi": 3.55,
+   "denner": 3.55,
+   "lidlch": 3.15,
+   "migros": 6.25
+  },
+  "minestrone": {
+   "migros": 8.6,
+   "coop": 8.8,
+   "lidlch": 5,
+   "denner": 6.6,
+   "topcc": 6.95,
+   "prodega": 9.3
+  },
+  "pelati": {
+   "coop": 1.4,
+   "migros": 1.5
+  },
+  "passata": {
+   "coop": 3.9,
+   "ottos": 2.65,
+   "denner": 1.7,
+   "aldi": 2.9,
+   "migros": 2.5,
+   "topcc": 5.3
+  },
+  "banane": {
+   "topcc": 3,
+   "lidlch": 2.7,
+   "coop": 3.9,
+   "aldi": 6.5,
+   "migros": 3.5,
+   "prodega": 7.6
+  },
+  "arance": {
+   "denner": 2.8,
+   "coop": 5.5,
+   "prodega": 10.25,
+   "topcc": 4.6,
+   "lidlch": 3.9,
+   "migros": 2.8
+  },
+  "mandarini": {
+   "coop": 4,
+   "lidlch": 3,
+   "topcc": 3,
+   "denner": 1.7,
+   "migros": 4.2,
+   "prodega": 7
+  },
+  "pere": {
+   "migros": 6,
+   "coop": 4.9,
+   "topcc": 7.8,
+   "denner": 3,
+   "prodega": 3.4,
+   "lidlch": 3.3
+  },
+  "pesche": {
+   "coop": 10.6,
+   "denner": 4.3,
+   "topcc": 7.1
+  },
+  "albicocche": {
+   "migros": 3.6,
+   "coop": 4.15,
+   "lidlch": 1.85,
+   "denner": 6.2,
+   "aldi": 3.85,
+   "ottos": 4.6,
+   "topcc": 7.5,
+   "prodega": 5.55
+  },
+  "fragole": {
+   "migros": 5,
+   "coop": 3.2,
+   "aldi": 5.25,
+   "lidlch": 4.95,
+   "denner": 4.95,
+   "topcc": 6.7,
+   "ottos": 4.5,
+   "prodega": 10.65
+  },
+  "uva": {
+   "coop": 2.45,
+   "lidlch": 2.5,
+   "denner": 2,
+   "topcc": 2.25,
+   "ottos": 3.65,
+   "aldi": 1.3,
+   "migros": 1.95,
+   "prodega": 2.05
+  },
+  "kiwi": {
+   "lidlch": 3.95,
+   "migros": 7,
+   "coop": 7.6
+  },
+  "melone": {
+   "aligro": 3.7,
+   "coop": 3.95,
+   "lidlch": 2.3,
+   "topcc": 3.75,
+   "prodega": 2.6,
+   "denner": 1.95
+  },
+  "susine": {
+   "migros": 3.5,
+   "denner": 1.95,
+   "coop": 4.9,
+   "topcc": 9.05,
+   "lidlch": 3.75
+  },
+  "limoni": {
+   "migros": 2.5,
+   "denner": 1.2,
+   "coop": 1.95,
+   "aldi": 3.95,
+   "topcc": 1.1,
+   "lidlch": 1.2,
+   "prodega": 2.7
+  },
+  "cosciapollo": {
+   "migros": 15.5,
+   "coop": 15.5,
+   "aldi": 8.5,
+   "prodega": 15.85,
+   "topcc": 21.5
+  },
+  "macinato": {
+   "migros": 9,
+   "prodega": 6.75,
+   "lidlch": 9.9,
+   "coop": 9.75,
+   "aldi": 11.1,
+   "denner": 9.15,
+   "topcc": 17.25
+  },
+  "spezzatino": {
+   "denner": 9.95,
+   "migros": 20.5,
+   "prodega": 13.25,
+   "topcc": 12.2
+  },
+  "luganighetta": {
+   "migros": 7.5,
+   "prodega": 4.2,
+   "denner": 8.8,
+   "topcc": 6.95,
+   "coop": 7.5
+  },
+  "wurstel": {
+   "aldi": 2.35,
+   "lidlch": 2.3,
+   "migros": 4.1,
+   "coop": 4.7,
+   "topcc": 3.55,
+   "denner": 8.25
+  },
+  "proscrudo": {
+   "coop": 6,
+   "aldi": 2.95,
+   "migros": 4.3,
+   "prodega": 2.45,
+   "denner": 4.25,
+   "topcc": 6.1,
+   "lidlch": 4.1
+  },
+  "salame": {
+   "lidlch": 3.9,
+   "aldi": 2.5,
+   "coop": 5.1,
+   "migros": 8.65,
+   "denner": 5.65,
+   "topcc": 7.7,
+   "prodega": 1.4
+  },
+  "salmone": {
+   "lidlch": 4.5,
+   "migros": 7.4,
+   "coop": 15.55,
+   "aldi": 5.5,
+   "denner": 5.65,
+   "prodega": 6.8,
+   "topcc": 12.95
+  },
+  "merluzzo": {
+   "prodega": 7.55,
+   "migros": 6.8
+  },
+  "bastoncini": {
+   "aldi": 3.65,
+   "lidlch": 4.65,
+   "migros": 4.35,
+   "coop": 10.3,
+   "topcc": 10.4,
+   "prodega": 9.15
+  },
+  "platessa": {
+   "migros": 10.95,
+   "coop": 18.65,
+   "denner": 9.5,
+   "prodega": 10.3
+  },
+  "lenticchie": {
+   "lidlch": 2.5,
+   "coop": 2.5,
+   "migros": 2.5,
+   "topcc": 2.9,
+   "denner": 1.15,
+   "aldi": 4,
+   "ottos": 4.6
+  },
+  "ceci": {
+   "migros": 2.85,
+   "aldi": 2.85,
+   "coop": 2.25,
+   "topcc": 2.8,
+   "lidlch": 2.55,
+   "denner": 1.95
+  },
+  "yogurtfru": {
+   "lidlch": 2.35,
+   "aldi": 2.2,
+   "migros": 3.1
+  },
+  "semiduro": {
+   "migros": 7.8,
+   "topcc": 8.2,
+   "lidlch": 9.7,
+   "coop": 4.4,
+   "denner": 7.15,
+   "prodega": 10.8
+  },
+  "ricotta": {
+   "aldi": 2.5,
+   "lidlch": 2.6,
+   "coop": 1.25,
+   "migros": 3.5,
+   "topcc": 3.15,
+   "denner": 2.5
+  },
+  "panna": {
+   "denner": 1.3,
+   "coop": 1.9,
+   "lidlch": 1.7,
+   "aldi": 2.45
+  },
+  "formaggino": {
+   "coop": 2.4,
+   "lidlch": 2.65,
+   "migros": 1.65,
+   "topcc": 2.3,
+   "aldi": 4.95,
+   "denner": 3.5,
+   "ottos": 3.55
+  },
+  "uova": {
+   "coop": 6.6,
+   "prodega": 5.9,
+   "lidlch": 5.8,
+   "topcc": 4.9,
+   "migros": 7.15,
+   "aldi": 8.75,
+   "aligro": 4.85
+  },
+  "riso": {
+   "lidlch": 2.9,
+   "aldi": 6.1,
+   "denner": 8,
+   "coop": 6.9,
+   "topcc": 3.7,
+   "ottos": 3.5,
+   "migros": 6.2
+  },
+  "paneint": {
+   "topcc": 4,
+   "migros": 3,
+   "aldi": 3,
+   "coop": 4.4,
+   "lidlch": 1.8
+  },
+  "polenta": {
+   "coop": 1.55,
+   "topcc": 4.4,
+   "migros": 4.25
+  },
+  "couscous": {
+   "lidlch": 1.85,
+   "coop": 3.5,
+   "migros": 3.5,
+   "aldi": 4,
+   "denner": 1.85,
+   "topcc": 1.45
+  },
+  "gnocchi": {
+   "lidlch": 1.05,
+   "topcc": 2.8,
+   "coop": 4.9,
+   "migros": 3.3,
+   "ottos": 2.5,
+   "aldi": 6,
+   "denner": 2.65
+  },
+  "gallette": {
+   "denner": 3.9,
+   "aldi": 1.2,
+   "coop": 2.4,
+   "migros": 4
+  },
+  "avena": {
+   "lidlch": 1.1,
+   "migros": 1.2,
+   "denner": 6,
+   "topcc": 4.6,
+   "aldi": 5.15,
+   "coop": 3.1
+  },
+  "cornflakes": {
+   "migros": 3.85,
+   "coop": 3.85,
+   "aldi": 1.35,
+   "lidlch": 4.1,
+   "topcc": 4
+  },
+  "fettebis": {
+   "aldi": 1.15,
+   "coop": 4.25,
+   "migros": 4.8,
+   "topcc": 4.9
+  },
+  "oliosem": {
+   "denner": 7.9,
+   "topcc": 5,
+   "lidlch": 4,
+   "migros": 5.4,
+   "coop": 6.25,
+   "aldi": 4
+  },
+  "aceto": {
+   "lidlch": 3.5,
+   "denner": 5,
+   "migros": 1.4
+  },
+  "zucchero": {
+   "migros": 5.6,
+   "topcc": 3.1,
+   "lidlch": 3.75,
+   "aldi": 3.1,
+   "coop": 3.8,
+   "denner": 5
+  },
+  "spezie": {
+   "lidlch": 1.05,
+   "migros": 2.3,
+   "aldi": 1.5,
+   "topcc": 1.2
+  },
+  "dado": {
+   "aldi": 0.9,
+   "lidlch": 1,
+   "migros": 1.8,
+   "coop": 1.4,
+   "ottos": 5.3,
+   "topcc": 4.3,
+   "denner": 4.4
+  },
+  "marmellata": {
+   "lidlch": 1.9,
+   "migros": 2.15,
+   "aldi": 2.65,
+   "coop": 5.9,
+   "topcc": 4.3
+  },
+  "miele": {
+   "denner": 5,
+   "lidlch": 4.05,
+   "migros": 3.5,
+   "coop": 3.5,
+   "topcc": 11.35,
+   "aldi": 6.2,
+   "ottos": 12.4
+  },
+  "maionese": {
+   "aldi": 1.9,
+   "lidlch": 1.9,
+   "migros": 1.9,
+   "coop": 2.25,
+   "topcc": 3.75,
+   "ottos": 2.95,
+   "denner": 2.35
+  },
+  "te": {
+   "aldi": 1.25,
+   "prodega": 1.25,
+   "aligro": 3.75,
+   "migros": 1.4,
+   "denner": 1.9,
+   "topcc": 3.35,
+   "coop": 1.4
+  },
+  "noci": {
+   "lidlch": 3,
+   "migros": 3.25,
+   "coop": 2,
+   "prodega": 6.05
+  },
+  "mandorle": {
+   "aldi": 2.85,
+   "migros": 3.75,
+   "topcc": 4.9,
+   "denner": 3.95,
+   "lidlch": 3,
+   "coop": 2.95,
+   "ottos": 7.95
+  },
+  "acqua": {
+   "aldi": 5.4,
+   "lidlch": 4.15,
+   "denner": 3.35,
+   "migros": 5.15,
+   "topcc": 1.35,
+   "coop": 5.2
+  },
+  "succo": {
+   "migros": 2.4,
+   "lidlch": 2,
+   "denner": 2.2,
+   "aldi": 2.45,
+   "coop": 4.3,
+   "topcc": 5.7
+  },
+  "sciroppo": {
+   "migros": 3.35,
+   "lidlch": 2.25,
+   "topcc": 3.9,
+   "aldi": 5.6,
+   "coop": 2.25
+  },
+  "cartacucina": {
+   "migros": 3.5,
+   "aligro": 9.95
+  },
+  "saponemani": {
+   "prodega": 5.25,
+   "migros": 1.3
+  },
+  "spazzolino": {
+   "topcc": 3.3,
+   "denner": 3.45,
+   "coop": 2.95,
+   "prodega": 4.75,
+   "ottos": 1.95,
+   "migros": 2.95,
+   "aligro": 3.15
+  },
+  "rasoi": {
+   "denner": 7.95,
+   "migros": 12.5,
+   "coop": 13.95,
+   "topcc": 3.95
+  },
+  "carnesecca_gr": {
+   "prodega": 7.05,
+   "coop": 10.9,
+   "lidlch": 8.6,
+   "migros": 11.2,
+   "aldi": 11.25,
+   "topcc": 7.55
+  },
+  "treccia": {
+   "migros": 2.95,
+   "coop": 3.3,
+   "lidlch": 3.3,
+   "topcc": 4.9,
+   "aldi": 2.9,
+   "denner": 2.95
+  },
+  "sottaceti": {
+   "coop": 5.45,
+   "migros": 5.25
+  },
+  "mais_dolce2": {
+   "ottos": 5.65,
+   "coop": 2.85,
+   "migros": 8.8,
+   "lidlch": 2.7,
+   "topcc": 3.55,
+   "prodega": 3.55
+  },
+  "sorbetto": {
+   "migros": 8.85,
+   "coop": 7.5,
+   "topcc": 3.4
+  },
+  "energydrink": {
+   "aldi": 2.4,
+   "lidlch": 5.05,
+   "migros": 4.55,
+   "topcc": 2.45,
+   "denner": 6
+  },
+  "orata": {
+   "migros": 10.8,
+   "coop": 16.7,
+   "aldi": 10.75,
+   "denner": 7.15,
+   "lidlch": 19.45,
+   "topcc": 7.2
+  },
+  "gamberetti": {
+   "lidlch": 8.55,
+   "coop": 8.95,
+   "migros": 9,
+   "aldi": 6,
+   "denner": 7.5,
+   "prodega": 4.4,
+   "topcc": 9.8
+  },
+  "pollo_intero": {
+   "migros": 11.05,
+   "coop": 23.4
+  },
+  "fesa_tacchino": {
+   "coop": 5.1,
+   "migros": 3.9,
+   "aldi": 5.6,
+   "topcc": 3.75,
+   "lidlch": 5.6,
+   "prodega": 8.9
+  },
+  "uova_bio": {
+   "coop": 5.95,
+   "prodega": 6.2,
+   "topcc": 4.95
+  },
+  "insalata_iceberg": {
+   "lidlch": 2.4,
+   "ottos": 5,
+   "coop": 2.5,
+   "denner": 2,
+   "topcc": 3.15,
+   "prodega": 3.15,
+   "migros": 2.25
+  },
+  "misticanza": {
+   "migros": 2.9,
+   "coop": 1.7,
+   "topcc": 1.75,
+   "ottos": 1.2
+  },
+  "pomodoro_ramo": {
+   "lidlch": 6.25,
+   "denner": 9.6,
+   "migros": 8,
+   "topcc": 8.8,
+   "coop": 8.3
+  },
+  "mele_bio": {
+   "lidlch": 4.8,
+   "coop": 5.9
+  },
+  "arance_succo": {
+   "lidlch": 6.3,
+   "topcc": 7.45
+  },
+  "marmellata_bio": {
+   "lidlch": 1.85,
+   "aldi": 1.85,
+   "coop": 3.9
+  },
+  "olio_extra_bio": {
+   "migros": 19.95,
+   "topcc": 13.15,
+   "coop": 14.35,
+   "lidlch": 15,
+   "aldi": 9.95
+  },
+  "brodo_veg_bio": {
+   "coop": 3.7,
+   "denner": 4.6
+  },
+  "tisane": {
+   "denner": 1.9,
+   "coop": 3.15,
+   "migros": 4.15,
+   "topcc": 1.9,
+   "prodega": 7.2,
+   "aligro": 2.05
+  },
+  "succo_ace": {
+   "migros": 1.6,
+   "lidlch": 2.25,
+   "aldi": 1.6,
+   "denner": 1.8,
+   "coop": 1.85
+  },
+  "lupini": {
+   "migros": 2.15,
+   "coop": 5.2
+  },
+  "salmerino": {
+   "migros": 27.8,
+   "prodega": 11.5
+  },
+  "astice": {
+   "coop": 22.5,
+   "migros": 29.95
+  },
+  "gelatina": {
+   "topcc": 3.95,
+   "lidlch": 3.25,
+   "migros": 4
+  },
+  "nori": {
+   "migros": 6.25,
+   "coop": 10.85,
+   "topcc": 5
+  },
+  "sesamo": {
+   "denner": 3.2,
+   "coop": 1.75,
+   "ottos": 2.95,
+   "topcc": 4.8,
+   "migros": 2.1,
+   "aldi": 1.5
+  },
+  "miso": {
+   "topcc": 10.2,
+   "coop": 7.3,
+   "migros": 4.35
+  },
+  "nachos": {
+   "ottos": 1.5,
+   "coop": 4.3,
+   "lidlch": 1.1,
+   "aldi": 1.1,
+   "migros": 4.7,
+   "topcc": 1.85
+  },
+  "fagiolineri": {
+   "coop": 4,
+   "migros": 3.35
+  },
+  "lime": {
+   "prodega": 4.75,
+   "topcc": 5.7,
+   "migros": 4.7
+  },
+  "cumino": {
+   "migros": 2.8,
+   "coop": 3.35,
+   "topcc": 2.65
+  },
+  "lattecocco": {
+   "denner": 2.4,
+   "migros": 3.9
+  },
+  "naan": {
+   "coop": 6.7,
+   "migros": 5.1
+  },
+  "lenticchierosse": {
+   "aldi": 4,
+   "denner": 2.15,
+   "migros": 2.8,
+   "topcc": 3,
+   "coop": 5.85
+  },
+  "hummus": {
+   "aldi": 4,
+   "lidlch": 2.25,
+   "migros": 2.95,
+   "coop": 5.15,
+   "topcc": 4.95,
+   "denner": 1.75
+  },
+  "pita": {
+   "coop": 2.2,
+   "topcc": 5.85,
+   "denner": 2.35,
+   "migros": 2.45,
+   "lidlch": 2.5,
+   "aldi": 1.65,
+   "ottos": 2.8
+  },
+  "tzatziki": {
+   "migros": 4.95,
+   "coop": 5.5
+  },
+  "arachidi": {
+   "topcc": 1.9,
+   "lidlch": 1.15,
+   "aldi": 1.15,
+   "coop": 1.95,
+   "ottos": 2.6,
+   "migros": 2.8,
+   "denner": 3.95
+  },
+  "anatralaccata": {
+   "migros": 12.5,
+   "ottos": 29.15,
+   "coop": 24.4,
+   "lidlch": 7.9,
+   "denner": 19,
+   "aldi": 7
+  },
+  "tempeh": {
+   "coop": 4.95,
+   "migros": 4.95,
+   "prodega": 4
+  },
+  "seitan": {
+   "ottos": 3.15,
+   "coop": 3,
+   "prodega": 5.25,
+   "migros": 4.9,
+   "topcc": 8.7,
+   "lidlch": 3.7
+  },
+  "semichia": {
+   "coop": 2.3,
+   "migros": 2.3,
+   "denner": 1.75,
+   "aldi": 1.75,
+   "lidlch": 1.75,
+   "topcc": 2.2
+  },
+  "farina00": {
+   "lidlch": 1.9,
+   "topcc": 1.4,
+   "aldi": 1.3,
+   "migros": 2.1,
+   "coop": 2.5,
+   "denner": 2.5
+  },
+  "lievitomadre": {
+   "coop": 6.9,
+   "migros": 2.25
+  },
+  "origanosecco": {
+   "lidlch": 0.8,
+   "coop": 2.4,
+   "migros": 3.5,
+   "aldi": 0.8,
+   "topcc": 1.75
+  },
+  "burroghee": {
+   "migros": 13.8,
+   "coop": 13.85
+  },
+  "pancarre": {
+   "migros": 4.3,
+   "aldi": 1.2
+  },
+  "ghiaccio": {
+   "migros": 3.9,
+   "topcc": 3.95
+  },
+  "barbabietola": {
+   "aldi": 4.15,
+   "lidlch": 2,
+   "denner": 2.25,
+   "coop": 3,
+   "migros": 2.85,
+   "topcc": 2.3,
+   "prodega": 3.85
+  },
+  "indivia": {
+   "lidlch": 2,
+   "denner": 2,
+   "migros": 3.95,
+   "coop": 3.95,
+   "prodega": 3.85
+  },
+  "mirtilli": {
+   "coop": 3.45,
+   "lidlch": 3.45,
+   "aldi": 2.65,
+   "denner": 3.45,
+   "topcc": 2.8,
+   "migros": 3.3,
+   "prodega": 12.45
+  },
+  "lamponi": {
+   "denner": 4.95,
+   "topcc": 2.85,
+   "aldi": 2.65,
+   "lidlch": 4.95,
+   "coop": 3.7,
+   "migros": 3.9
+  },
+  "frutasecmix": {
+   "lidlch": 2.2,
+   "aldi": 2.2,
+   "topcc": 9.4,
+   "migros": 5.05,
+   "coop": 6.9,
+   "denner": 4.45,
+   "ottos": 4.3
+  },
+  "galletto": {
+   "coop": 27.55,
+   "topcc": 28.75
+  },
+  "tacchinofette": {
+   "migros": 17.7,
+   "denner": 9.5,
+   "aldi": 7.8,
+   "topcc": 13.45
+  },
+  "bollito": {
+   "migros": 34,
+   "coop": 28,
+   "prodega": 37,
+   "aldi": 21.9,
+   "topcc": 23.4
+  },
+  "salamella": {
+   "aldi": 11.25,
+   "topcc": 11.15,
+   "prodega": 5.85,
+   "denner": 21.25,
+   "migros": 12.5,
+   "coop": 10,
+   "lidlch": 15.55
+  },
+  "gamberoni": {
+   "aldi": 10.3,
+   "lidlch": 6.45,
+   "migros": 8.45,
+   "coop": 19.9,
+   "prodega": 7.15
+  },
+  "salmonebio": {
+   "coop": 17.35,
+   "prodega": 10.25,
+   "aldi": 9.35,
+   "lidlch": 11.35
+  },
+  "senapedijon": {
+   "migros": 3.1,
+   "coop": 4.5,
+   "topcc": 3.15
+  },
+  "oliolino": {
+   "migros": 9.5,
+   "coop": 7.9,
+   "topcc": 8.25
+  },
+  "sidro": {
+   "migros": 4.2,
+   "topcc": 12.3,
+   "aldi": 4.35,
+   "lidlch": 4.3
+  },
+  "ossobuco": {
+   "coop": 52.4,
+   "topcc": 35.5
+  },
+  "capriolo": {
+   "lidlch": 14.2,
+   "denner": 17.5,
+   "aldi": 29.95,
+   "prodega": 12.25,
+   "topcc": 18.5,
+   "coop": 14.2,
+   "migros": 24.5
+  },
+  "trippa": {
+   "migros": 8.5,
+   "prodega": 5.75,
+   "coop": 8.7
+  },
+  "cicoria": {
+   "migros": 5.7,
+   "denner": 5.65,
+   "coop": 4.15,
+   "topcc": 4.8,
+   "ottos": 5.85,
+   "aldi": 5.85,
+   "lidlch": 2.4
+  },
+  "castagne": {
+   "migros": 11.65,
+   "coop": 12.4,
+   "aldi": 17.5,
+   "topcc": 14.8,
+   "lidlch": 8.55
+  },
+  "paneseg": {
+   "aldi": 3.85,
+   "coop": 2.7,
+   "migros": 5.7
+  },
+  "cetrioli": {
+   "migros": 5.5,
+   "prodega": 4,
+   "ottos": 5.25,
+   "aldi": 4.85,
+   "lidlch": 4.8,
+   "denner": 4.45,
+   "coop": 5.5,
+   "topcc": 5.15
+  },
+  "cavolini": {
+   "coop": 3.5,
+   "migros": 3.5,
+   "lidlch": 3.5,
+   "denner": 3.5,
+   "topcc": 3.8,
+   "prodega": 10.9
+  },
+  "ravanelli": {
+   "migros": 4.8,
+   "coop": 2.95
+  },
+  "songino": {
+   "lidlch": 4,
+   "migros": 5.95,
+   "coop": 4.75,
+   "denner": 3.75,
+   "topcc": 3.9,
+   "prodega": 5.8
+  },
+  "sedanorapa": {
+   "coop": 4.7,
+   "lidlch": 2.95,
+   "migros": 4.75,
+   "prodega": 6.7
+  },
+  "mais": {
+   "lidlch": 1.5,
+   "ottos": 3.75,
+   "coop": 1.9,
+   "topcc": 2.35,
+   "prodega": 2.35,
+   "migros": 1.65
+  },
+  "pomodorisecchi": {
+   "aldi": 2.65,
+   "coop": 6.6,
+   "migros": 5.9,
+   "topcc": 3.75
+  },
+  "edamame": {
+   "coop": 5.7,
+   "migros": 5.7,
+   "topcc": 3.3,
+   "lidlch": 3,
+   "aldi": 2.95,
+   "prodega": 4.2
+  },
+  "zenzero": {
+   "migros": 2.05,
+   "lidlch": 3.85,
+   "coop": 1.3,
+   "ottos": 0.9,
+   "topcc": 2.4,
+   "aldi": 1.5
+  },
+  "prezzemolo": {
+   "coop": 1.45,
+   "migros": 3.7
+  },
+  "scalogno": {
+   "coop": 4.3,
+   "denner": 1.1,
+   "migros": 3.35,
+   "lidlch": 1.15,
+   "prodega": 5.2
+  },
+  "ciliegie": {
+   "denner": 3.95,
+   "topcc": 3.9,
+   "migros": 3.3,
+   "coop": 7.5,
+   "aldi": 5.25
+  },
+  "fichi": {
+   "aldi": 5.25,
+   "lidlch": 5.6,
+   "migros": 7.7,
+   "coop": 4.35,
+   "topcc": 7.35,
+   "denner": 3.55
+  },
+  "cachi": {
+   "migros": 7,
+   "lidlch": 2.5,
+   "denner": 2.5
+  },
+  "melagrana": {
+   "migros": 2.95,
+   "coop": 2.95
+  },
+  "datteri": {
+   "lidlch": 2.9,
+   "denner": 2.95,
+   "migros": 3.7,
+   "coop": 4.95,
+   "aldi": 3.75,
+   "topcc": 4.2,
+   "prodega": 3.75
+  },
+  "uvetta": {
+   "coop": 1.95,
+   "lidlch": 1,
+   "migros": 2,
+   "aldi": 1,
+   "topcc": 2.9
+  },
+  "tacchino": {
+   "prodega": 19.5,
+   "migros": 17,
+   "topcc": 19.35,
+   "denner": 14.9,
+   "aldi": 15,
+   "coop": 32.7,
+   "lidlch": 27.45
+  },
+  "macinatopollo": {
+   "migros": 9.5,
+   "coop": 14.75
+  },
+  "lonza": {
+   "migros": 7,
+   "denner": 31.9,
+   "coop": 27,
+   "topcc": 21.9,
+   "aldi": 20,
+   "prodega": 22.7,
+   "lidlch": 20
+  },
+  "pancetta": {
+   "migros": 4.05,
+   "coop": 5.15,
+   "lidlch": 4.05,
+   "denner": 4.15,
+   "prodega": 1.9,
+   "aldi": 1.8
+  },
+  "cervo": {
+   "coop": 16.5,
+   "migros": 21.75,
+   "denner": 39,
+   "lidlch": 12.5,
+   "aldi": 17.5,
+   "prodega": 12.55
+  },
+  "trota": {
+   "migros": 11.8,
+   "coop": 14.4,
+   "lidlch": 9.45,
+   "topcc": 15.85,
+   "denner": 5.55,
+   "prodega": 8.4
+  },
+  "sgombro": {
+   "migros": 9.8,
+   "coop": 8.3,
+   "prodega": 9.8
+  },
+  "sardine": {
+   "migros": 3.15,
+   "topcc": 2,
+   "coop": 2.95,
+   "aldi": 3.7
+  },
+  "acciughe": {
+   "ottos": 5.25,
+   "coop": 2.2,
+   "topcc": 2.1,
+   "lidlch": 1.1,
+   "migros": 2.5,
+   "prodega": 1.85,
+   "aldi": 1.05
+  },
+  "feta": {
+   "coop": 4.4,
+   "lidlch": 2.95,
+   "denner": 3.65,
+   "migros": 3.6,
+   "topcc": 3,
+   "aldi": 2.6,
+   "prodega": 2.5
+  },
+  "quark": {
+   "migros": 1.2,
+   "coop": 1.25,
+   "topcc": 1.9,
+   "lidlch": 1.25,
+   "aldi": 1.4,
+   "denner": 5.25
+  },
+  "skyr": {
+   "lidlch": 2.55,
+   "coop": 5.25,
+   "topcc": 5.15,
+   "migros": 4.75,
+   "denner": 3.4
+  },
+  "kefir": {
+   "topcc": 2.95,
+   "lidlch": 2.75,
+   "migros": 4.15,
+   "coop": 3.4
+  },
+  "emmental": {
+   "migros": 5.1,
+   "denner": 4.75,
+   "topcc": 5.7,
+   "coop": 6.7,
+   "lidlch": 5.05,
+   "aldi": 4.6,
+   "prodega": 5.85
+  },
+  "raclette": {
+   "migros": 10.25,
+   "coop": 14.2,
+   "denner": 7.45
+  },
+  "fonduta": {
+   "aldi": 11.5,
+   "migros": 10.5,
+   "lidlch": 16,
+   "denner": 24.8,
+   "topcc": 14.25,
+   "ottos": 10,
+   "coop": 24
+  },
+  "bufala": {
+   "lidlch": 2.25,
+   "topcc": 3.15,
+   "migros": 4.5,
+   "coop": 3.95
+  },
+  "basmati": {
+   "lidlch": 4,
+   "aldi": 4,
+   "topcc": 3.6,
+   "migros": 6.4,
+   "coop": 5.5,
+   "denner": 4.95
+  },
+  "risointegrale": {
+   "lidlch": 2.9,
+   "coop": 5,
+   "migros": 8.4
+  },
+  "quinoa": {
+   "aldi": 5.8,
+   "migros": 4.5,
+   "topcc": 7,
+   "lidlch": 4.45,
+   "denner": 4.45,
+   "coop": 6.6
+  },
+  "orzo": {
+   "migros": 2.2,
+   "lidlch": 2.2,
+   "topcc": 1.95,
+   "coop": 3.8
+  },
+  "farro": {
+   "ottos": 6.25,
+   "coop": 3.15,
+   "migros": 9.75,
+   "lidlch": 3.1,
+   "topcc": 3.95,
+   "prodega": 3.95
+  },
+  "piadina": {
+   "topcc": 5.1,
+   "coop": 3.7,
+   "migros": 3.8,
+   "aldi": 4.3,
+   "lidlch": 4.3
+  },
+  "pangrattato": {
+   "migros": 2,
+   "coop": 2.15,
+   "lidlch": 1,
+   "topcc": 3.9,
+   "aldi": 1
+  },
+  "farinaint": {
+   "lidlch": 2,
+   "migros": 3.6,
+   "aldi": 2,
+   "coop": 3.15,
+   "prodega": 2.75
+  },
+  "burroarachidi": {
+   "aldi": 3.65,
+   "migros": 3,
+   "coop": 6.15,
+   "topcc": 4.3,
+   "prodega": 5.1
+  },
+  "lattemandorla": {
+   "lidlch": 1.6,
+   "coop": 3.3,
+   "denner": 3.9,
+   "ottos": 2.95,
+   "migros": 3.3,
+   "topcc": 3.2,
+   "aldi": 3.9
+  },
+  "succomela": {
+   "migros": 2.4,
+   "lidlch": 1.95,
+   "coop": 2.1,
+   "aldi": 1.2
+  },
+  "curry": {
+   "topcc": 1.4,
+   "denner": 0.85,
+   "lidlch": 0.7,
+   "coop": 1.1,
+   "ottos": 0.8,
+   "migros": 1.6
+  },
+  "paprika": {
+   "ottos": 1.15,
+   "topcc": 1.1,
+   "coop": 0.8,
+   "migros": 1.05,
+   "aldi": 0.65,
+   "denner": 1,
+   "lidlch": 0.65
+  },
+  "cannella": {
+   "ottos": 0.8,
+   "coop": 1.3,
+   "lidlch": 0.65,
+   "denner": 1.45
+  },
+  "ketchup": {
+   "denner": 5.8,
+   "coop": 2.3,
+   "topcc": 3.3,
+   "ottos": 2.15,
+   "aldi": 5.15
+  },
+  "brodoveg": {
+   "migros": 3,
+   "coop": 5.5,
+   "lidlch": 6.8,
+   "denner": 4.4,
+   "topcc": 4.15,
+   "ottos": 4.5
+  },
+  "zuccherocanna": {
+   "migros": 4.7,
+   "prodega": 3.55,
+   "coop": 5.3,
+   "aldi": 3.3
+  },
+  "tefreddo": {
+   "migros": 9.9,
+   "aldi": 8.1,
+   "lidlch": 8,
+   "topcc": 5.95,
+   "coop": 8
+  },
+  "capsule": {
+   "denner": 24.95,
+   "lidlch": 9.9,
+   "prodega": 4.85,
+   "migros": 4.25,
+   "coop": 22.8,
+   "aldi": 9.15,
+   "aligro": 19.85
+  },
+  "filettomanzo": {
+   "aldi": 64.9,
+   "coop": 64.8,
+   "denner": 47.9,
+   "lidlch": 36.05,
+   "topcc": 89.9,
+   "prodega": 53.9,
+   "migros": 18
+  },
+  "entrecote": {
+   "migros": 31,
+   "coop": 36,
+   "aldi": 33.6,
+   "topcc": 42.4,
+   "denner": 29.5,
+   "prodega": 22.7,
+   "lidlch": 17.95
+  },
+  "arrostovitello": {
+   "migros": 40.8,
+   "coop": 58
+  },
+  "coniglio": {
+   "topcc": 23.9,
+   "migros": 23.35,
+   "prodega": 21.15,
+   "coop": 32.5
+  },
+  "agnello": {
+   "migros": 43,
+   "coop": 61.9,
+   "ottos": 39,
+   "prodega": 26.95,
+   "topcc": 34.9,
+   "denner": 33.9,
+   "lidlch": 12.75,
+   "aldi": 36.9
+  },
+  "bresaola": {
+   "prodega": 7.05,
+   "coop": 10.9,
+   "lidlch": 8.6,
+   "migros": 11.2,
+   "aldi": 11.25,
+   "topcc": 7.55
+  },
+  "mortadella": {
+   "topcc": 5.5,
+   "coop": 5.8,
+   "lidlch": 5,
+   "denner": 3.7,
+   "migros": 4.2,
+   "prodega": 5.45
+  },
+  "speck": {
+   "migros": 2.35,
+   "prodega": 2.15,
+   "denner": 3.9,
+   "coop": 6.65,
+   "topcc": 6.7,
+   "aldi": 3.8,
+   "lidlch": 2.95
+  },
+  "salsicciagr": {
+   "migros": 11.25,
+   "coop": 5.65,
+   "lidlch": 5.55,
+   "aldi": 5.6,
+   "topcc": 10.4,
+   "denner": 6.3
+  },
+  "salmoneaff": {
+   "aldi": 4.95,
+   "lidlch": 9,
+   "denner": 6.9,
+   "migros": 13.75
+  },
+  "gamberi": {
+   "lidlch": 11.4,
+   "migros": 12,
+   "coop": 11.9,
+   "aldi": 8,
+   "denner": 10,
+   "prodega": 5.85,
+   "topcc": 13.05
+  },
+  "branzino": {
+   "migros": 22.4,
+   "coop": 21.6,
+   "topcc": 27.25,
+   "denner": 8.95,
+   "prodega": 17.65
+  },
+  "cozze": {
+   "lidlch": 11.1,
+   "coop": 10.6,
+   "topcc": 13.8,
+   "prodega": 17.8,
+   "migros": 11.9
+  },
+  "parmigiano": {
+   "coop": 7.9,
+   "migros": 8.1,
+   "denner": 2.1,
+   "topcc": 5.4
+  },
+  "gorgonzola": {
+   "lidlch": 2.65,
+   "migros": 4.5,
+   "coop": 4.95,
+   "topcc": 2.9,
+   "prodega": 5.2
+  },
+  "brie": {
+   "lidlch": 1.8,
+   "coop": 6.25,
+   "migros": 5.9,
+   "topcc": 2.4,
+   "prodega": 3.25
+  },
+  "mascarpone": {
+   "migros": 3.8,
+   "lidlch": 1.35,
+   "coop": 4.25,
+   "topcc": 3,
+   "aldi": 4.95
+  },
+  "pannamontare": {
+   "topcc": 2.95,
+   "lidlch": 2.15,
+   "coop": 2.75,
+   "migros": 2.95,
+   "denner": 1.35
+  },
+  "carnaroli": {
+   "lidlch": 2.4,
+   "coop": 10.4,
+   "aldi": 8.3,
+   "denner": 4.3,
+   "ottos": 12.5,
+   "migros": 6.75,
+   "topcc": 7.9
+  },
+  "lievito": {
+   "migros": 0.7,
+   "coop": 3.2,
+   "topcc": 0.7,
+   "lidlch": 0.9
+  },
+  "pomodorini": {
+   "migros": 6.5,
+   "denner": 6.6,
+   "lidlch": 6,
+   "coop": 5.9
+  },
+  "asparagi": {
+   "migros": 5.7,
+   "coop": 8.25,
+   "denner": 6.2
+  },
+  "carciofi": {
+   "topcc": 10,
+   "aldi": 7.3,
+   "denner": 6.6
+  },
+  "fruttibosco": {
+   "migros": 7.35,
+   "topcc": 2.85,
+   "aldi": 2.65,
+   "lidlch": 4.6,
+   "ottos": 2.45,
+   "coop": 5,
+   "denner": 3.9
+  },
+  "ananas": {
+   "denner": 2.3,
+   "prodega": 9.5,
+   "topcc": 2.4,
+   "aligro": 6.7,
+   "aldi": 2.45,
+   "lidlch": 2.7,
+   "migros": 2.3
+  },
+  "anguria": {
+   "aligro": 6.6,
+   "coop": 4.95,
+   "prodega": 11.45,
+   "lidlch": 2.3,
+   "topcc": 13.5,
+   "migros": 6.7
+  },
+  "senape": {
+   "migros": 2.35,
+   "topcc": 2.8,
+   "coop": 3.6,
+   "ottos": 1.85,
+   "denner": 2.5,
+   "lidlch": 1.7,
+   "aldi": 2.5
+  },
+  "patatine": {
+   "lidlch": 3.2,
+   "ottos": 7.5,
+   "migros": 3.2,
+   "coop": 4.9,
+   "aldi": 1.95,
+   "topcc": 4.95,
+   "denner": 6
+  },
+  "balsamico": {
+   "migros": 3.95,
+   "aldi": 3.4,
+   "lidlch": 3.4,
+   "denner": 1.5,
+   "topcc": 2.75,
+   "coop": 3
+  },
+  "pinoli": {
+   "lidlch": 6,
+   "aldi": 3.9,
+   "migros": 8.45,
+   "coop": 8.5,
+   "topcc": 9.95
+  },
+  "cacao": {
+   "migros": 6.9,
+   "aldi": 3.6,
+   "coop": 6,
+   "lidlch": 5.75,
+   "topcc": 8.15,
+   "ottos": 3.1,
+   "denner": 6.25,
+   "prodega": 4.15
+  },
+  "fondente": {
+   "lidlch": 1.6,
+   "migros": 2.3,
+   "coop": 3.2
+  },
+  "vinobianco": {
+   "topcc": 8.95,
+   "aldi": 8,
+   "lidlch": 6.95,
+   "migros": 6.95,
+   "coop": 14.85
+  },
+  "vinorosso": {
+   "lidlch": 6.95,
+   "topcc": 10.5,
+   "coop": 8.25,
+   "migros": 6.95
+  },
+  "prosecco": {
+   "aldi": 7.5,
+   "topcc": 10,
+   "denner": 9.95,
+   "lidlch": 4.45,
+   "migros": 7.45
+  },
+  "birra": {
+   "aldi": 2.4,
+   "lidlch": 3.15,
+   "migros": 9.6,
+   "denner": 5.25,
+   "topcc": 8.15
+  },
+  "acquagas": {
+   "aldi": 8.3,
+   "topcc": 4.95,
+   "coop": 6.95
+  }
+ },
  "indici": {},
  "indiciOsservati": {},
- "promo": {},
+ "promo": {
+  "patate": {
+   "p": 3,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "carote": {
+   "p": 3.9,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "melanzane": {
+   "p": 9.25,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pomodori": {
+   "p": 2.1,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "peperoni": {
+   "p": 6.5,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "spinaci": {
+   "p": 5.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "broccoli": {
+   "p": 2.15,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cavolfiore": {
+   "p": 5.8,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "zucca": {
+   "p": 2.25,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "finocchi": {
+   "p": 3.15,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "porri": {
+   "p": 5.85,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "sedano": {
+   "p": 2.9,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "funghi": {
+   "p": 2.95,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "fagiolini": {
+   "p": 2.85,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "piselli": {
+   "p": 2.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "minestrone": {
+   "p": 5,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "passata": {
+   "p": 1.7,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "mele": {
+   "p": 2.2,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "arance": {
+   "p": 2.5,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pere": {
+   "p": 3,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pesche": {
+   "p": 4.3,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "albicocche": {
+   "p": 6.2,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "fragole": {
+   "p": 10.65,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "uva": {
+   "p": 2.2,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "kiwi": {
+   "p": 8.9,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "susine": {
+   "p": 1.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pettopollo": {
+   "p": 13,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cosciapollo": {
+   "p": 11.5,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "macinato": {
+   "p": 5.35,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "spezzatino": {
+   "p": 8.5,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "luganighetta": {
+   "p": 7.5,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "wurstel": {
+   "p": 2,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "proscrudo": {
+   "p": 3,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "salame": {
+   "p": 4.85,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "tonno": {
+   "p": 3.7,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "salmone": {
+   "p": 4.55,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "merluzzo": {
+   "p": 17.1,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "bastoncini": {
+   "p": 5.3,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "platessa": {
+   "p": 9.5,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "lenticchie": {
+   "p": 1.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "ceci": {
+   "p": 1.55,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "tofu": {
+   "p": 6.25,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "mozzarella": {
+   "p": 1.5,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "semiduro": {
+   "p": 6.5,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "ricotta": {
+   "p": 2.5,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "burro": {
+   "p": 2.3,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "panna": {
+   "p": 1.7,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "formaggino": {
+   "p": 3.55,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "riso": {
+   "p": 3.5,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pane": {
+   "p": 1.75,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "farina": {
+   "p": 2,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "gnocchi": {
+   "p": 2.65,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "gallette": {
+   "p": 1.4,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "avena": {
+   "p": 1.1,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cornflakes": {
+   "p": 4.1,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "biscotti": {
+   "p": 8.1,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "olio": {
+   "p": 11.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "oliosem": {
+   "p": 3,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "zucchero": {
+   "p": 3.8,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "dado": {
+   "p": 4.4,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pesto": {
+   "p": 2.95,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "miele": {
+   "p": 9.65,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "maionese": {
+   "p": 3.9,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "te": {
+   "p": 2.25,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "noci": {
+   "p": 2,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "mandorle": {
+   "p": 3.5,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "acqua": {
+   "p": 2.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "succo": {
+   "p": 1.8,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "sciroppo": {
+   "p": 5.6,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "detbucato": {
+   "p": 7.75,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "shampoo": {
+   "p": 9.95,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "spazzolino": {
+   "p": 4.3,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "rasoi": {
+   "p": 8.95,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "treccia": {
+   "p": 2.35,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "sorbetto": {
+   "p": 5.95,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "energydrink": {
+   "p": 2.85,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "orata": {
+   "p": 5.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "gamberetti": {
+   "p": 4.45,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pollo_intero": {
+   "p": 11.05,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "misticanza": {
+   "p": 1.2,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pomodoro_ramo": {
+   "p": 8,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "olio_extra_bio": {
+   "p": 13.15,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "brodo_veg_bio": {
+   "p": 4.6,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "tisane": {
+   "p": 2.6,
+   "riv": "aligro",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "succo_ace": {
+   "p": 1.85,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "sesamo": {
+   "p": 1.2,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "lenticchierosse": {
+   "p": 4,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "hummus": {
+   "p": 1.75,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pita": {
+   "p": 4.8,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "arachidi": {
+   "p": 1.55,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "anatralaccata": {
+   "p": 19,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "seitan": {
+   "p": 5.5,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "semichia": {
+   "p": 4.15,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "farina00": {
+   "p": 1.9,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "barbabietola": {
+   "p": 3.85,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "lamponi": {
+   "p": 3.7,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "frutasecmix": {
+   "p": 5.3,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "tacchinofette": {
+   "p": 9,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "bollito": {
+   "p": 24,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "gamberoni": {
+   "p": 6.45,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "salmonebio": {
+   "p": 11.1,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "capriolo": {
+   "p": 24.5,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cicoria": {
+   "p": 4.45,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "castagne": {
+   "p": 8.9,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cetrioli": {
+   "p": 4.85,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "songino": {
+   "p": 2.1,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "zenzero": {
+   "p": 1.2,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "fichi": {
+   "p": 9.5,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cachi": {
+   "p": 3.15,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "melagrana": {
+   "p": 2.95,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "datteri": {
+   "p": 3.7,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "uvetta": {
+   "p": 2.95,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "tacchino": {
+   "p": 14.75,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "lonza": {
+   "p": 19.6,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pancetta": {
+   "p": 1.8,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cervo": {
+   "p": 29.8,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "trota": {
+   "p": 5.55,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "acciughe": {
+   "p": 1.05,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "skyr": {
+   "p": 2.15,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "kefir": {
+   "p": 2.75,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "emmental": {
+   "p": 5.5,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "raclette": {
+   "p": 10.8,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "fonduta": {
+   "p": 7.45,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "quinoa": {
+   "p": 7.5,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "farinaint": {
+   "p": 2,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "muesli": {
+   "p": 5.5,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "burroarachidi": {
+   "p": 1.75,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "curry": {
+   "p": 0.8,
+   "riv": "ottos",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "paprika": {
+   "p": 0.7,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "ketchup": {
+   "p": 5.15,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "brodoveg": {
+   "p": 4.4,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "capsule": {
+   "p": 20.15,
+   "riv": "aligro",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "filettomanzo": {
+   "p": 49,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "entrecote": {
+   "p": 16.7,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "arrostovitello": {
+   "p": 40,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "agnello": {
+   "p": 15.2,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "mortadella": {
+   "p": 3.7,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "speck": {
+   "p": 5.7,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "salsicciagr": {
+   "p": 3.1,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "salmoneaff": {
+   "p": 4.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "gamberi": {
+   "p": 5.95,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "branzino": {
+   "p": 8.95,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cozze": {
+   "p": 10.6,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "parmigiano": {
+   "p": 2.1,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "gorgonzola": {
+   "p": 2.65,
+   "riv": "lidlch",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "brie": {
+   "p": 2.2,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "mascarpone": {
+   "p": 4.3,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pannamontare": {
+   "p": 1.35,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "carnaroli": {
+   "p": 8.3,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "baguette": {
+   "p": 1.15,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "lievito": {
+   "p": 2.25,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pomodorini": {
+   "p": 5.9,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "carciofi": {
+   "p": 6.6,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "avocado": {
+   "p": 2.8,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "fruttibosco": {
+   "p": 7.7,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "ananas": {
+   "p": 7.5,
+   "riv": "aligro",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "senape": {
+   "p": 1.55,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "patatine": {
+   "p": 5.3,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "salatini": {
+   "p": 2.9,
+   "riv": "migros",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "balsamico": {
+   "p": 2.4,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "pinoli": {
+   "p": 8.5,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "cacao": {
+   "p": 4.15,
+   "riv": "prodega",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "fondente": {
+   "p": 2.5,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "prosecco": {
+   "p": 9.3,
+   "riv": "aldi",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "birra": {
+   "p": 4.75,
+   "riv": "denner",
+   "fino": "2026-10-27",
+   "da": "listino"
+  },
+  "acquagas": {
+   "p": 6.95,
+   "riv": "coop",
+   "fino": "2026-10-27",
+   "da": "listino"
+  }
+ },
  "carburanti": {
   "ch": {
-   "benzina95": 2.13,
+   "benzina95": 2.14,
    "diesel": 2.44,
    "elettrico_kwh": 0.35,
    "fonte": "Skrimpers (rilevazioni TCS)",
-   "data": "2026-10-19",
+   "data": "2026-10-20",
    "fonte_benzina": "Skrimpers (rilevazioni TCS)",
    "mese": "2026-09",
    "fonte_diesel": "Skrimpers (rilevazioni TCS)",
@@ -5326,7 +8210,7 @@
      "usd": 2.6,
      "mese": "2026-09",
      "valuta": "USD",
-     "chf": 2.142
+     "chf": 2.145
     }
    },
    "it": {
@@ -5334,7 +8218,7 @@
      "usd": 2.52,
      "mese": "2026-09",
      "valuta": "USD",
-     "eur": 2.24
+     "eur": 2.245
     }
    }
   }
@@ -5353,13 +8237,13 @@
   },
   "zucchine": {
    "g": "c",
-   "n": 18,
-   "sicurezza": 50
+   "n": 20,
+   "sicurezza": 45
   },
   "pomodori": {
    "g": "a",
-   "n": 9,
-   "sicurezza": 78,
+   "n": 10,
+   "sicurezza": 70,
    "fonte": "skrimpers"
   },
   "broccoli": {
@@ -5376,8 +8260,8 @@
   },
   "porri": {
    "g": "d",
-   "n": 6,
-   "sicurezza": 67,
+   "n": 7,
+   "sicurezza": 57,
    "fonte": "skrimpers"
   },
   "sedano": {
@@ -5393,8 +8277,8 @@
   },
   "piselli": {
    "g": "a",
-   "n": 8,
-   "sicurezza": 75,
+   "n": 9,
+   "sicurezza": 67,
    "fonte": "skrimpers"
   },
   "passata": {
@@ -5409,15 +8293,15 @@
    "sicurezza": 50
   },
   "limoni": {
-   "g": "d",
-   "n": 8,
-   "sicurezza": 25,
+   "g": "b",
+   "n": 10,
+   "sicurezza": 30,
    "fonte": "skrimpers"
   },
   "wurstel": {
    "g": "e",
-   "n": 7,
-   "sicurezza": 71,
+   "n": 8,
+   "sicurezza": 63,
    "fonte": "skrimpers"
   },
   "prosccotto": {
@@ -5443,8 +8327,8 @@
   },
   "lenticchie": {
    "g": "b",
-   "n": 8,
-   "sicurezza": 38,
+   "n": 9,
+   "sicurezza": 33,
    "fonte": "skrimpers"
   },
   "ceci": {
@@ -5466,8 +8350,8 @@
   },
   "latte": {
    "g": "c",
-   "n": 8,
-   "sicurezza": 63,
+   "n": 9,
+   "sicurezza": 56,
    "fonte": "skrimpers"
   },
   "grattugiato": {
@@ -5477,19 +8361,19 @@
   },
   "ricotta": {
    "g": "c",
-   "n": 13,
-   "sicurezza": 69,
+   "n": 16,
+   "sicurezza": 63,
    "fonte": "skrimpers"
   },
   "burro": {
    "g": "e",
-   "n": 6,
-   "sicurezza": 100,
+   "n": 7,
+   "sicurezza": 71,
    "fonte": "skrimpers"
   },
   "pasta": {
    "g": "a",
-   "n": 22,
+   "n": 21,
    "sicurezza": 100
   },
   "pane": {
@@ -5529,8 +8413,8 @@
   },
   "olio": {
    "g": "d",
-   "n": 8,
-   "sicurezza": 50,
+   "n": 9,
+   "sicurezza": 44,
    "fonte": "skrimpers"
   },
   "cipolle": {
@@ -5540,8 +8424,8 @@
   },
   "aglio": {
    "g": "d",
-   "n": 5,
-   "sicurezza": 80,
+   "n": 4,
+   "sicurezza": 100,
    "fonte": "skrimpers"
   },
   "peperoni": {
@@ -5599,15 +8483,15 @@
    "sicurezza": 63
   },
   "panna": {
-   "g": "c",
-   "n": 9,
-   "sicurezza": 56,
+   "g": "d",
+   "n": 11,
+   "sicurezza": 55,
    "fonte": "skrimpers"
   },
   "riso": {
    "g": "e",
-   "n": 5,
-   "sicurezza": 60,
+   "n": 4,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "gallette": {
@@ -5629,8 +8513,8 @@
   },
   "pesto": {
    "g": "e",
-   "n": 12,
-   "sicurezza": 58,
+   "n": 11,
+   "sicurezza": 64,
    "fonte": "skrimpers"
   },
   "marmellata": {
@@ -5652,7 +8536,7 @@
   },
   "cioccolato": {
    "g": "e",
-   "n": 13,
+   "n": 12,
    "sicurezza": 100,
    "fonte": "skrimpers"
   },
@@ -5664,7 +8548,7 @@
   "mandorle": {
    "g": "e",
    "n": 7,
-   "sicurezza": 71,
+   "sicurezza": 57,
    "fonte": "skrimpers"
   },
   "orata": {
@@ -5904,9 +8788,9 @@
    "sicurezza": 50
   },
   "sciroppoacero": {
-   "g": "e",
-   "n": 11,
-   "sicurezza": 45,
+   "g": "a",
+   "n": 10,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "salsapomodoroP": {
@@ -5931,8 +8815,8 @@
   },
   "castagne": {
    "g": "d",
-   "n": 12,
-   "sicurezza": 50,
+   "n": 11,
+   "sicurezza": 45,
    "fonte": "skrimpers"
   },
   "paneseg": {
@@ -5952,8 +8836,8 @@
   },
   "pomodorisecchi": {
    "g": "d",
-   "n": 6,
-   "sicurezza": 67,
+   "n": 5,
+   "sicurezza": 80,
    "fonte": "skrimpers"
   },
   "edamame": {
@@ -5965,7 +8849,7 @@
   "ciliegie": {
    "g": "c",
    "n": 5,
-   "sicurezza": 60,
+   "sicurezza": 80,
    "fonte": "skrimpers"
   },
   "mango": {
@@ -5995,9 +8879,9 @@
    "sicurezza": 72
   },
   "pancetta": {
-   "g": "d",
-   "n": 5,
-   "sicurezza": 60,
+   "g": "e",
+   "n": 6,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "acciughe": {
@@ -6040,8 +8924,8 @@
   },
   "orzo": {
    "g": "c",
-   "n": 7,
-   "sicurezza": 43,
+   "n": 8,
+   "sicurezza": 38,
    "fonte": "skrimpers"
   },
   "panegf": {
@@ -6056,8 +8940,8 @@
   },
   "muesli": {
    "g": "c",
-   "n": 13,
-   "sicurezza": 54,
+   "n": 12,
+   "sicurezza": 58,
    "fonte": "skrimpers"
   },
   "burroarachidi": {
@@ -6150,8 +9034,8 @@
   },
   "baguette": {
    "g": "c",
-   "n": 9,
-   "sicurezza": 56,
+   "n": 10,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "pomodorini": {
@@ -6213,14 +9097,15 @@
    "sicurezza": 79
   },
   "arance": {
-   "g": "d",
-   "n": 19,
-   "sicurezza": 68
+   "g": "c",
+   "n": 4,
+   "sicurezza": 75,
+   "fonte": "skrimpers"
   },
   "albicocche": {
    "g": "e",
-   "n": 8,
-   "sicurezza": 63,
+   "n": 7,
+   "sicurezza": 57,
    "fonte": "skrimpers"
   },
   "fragole": {
@@ -6265,8 +9150,8 @@
   },
   "pettopollo": {
    "g": "c",
-   "n": 22,
-   "sicurezza": 55
+   "n": 21,
+   "sicurezza": 52
   },
   "platessa": {
    "g": "a",
@@ -6281,20 +9166,20 @@
   },
   "formaggino": {
    "g": "d",
-   "n": 10,
-   "sicurezza": 70,
+   "n": 8,
+   "sicurezza": 75,
    "fonte": "skrimpers"
   },
   "uova": {
    "g": "a",
-   "n": 7,
-   "sicurezza": 57,
+   "n": 6,
+   "sicurezza": 67,
    "fonte": "skrimpers"
   },
   "polenta": {
    "g": "c",
-   "n": 8,
-   "sicurezza": 38,
+   "n": 7,
+   "sicurezza": 43,
    "fonte": "skrimpers"
   },
   "latteveg": {
@@ -6317,8 +9202,8 @@
   },
   "sale": {
    "g": "e",
-   "n": 6,
-   "sicurezza": 50,
+   "n": 7,
+   "sicurezza": 43,
    "fonte": "skrimpers"
   },
   "spezie": {
@@ -6329,8 +9214,8 @@
   },
   "maionese": {
    "g": "e",
-   "n": 8,
-   "sicurezza": 88,
+   "n": 9,
+   "sicurezza": 89,
    "fonte": "skrimpers"
   },
   "succo": {
@@ -6371,14 +9256,14 @@
   },
   "cicoria": {
    "g": "e",
-   "n": 4,
-   "sicurezza": 50,
+   "n": 5,
+   "sicurezza": 40,
    "fonte": "skrimpers"
   },
   "cetrioli": {
    "g": "c",
    "n": 8,
-   "sicurezza": 75,
+   "sicurezza": 88,
    "fonte": "skrimpers"
   },
   "trota": {
@@ -6389,8 +9274,8 @@
   },
   "sardine": {
    "g": "b",
-   "n": 16,
-   "sicurezza": 38,
+   "n": 17,
+   "sicurezza": 35,
    "fonte": "skrimpers"
   },
   "quark": {
@@ -6407,8 +9292,8 @@
   },
   "fonduta": {
    "g": "d",
-   "n": 7,
-   "sicurezza": 43,
+   "n": 6,
+   "sicurezza": 67,
    "fonte": "skrimpers"
   },
   "risointegrale": {
@@ -6419,14 +9304,14 @@
   },
   "quinoa": {
    "g": "a",
-   "n": 9,
-   "sicurezza": 44,
+   "n": 12,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "melanzane": {
    "g": "c",
-   "n": 22,
-   "sicurezza": 50
+   "n": 23,
+   "sicurezza": 52
   },
   "finocchi": {
    "g": "a",
@@ -6495,7 +9380,7 @@
   "succomela": {
    "g": "c",
    "n": 6,
-   "sicurezza": 33,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "curry": {
@@ -6506,14 +9391,14 @@
   },
   "paprika": {
    "g": "d",
-   "n": 9,
-   "sicurezza": 78,
+   "n": 8,
+   "sicurezza": 75,
    "fonte": "skrimpers"
   },
   "cannella": {
    "g": "c",
-   "n": 4,
-   "sicurezza": 50,
+   "n": 5,
+   "sicurezza": 40,
    "fonte": "skrimpers"
   },
   "zuccherocanna": {
@@ -6529,15 +9414,15 @@
    "fonte": "skrimpers"
   },
   "salsicciagr": {
-   "g": "e",
-   "n": 5,
-   "sicurezza": 60,
+   "g": "d",
+   "n": 7,
+   "sicurezza": 43,
    "fonte": "skrimpers"
   },
   "gamberi": {
    "g": "d",
-   "n": 5,
-   "sicurezza": 60,
+   "n": 4,
+   "sicurezza": 75,
    "fonte": "skrimpers"
   },
   "yogurtgreco": {
@@ -6547,19 +9432,19 @@
    "fonte": "skrimpers"
   },
   "carnaroli": {
-   "g": "e",
-   "n": 11,
-   "sicurezza": 45,
+   "g": "a",
+   "n": 9,
+   "sicurezza": 44,
    "fonte": "skrimpers"
   },
   "fruttibosco": {
-   "g": "e",
-   "n": 8,
-   "sicurezza": 38,
+   "g": "d",
+   "n": 7,
+   "sicurezza": 29,
    "fonte": "skrimpers"
   },
   "senape": {
-   "g": "d",
+   "g": "e",
    "n": 15,
    "sicurezza": 47,
    "fonte": "skrimpers"
@@ -6572,8 +9457,8 @@
   },
   "cacao": {
    "g": "e",
-   "n": 4,
-   "sicurezza": 75,
+   "n": 5,
+   "sicurezza": 60,
    "fonte": "skrimpers"
   },
   "fondente": {
@@ -6590,8 +9475,8 @@
   },
   "farina": {
    "g": "a",
-   "n": 5,
-   "sicurezza": 60,
+   "n": 4,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "cervelas": {
@@ -6611,28 +9496,28 @@
   },
   "sbrinz": {
    "g": "d",
-   "n": 11,
-   "sicurezza": 82
+   "n": 15,
+   "sicurezza": 87
   },
   "appenzeller": {
    "g": "d",
-   "n": 11,
-   "sicurezza": 64
+   "n": 18,
+   "sicurezza": 78
   },
   "olive_verdi": {
    "g": "d",
-   "n": 22,
-   "sicurezza": 50
+   "n": 23,
+   "sicurezza": 52
   },
   "salsateriyaki": {
    "g": "e",
-   "n": 18,
-   "sicurezza": 56
+   "n": 19,
+   "sicurezza": 63
   },
   "gelatoveg": {
    "g": "d",
-   "n": 25,
-   "sicurezza": 60
+   "n": 24,
+   "sicurezza": 58
   },
   "passata_bio": {
    "g": "a",
@@ -6665,7 +9550,7 @@
   },
   "treccia": {
    "g": "d",
-   "n": 12,
+   "n": 9,
    "sicurezza": 100,
    "fonte": "skrimpers"
   },
@@ -6677,8 +9562,8 @@
   },
   "energydrink": {
    "g": "e",
-   "n": 9,
-   "sicurezza": 56,
+   "n": 8,
+   "sicurezza": 50,
    "fonte": "skrimpers"
   },
   "gamberetti": {
@@ -6707,8 +9592,8 @@
   },
   "pita": {
    "g": "c",
-   "n": 12,
-   "sicurezza": 42,
+   "n": 14,
+   "sicurezza": 43,
    "fonte": "skrimpers"
   },
   "arachidi": {
@@ -6719,8 +9604,8 @@
   },
   "barbabietola": {
    "g": "a",
-   "n": 8,
-   "sicurezza": 63,
+   "n": 7,
+   "sicurezza": 57,
    "fonte": "skrimpers"
   },
   "lamponi": {
@@ -6773,8 +9658,8 @@
   },
   "rosmarino": {
    "g": "d",
-   "n": 5,
-   "sicurezza": 60,
+   "n": 6,
+   "sicurezza": 67,
    "fonte": "skrimpers"
   },
   "fichi": {
@@ -6790,21 +9675,21 @@
    "fonte": "skrimpers"
   },
   "datteri": {
-   "g": "d",
+   "g": "c",
    "n": 10,
-   "sicurezza": 50,
+   "sicurezza": 60,
    "fonte": "skrimpers"
   },
   "lonza": {
-   "g": "c",
-   "n": 7,
-   "sicurezza": 43,
+   "g": "b",
+   "n": 8,
+   "sicurezza": 38,
    "fonte": "skrimpers"
   },
   "lattemandorla": {
    "g": "b",
    "n": 21,
-   "sicurezza": 38,
+   "sicurezza": 43,
    "fonte": "skrimpers"
   },
   "tefreddo": {
@@ -6835,10 +9720,9 @@
    "sicurezza": 50
   },
   "insalata_iceberg": {
-   "g": "b",
-   "n": 4,
-   "sicurezza": 25,
-   "fonte": "skrimpers"
+   "g": "a",
+   "n": 24,
+   "sicurezza": 88
   },
   "mais_dolce2": {
    "g": "b",
@@ -6861,6 +9745,33 @@
    "g": "e",
    "n": 25,
    "sicurezza": 64
+  },
+  "pancake": {
+   "g": "d",
+   "n": 8,
+   "sicurezza": 38
+  },
+  "biscottifrolla": {
+   "g": "e",
+   "n": 12,
+   "sicurezza": 75
+  },
+  "birranalc": {
+   "g": "c",
+   "n": 12,
+   "sicurezza": 67
+  },
+  "lievitomadre": {
+   "g": "d",
+   "n": 4,
+   "sicurezza": 50,
+   "fonte": "skrimpers"
+  },
+  "salvia": {
+   "g": "a",
+   "n": 4,
+   "sicurezza": 75,
+   "fonte": "skrimpers"
   }
  },
  "fonti": [
@@ -6978,10 +9889,41 @@
   }
  ],
  "rapporto": {
-  "data": "2026-10-19",
-  "fonti": [],
-  "cambioEUR": 0.9272,
-  "cambioUSDCHF": 0.824,
-  "copertura": {}
+  "data": "2026-10-20",
+  "fonti": [
+   {
+    "id": "off-prices-ch",
+    "stato": "ok",
+    "osservazioni": 948
+   },
+   {
+    "id": "off-prices-it",
+    "stato": "ok",
+    "osservazioni": 4129
+   },
+   {
+    "id": "skrimpers",
+    "stato": "ok",
+    "prodotti": 259,
+    "promozioni": 166,
+    "nutri": 143
+   }
+  ],
+  "cambioEUR": 0.9261,
+  "cambioUSDCHF": 0.825,
+  "copertura": {
+   "Migros": 392,
+   "Coop": 158,
+   "Coop Maladière": 41,
+   "Lidl": 41,
+   "La Maladière centre": 37,
+   "Métropole Centre": 36,
+   "Denner": 31,
+   "Aldi Suisse": 23,
+   "Selex": 23,
+   "Migros Serrières": 21,
+   "Coop City": 7,
+   "Manor": 6
+  }
  }
 }
