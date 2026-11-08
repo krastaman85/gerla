@@ -1,7 +1,7 @@
 {
  "versione": 3,
- "data": "2026-11-07",
- "generato": "2026-11-07T11:42:15.508Z",
+ "data": "2026-11-08",
+ "generato": "2026-11-08T11:54:34.873Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
  "cambioEUR": 0.9143,
  "prezzi": {
@@ -5305,11 +5305,11 @@
  "promo": {},
  "carburanti": {
   "ch": {
-   "benzina95": 2.03,
-   "diesel": 2.383,
+   "benzina95": 2.025,
+   "diesel": 2.39,
    "elettrico_kwh": 0.35,
    "fonte": "Skrimpers (rilevazioni TCS)",
-   "data": "2026-11-07",
+   "data": "2026-11-08",
    "fonte_benzina": "Skrimpers (rilevazioni TCS)",
    "mese": "2026-10",
    "fonte_diesel": "Skrimpers (rilevazioni TCS)",
@@ -7080,7 +7080,7 @@
   }
  ],
  "rapporto": {
-  "data": "2026-11-07",
+  "data": "2026-11-08",
   "fonti": [],
   "cambioEUR": 0.9143,
   "cambioUSDCHF": 0.8189,
