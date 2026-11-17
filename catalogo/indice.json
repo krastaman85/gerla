@@ -1,42 +1,42 @@
 {
  "versione": 1,
- "data": "2026-11-10",
+ "data": "2026-11-17",
  "negozi": {
   "migros": {
-   "prodotti": 12158,
-   "kb": 1390
+   "prodotti": 12163,
+   "kb": 1372
   },
   "coop": {
-   "prodotti": 15105,
-   "kb": 1644
+   "prodotti": 15114,
+   "kb": 1643
   },
   "aldi": {
-   "prodotti": 1620,
-   "kb": 179
+   "prodotti": 1609,
+   "kb": 178
   },
   "lidl": {
-   "prodotti": 1603,
-   "kb": 146
+   "prodotti": 1607,
+   "kb": 147
   },
   "denner": {
-   "prodotti": 843,
-   "kb": 89
+   "prodotti": 842,
+   "kb": 88
   },
   "ottos": {
-   "prodotti": 4235,
-   "kb": 462
+   "prodotti": 4142,
+   "kb": 452
   },
   "prodega": {
-   "prodotti": 10022,
-   "kb": 1210
+   "prodotti": 10337,
+   "kb": 1255
   },
   "aligro": {
-   "prodotti": 1192,
-   "kb": 120
+   "prodotti": 1277,
+   "kb": 126
   },
   "topcc": {
-   "prodotti": 6505,
-   "kb": 710
+   "prodotti": 6408,
+   "kb": 700
   }
  }
 }
