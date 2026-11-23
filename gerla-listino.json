@@ -1,9 +1,9 @@
 {
  "versione": 3,
- "data": "2026-11-22",
- "generato": "2026-11-22T13:17:58.893Z",
+ "data": "2026-11-23",
+ "generato": "2026-11-23T15:55:31.028Z",
  "nota": "Listino Gerla. Prezzi 'verificato' incrociati con fonti aperte; gli altri sono valori di riferimento da correggere allo scaffale.",
- "cambioEUR": 0.9223,
+ "cambioEUR": 0.9186,
  "prezzi": {
   "patate": 4.4,
   "carote": 2.1,
@@ -5318,7 +5318,7 @@
    "diesel": 2.29,
    "elettrico_kwh": 0.35,
    "fonte": "Skrimpers (rilevazioni TCS)",
-   "data": "2026-11-22",
+   "data": "2026-11-23",
    "fonte_benzina": "Skrimpers (rilevazioni TCS)",
    "mese": "2026-10",
    "fonte_diesel": "Skrimpers (rilevazioni TCS)",
@@ -5349,7 +5349,7 @@
      "usd": 2.6,
      "mese": "2026-10",
      "valuta": "USD",
-     "chf": 2.182
+     "chf": 2.183
     }
    },
    "it": {
@@ -5357,7 +5357,7 @@
      "usd": 2.34,
      "mese": "2026-10",
      "valuta": "USD",
-     "eur": 2.129
+     "eur": 2.139
     }
    }
   }
@@ -7093,10 +7093,10 @@
   }
  ],
  "rapporto": {
-  "data": "2026-11-22",
+  "data": "2026-11-23",
   "fonti": [],
-  "cambioEUR": 0.9223,
-  "cambioUSDCHF": 0.8392,
+  "cambioEUR": 0.9186,
+  "cambioUSDCHF": 0.8397,
   "copertura": {}
  }
 }
